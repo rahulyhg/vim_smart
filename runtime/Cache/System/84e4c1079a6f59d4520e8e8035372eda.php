@@ -2013,7 +2013,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                                 <th style="width: 350px; text-align: center;">房间号</th>
                             </tr>
                             </thead>
-                            <?php if(is_array($data)): foreach($data as $key=>$vo): ?><tr>
+                            <?php if(is_array($info)): foreach($info as $key=>$vo): ?><tr>
                                     <td>
                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                             <input type="checkbox" class="checkboxes" value="<?php echo ($vo["id"]); ?>"  id="checks" name="ids[]" />
@@ -2073,6 +2073,18 @@ table tr:nth-last-of-type(2) .dropdown-menu {
 </div>
 <!-- END QUICK SIDEBAR -->
 </div>
+<!-- END CONTAIER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2017 &copy; 汇得行智慧助手系统
+        <a target="_blank" href="http://www.vhi99.com">邻钱科技</a> &nbsp;|&nbsp;
+        <a href="http://www.metronic.com" target="_blank">Metronic</a>
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<div class="quick-nav-overlay"></div>
 <!-- END CONTAIER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
@@ -2292,8 +2304,6 @@ table tr:nth-last-of-type(2) .dropdown-menu {
     table.on('change', 'tbody tr .checkboxes', function () {
         $(this).parents('tr').toggleClass("active");
     });
-
-
 
 </script>
 

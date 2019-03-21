@@ -8,7 +8,7 @@
                 </label>
 
                 <div class="col-md-9">
-                    <a href="http://www.hdhsmart.com/upload/example/库存数据导入格式表.xls" download="inventory_example.xls">
+                    <a href="http://www.pignewpay.com/upload/example/广发项目宿舍动态管理表.xlsx" download="inventory_example.xls">
                         下载
                     </a>
                 </div>

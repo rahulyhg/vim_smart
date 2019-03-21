@@ -182,7 +182,7 @@
                                 <!-- <th  style="width: 150px; text-align: center;">物品编号</th> -->
                                 <th style="width: 350px; text-align: center;">项目</th>
                                 <th style="text-align: center;">位置/房间号</th>
-                                <th style="text-align: center;">剩余床位数</th>
+                                <th style="text-align: center;">剩余床位</th>
                                 <th style="text-align: center;">住宿员工姓名</th>
                                 <th style="text-align: center;">所在部门</th>
                                 <th style="text-align: center;">备注</th>

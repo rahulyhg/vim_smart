@@ -39,9 +39,9 @@ class BudgetAction extends BaseAction
         }
         $this->assign('is_finance',$this->is_finance);
         $this->assign('is_cashier',$this->is_cashier);
-       /* if(empty($this->department_info)){
-            $this->error('当前项目没有所属部门/公司，无法进行预算的相关操作');
-        }*/
+        /* if(empty($this->department_info)){
+             $this->error('当前项目没有所属部门/公司，无法进行预算的相关操作');
+         }*/
     }
 
     /**
@@ -50,10 +50,11 @@ class BudgetAction extends BaseAction
      */
     public function check_record_list(){
         if(in_array(101,$this->role_id)){//刘总直接跳转到预算页面
+
             redirect(U('Budget_predict/watch_company_one'));
         }
         //if(in_array([101],$this->role_id)){//杭总及刘总设置部分按钮隐藏
-          //  $this->assign('isLeader',true);
+        //  $this->assign('isLeader',true);
         //}
         //设定检索时间
         if(!empty(I('get.month'))){
@@ -89,12 +90,72 @@ class BudgetAction extends BaseAction
             $where['record_status']=$record_status;
         }
         //财务通过汇总查看明细筛选
-        if(!empty(I('get.company_id'))){
-            $where['company_id']=I('get.company_id');
-        }elseif(!empty(I('get.village_id_search'))){
-            $where['village_id']=I('get.village_id_search');
-            if(!empty(I('get.project_id'))) $where['project_id']=I('get.project_id');
+         if(!empty(I('get.company_id'))){
+             $where['company_id']=I('get.company_id');
+         }elseif(!empty(I('get.village_id_search'))){
+             $where['village_id']=I('get.village_id_search');
+             if(!empty(I('get.project_id'))) $where['project_id']=I('get.project_id');
+         }
+
+        //设定筛选项目
+        if(!empty(I('get.project_id_change'))){
+            $_GET['village_id_budget']=explode('-',I('get.project_id_change'))['0'];
+            $_GET['project_id_budget']=explode('-',I('get.project_id_change'))['1'];
         }
+        //设定筛选公司
+        if(!empty(I('get.company_id'))){
+            unset($_SESSION['budget']['village_id']);
+            unset($_SESSION['budget']['project_id']);
+            $where['company_id']=$_SESSION['budget']['company_id']=I('get.company_id');
+        }elseif(!empty(I('get.village_id_budget'))){
+            unset($_SESSION['budget']['company_id']);
+            $where['village_id']=$_SESSION['budget']['village_id']=I('get.village_id_budget');
+            if(!empty(I('get.project_id_budget'))){
+                $where['project_id']=$_SESSION['budget']['project_id']=I('get.project_id_budget');
+            }
+        }
+        // elseif(!empty($_SESSION['budget'])){
+        //     $where=$_SESSION['budget'];
+        // }
+        // else{
+        //     $where=$_SESSION['budget']=array('village_id'=>2,'project_id'=>1);
+        // }
+        //设置标题名称
+        if(!empty($where['company_id'])){
+            $title=D('Department')->get_department_one(array('id'=>$where['company_id']))['deptname'];
+            $this->assign('company_id',$where['company_id']);
+            $company_id=$where['company_id'];//获取公司id  用来筛选类别
+            $project_list=$this->get_project_list($where['company_id']);
+        }else{
+            $budget_logModel=new Budget_logModel();
+            $village_info=M('house_village')->where(array('village_id'=>$where['village_id']))->find();
+            $village_info['department_id']=$budget_logModel->get_company_id($where['village_id'],$where['project_id']);
+            $title=$village_info['village_name'];
+            $project_id_change=$where['village_id'];
+            if(!empty($where['project_id'])){
+                $title .='-'.M('house_village_project')->where(array('pigcms_id'=>$where['project_id']))->find()['desc'];
+                $project_id_change .='-'.$where['project_id'];
+            }
+            $this->assign('project_id_change',$project_id_change);
+            $this->assign('company_id',$village_info['department_id']);
+            $company_id=$village_info['department_id'];//获取公司id  用来筛选类别
+            $project_list=$this->get_project_list($village_info['department_id']);
+
+        }
+        $this->assign('title1',$title);
+        $type_first_list=D('Budget_type')->get_type_list(array('type_fid'=>0,'company_id'=>$company_id));
+        $this->assign('type_list',$type_first_list);
+        $company_list=D('Department')->get_department_list(array('budget_type'=>1));
+        // array_unshift($company_list,array('id'=>'all','deptname'=>'集团预算执行汇总'),array('id'=>'all_company','deptname'=>'各分公司预算执行汇总'));
+        /*$company_list['all_company']='各分公司预算执行汇总';
+        $company_list['all']='集团预算执行汇总';*/
+        // if (in_array(101,$this->role_id)){//对集团领导(杭总、刘总)进行单独处理（隐藏预算金额修改按钮）
+        //     $this->assign('isLeader',true);
+        // }else {
+        //     $this->assign('isLeader',false);
+        // }
+        $this->assign('company_list',$company_list);
+
         //财务查看  处理当所查看类目为一级 二级 三级等情况
         if(!empty(I('get.type_id'))){
             $type_info=D('Budget_type')->get_type_one(array('type_id'=>I('get.type_id')));
@@ -143,7 +204,7 @@ class BudgetAction extends BaseAction
                 $record_check_info=M('admin')->where(array('id'=>$value['record_check_id']))->find();
                 $value['record_check_name']=$record_check_info['realname']?:$record_check_info['account'];
             }
-            
+
         }
         //dump($record_list);
         $this->assign('record_list',$record_list);
@@ -314,7 +375,7 @@ class BudgetAction extends BaseAction
     }
     /**
      * @author zhukeqin
-     * 菜单需要1
+     * 菜单需要
      */
     public function village_record_list_news(){
         if($this->is_finance==1||$this->is_cashier==1){
@@ -351,6 +412,7 @@ class BudgetAction extends BaseAction
         }
         $_SESSION['record_check_time']=array('starttime'=>$starttime,'endtime'=>$endtime);
         //设定审核情况
+        $where=array();
         if(!empty(I('get.record_status'))){
             $record_status=$_SESSION['record_status']=I('get.record_status');//2
         }elseif(!empty($_SESSION['record_status'])){
@@ -378,6 +440,7 @@ class BudgetAction extends BaseAction
         if(!empty(I('get.type_id'))){
             $where['type_id'] = $type_id;
         }
+
         $record_list=D('Budget_record')->get_record_list($where);
 
         //转换状态
@@ -393,6 +456,7 @@ class BudgetAction extends BaseAction
         $breadcrumb_diy = array(
             array('全部列表',U('check_record_list')),
         );
+
         $this->assign('starttime',$starttime);
         $this->assign('endtime',$endtime);
         $this->assign('record_status',$record_status);
@@ -404,6 +468,15 @@ class BudgetAction extends BaseAction
             $this->display('village_record_list');
         }
     }
+
+    public function get_company_array(){
+        //获取市id
+        $village_id = I('get.village_id');
+        $company_array = M('company')->where(array('village_id'=>$village_id))->select();
+        $company_array = json_encode($company_array);
+        echo $company_array;
+    }
+
     /**
      * @author zhukeqin
      * 项目方添加一条详情
@@ -474,16 +547,16 @@ class BudgetAction extends BaseAction
         $this->assign('breadcrumb_diy',$breadcrumb_diy);
         $this->assign('year',$year);
         //设置标题名称
-            $village_info=M('house_village')->where(array('village_id'=>$where['village_id']))->find();
-            $title=$village_info['village_name'];
-            $project_id_change=$where['village_id'];
-            if(!empty($where['project_id'])){
-                $title .='-'.M('house_village_project')->where(array('pigcms_id'=>$where['project_id']))->find()['desc'];
-                $project_id_change .='-'.$where['project_id'];
-            }
-            $this->assign('project_id_change',$project_id_change);
-            $this->assign('company_id',$village_info['department_id']);
-            $company_id=$budget_logModel->get_company_id($where['village_id'],$where['project_id'],$year);//$village_info['department_id'];//获取公司id  用来筛选类别
+        $village_info=M('house_village')->where(array('village_id'=>$where['village_id']))->find();
+        $title=$village_info['village_name'];
+        $project_id_change=$where['village_id'];
+        if(!empty($where['project_id'])){
+            $title .='-'.M('house_village_project')->where(array('pigcms_id'=>$where['project_id']))->find()['desc'];
+            $project_id_change .='-'.$where['project_id'];
+        }
+        $this->assign('project_id_change',$project_id_change);
+        $this->assign('company_id',$village_info['department_id']);
+        $company_id=$budget_logModel->get_company_id($where['village_id'],$where['project_id'],$year);//$village_info['department_id'];//获取公司id  用来筛选类别
         $this->assign('title1',$title);
         $type_first_list=D('Budget_type')->get_type_list(array('type_fid'=>0,'company_id'=>$company_id));
         $this->assign('type_list',$type_first_list);
@@ -510,7 +583,7 @@ class BudgetAction extends BaseAction
     public function ajax_village_excel_print(){
         $year=I('get.year');
         if(empty($year)) $year=date('Y');
-            D('Budget_log')->output_log_village($this->village_id,$this->project_id,$year);
+        D('Budget_log')->output_log_village($this->village_id,$this->project_id,$year);
         //$this->error('参数传入错误，请按正确的操作步骤进行操作');
     }
 
@@ -556,7 +629,6 @@ class BudgetAction extends BaseAction
             }*/
             //判断是否是补全支付凭证
             $record_info=D('Budget_record')->get_record_one(array('record_id'=>$id));
-//            dump($record_info);
             if($record_info['record_status']=='2'){
                 //检查是否有反审核操作
                 if(!empty($data['record_status'])&&$data['record_status']!=$record_info['record_status']){
@@ -564,8 +636,6 @@ class BudgetAction extends BaseAction
                     if($return_history) $this->error($return_history);
                 }
                 //补全支付凭证以及重新设置归档时间
-//                dump($id);
-//                dump($data);die;
                 $return=D('Budget_record')->check_change_record($id,$data);
                 //$return=!M('budget_record')->where(array('record_id'=>$id))->data(array('record_number'=>$data['record_number']))->save();
             }else{
@@ -658,9 +728,9 @@ class BudgetAction extends BaseAction
         $this->assign('type_list',json_encode($type_list));*/
         echo json_encode(array('money_list'=>$money_list,'type_list'=>$type_list));
     }/**
-     * @author zhukeqin
-     * ajax获取预算明细
-     */
+ * @author zhukeqin
+ * ajax获取预算明细
+ */
     public function get_money_list($project_id_change){
         $village_id=explode('-',$project_id_change)['0'];
         $project_id=explode('-',$project_id_change)['1'];
@@ -711,15 +781,16 @@ class BudgetAction extends BaseAction
         }else{
             $where=$_SESSION['budget']=array('village_id'=>2,'project_id'=>1);
         }
+
         $breadcrumb_diy = array(
             array('全部列表',U('check_record_list')),
             array('预算执行汇总表','#'),
         );
         $this->assign('breadcrumb_diy',$breadcrumb_diy);
         $this->assign('year',$year);
+
         //设置标题名称
         if(!empty($where['company_id'])){
-            //标记
             $title=D('Department')->get_department_one(array('id'=>$where['company_id']))['deptname'];
             $this->assign('company_id',$where['company_id']);
             $company_id=$where['company_id'];//获取公司id  用来筛选类别
@@ -730,8 +801,8 @@ class BudgetAction extends BaseAction
             $title=$village_info['village_name'];
             $project_id_change=$where['village_id'];
             if(!empty($where['project_id'])){
-               $title .='-'.M('house_village_project')->where(array('pigcms_id'=>$where['project_id']))->find()['desc'];
-               $project_id_change .='-'.$where['project_id'];
+                $title .='-'.M('house_village_project')->where(array('pigcms_id'=>$where['project_id']))->find()['desc'];
+                $project_id_change .='-'.$where['project_id'];
             }
             $this->assign('project_id_change',$project_id_change);
             $this->assign('company_id',$village_info['department_id']);
@@ -755,7 +826,7 @@ class BudgetAction extends BaseAction
         $this->assign('where',$where);
         if($type=='sum'){
             if(!empty($where['company_id'])){
-                if(count($project_list)==1&&!empty($project_list)&&$where['company_id'] != 'all_company'){
+                if(count($project_list)==1&&!empty($project_list)){
                     //$village_id_get=array_pop($project_list);
                     $village_id_get=key($project_list);//获取项目id
                     $where['village_id']=explode(',',$village_id_get)['0'];
@@ -773,12 +844,10 @@ class BudgetAction extends BaseAction
                 }elseif($where['company_id']=='all'){
                     $data=D('Budget_log')->get_excel_log_sum_all($year);
                 }else{
-//                    echo $where['company_id'];die;
                     $data=D('Budget_log')->get_excel_log_sum_company($where['company_id'],$year);
                 }
                 $sum=$data['sum'];
                 $data=$data['list'];
-//                dump($data);die;
                 $this->assign('data',$data);
                 $this->assign('sum',$sum);
                 $this->display('check_excel_print_sum_company');
@@ -786,7 +855,6 @@ class BudgetAction extends BaseAction
             }else{
                 $data=D('Budget_log')->get_excel_log_sum($where['village_id'],$where['project_id'],$where['company_id'],$year);
             }
-//            dump($data);die;
             $this->assign('data',$data);
             $this->display('check_excel_print_sum');
         }else{
@@ -846,29 +914,29 @@ class BudgetAction extends BaseAction
         }
         $where['log_time']=$year;
         $village_info=M('house_village')->where(array('village_id'=>$where['village_id']))->find();
-          $type_list=D('Budget_type')->get_type_list_tree(array('company_id'=>$village_info['department_id']));
-          $money_list=array();
-          foreach ($type_list as $key=>$value){
-              $count2=0;
-              foreach ($value['children'] as $key1=>$value1){
-                  $count3=0;
-                  foreach ($value1['children'] as $key2=>$value2){
-                      $where['type_id']=$key2;
-                      $money_list[$key]['children'][$key1]['children'][$key2]['data']=unserialize(D('Budget_log')->get_log_one($where)['log_data']);
-                      $money_list[$key]['children'][$key1]['children'][$key2]['type_name']=$value2['type_name'];
-                      $money_list[$key]['children'][$key1]['children'][$key2]['type_id']=$value2['type_id'];
-                      $count3++;
-                  }
-                  $money_list[$key]['children'][$key1]['count']=$count3;
-                  $money_list[$key]['children'][$key1]['type_name']=$value1['type_name'];
-                  $money_list[$key]['children'][$key1]['type_id']=$value1['type_id'];
-                  $count2 +=$count3;
-              }
-              $money_list[$key]['count']=$count2;
-              $money_list[$key]['type_name']=$value['type_name'];
-              $money_list[$key]['type_id']=$value['type_id'];
-          }
-          /*dump($money_list);*/
+        $type_list=D('Budget_type')->get_type_list_tree(array('company_id'=>$village_info['department_id']));
+        $money_list=array();
+        foreach ($type_list as $key=>$value){
+            $count2=0;
+            foreach ($value['children'] as $key1=>$value1){
+                $count3=0;
+                foreach ($value1['children'] as $key2=>$value2){
+                    $where['type_id']=$key2;
+                    $money_list[$key]['children'][$key1]['children'][$key2]['data']=unserialize(D('Budget_log')->get_log_one($where)['log_data']);
+                    $money_list[$key]['children'][$key1]['children'][$key2]['type_name']=$value2['type_name'];
+                    $money_list[$key]['children'][$key1]['children'][$key2]['type_id']=$value2['type_id'];
+                    $count3++;
+                }
+                $money_list[$key]['children'][$key1]['count']=$count3;
+                $money_list[$key]['children'][$key1]['type_name']=$value1['type_name'];
+                $money_list[$key]['children'][$key1]['type_id']=$value1['type_id'];
+                $count2 +=$count3;
+            }
+            $money_list[$key]['count']=$count2;
+            $money_list[$key]['type_name']=$value['type_name'];
+            $money_list[$key]['type_id']=$value['type_id'];
+        }
+        /*dump($money_list);*/
         $company_list=D('Department')->get_department_list(array('budget_type'=>1));
         $project_list=array();
         foreach ($company_list as $value){
@@ -1045,7 +1113,7 @@ class BudgetAction extends BaseAction
                     if(empty($cashier_id)) $error[]='第'.($key+1).'行出纳没有找到，请之后手动修改';
                 }
 
-                
+
                 $data=array(
                     'record_name'=>$name,
                     'record_money'=>$money,
@@ -1058,10 +1126,10 @@ class BudgetAction extends BaseAction
                     'record_status'=>1,
                     /*'record_create_time'=>strtotime($time),*/
                     'record_create_id'=>$_SESSION['admin_id'],
-                   'cashier_id'=>$cashier_id,
-                   /* 'record_check_id'=>$_SESSION['admin_id'],
-                    'record_check_time'=>strtotime($time),
-                    'record_audit_time'=>strtotime($time),*/
+                    'cashier_id'=>$cashier_id,
+                    /* 'record_check_id'=>$_SESSION['admin_id'],
+                     'record_check_time'=>strtotime($time),
+                     'record_audit_time'=>strtotime($time),*/
                 );
                 /*$return=D('Budget_record')->get_record_list(array('record_name'=>$data['record_name'],'record_money'=>$data['record_money'],'record_time'=>$data['record_time'],'type_id'=>$data['type_id'],'village_id'=>$data['village_id']));
                 if(count($return)>=2){
@@ -1592,7 +1660,7 @@ class BudgetAction extends BaseAction
             $this->assign('breadcrumb_diy',$breadcrumb_diy);
             $cashier_info['admin_info']=M('admin')->where(array('id'=>$cashier_info['admin_id']))->find();
             $this->assign('cashier_info',$cashier_info);
-           $village_list=M('house_village')->where(array('department_id'=>array('exp',' is not null AND department_id != ""')))->select();
+            $village_list=M('house_village')->where(array('department_id'=>array('exp',' is not null AND department_id != ""')))->select();
             $this->assign('village_list',$village_list);
             $this->display();
         }
@@ -1786,7 +1854,7 @@ class BudgetAction extends BaseAction
             $other_log=M('budget_log')->where($where)->find();
             if($other_log){
                 echo '原条目id:'.$value['log_id'].';新条目id:'.$other_log['log_id'].';类型id:'.$value['type_id'].';当前公司id:'.$value['company_id'].'<br/>';
-/*                $budget_logModel->change_log_one($value['type_id'],$value['village_id'],$value['company_id'],$value['project_id'],$value['log_time']);*/
+                /*                $budget_logModel->change_log_one($value['type_id'],$value['village_id'],$value['company_id'],$value['project_id'],$value['log_time']);*/
             }
         }
     }
@@ -1798,7 +1866,7 @@ class BudgetAction extends BaseAction
     public function execute()
     {
         if($_POST){
-            //$village_id = $_POST['village_id'];
+            $village_id = $_POST['village_id'];
             $data = $_POST;
             if(!empty($data['project_id']) && $data['project_id']!='0'){
                 $record = M('budget_record')->where(array('village_id'=>$data['village_id']))->select();

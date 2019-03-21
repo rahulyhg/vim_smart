@@ -784,10 +784,15 @@ class OffModel extends Model
             }else{
                 //加入表
                 $name_ids = explode(',',$info['name']);
+                if(empty($name_ids[0])){
+                    $num = 0;
+                }else{
+                    $num = count($name_ids);
+                }
                 $arr = array(
                     'village_id'=>$village_id,
                     'room'      =>$info['room'],
-                    'bed_number'=>$info['bed_number'],
+                    'bed_number'=>$info['bed_number'] - $num,
                     'department'=>$info['department'],
                     'comment'   =>$info['comment']
                 );

@@ -120,7 +120,7 @@
                                 <th style="width: 350px; text-align: center;">房间号</th>
                             </tr>
                             </thead>
-                            <foreach name="data" item="vo" id="change_data">
+                            <foreach name="info" item="vo" id="change_data">
                                 <tr>
                                     <td>
                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
@@ -182,6 +182,18 @@
 </div>
 <!-- END QUICK SIDEBAR -->
 </div>
+<!-- END CONTAIER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2017 &copy; 汇得行智慧助手系统
+        <a target="_blank" href="http://www.vhi99.com">邻钱科技</a> &nbsp;|&nbsp;
+        <a href="http://www.metronic.com" target="_blank">Metronic</a>
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<div class="quick-nav-overlay"></div>
 <!-- END CONTAIER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
@@ -401,8 +413,6 @@
     table.on('change', 'tbody tr .checkboxes', function () {
         $(this).parents('tr').toggleClass("active");
     });
-
-
 
 </script>
 

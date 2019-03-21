@@ -2014,8 +2014,16 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                         </div>
 
 
-
                         <div class="form-group form-md-line-input">
+                            <label class="col-md-2 control-label" for="form_control_1">员工
+
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="name" id="tax_rate" value="" placeholder="请输入员工姓名用逗号隔开" />
+                                <div class="form-control-focus"> </div>
+                            </div>
+                        </div>
+                        <!--<div class="form-group form-md-line-input">
                             <label class="col-md-2 control-label" for="role_id">员工
                                 <span class="required">*</span>
                             </label>
@@ -2025,7 +2033,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                                 </select>
                                 <div class="form-control-focus"> </div>
                             </div>
-                        </div>
+                        </div>-->
 
 
 
