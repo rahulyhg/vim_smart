@@ -1,0 +1,6 @@
+[ 2016-11-21T13:51:00+08:00 ] 221.232.52.45 /index.php/Home/Payrecord/pay_now
+ERR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'vhi_car.smart_config' doesn't exist
+
+[ 2016-11-21T14:58:16+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'pay_no' cannot be null
+

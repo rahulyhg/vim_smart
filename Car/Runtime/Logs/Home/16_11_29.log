@@ -1,0 +1,434 @@
+[ 2016-11-29T08:00:08+08:00 ] 171.82.156.180 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000335s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000603s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0017s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T10:54:58+08:00 ] 171.82.156.180 /?m=Home&c=Car&a=use_service
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'api_pay_no'
+
+[ 2016-11-29T14:22:52+08:00 ] 221.232.52.45 /index.php?m=Home&c=Car&a=binding_car
+ERR: 非法操作:binding_car
+
+[ 2016-11-29T14:22:56+08:00 ] 221.232.52.45 /index.php?m=Home&c=Car&a=binding_car
+ERR: 非法操作:binding_car
+
+[ 2016-11-29T14:23:11+08:00 ] 101.226.33.240 /index.php?m=Home&c=Car&a=binding_car
+ERR: 非法操作:binding_car
+
+[ 2016-11-29T14:34:18+08:00 ] 221.232.52.45 /index.php?m=Home&c=Car&a=binding_car
+ERR: 非法操作:binding_car
+
+[ 2016-11-29T14:34:35+08:00 ] 101.226.33.239 /index.php?m=Home&c=Car&a=binding_car
+ERR: 非法操作:binding_car
+
+[ 2016-11-29T15:21:28+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000424s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000784s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0043s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0050s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T16:06:48+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000470s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000707s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:06:52+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000341s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000581s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0014s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:06:53+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000340s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000600s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0012s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:06:57+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000554s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000800s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0011s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:06:58+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000360s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000630s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:07:06+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001032s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0030s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0031s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T16:08:25+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000353s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000591s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0013s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0018s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:08:34+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000348s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000580s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0011s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T16:13:57+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000398s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000651s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0011s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0017s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+
+[ 2016-11-29T16:14:04+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000326s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000594s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0012s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T16:32:41+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000582s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0021s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0018s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T16:34:23+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000386s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000647s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0011s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+
+[ 2016-11-29T16:34:30+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000333s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000582s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0014s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:34:33+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000332s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000575s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0018s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0021s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:34:34+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000389s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000662s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0023s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:34:42+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000357s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000602s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0053s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+
+[ 2016-11-29T16:34:49+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000344s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000669s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0013s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T16:38:32+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000421s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000663s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:38:37+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000337s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000565s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0022s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0012s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:38:44+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000352s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000587s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0036s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:38:47+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000363s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000596s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0042s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0011s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:38:51+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000322s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000575s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0014s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:38:53+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000715s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0011s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:38:53+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000325s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000559s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0031s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0031s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0039s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:39:01+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000406s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000706s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0013s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0023s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T16:40:34+08:00 ] 221.232.52.45 /?m=Home&c=Car&a=pay_now
+ERR: 非法操作:pay_now
+
+[ 2016-11-29T16:40:44+08:00 ] 101.226.89.117 /?m=Home&c=Car&a=pay_now
+ERR: 非法操作:pay_now
+
+[ 2016-11-29T16:40:51+08:00 ] 180.153.206.22 /?m=Home&c=Car&a=pay_now
+ERR: 非法操作:pay_now
+
+[ 2016-11-29T16:53:30+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=WeiXin_call_back.html
+ERR: 非法操作:WeiXin_call_back.html
+
+[ 2016-11-29T17:12:32+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000332s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000586s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+
+[ 2016-11-29T17:12:40+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000324s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000584s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0013s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T17:14:51+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000323s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000558s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0013s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+
+[ 2016-11-29T17:15:57+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000393s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000655s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0014s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T17:19:43+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000331s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000573s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0014s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0016s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T17:24:58+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000343s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000575s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0016s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T17:28:23+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000601s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0013s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0022s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T17:35:59+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000412s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000668s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0010s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+
+[ 2016-11-29T17:36:14+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000405s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000710s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0014s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+
+[ 2016-11-29T17:37:11+08:00 ] 221.232.52.45 /?m=Home&c=Payrecord&a=pay_now
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000343s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000578s ]
+SQL: SHOW COLUMNS FROM `smart_payrecord` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0012s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0016s ]
+NOTIC: [8] Undefined index: weixin /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 208 行.
+NOTIC: [8] Use of undefined constant CURLOP_TIMEOUT - assumed 'CURLOP_TIMEOUT' /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_setopt() expects parameter 2 to be long, string given /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 259 行.
+NOTIC: [2] curl_close(): 38 is not a valid cURL handle resource /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Common_util_pub.class.php 第 299 行.
+NOTIC: [8] Undefined index: err_code /u02/vhi99/vhi_car/ThinkPHP/Library/Org/Weixinpay/Weixinpay.class.php 第 232 行.
+

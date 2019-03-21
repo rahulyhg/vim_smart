@@ -1,0 +1,15 @@
+body {margin:0px auto; background-color:#fbfbfb;-moz-user-select:none;/*»ðºü*/
+
+-webkit-user-select:none;/*webkitä¯ÀÀÆ÷*/
+
+-ms-user-select:none;/*IE10*/
+
+-khtml-user-select:none;/*ÔçÆÚä¯ÀÀÆ÷*/
+
+user-select:none;
+
+-webkit-tap-highlight-color:rgba(0,0,0,0);
+
+}
+
+.tb {width:100%; margin:0px auto;}

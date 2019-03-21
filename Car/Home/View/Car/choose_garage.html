@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智慧停车场</title>
+    <link href="{$Think.config.STATICS_URL}plublic/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/weui.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/weui.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/weui2.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><style type="text/css">
+<!--
+.weui-btn+.weui-btn {
+    margin-top: 35px;
+}
+.bg-blue-b {
+    color: #389ffe;
+    border: 2px solid #389ffe;
+}
+-->
+</style></head>
+<body>
+<div style="height:44px;border-radius:4px; text-align:center; line-height:44px; color:#389ffe; border: 1px #ededed solid; font-family:'微软雅黑'; font-weight:500; font-size:53px; margin-top:200px;">
+    请选择停车场
+</div>
+<div style="margin: 35% auto; width:90%;">
+    <foreach name="garage_array" item="v">
+        <a class="weui-btn bg-blue-b" href="__APP__?s=/Home/car/use_service/garage_id/{$v.garage_id}" ><span style="font-size: 53px;">{$v.garage_name}</span></a>
+    </foreach>
+</div>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>邻钱智慧停车管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Preview page of Metronic Admin Theme #4 for statistics, charts, recent events and reports" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />-->
+    <link href="{$Think.config.ADMIN_ASSETS_URL}global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.ADMIN_ASSETS_URL}global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.ADMIN_ASSETS_URL}global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.ADMIN_ASSETS_URL}global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="{$Think.config.ADMIN_ASSETS_URL}global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.ADMIN_ASSETS_URL}global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="{$Think.config.ADMIN_ASSETS_URL}global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!--<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/echarts.min.js"></script>-->
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="{$Think.config.ADMIN_ASSETS_URL}layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.ADMIN_ASSETS_URL}layouts/layout4/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="{$Think.config.ADMIN_ASSETS_URL}layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" /> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><style type="text/css">
+<!--
+.ggt:link{color:#FFFFFF; text-decoration:none;}
+.ggt:visited{color:#FFFFFF; text-decoration:none;}
+.ggt:active{color:#FFFFFF; text-decoration:none;}
+.ggt:hover{color:#FFFFFF; text-decoration:none;}
+
+@media screen and (min-width: 769px) {
+
+	.index_left_nav2{display:none;}
+}
+@media screen and (max-width: 768px) {	
+	
+	.index_left_nav{display:none;}
+}
+.btn.red-haze:not(.btn-outline).active, .btn.red-haze:not(.btn-outline):active, .btn.red-haze:not(.btn-outline):hover, .open>.btn.red-haze:not(.btn-outline).dropdown-toggle {
+    color: #fff;
+    background-color: #f36a5a;
+    border-color: #f36a5a;
+}
+.dropdown-menu {position:absolute;}
+
+.form-control {
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    background-color: #ffffff;
+    border: 1px solid #555555;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.form-control, output {
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555555;
+    display: block;
+}
+select {
+  /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+  border: solid 1px #000;
+
+  /*很关键：将默认的select选择框样式清除*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  /*在选择框的最右侧中间显示小箭头图片*/
+  background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+
+
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding-right: 8px;
+}
+
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display:block; }
+-->
+</style></head>
+<!-- END HEAD -->
+
+<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="{:U('Index/index')}" class="ggt">
+                <div style="margin:25px 10px 0; font-size:17px; font-weight:600;">邻钱智慧停车管理系统</div> </a>
+            <div class="menu-toggler sidebar-toggler">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE ACTIONS -->
+        <!-- DOC: Remove "hide" class to enable the page header actions -->
+        <div class="page-actions">
+            <div class="btn-group">
+				<div class="btn-group index_left_nav" data-toggle="buttons" style="float:left; margin-top:22px; margin-right:10px;">
+                    <div class="btn-group" data-toggle="buttons">
+						<label class="btn" onClick="window.location.href='http://www.hdhsmart.com/admin.php?g=System&c=Index&a=index_new';" style="color:#FFFFFF;"> 智能门禁 </label>
+						<label class="btn red-haze active" onClick="window.location.href='{$Think.config.WEB_DOMAIN}/index.php?s=/Admin/Index/index.html';"> 智慧停车场 </label>
+					</div>
+                 </div>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-docs"></i> 财务对账 </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-tag"></i> 新留言 </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-share"></i> 分享 </a>
+                    </li>
+                    <li class="divider"> </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-flag"></i> 评论
+                            <span class="badge badge-success">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-users"></i> 意见反馈
+                            <span class="badge badge-danger">2</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		<div style="margin-top:22px; width:21%; float:left;">
+			<select style="width:55%; height:34px; padding:6px 12px; background-color:#FFFFFF; border: 1px solid #c2cad8;" id="select_session">
+                <foreach name="s_garage_Arr" item="vo" >
+                    <option value="{$vo.garage_id}" <if condition="$Think.get.garage_id eq $vo['garage_id']">selected="selected"</if>>{$vo.garage_name}</option>
+                </foreach>
+			</select>
+		</div>
+        <!-- END PAGE ACTIONS -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <!-- BEGIN HEADER SEARCH BOX -->
+            <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+			<form class="search-form" action="{$Think.config.WEB_DOMAIN}/index.php?s=/Admin/Servicerecord/search" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control input-sm" placeholder="请输入车牌号或车主姓名" name="query">
+                            <span class="input-group-btn">
+                                <a href="javascript:;" class="btn submit">
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                            </span>
+                </div>
+            </form>
+            <!--
+			<div class="btn-group index_left_nav2" data-toggle="buttons" style="float:left; margin-left:10px; margin-top:20px;">
+                <label class="btn" onClick="window.location.href='http://www.hdhsmart.com/admin.php?g=System&c=Index&a=index_new';" style="color:#FFFFFF;"> 智慧助手后台 </label>
+				<label class="btn red-haze active" onClick="window.location.href='{$Think.config.WEB_DOMAIN}/index.php?s=/Admin/Index/index.html';"> 智慧停车场后台 </label>
+           </div>
+           -->
+            <!-- END HEADER SEARCH BOX -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <!-- BEGIN INBOX DROPDOWN -->
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                    <li class="dropdown dropdown-user dropdown-dark">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <span class="username username-hide-on-mobile"> {$Think.session.admin_name} </span>
+                            <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
+                            <img alt="" class="img-circle" src="{$Think.config.ADMIN_ASSETS_URL}layouts/layout4/img/avatar9.jpg" /> </a>
+                        <ul class="dropdown-menu dropdown-menu-default" style="margin-left:-50px; margin-top:10px;">
+                            <li>
+                                <a href="__APP__admin/user/detail_info/ad_id/{$Think.session.admin_id}">
+                                    <i class="icon-user"></i> 个人信息 </a>
+                            </li>
+                            <li>
+                                <a href="__APP__admin/user/password_update/ad_id/{$Think.session.admin_id}">
+                                    <i class="icon-calendar"></i> 修改密码 </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-envelope-open"></i> 我的订单
+                                    <span class="badge badge-danger"> 3 </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-rocket"></i> 我的消息
+                                    <span class="badge badge-success"> 7 </span>
+                                </a>
+                            </li>
+                            <li class="divider"> </li>
+                            <li>
+                                <a href="page_user_lock_1.html">
+                                    <i class="icon-lock"></i> 锁定屏幕 </a>
+                            </li>
+                            <li>
+                                <a href="__MODULE__/Login/admlogout">
+                                    <i class="icon-key"></i> 退出 </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                    <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                    <!-- <li class="dropdown dropdown-extended quick-sidebar-toggler">
+                        <span class="sr-only">Toggle Quick Sidebar</span>
+                        <i class="icon-logout"></i>
+                    </li>-->
+                    <!-- END QUICK SIDEBAR TOGGLER -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+<div class="clearfix"> </div>
+<!-- END HEADER & CONTENT DIVIDER -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+
+        <div class="page-sidebar navbar-collapse collapse">
+
+            <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+
+                <li class="nav-item start active open">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-home"></i>
+                        <span class="title">邻钱智慧停车管理系统</span>
+                        <span class="selected"></span>
+                        <span class="arrow open"></span>
+                    </a>
+                </li>
+
+
+                <!--***************************************************************停车系统开始************************************************-->
+                <li class="heading">
+                    <h3 class="uppercase">系统管理后台</h3>
+                </li>
+                <volist name="arr" id="vo">
+                <li class="nav-item  " name="show_li">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="{$vo.icon}"></i>
+                        <span class="title">{$vo.name}</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <volist name="vo['child_list']" id="voo">
+                        <li class="nav-item  " >
+                            <a href="<php>if(isset($_GET['garage_id'])){echo substr($voo['url'],0,strlen($voo['url'])-5).'/garage_id/'.$_GET['garage_id'];}else{echo $voo['url'];}  </php>" class="nav-link ">
+                                <span class="title">{$voo.name}</span>
+                            </a>
+                        </li>
+                        </volist>
+                    </ul>
+                </li>
+                </volist>
+                <script src="{$Think.config.ADMIN_JS_URL}jquery.js" type="text/javascript"></script>
+                <script>
+                    $(function(){
+                        $('.sub-menu li a').each(function(){
+                            if($($(this))[0].href==String(window.location)){
+                                $(this).parent().addClass('open');
+                                $(this).parent().parent().parent().addClass('open');
+                                $(this).parent().parent().parent().find(".sub-menu").show();
+                            }
+
+                        });
+
+                    });
+                    $("select#select_session").change(function(){
+                        var u = $(this).val();
+                        var str = window.location.href;
+                        var url = '';
+                        if(str.indexOf("keywords")>0){
+                            location.href=str+'&garage_id='+u;
+                        }else{
+                            if(str.indexOf("garage_id")>0){
+                                url = str.substring(0,str.length-12);
+                            }else if(str.indexOf("state")>0){
+                                url = str.substring(0,str.length-8);
+                            }else{
+                                url = str.substring(0,str.length-5);
+                            }
+                            location.href=url+'/garage_id/'+u;
+                        }
+                    });
+                </script>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    {__CONTENT__}
+
+

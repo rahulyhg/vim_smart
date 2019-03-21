@@ -1,0 +1,22 @@
+body {margin: 0; padding: 0; background-color: #fbfbfb;}
+.tb  {width: 100%;height: 60px;text-align: center;overflow: hidden;line-height: 60px;background-color: #188cf2; color: #FFFFFF;font-size: 16px;}
+.xkk {width: 100%; -webkit-box-shadow: 0px 0px 6px #e9e9e9; background-color: #FFFFFF;}
+.cw {width: 90%; padding-top: 15px; margin: 0px auto; padding-bottom:10px;}
+.cw2 {width: 90%; padding-top: 20px; margin: 0px auto;}
+.cw3 {width: 90%; padding-top: 20px; margin: 0px auto; padding-bottom:25px;}
+.left {width:56%; float:left;}
+.right {width:44%; float:right;}
+.left2 {width:50%; float:left; line-height:30px; color:#333333;}
+.right2 {width:50%; float:left;}
+.kid {line-height:30px; color:#333333; text-align:right;}
+.gh {float:left;}
+.gh2 {float:left; color:#333333; font-size:16px; line-height:42px; width:28%;}
+.gh3 {float:left; width:72%;}
+.wz {width:93%; float:left; border:1px #d4d4d4 solid; height:50px; background-color:#f1f1f1; line-height:50px; font-family: Arial; font-size:40px; color:#757575;}
+.wz2 {width:5%; float:right; text-align:right; padding-top:26px; color:#333333; font-size:18px;}
+.wz3 {width:93%; float:left;}
+.ba {width:100%; height:50px; line-height:50px; background-color:#188cf2; text-align:center; color:#ffffff; font-size:20px; margin-top:25px; border-radius:6px; border:none;}
+.ba:active {background-color:#1380e0;}
+.zh {width:90%; margin:0px auto; line-height:75px; text-align:right; color:#747474; font-size:20px;}
+.wzjj {color:#333333; font-size:16px; line-height:22px; width:100%;}
+.wzjj2 {width:100%; padding-top:20px;}

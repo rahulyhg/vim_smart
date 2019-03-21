@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+    <title>优惠券</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
+    <meta content="" name="author" />
+
+<style type="text/css">
+
+* {
+moz-user-select: -moz-none;
+-moz-user-select: none;
+-o-user-select: none;
+-khtml-user-select: none;
+-webkit-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+.bs:link{color:#ffffff; text-decoration:none;}
+.bs:visited{color:#ffffff; text-decoration:none;}
+.bs:active{color:#ffffff; text-decoration:none;}
+.bs:hover{color:#ffffff; text-decoration:none;}
+.qf {
+    position: absolute;
+    border-radius: 0 20px 20px 0;
+    background-color: #389ffe;
+    width: 5px;
+    height: 10px;
+    margin-top: -6px;
+    z-index: 100;
+    border-left: none;
+}
+.qf2 {
+    position: absolute;
+    border-radius: 20px 0 0 20px;
+    background-color: #389ffe;
+    width: 5px;
+    height: 10px;
+    margin-top: -6px;
+    right: 28px;
+    z-index: 100;
+    border-right: none;
+}
+.ls {width:50%; background-color:#389ffe; border-radius:4px; text-align:center; line-height:34px; height:34px; color:#FFFFFF; margin:10px auto; font-size:17px; margin-bottom:0;}
+.ls:hover {background-color:#258eee;}
+
+</style>
+</head>
+<script>
+    document.addEventListener('touchstart',function(){},false);
+</script>
+<body style="background-color:#389ffe;">
+	<div style="padding: 20px 10px 10px!important;">
+		<div style="padding: 14px 10px 5px!important;">
+			<div style="width:100%; background-color:#fafafa; border-radius:4px 4px 0 0; height:50px; border-bottom: 1px #e0e0e0 dashed;">
+
+				<div style="width:20px; float:left; height:20px; overflow:hidden; padding-top:16px; margin-left:4%;"><img src="Home/Public/image/banner.jpg" style="width:20px; height:20px; border-radius:2px;"></div>
+				<div style="float:left; margin-left:3%; line-height:50px; color:#858585; font-size:13px;">由{$coupon_info['ad_tname']}  发放</div>
+				<div style="clear:both"></div>
+			</div>
+			<div class="qf"></div>
+			<div class="qf2"></div>
+			<div style="width:100%; background-color:#FFFFFF; border-bottom:1px #dfdfdf dashed;">
+				<div style="width:90%; margin:0px auto; padding-top:15px;">
+					<div style="width:100%; height:40px; line-height:40px; text-align:center; color:#898989;">广发银行大厦停车场</div>
+					<div style="width:100%; height:40px; line-height:40px; text-align:center; color:#000000; font-size:26px;">{$coupon_info['act_desc']}</div>
+					<!--<div class="weui-cells weui-cells_form">-->
+						<!--<div class="weui-cell">-->
+							<!--<div class="weui-cell__hd"><label class="weui-label">选择车牌号</label></div>-->
+							<!--<div class="weui-cell__bd">-->
+								<!--<input class="weui-input" id="car_no" type="text"  readonly="readonly" data-values="">-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<div class="ls"><a href="{:U('Home/Car/use_service')}" class="bs">立即使用</a></div>
+					<div style="width:100%; margin-top:20px; font-size:13px; line-height:20px;">
+						<div style="float:left; width:24%;">使用条件:</div>
+						<div style="color:#888888; float:left; width:76%;">无最低消费限制，适用于广发银行大厦停车场，不适用于其他位置停车场</div>
+						<div style="clear:both"></div>
+					</div>
+					<div style="width:100%; font-size:13px; line-height:20px; margin-bottom:10px;">
+						<div style="float:left; width:24%;">可用时间:</div>
+						<div style="color:#888888; float:left; width:76%;">{$coupon_info['act_start_time']|date="Y.m.d",###}-{$coupon_info['act_end_time']|date="Y.m.d",###}</div>
+						<div style="clear:both"></div>
+					</div>
+				</div>
+			</div>
+			<div style="width:100%; background-color:#FFFFFF; border-radius:0 0 4px 4px;">
+				<div style="width:90%; margin:0px auto; padding-top:20px;">
+					<div style="width:100%; height:118px;"><img src="Home/Public/image/banner.jpg" style="width:100%; height:118px;"></div>
+					<div style="width: 100%; height: 50px; overflow: hidden; border-bottom: 1px #f1f1f1 solid;">
+						<div style="float:left; line-height:50px; color:#333333; font-size:15px;">新春促销</div>
+						<div style="float:right; line-height:50px; color:#c8c8cd; font-family:Georgia, 'Times New Roman', Times, serif; font-weight:bold;"> &gt; </div>
+						<div style="clear:both"></div>
+					</div>
+					<div style="width: 100%; height: 50px; overflow: hidden;">
+						<div style="float:left; line-height:50px; color:#333333; font-size:15px;">公众号</div>
+						<div style="float:right; line-height:50px; color:#c8c8cd; font-family:Georgia, 'Times New Roman', Times, serif; font-weight:bold;"> &gt; </div>
+						<div style="clear:both"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<include file="Layouts/main"/>
+	<script>
+	</script>
+</body>
+</html>

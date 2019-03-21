@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>消费记录搜索框</title>
+    <!--引入日历插件样式开始-->
+    <link href="{$Think.config.ADMIN_CSS_URL}jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
+    <!--引入日历插件样式结束-->
+    <style type="text/css">
+        .search_by_time{
+            width:80%;
+            margin: 20px auto;
+            background-color: oldlace;
+        }
+        .search_by_time tr td{
+            border: solid 1px;
+        }
+        .search_by_time td{
+            width: 50%;
+        }
+
+        /*时间搜索结果集框*/
+        .show_by_time_result{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        开始:<input type="text" id="datetimepicker" placeholder="点击选择开始时间" />-
+        结束:<input type="text" id="datetimepicker2" placeholder="点击选择结束时间" />
+        <input type="button" value="搜索" onclick="search_by_time()" />
+    </div>
+    <div class="show_by_time_result">
+        <table class="search_by_time">
+            <tr>
+                <td>总交易额</td>
+                <td id="all_payment">0.00元</td>
+            </tr>
+            <tr>
+                <td>实际支付</td>
+                <td id="all_pay_loan">0.00元</td>
+            </tr>
+            <tr>
+                <td>优惠金额</td>
+                <td id="all_coupon">0.00元</td>
+            </tr>
+            <tr>
+                <td>交易笔数</td>
+                <td id="all_use_num">0笔</td>
+            </tr>
+        </table>
+    </div>
+
+    <!--引入jquery开始-->
+    <script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/jquery.min.js" type="text/javascript"></script>
+    <!--引入jquery结束-->
+    <!--引入日历jquery插件开始-->
+    <script src="{$Think.config.ADMIN_JS_URL}jquery.datetimepicker.full.js" type="text/javascript"></script>
+    <!--引入日历jquery插件结束-->
+    <!--插入layer弹层js开始-->
+    <script src="{$Think.config.ADMIN_JS_URL}layer.js" type="text/javascript"></script>
+    <!--插入layer弹层js结束-->
+
+    <script type='text/javascript'>
+        //开启日历插件
+        $('#datetimepicker').datetimepicker({
+            datepicker: true,
+            lang:"ch",           //语言选择中文
+            format:"Y-m-d H:i:s",      //格式化日期
+            timepicker:true,    //关闭时间选项
+            todayButton:false    //关闭选择今天按钮
+        });
+        $('#datetimepicker2').datetimepicker({
+            datepicker: true,
+            lang:"ch",           //语言选择中文
+            format:"Y-m-d H:i:s",      //格式化日期
+            timepicker:true,    //关闭时间选项
+            todayButton:false    //关闭选择今天按钮
+        });
+
+        //根据时间为条件进行搜索
+        function search_by_time(){
+            var start_time=$("#datetimepicker").val();
+            var end_time=$("#datetimepicker2").val();
+            var search_type='time';
+            $.ajax({
+                url:"{:U('search_by_time_c')}",
+                data:{'search_type':search_type,'start_time':start_time,'end_time':end_time},
+                dataType:'json',
+                type:'post',
+                success:function(msg){
+                    if(msg!==1){
+                        $(".show_by_time_result").css({"display":"block"});
+                        $("#all_payment").html(msg.all_payment+"元");
+                        $("#all_pay_loan").html(msg.all_pay_loan+"元");
+                        $("#all_coupon").html(msg.all_coupon+"元");
+                        $("#all_use_num").html(msg.use_num+"笔");
+                    }else{
+                        //无搜索结果！
+                        $(".show_by_time_result").css({"display":"none"});
+                        layer.msg('无搜索到结果，试着换条件查查！', {icon: 5});
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

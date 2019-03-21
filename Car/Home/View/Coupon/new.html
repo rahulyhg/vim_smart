@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+    <title>智慧停车场系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
+    <meta content="" name="author" />
+	<link href="{$Think.config.STATICS_URL}plublic/css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="{$Think.config.STATICS_URL}plublic/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="{$Think.config.STATICS_URL}plublic/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+<style type="text/css">
+<!--
+* {
+    -webkit-touch-callout:none;
+    -moz-touch-callout:none;
+    -ms-touch-callout:none;
+    touch-callout:none;
+ }
+body{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+input{
+    -webkit-appearance: none;
+}
+
+.bs:link{color:#ffffff; text-decoration:none;}
+.bs:visited{color:#ffffff; text-decoration:none;}
+.bs:active{color:#ffffff; text-decoration:none;}
+.bs:hover{color:#ffffff; text-decoration:none;}
+
+.btn-circle {
+    border-radius: 4px!important;
+    overflow: hidden;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #a0d2ff;
+    border-color: #a0d2ff;
+}
+.btn-primary.active, .btn-primary:active, .btn-primary:hover, .open>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #298eeb;
+    border-color: #298eeb;
+}
+.form-control {
+    width: 100%;
+    height: 44px;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #c2cad8;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.input-icon>i {
+    color: #ccc;
+    position: absolute;
+    margin: 17px 2px 4px 10px;
+    z-index: 3;
+    width: 16px;
+    font-size: 16px;
+    text-align: center;
+    left: 0;
+}
+
+.cw {width:22%; height:36px; overflow:hidden; border-radius: 25px!important; float:left; margin-right:4%; background-color:#75baf8; text-align:center; line-height:36px; color:#FFFFFF;}
+.cw2 {width:22%; height:36px; overflow:hidden; border-radius: 25px!important; float:left; background-color:#75baf8; text-align:center; line-height:36px; color:#FFFFFF;}
+.cw:hover {background-color:#298eeb;}
+.cw2:hover {background-color:#298eeb;}
+
+.ls {width:100%; background-color:#389ffe; border-radius:25px; text-align:center; line-height:44px; height:44px; color:#FFFFFF; margin:10px auto; font-size:17px; margin-bottom:0;}
+.ls:hover {background-color:#258eee;}
+-->
+</style></head>
+<script>
+    document.addEventListener('touchstart',function(){},false);
+</script>
+<body>
+	<div style="width:100%; height:50px; text-align:center; line-height:50px; background-color:#389ffe; color:#FFFFFF; font-size:18px;">新用户开卡</div>
+	<div style="padding: 20px 10px 10px!important;">
+		<div style="padding: 5px 10px 5px!important;">
+			<div class="form-group">
+                <label class="control-label">姓名</label>
+                       <div>
+                       <div class="input-icon right">
+                       <i class="fa fa-user"></i>
+                       <input type="text" class="form-control" placeholder="请输入名字"> </div>
+                        </div>
+             </div>						
+			<div class="form-group">
+                <label class="control-label">证件类型</label>
+                       <select class="form-control">
+                              <option>身份证</option>
+                              <option>门禁卡</option>
+                       </select>
+              </div>
+			<div class="form-group">
+                <label class="control-label">证件号</label>
+                       <div>
+                       <div class="input-icon right">
+                       <i class="fa fa-credit-card"></i>
+                       <input type="text" class="form-control" placeholder="请输入证件号"> </div>
+                        </div>
+             </div>	
+			<div class="form-group">
+                <label class="control-label">手机号码</label>
+                       <div>
+                       <div class="input-icon right">
+                       <i class="fa fa-phone"></i>
+                       <input type="text" class="form-control" placeholder="请输入手机号码"> </div>
+                        </div>
+             </div>	
+			<div class="form-group">
+                <label class="control-label">所属公司</label>
+                       <div>
+                       <div class="input-icon right">
+                       <i class="fa fa-home"></i>
+                       <input type="text" class="form-control" placeholder="请输入所属公司"> </div>
+                        </div>
+             </div>
+			<div class="form-group">
+				<label>缴费时长</label>
+				<div style="width:100%;"><input type="text" name="textfield"  style="width:100%; border:1px #c2cad8 solid; border-radius:0px; height:44px; line-height:44px; font-size:14px; color:#333333; text-align:center; -webkit-tap-highlight-color:rgba(0,0,0,0); background-color:#fbfbfb;" placeholder="按需输入缴费时长（月）"/></div>
+				<div style="width:100%; padding-top:15px;">
+					<div class="cw">1个月</div>
+					<div class="cw">3个月</div>
+					<div class="cw">6个月</div>
+					<div class="cw2">12个月</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div style="width:100%; border-top:1px #e1e1e1 solid; margin-top:-10px;">
+	<div style="padding: 10px 10px 10px!important;">
+		<div style="padding: 5px 10px 5px!important;">
+			<div style="width:100%; height:30px; text-align:right; line-height:30px;"><span style="color:#9b9b9b;">支付金额：</span><span style="color:#fb4746; font-family:Arial; font-size:30px;">2585.52</span><span style="color:#9b9b9b;">元</span></div>
+			<div class="ls">支 付</div>
+			<div style="width:100%; color:#7f7f7f; margin-top:10px; line-height:1.5; font-size:14px;">支付成功后，工作人员在1-2个工作日内处理，处理成功后会电话或微信通知您</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

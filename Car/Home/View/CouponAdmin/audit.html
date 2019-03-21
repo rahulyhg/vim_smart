@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{$title?:"智慧停车场系统"}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
+    <meta content="" name="author" />
+
+    <link rel="stylesheet" href="__ADMIN_CSS__weui.css">
+    <link href="//cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__village.css"/>
+    <link href="//cdn.bootcss.com/weui/1.1.1/style/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/1.0.0/css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__kui.css"/>
+    <style type="text/css">
+
+        .kkw {float:left; height:33px; line-height:33px; margin-left:10px; font-size:14px;}
+        header {
+            height: 50px;
+            background-color: #389ffe;
+            color: white;
+            line-height: 50px;
+            text-align: center;
+            position: relative;
+            font-size: 18px;
+        }
+        .shtx_kek {
+            float: left;
+            line-height: 33px;
+            border: 0;
+            font-size: 14px;
+            margin-left: 8px;
+            width: 60%;
+            color: #b6b6b6;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            -o-text-overflow:ellipsis;
+            overflow: hidden;
+        }
+        a, a:visited, a:hover {
+            color: #ffffff;
+            text-decoration: none;
+            outline: 0;
+        }
+        .weui_btn_primary {
+            background-color: #389ffe;
+        }
+        .weui_btn_primary:not(.weui_btn_disabled):active {
+            color: #ffffff;
+            background-color: #2e8ce2;
+        }
+        .weui_btn {
+            position: relative;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 14px;
+            padding-right: 14px;
+            box-sizing: border-box;
+            font-size: 17px;
+            text-align: center;
+            text-decoration: none;
+            color: #FFFFFF;
+            line-height: 2.5;
+            border-radius: 5px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            overflow: hidden;
+        }
+    </style>
+</head>
+<script>
+    document.addEventListener('touchstart',function(){},false);
+    var app = {};
+    app.root             = "__ROOT__";
+    app.app              = "__APP__";
+    app.app_dir         = "{:APP_PATH}"
+    app.module_name      = "{:MODULE_NAME}";
+    app.controller_name  = "{:CONTROLLER_NAME}";
+    app.action_name      = "{:ACTION_NAME}";
+    app.url_model        = {:C('URL_MODEL')};
+</script>
+
+<body>
+
+<header class="pageSliderHide">
+    <div id="backBtn" onclick="history.back(-1)"></div>{$header}
+    <span id="close_window" style="float:right;margin-right: 15px;">X</span>
+    <div style="clear: both"></div>
+</header>
+
+
+    <div class="shtx_dkx">
+        <div class="shtx_xm">
+            <div class="shtx_pic"><img src="__ADMIN_IMG__q1.jpg" style="width:12px; height:15px; margin-top:10px;"/></div>
+            <div class="kkw">活动名称</div>
+            <div class="shtx_kk">{$coupon_info.act_name}</div>
+            <div class="both"></div>
+        </div>
+        <div class="shtx_xm">
+            <div class="shtx_pic"><img src="__ADMIN_IMG__q7.jpg" style="width:12px; height:13px; margin-top:11px;"/></div>
+            <div class="kkw">活动类型</div>
+            <div class="shtx_kek">{$coupon_info.act_type_name}</div>
+            <div class="both"></div>
+        </div>
+        <div class="shtx_xm">
+            <div class="shtx_pic"><img src="__ADMIN_IMG__sb3.png" style="width:12px; height:16px; margin-top:8px;"/></div>
+            <div class="kkw">领取人&nbsp;&nbsp;</div>
+            <div class="shtx_kek">
+                {$coupon_info['user_wxnik']?:$coupon_info['user_user_name']}
+            </div>
+            <div class="both"></div>
+        </div>
+    </div>
+    <div class="shtx_dk2">
+        <div class="shtx_xm" id="car_nos">
+            <div class="shtx_pic"><img src="__ADMIN_IMG__car2.jpg" style="width:12px; height:14px; margin-top:10px;"/></div>
+            <div class="kkw">优惠金额&nbsp;</div>
+            <div class="shtx_kek">
+                <span>{$coupon_info.cp_hilt}</span>
+            </div>
+
+            <div class="both"></div>
+        </div>
+        <div class="shtx_xm">
+            <div class="shtx_pic"><img src="__ADMIN_IMG__sb.png" style="width:12px; height:14px; margin-top:10px;"/></div>
+            <div class="kkw">开始时间&nbsp;&nbsp;</div>
+            <div class="shtx_kek">
+                {$coupon_info.act_start_time|date="Y-m-d",###}
+            </div>
+            <div class="both"></div>
+        </div>
+        <div class="shtx_xm">
+            <div class="shtx_pic"><img src="__ADMIN_IMG__sb2.png" style="width:12px; height:14px; margin-top:10px;"/></div>
+            <div class="kkw">截止时间&nbsp;&nbsp;</div>
+            <div class="shtx_kek">
+                {$coupon_info.act_end_time|date="Y-m-d",###}
+            </div>
+            <div class="both"></div>
+        </div>
+    </div>
+    <div class="zkd">
+        <div style="float:left;width:48%;"><a class="weui_btn weui_btn_primary" id="yes">批准</a></div>
+        <div style="float:right;width:48%;"><a class="weui_btn weui_btn_primary" id="no">作废</a></div>
+        <div style="clear:both"></div>
+    </div>
+
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/1.0.0/js/jquery-weui.min.js"></script>
+<script src="__ADMIN_JS__main.js"></script>
+<scriopt>
+    <script>
+        //关闭窗口
+        var btn = document.getElementById('close_window');
+        btn.onclick = function(){
+            WeixinJSBridge.invoke('closeWindow',{},function(res){});
+        }
+    </script>
+</scriopt>
+<block name="script">
+    <script>
+        $(document).ready(function(){
+            var cp_id = parseInt("{$coupon_info.cp_id}")||0
+            if(!cp_id){
+                console.error('cp_id获取失败！');
+            }else{
+                //批准优惠券操作
+                $('#yes,#no').click(function(){
+                    //优惠券状态 1有效 4作废
+                    var self = this;
+                    var btn_id =  $(this).attr('id');
+                    var chang_to_status = btn_id === "yes" ?  1 : 4;
+                    app.ajax({
+                        url:app.U('audit_act'),
+                        data:{cp_id:cp_id,chang_to_status:chang_to_status},
+                        type:'get',
+                        dataType:'json',
+                        success:function(re){
+                            $.alert(re.msg);
+                            if(re.data.reset_text){
+                                $(self).text(re.data.reset_text);
+                            }
+
+                        },
+                        error:function(){
+                            $.alert("发生错误");
+                        }
+                    });
+                });
+
+            }
+
+        });
+    </script>
+</block>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">优惠券二维码</h4>
+</div>
+<div class="modal-body row">
+    <div class="col-xs-4">
+        <img style="border:1px solid #999;width: 100%"   class="img-responsive" id="qr_code" src="{:U('Base/QR')}&url={:urlencode($qr_url)}" alt="">
+    </div>
+    <div class="col-xs-8">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">{$act_info.act_name}</div>
+            <!--<div class="panel-body">-->
+            <!--</div>-->
+            <!-- List group -->
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-4">活动类型</div>
+                        <div class="col-xs-8">{$type_name}</div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-4">优惠金额</div>
+                        <div class="col-xs-8">{$act_info.cp_hilt}</div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-4">活动时间</div>
+                        <div class="col-xs-8">{$act_info.act_start_time|date="Y-m-d",###} ~ {$act_info.act_end_time|date="Y-m-d",###}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a href="{:U('Base/QR')}&url={:urlencode($qr_url)}" download="qr_code_{:mt_rand()}.png"  type="button" id="btnsavaImg" class="btn btn-primary">保存二维码</a>
+    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+</div>

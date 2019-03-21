@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>汇得行</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">
+    <style type="text/css">
+        body {margin: 0px;}
+        .wz{ width: 100%; position: absolute; top: 45%; font-size:46px; text-align:center; color:#434343;font-family: 微软雅黑}
+        .hz{width: 100%; position: absolute; top: 30%; font-size:56px; text-align:center; color:#434343;font-family: 微软雅黑}
+        .dz{width: 100%; position: absolute; top: 60%; font-size:56px; text-align:center; color:#434343;font-family: 微软雅黑}
+        .tp {position:fixed; bottom:20px; width:100%; z-index:2; text-align:center;}
+    </style>
+</head>
+<body>
+<div class="wz" id="step1">我们有些小功能正在升级中</div>
+<div class="wz" id="step2" style="display: none">正在更新您的信息</div>
+<div class="wz" id="step3" style="display: none">别急，马上就要来到</div>
+<div class="hz" id="step4" style="display: none">我们准备好了</div>
+<!--<div class="wz" id="step5" style="display: none">新汇得行智慧助手整装待发</div>-->
+<div class="wz" id="step6" style="display: none"><a href="{$c_url}" class="weui-btn weui-btn_mini weui-btn_plain-primary" style="width: 20%;height: 10%;font-size: 36px">进入</a></div>
+
+<div class="tp"><img src="{$Think.config.STATICS_URL}parking_card/images/few.png" width="200" height="86"></div>
+</body>
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+<script>
+    var num = 0;
+    function hello(){
+        num++;
+        if(num==2){
+            $("#step1").fadeOut(1000);
+        }else if(num==3){
+            $("#step2").fadeIn(1000);
+        }else if(num==5){
+            $("#step2").fadeOut(1000);
+        }else if(num==6){
+            $("#step3").fadeIn(1000);
+        }else if(num==8){
+            $("#step3").fadeOut(1000);
+        }else if(num==9){
+            $("#step0").hide();
+            $("#step4").fadeIn(1000);
+            $("#step6").fadeIn(1000);
+        }else if(num>10){
+            clearInterval(i);
+        }
+    }
+    //重复执行某个方法
+    var t1 = window.setInterval(hello,1000);
+
+</script>
+</html>

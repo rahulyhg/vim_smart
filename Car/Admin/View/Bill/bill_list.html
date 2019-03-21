@@ -1,0 +1,296 @@
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<link href="/Car/Admin/Public/assets/global/plugins/plugins.min.css" rel="stylesheet" type="text/css" />
+<link href="/Car/Admin/Public/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+<link href="/Car/Admin/Public/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/Car/Admin/Public/assets/global/plugins/datatables/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+<link href="/Car/Admin/Public/assets/global/plugins/datatables/sweetalert/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    <!--
+    .dropdown-menu {
+        margin: 0 0 0 -110px;
+    }
+    -->
+    .label-kid {
+        background-color: #f36a5a;
+    }
+    .btn-group>.dropdown-menu, .dropdown-toggle>.dropdown-menu, .dropdown>.dropdown-menu {
+        margin-top: 10px;
+    }
+    .dropdown-menu {
+        margin: 0 0 0 -128px;
+        position:absolute;
+    }
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+</style>
+<!-- END PAGE LEVEL PLUGINS -->
+
+
+
+<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>发票列表
+
+                </h1>
+            </div>
+
+        </div>
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BREADCRUMB -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="#">发票管理</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">发票审核列表</span>
+
+            </li>
+        </ul>
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-dark">
+                            <i class="icon-settings font-dark"></i>
+                            <span class="caption-subject bold uppercase"> 发票审核列表</span>
+                        </div>
+                        <div class="actions">
+                            <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                <label class="btn btn-transparent dark btn-outline btn-circle btn-sm active" onclick="window.location.href='{:U('recycle')}'">
+                                    <input type="radio" name="options" class="toggle" id="option1">列 表</label>
+                                <label class="btn btn-transparent dark btn-outline btn-circle btn-sm">
+                                    <input type="radio" name="options" class="toggle" id="option2">回收站</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="btn-group">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="btn-group pull-right">
+                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">批量操作
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li>
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-print"></i> 删除 </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-file-pdf-o"></i> 禁用 </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <php>//dump($list)</php>
+                        <!--列表-->
+                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                        <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                                        <span></span>
+                                    </label>
+                                </th>
+                                <th>ID</th>
+                                <th>申请人</th>
+                                <th>真实姓名</th>
+                                <th>联系方式</th>
+                                <th>领取方式</th>
+                                <th>申请时间</th>
+                                <th>申请进度</th>
+                                <th>消费记录数</th>
+                                <th>总金额</th>
+                                <th>车牌号码</th>
+                                <th>审核人</th>
+                                <th>核销人</th>
+                                <th>所属停车场</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <foreach name="list" item="row" key="k">
+                                <tr class="odd gradeX">
+                                    <td>
+                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                            <input type="checkbox" class="checkboxes" value="1" />
+                                            <span></span>
+                                        </label>
+                                    </td>
+                                    <td>{$row.bill_id}</td>
+                                    <td>{$row.user_name}</td>
+                                    <td>{$row.user_t_name}</td>
+                                    <td>{$row.user_phone}</td>
+                                    <td>
+                                        {$row.receive_type_name}
+                                        <if condition="$row['receive_type'] eq 'express'">
+                                             （{$row.position} {$row.detail}）
+                                        </if>
+                                    </td>
+                                    <td>{$row.bill_create_time|date="Y-m-d H:i",###}</td>
+                                    <td>{$row['bill_status_desc'][0]}</td>
+                                    <td>{$row.count_pay_list}</td>
+                                    <td>￥{$row.loan_sum}</td>
+                                    <td>{:join(',',$row['car_no_list'])}</td>
+                                    <td>{$row.audit_name1}</td>
+                                    <td>{$row.audit_name2}</td>
+                                    <td>{$row.garage_name}</td>
+
+
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 编辑
+                                                <i class="fa fa-angle-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu pull-left" role="menu" style="position:relative;">
+                                                <li>
+                                                    <a href="{:U('audit',array('bill_id'=>$row['bill_id'],'bill_status'=>$row['bill_status']))}">
+                                                        <i class="icon-docs"></i> {$row['bill_status_desc'][2]} </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{:U('bill_detail',array('bill_id'=>$row['bill_id']))}">
+                                                        <i class="icon-docs"></i> 缴费记录 </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--弹出层必要 START-->
+                                <div class="modal fade" id="myModal_{$v['act_id']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--弹出层必要 END-->
+
+                            </foreach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <!-- END EXAMPLE TABLE PORTLET-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END QUICK SIDEBAR -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2017 &copy; 汇得行智慧停车系统
+        <a target="_blank" href="http://www.vhi99.com">邻钱科技</a> &nbsp;|&nbsp;
+        <a href="http://www.metronic.com" target="_blank">Metronic</a>
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<!-- END FOOTER -->
+<!-- BEGIN QUICK NAV -->
+<!--<nav class="quick-nav">-->
+<!--<a class="quick-nav-trigger" href="#0">-->
+<!--<span aria-hidden="true"></span>-->
+<!--</a>-->
+<!--<ul>-->
+<!--<li>-->
+<!--<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank" class="active">-->
+<!--<span>Purchase Metronic</span>-->
+<!--<i class="icon-basket"></i>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/reviews/4021469?ref=keenthemes" target="_blank">-->
+<!--<span>Customer Reviews</span>-->
+<!--<i class="icon-users"></i>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="http://keenthemes.com/showcast/" target="_blank">-->
+<!--<span>Showcase</span>-->
+<!--<i class="icon-user"></i>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="http://keenthemes.com/metronic-theme/changelog/" target="_blank">-->
+<!--<span>Changelog</span>-->
+<!--<i class="icon-graph"></i>-->
+<!--</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--<span aria-hidden="true" class="quick-nav-bg"></span>-->
+<!--</nav>-->
+<div class="quick-nav-overlay"></div>
+<!-- END QUICK NAV -->
+<!--[if lt IE 9]>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/respond.min.js"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/excanvas.min.js"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/ie8.fix.min.js"></script>
+<![endif]-->
+<!-- BEGIN CORE PLUGINS -->
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/js.cookie.min.js" type="text/javascript"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/scripts/datatable.js" type="text/javascript"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/scripts/app.min.js" type="text/javascript"></script>
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="{$Think.config.ADMIN_ASSETS_URL}pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<!-- BEGIN THEME LAYOUT SCRIPTS -->
+<script src="{$Think.config.ADMIN_ASSETS_URL}layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+<!-- END THEME LAYOUT SCRIPTS -->
+
+<!--插入layer弹层js开始-->
+<script src="{$Think.config.ADMIN_JS_URL}layer.js" type="text/javascript"></script>
+<!--插入layer弹层js结束-->
+
+
+<!--自定义js代码区开始-->
+<script type="text/javascript">
+
+
+</script>
+
+<!--自定义js代码区结束-->
+</body>
+
+</html>

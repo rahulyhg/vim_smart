@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<!--
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.7
+Version: 4.7.1
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>停车缴费</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="{$Think.config.STATICS_URL}plublic/css/googleapis.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="{$Think.config.STATICS_URL}plublic/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="{$Think.config.STATICS_URL}plublic/css/layout/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/layout/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/layout/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME LAYOUT STYLES -->
+    <style type="text/css">
+        <!--
+        .mt20 {margin-top:20px;}
+        .kid {padding: 14px 10px 5px!important;}
+        .col-md-6 {width:100%;}
+        .tc {width:100%; height:50px; overflow:hidden; text-align:center; line-height:50px; background-color:#46a0dd; color:#FFFFFF; border-radius:4px 4px 0 0; font-family:"微软雅黑"; font-size:20px;}
+        .tc2 {width:100%; border-bottom:1px #e2e2e2 dashed; border-left:1px #FFFFFF solid; border-right:1px #FFFFFF solid; overflow:hidden; background:url({$Think.config.STATICS_URL}parking_card/images/bj.jpg) no-repeat; background-position:right 10%; background-color:#FFFFFF;}
+        .tc3 {width:100%; border-left:1px #e2e2e2 solid; border-right:1px #e2e2e2 solid; height:130px; overflow:hidden; position:relative; background-color:#FFFFFF;}
+        .tc4 {width:100%; height:50px; overflow:hidden;}
+        .tc5 {border-radius:0 0 4px 4px;}
+        .btn.blue:not(.btn-outline) {height:50px;}
+        .qf {position: absolute;border-radius: 0 20px 20px 0;background-color: #eaeaea;width: 10px;height: 20px;margin-top: -10px;z-index: 100;border: 1px #ffffff solid;border-left: none;}
+        .qf2 {position: absolute;border-radius: 20px 0 0 20px;background-color: #eaeaea;width: 10px;height: 20px;margin-top: -10px; right:15px; z-index: 100;border: 1px #ffffff solid;border-right: none;}
+        .btn-primary {
+            color: #fff;
+            background-color: #46a0dd;
+            border-color: #46a0dd;
+        }
+        .btn-primary.active, .btn-primary:active, .btn-primary:hover, .open>.btn-primary.dropdown-toggle {
+            color: #fff;
+            background-color: #3287c0;
+            border-color: #3287c0;
+        }
+        .btn.blue.active, .btn.blue:active, .btn.blue:active:focus, .btn.blue:active:hover, .btn.blue:focus, .btn.blue:hover {
+            border-color: #1f89ea;
+            color: #ffffff;
+            background-color: #1f89ea;
+        }
+        .tcx4 {
+            width: 100%;
+            border-left: 1px #ffffff solid;
+            border-right: 1px #ffffff solid;
+            overflow: hidden;
+            position: relative;
+            background-color: #FFFFFF;
+            padding:10px 15px 5px;
+        }
+        .qwe {width:100%; padding:5px 0 0 0; border-bottom:0.8px #f0f0f0  solid;}
+
+        .mt-checkbox, .mt-radio {
+            display: inline-block;
+            width: 100%;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .angled {
+            background-color: #46a0dd;
+            background-image: -webkit-gradient(linear, 0 100%, 100% 0,
+            color-stop(.25, rgba(114, 198, 255, .15)), color-stop(.25, transparent),
+            color-stop(.5, transparent), color-stop(.5, rgba(114, 198, 255, .15)),
+            color-stop(.75, rgba(114, 198, 255, .15)), color-stop(.75, transparent),
+            to(transparent));
+            background-image: -moz-linear-gradient(45deg, rgba(114, 198, 255, .15) 25%, transparent 25%,
+            transparent 50%, rgba(114, 198 255, .15) 50%, rgba(114, 198, 255, .15) 75%,
+            transparent 75%, transparent);
+            background-image: -o-linear-gradient(45deg, rgba(114, 198, 255, .15) 25%, transparent 25%,
+            transparent 50%, rgba(114, 198, 255, .15) 50%, rgba(114, 198, 255, .15) 75%,
+            transparent 75%, transparent);
+            background-image: linear-gradient(45deg, rgba(114, 198, 255, .15) 25%, transparent 25%,
+            transparent 50%, rgba(114, 198, 255, .15) 50%, rgba(114, 198, 255, .15) 75%,
+            transparent 75%, transparent);
+        }
+        .stripes {
+            height: 50px;
+            width: 100%;
+            float: left;
+            text-align: center;
+            line-height: 50px;
+            background-color: rgb(70, 160, 221);
+            color: rgb(255, 255, 255);
+            font-family:"微软雅黑";
+            font-size: 24px;
+            overflow: hidden;
+            border-radius: 4px 4px 0px 0px;
+
+            -webkit-background-size: 10px 10px;
+            -moz-background-size: 10px 10px;
+            background-size: 10px 10px; /* 控制条纹的大小 */
+
+        }
+        .gr {text-align:right;padding-top: 5px;padding-bottom: 5px;}
+    </style>
+    <link href="{$Think.config.STATICS_URL}plublic/css/weui.min.css" rel="stylesheet" type="text/css" />
+</head>
+<script>
+    document.addEventListener('touchstart',function(){},false);
+</script>
+<!-- END HEAD -->
+
+<body style="background-color:#eaeaea;">
+<!-- BEGIN HEADER -->
+<!-- END HEADER -->
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+<div class="clearfix"> </div>
+<!-- END HEADER & CONTENT DIVIDER -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <!-- END SIDEBAR -->
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper" id="center" style="display: none">
+        <!-- BEGIN CONTENT BODY -->
+        <div style="padding: 20px 10px 10px!important;">
+            <div class="kid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="stripes angled">停车卡</div>
+                        <div class="tc2">
+                            <div style="padding:15px 15px 20px;">
+                                <div style="width:100%;">
+                                    <div style="font-size:14px; font-family:'微软雅黑'; color:#5c6466; height:25px; line-height:25px;">车牌</div>
+                                    <input type="hidden" value="{$pay_info.car_no}" id="car_no" />
+                                    <div style="width:100%; height:25px; overflow:hidden;">
+                                        <div style="float:left; line-height:25px; font-size:18px; color:#2c2c2c; font-family:'微软雅黑';">{$pay_info.user_view_car_no}</div>
+                                        <div style="float:left; margin-left:2%;"><img src="{$Think.config.STATICS_URL}parking_card/images/photo.jpg" width="18" height="18" style="margin-top:3px;"></div>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                </div>
+                                <div style="width:100%; margin-top:17px;">
+                                    <div style="font-size:14px; font-family:'微软雅黑'; color:#5c6466; height:25px; line-height:25px;">停车场名称</div>
+                                    <div style="font-size:18px; font-family:'微软雅黑'; color:#2c2c2c; height:25px; line-height:25px;">{$pay_info.garage_name}</div>
+                                </div>
+                                <div style="width:100%; margin-top:17px;">
+                                    <div style="font-size:14px; font-family:'微软雅黑'; color:#5c6466; height:25px; line-height:25px;">入场时间</div>
+                                    <div style="font-size:18px; font-family:'微软雅黑'; color:#2c2c2c; height:25px; line-height:25px;">{$pay_info.start_time|date="Y年m月d日 H时i分s秒",###}</div>
+                                </div>
+                                <if condition="$Think.get.pay_state eq 1">
+                                    <div style="width:100%; margin-top:17px;">
+                                        <div style="font-size:14px; font-family:'微软雅黑'; color:#5c6466; height:25px; line-height:25px;">超时时长</div>
+                                        <div style="font-size:18px; font-family:'微软雅黑'; color:#2c2c2c; height:25px; line-height:25px;">
+                                            {$pay_info.more_then_time}
+                                        </div>
+                                    </div>
+                                    <else/>
+                                    <div style="width:100%; margin-top:17px;">
+                                        <div style="font-size:14px; font-family:'微软雅黑'; color:#5c6466; height:25px; line-height:25px;">进场时长</div>
+                                        <div style="font-size:18px; font-family:'微软雅黑'; color:#2c2c2c; height:25px; line-height:25px;" id="clock">
+                                            计算中...
+                                        </div>
+                                    </div>
+                                </if>
+                                <div style="width:100%; margin-top:17px;">
+                                    <div style="font-size:14px; font-family:'微软雅黑'; color:#5c6466; height:25px; line-height:25px;">订单编号</div>
+                                    <div style="font-size:18px; font-family:'微软雅黑'; color:#2c2c2c; height:25px; line-height:25px;">
+                                        <notempty name="pay_info.pay_no">
+                                            <span id="order_no">{$pay_info.pay_no}</span>
+                                            <else />
+                                            确认要出场后结算会生成
+                                        </notempty>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qf"></div>
+                        <div class="qf2"></div>
+                        <notempty name="is_yue_ka">
+                            <div style="height:60px; width:100%; line-height:60px; padding-left:15px; background-color:#FFFFFF; font-size:16px; color:#5c6466;"><span style="color:#d30000;">月卡延期功能即将上线,敬请期待。</span></div>
+                            <div class="tc4"><div class="btn blue tc5 btn-block"><span style="font-size:20px; line-height:35px;">{$is_yue_ka}</span></div></div>
+                            <else />
+                            <div class="tcx4">
+                                <div class="we">
+
+                                    <!--适应局部刷新的做法start-->
+                                    <div style="width:100%; height:40px; margin-top:5px; border-bottom:0.8px #f0f0f0  solid;display: none" id="no_money">
+                                        <div style="float:left; line-height:30px; font-size:16px; font-family:'微软雅黑'; color:#d30000;">{$show_msg}</div>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                    <div id="start_money" style="display: none">
+                                        <div style="width:100%; height:40px; margin-top:5px; border-bottom:0.8px #f0f0f0  solid;">
+                                            <div style="float:left; line-height:30px; font-size:18px; font-family:'微软雅黑'; color:#2c2c2c;" id="fee_name">停车费用</div>
+                                            <div style="float:right; line-height:30px; font-size:20px; color:#676c70;">¥ <span id="total_fee">{$pay_info.payment1}</span></div>
+                                            <div style="clear:both"></div>
+                                        </div>
+                                        <notempty name="cp_infos">
+                                            <php>
+                                                /*
+                                                echo '<hr>';
+                                                echo '$cp_infos:';
+                                                dump($cp_infos);
+                                                echo '$cp_infos end';
+                                                echo '<hr>';
+                                                */
+                                            </php>
+                                            <php>
+                                                /*
+                                                echo '<hr>';
+                                                echo '$act_infos:';
+                                                dump($act_infos);
+                                                echo '$act_infos end';
+                                                echo '<hr>';
+                                                */
+                                            </php>
+                                            <php>
+                                                /*
+                                                echo '<hr>';
+                                                echo 'pay_info:';
+                                                dump($pay_info);
+                                                echo 'pay_info end';
+                                                echo '<hr>';
+                                                */
+
+                                            </php>
+
+                                            <foreach name="cp_infos" item="cp_v" key="cp_v_k">
+                                                <php>
+                                                    /*
+                                                    echo '<hr>';
+                                                    echo '$cp_v:'.$cp_v_k;
+                                                    dump($cp_v);
+                                                    echo '$cp_v:'.$cp_v_k;
+                                                    echo '<hr>';
+                                                    */
+                                                </php>
+                                                <div class="qwe">
+                                                    <label class="mt-radio">
+                                                        <input type="radio" value="{$cp_v.cp_id}" cp_free="{$cp_v['cp_type']==2 ? $cp_v['cp_hilt']*PARK_FEE_Q1H : $cp_v['cp_hilt']}"  name="cp_id" {$optimal_cp_id==$cp_v['cp_id']?"checked=checked":""}>
+                                                        <span style="margin-top:20px; margin-left:5px;">
+                                                    </span>
+                                                        <div style="width:70%; float:left; padding-top:8px;">
+                                                            <foreach name="act_infos" item="act_v">
+                                                                <div style="width:100%; font-size:14px; color:#898989; font-family:'微软雅黑'; line-height:22px;">
+                                                                    <if condition="$act_v['act_id'] eq $cp_v['act_id']">
+                                                                        {$act_v.act_name}
+                                                                    </if>
+
+                                                                </div>
+                                                                <div style="width:100%; font-size:12px; color:#D30000; font-family:'微软雅黑'; line-height:22px;">
+                                                                    <if condition="$act_v['act_id'] eq $cp_v['act_id']">
+                                                                        {:D('Coupon')->act_desc($cp_v['cp_hilt'],$cp_v['cp_type'])}
+                                                                    </if>
+                                                                </div>
+                                                            </foreach>
+                                                        </div>
+                                                        <notempty name="free_fee">
+                                                            <if condition="cp_v['cp_type'] neq 3">
+                                                                <!--<div style="width:25%; padding-top:17px; float:right; text-align:right; font-size:16px; color:#676c70;">- ¥{$free_fee}</div>-->
+                                                                <div style="width:25%; padding-top:17px; float:right; text-align:right; font-size:16px; color:#676c70;">
+                                                                    -
+                                                                    <?php
+                                                                    echo $cp_v['cp_type']==1
+                                                                    ? "¥" . $cp_v['cp_hilt']
+                                                                    : intval($cp_v['cp_hilt']) . "h";
+                                                                ?>
+
+                                                                </div>
+                                                                <else />
+                                                                <!--<div style="width:25%; padding-top:17px; float:right; text-align:right; font-size:16px; color:#676c70;">- ¥{$pay_info.payment1}</div>-->
+                                                                <div style="width:25%; padding-top:17px; float:right; text-align:right; font-size:16px; color:#676c70;">- ¥{$pay_info.payment1}</div>
+                                                            </if>
+                                                        </notempty>
+                                                        <div style="clear:both"></div>
+                                                    </label>
+                                                </div>
+                                            </foreach>
+                                            <!--不使用优惠券      -->
+                                            <label class="mt-radio">
+                                                <input type="radio"  name="cp_id" value="0">
+                                                <span style="margin-top:20px; margin-left:5px;">
+
+                                            </span>
+                                                <div style="width:100%; font-size:14px; color:#898989; font-family:'微软雅黑'; line-height:60px;">
+                                                    不适用优惠券
+                                                </div>
+                                                <!--<div style="width:100%; font-size:12px; color:#D30000; font-family:'微软雅黑'; line-height:22px;">-->
+                                                <!--停车立即减免5元-->
+                                                <!--</div>-->
+                                                <div style="clear:both"></div>
+                                            </label>
+                                        </notempty>
+                                        <div class="gr"><span style="font-size:14px; color:#5c6466;">需支付</span><span style="color:#D30000; font-size:28px; font-family:'微软雅黑';" id="is_pay_now">{$pay_info.payment2}元</span></div>
+                                    </div>
+                                    <!--适应局部刷新的做法end-->
+
+
+
+
+                                    <!--<div class="qwe">
+                                        <label class="mt-radio"><input type="radio" value="1" name="test"><span style="margin-top:20px; margin-left:5px;"></span>
+                                        <div style="width:65%; float:left; padding-top:12px;">
+                                            <div style="width:100%; font-size:14px; color:#898989; font-family:'微软雅黑';">我的积分500分</div>
+                                            <div style="width:100%; font-size:12px; color:#fb4746; font-family:'微软雅黑';">使用0分抵扣</div>
+                                        </div>
+                                        <div style="width:31%; padding-top:18px; float:right; text-align:right; font-size:16px; color:#676c70; padding-right:1%;">¥ -10.00</div>
+                                        </label>
+                                    </div>-->
+
+                                </div>
+
+                            </div><div class="tc4" id="showLoadingToast" style="display: none"><button class="btn blue tc5 btn-block" id="button_pay_now"><span style="font-size:20px;"><img src="{$Think.config.STATICS_URL}parking_card/images/monky.png" width="24" height="24" style="margin-top:-3px; margin-right:7px;">缴费离场</span></button></div>
+                        </notempty>
+
+                    </div>
+                    <!-- END PAGE BASE CONTENT -->
+                </div>
+            </div>
+            <div style="width:95%; margin: 0px auto; padding-top: 15px; padding-bottom:12px; padding-left:8px; padding-right:8px; line-height: 1.5; border-radius: 0 0 4px 4px;"><span style="font-weight:bold; color:#D30000;"> 提示：</span><span style="color: #666666;">请在缴费成功后15分钟内离场，否则会产生额外费用。（停止计费以完成支付时间为准）</span></div>
+            <!-- END CONTENT BODY -->
+        </div>
+    </div>
+    <div class="quick-nav-overlay"></div>
+</div>
+<!--数据加载开始-->
+<div id="loadingToast">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-loading weui-icon_toast"></i>
+        <p class="weui-toast__content">数据加载中</p>
+    </div>
+</div>
+
+<!--数据加载结束-->
+<!-- END QUICK NAV -->
+<!--[if lt IE 9]>
+<script src="../assets/global/plugins/respond.min.js"></script>
+<script src="../assets/global/plugins/excanvas.min.js"></script>
+<script src="../assets/global/plugins/ie8.fix.min.js"></script>
+<![endif]-->
+<!-- BEGIN CORE PLUGINS -->
+<script src="{$Think.config.STATICS_URL}plublic/js/jquery/jquery.min.js" type="text/javascript"></script>
+<script src="{$Think.config.STATICS_URL}plublic/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+<script src="{$Think.config.STATICS_URL}plublic/js/sweetalert.min.js" type="text/javascript"></script>
+<script src="{$Think.config.STATICS_URL}plublic/js/ui-sweetalert.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    //时间提供变量
+    var time_of_clock = "{$time_begin}";
+    //溢价模式标志位
+    var start_flag = "{$Think.get.pay_state}";
+    //显示支付标志位
+    var is_start_pay = "{$pay_info.payment2}";
+    //显示还有多久刷新页面
+    var how_long_wait = "{$how_long_wait}";
+    //停车场
+    var garage_id = "{$garage_id}";
+    $(function(){
+        if(how_long_wait!=''){
+            setTimeout(function () {
+                window.location.reload();
+            },parseInt(how_long_wait));
+        }
+
+        var $loadingToast = $('#loadingToast');
+        setTimeout(function () {
+            $loadingToast.fadeOut(100);
+            $("#center").show();
+        }, 500);
+        /*$('#showLoadingToast').on('click', function(){
+         if ($loadingToast.css('display') != 'none') return;
+
+         $loadingToast.fadeIn(100);
+         setTimeout(function () {
+         $loadingToast.fadeOut(100);
+         }, 2000);
+         });*/
+        if(start_flag != '1'){
+            start_clock(time_of_clock);
+        }
+
+        if(is_start_pay != '0.00'){
+            $("#start_money").show();
+            $("#showLoadingToast").show();
+            $("#no_money").hide();
+        }else{
+            $("#start_money").hide();
+            $("#no_money").show();
+            $("#showLoadingToast").hide();
+        }
+
+    });
+
+    $('#button_pay_now').on('click',function(){
+        var fee_name=$('#fee_name').html(); //费用名称
+        var order_no=$('#order_no').html(); //订单编号
+        var car_no=$('#car_no').val();   //车牌号
+        var cp_id=$('input[type="radio"]:checked').val();
+        var $loadingToast = $('#loadingToast');
+
+        //使用ajax异步申请微信支付
+        $.ajax({
+            url:"{:U('Payrecord/pay_now_two')}",
+            data:{'fee_name':fee_name,'order_no':order_no,'car_no':car_no,'cp_id':cp_id},
+            dataType:'json',
+            type:'post',
+            success:function(msg){
+                if(msg.wx_pay=='1'){
+                    //将json字串转为json对象
+                    //alert(msg);
+                    var msg_json=JSON.parse(msg.vals);
+                    //alert(msg_json.appId);
+                    //调用微信内部支付js
+
+                    if (typeof WeixinJSBridge == "undefined"){
+                        if( document.addEventListener ){
+                            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                        }else if (document.attachEvent){
+                            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                        }
+                    }else{
+                        onBridgeReady(msg_json);
+                    }
+
+                }else if(msg=='1'){
+                    $loadingToast.fadeOut(100);
+                    swal("支付失败，请联系管理员！", "电话：027-87779655", "error");
+                    //alert('支付失败，请联系管理员！');
+                }else if(msg=='2'){
+                    $loadingToast.fadeOut(100);
+                    swal({
+                            title: "支付成功！",
+                            text: "您已成功支付本次订单，请在15分钟内离开，否则可能会产生额外费用!(如需领取停车发票，请在停车缴费主界面申请)",
+                            type: "success",
+                            confirmButtonText: "确定",
+                            closeOnConfirm: false
+                        },
+                        function(){
+                            //window.location.reload();
+                            window.location.href = '__APP__?m=Home&c=Car&a=use_service';
+                        }
+                    )
+                }else if(msg=='3'){
+                    $loadingToast.fadeOut(100);
+                    swal('支付成功，但是开门失败，有退款！','',"warning");
+                }else if(msg=='4'){
+                    $loadingToast.fadeOut(100);
+                    swal('优惠券支付失败！','',"error");
+                }else if(msg==11||msg==12){
+                    $loadingToast.fadeOut(100);
+                    swal({
+                            title: "您停留页面时间太长，为保证安全请重新验证",
+                            text: "请重新验证后，再次进入缴费页面",
+                            type: "info",
+                            confirmButtonText: "确定",
+                            closeOnConfirm: false
+                        },
+                        function(){
+                            //window.location.reload();
+                            window.location.href = '__APP__?m=Home&c=Car&a=use_service';
+                        }
+                    )
+                }
+            }
+        });
+        //auto_go=setInterval('check_pay_is_ture_ok()',2000);  //2秒调用一次(检查微信回调文件 ) title: "支付失败，请联系管理员！",
+        //text: "电话：027-87779655",
+    });
+
+
+    function onBridgeReady(msg_json){
+        $('#loadingToast').fadeOut(100);
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest', {
+                "appId":msg_json.appId,     //公众号名称，由商户传入
+                "timeStamp":msg_json.timeStamp,         //时间戳，自1970年以来的秒数
+                "nonceStr":msg_json.nonceStr, //随机串
+                "package":msg_json.package,
+                "signType":msg_json.signType,         //微信签名方式：
+                "paySign":msg_json.paySign //微信签名
+            },
+            function(res){
+                // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                    check_pay_is_ture_ok();  //检测微信支付状态
+                }else{
+
+                }
+            }
+        );
+    }
+
+
+    //识辨微信回调信息，并给出相应提示
+
+    function check_pay_is_ture_ok(){
+        var order_no=$('#order_no').html(); //订单编号
+        var $loadingToast = $('#loadingToast');
+        //alert("http://car.vhi99.com{:U('WeiXin_call_back')}");
+        $.ajax({
+            url:"{:U('Payrecord/WeiXin_call_back')}",
+            data:{'my_order_no':order_no},
+            dataType:'json',
+            type:'post',
+            success:function(msg){
+                if(msg.errormsg=='1'){
+                    $loadingToast.fadeOut(100);
+                    swal({
+                            title: "订单号重复，请关闭页面重新进入！",
+                            text: "技术支持：027-87779655",
+                            type: "error",
+                            confirmButtonText: "确定",
+                            closeOnConfirm: false
+                        },
+                        function(){
+                            window.location.reload();
+                        }
+                    )
+                    return false;
+                }else if(msg.errormsg=='2'){
+                    $loadingToast.fadeOut(100);
+                    swal({
+                            title: "支付成功！",
+                            text: "您已成功支付本次订单，请在15分钟内离开，否则可能会产生额外费用!",
+                            type: "success",
+                            confirmButtonText: "确定",
+                            closeOnConfirm: false
+                        },
+                        function(){
+                            //window.location.reload();
+                            window.location.href = '__APP__?m=Home&c=Car&a=use_service';
+                            //如果十五分钟内未出场则开启定时15分钟，重新生成订单
+                            /*window.setTimeout("person_who_no_left()",900000)*/
+                        }
+                    )
+                    return false;
+                }else if(msg.errormsg=='3'){
+                    $loadingToast.fadeOut(100);
+                    swal({
+                            title: "支付成功！",
+                            text: "如出场时系统仍提示缴费，可先使用现金支付，系统会在一个工作日内退回微信支付费用！如有疑问可联系工作人员：027-87779655",
+                            type: "info",
+                            confirmButtonText: "确定",
+                            closeOnConfirm: false
+                        },
+                        function(){
+                            window.location.href = '__APP__?m=Home&c=Car&a=use_service';
+                            //window.location.reload();
+                        }
+                    )
+                    return false;
+                }else if(msg.errormsg=='4'){
+                    swal('支付失败！','请及时联系管理员：027-87779655','error');
+                    return false;
+                }else if(msg.errormsg== '5'){
+                    swal({
+                            title: "交易异常！",
+                            text: "由于您在发起支付到完成支付过程中，停车时长刚好超过收费间隔时间，导致停车费上涨5元，请补缴后离场，给您打来的不便请谅解",
+                            type: "info",
+                            confirmButtonText: "确定",
+                            closeOnConfirm: false
+                        },
+                        function(){
+                            window.location.href = '__APP__?m=Home&c=payrecord&a=order_detail&pay_state=1&car_no='+msg.car_no+'&more_time='+msg.more_time+'&pay_fees='+msg.pay_fees;
+                            //window.location.reload();
+                        }
+                    )
+                }
+            }
+        });
+    }
+    /*动态时钟封装(原始版)V1.0
+     *
+     * */
+    function do_clock(){
+        var clock ="{$c_time}";
+        var value = clock.replace(/[^0-9]/ig,"");
+        if(value.length==5){
+            //时间在10小时之内
+            var hour = value.substr(0,1);
+            var min = value.substr(1,2);
+            var sec = value.substr(3,2);
+            sec= Number(sec)+1;
+            setInterval(function(){
+                sec= Number(sec);
+                sec = sec+1;
+                if(sec >=60){
+                    sec = 0;
+                    min= Number(min);
+                    min = min+1;
+                    if(min >=60){
+                        min = 0;
+                        hour =  Number(hour);
+                        hour = hour+1;
+                        window.location.reload();
+                    }
+                }
+
+                var str_min = format(min,2);
+                var str_sec = format(sec,2);
+                $("#clock").html(hour+"小时"+str_min+"分钟"+str_sec+"秒");
+            },1000);
+        }else if(value.length==6){
+            //时间在10小时与24小时内
+            var hour = value.substr(0,2);
+            var min = value.substr(2,2);
+            var sec = value.substr(4,2);
+            setInterval(function(){
+                sec= Number(sec);
+                sec = sec+1;
+                if(sec >=60){
+                    sec = 0;
+                    min= Number(min);
+                    min = min+1;
+                    if(min >=60){
+                        min = 0;
+                        hour =  Number(hour);
+                        hour = hour+1;
+                        window.location.reload();
+                    }
+                }
+                var str_hour = format(hour,2);
+                var str_min = format(min,2);
+                var str_sec = format(sec,2);
+                $("#clock").html(str_hour+"小时"+str_min+"分钟"+str_sec+"秒");
+            },1000);
+        }else if(value.length>=7){
+            //超过一天的车辆不做计时处理
+
+        }else if(value.length<=4){
+            var min = value.substr(0,2);
+            var sec = value.substr(2,2);
+            setInterval(function(){
+                sec= Number(sec);
+                sec = sec+1;
+                if(sec >=60){
+                    sec = 0;
+                    min= Number(min);
+                    min = min+1;
+                    if(min==15||min>60){
+                        window.location.reload();
+                    }
+                }
+                var str_min = format(min,2);
+                var str_sec = format(sec,2);
+                $("#clock").html(str_min+"分钟"+str_sec+"秒");
+            },1000)
+        }
+    }
+    /*封装好的格式化数字方法
+     *
+     * */
+    function format(num,length){
+        var numstr = num.toString();
+        var l=numstr.length;
+        if (numstr.length>=length) {return numstr;}
+
+        for(var  i = 0 ;i<length - l;i++){
+            numstr = "0" + numstr;
+        }
+        return numstr;
+    }
+
+    /*动态时钟显示新方法V2.0
+     *
+     * */
+    function start_clock(data){
+        setInterval(function(){
+            /*var timestamp=new Date().getTime();
+            timestamp =String(timestamp).substr(0,10);*/
+            //每秒ajax取值
+            $.ajax({
+                url:"{:U('ajax_time')}",
+                type:'post',
+                success:function (res) {
+                    var timestamp = Number(res);
+                    var start_time = Number(data);
+
+                    var show_time = timestamp-start_time;
+                    var days = parseInt(show_time/86400);
+                    //计算小时数
+                    var remain = show_time%86400;
+                    var hours = parseInt(remain/3600);
+                    //计算分钟数
+                    remain = remain%3600;
+                    var mins = parseInt(remain/60);
+                    //计算秒数
+                    var secs = remain%60;
+
+                    var now_time;
+                    //分钟、秒个位数时,前面加0
+                    if(secs<10){
+                        secs = '0'+secs;
+                    }
+                    if(mins<10){
+                        mins = '0'+mins;
+                    }
+
+                    if(days==0 && hours!=0 && mins!=0){
+                        now_time=hours+'小时'+mins+'分钟'+secs+'秒';
+                    }
+                    if(days==0 && hours==0 && mins!=0){
+                        now_time=mins+'分钟'+secs+'秒';
+                        if(mins=='30'&&secs=='00'){
+                            //当过了免费入场时间的时候，抛出钱数
+                            start_pay();
+                        }
+                    }
+                    if(days==0 && hours!=0 && mins==0 && secs!=0){
+                        now_time=hours+'小时'+mins+'分钟'+secs+'秒';
+                    }
+                    if(days==0 && hours!=0 && mins==0 && secs==0){
+                        now_time=hours+'小时'+mins+'分钟'+secs+'秒';
+                        refresh();
+                    }
+                    // 差补法
+                    if(days==0 && hours!=0 && mins==1 && secs==0){
+                        refresh();
+                    }
+                    if(days==0 && hours==0 && mins==0){
+                        now_time=mins+'分钟'+secs+'秒';
+                    }
+                    if(days!=0){
+                        now_time=days+'天'+hours+'小时'+mins+'分钟'+secs+'秒';
+                    }
+                    $("#clock").html(now_time);
+                }
+            });
+
+        },1000);
+    }
+    /**
+     * 切换优惠券单选按钮时显示金额改变，只是前台显示相关，不影响之前代码逻辑
+     *  @update-time: 2017-04-06 11:39:55
+     *  @author: 王亚雄
+     */
+    function reset_money(){
+        var $el = $('input[type="radio"]:checked');
+        var cp_free = $el.attr('cp_free');
+        if(cp_free){
+            //还需支付 =  停车费用 - 优惠金额
+            var total_fee = $('#total_fee').html();
+            total_fee = total_fee.replace(",","");
+            var pay = parseFloat(total_fee-cp_free>0 ? total_fee-cp_free : 0.00);
+            $('#is_pay_now').html(pay.toFixed(2).toString() + "元" );//源代码没有把单位分割开，为了避免出现其他问题，我尽可能的少该源码
+
+        }
+    }
+    reset_money();//由于后台固定了优惠金额，照成切换单选按钮也不会改变总支付金额，这样避免修改后台代码
+    //单选切换时的金额变化
+    $('input[name="cp_id"]').change(function(){
+        //还需支付
+        //获取该优惠券的优惠金额
+        var cp_free = $(this).attr('cp_free')||0;
+        //还需支付 =  停车费用 - 优惠金额
+        var total_fee = $('#total_fee').html();
+        total_fee = total_fee.replace(",","");
+        var pay = parseFloat(total_fee-cp_free>0 ? total_fee-cp_free : 0.00);
+        $('#is_pay_now').html(pay.toFixed(2).toString() + "元" );//源代码没有把单位分割开，为了避免出现其他问题，我尽可能的少该源码
+
+
+
+
+    });
+
+    /*
+     * 局部刷新金额，不刷新本页
+     * */
+    function refresh(){
+        var order_no=$('#order_no').html(); //订单编号
+        $.ajax({
+            url:"{:U('Payrecord/refresh_money')}",
+            data:{'order_no':order_no},
+            type:'post',
+            timeout:45000,
+            success:function(res){
+                $('#total_fee').html(res);   //总费用
+                $('#is_pay_now').html(res+'元');  //判断费用
+            },
+            complete:function(XMLHttpRequest,status){
+                if(status == 'timeout'){
+                    //如果超时的话直接向我们发送警告消息
+                    swal('超时链接！','请及时联系管理员：027-87779655','error');
+                }
+            }
+        });
+    }
+
+    /*
+     * 进场三十分钟开始收费
+     *
+     * */
+
+    function start_pay(){
+        $("#no_money").slideUp(100);
+        $("#start_money").slideDown(100);
+        $("#showLoadingToast").slideDown(100);
+        refresh();
+    }
+
+
+
+</script>
+</body>
+
+</html>

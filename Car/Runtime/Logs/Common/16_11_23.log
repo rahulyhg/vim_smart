@@ -1,0 +1,12 @@
+[ 2016-11-23T09:13:36+08:00 ] 221.232.52.45 /favicon.ico
+ERR: 无法加载模块:Favicon
+
+[ 2016-11-23T09:13:36+08:00 ] 221.232.52.45 /favicon.ico
+ERR: 无法加载模块:Favicon
+
+[ 2016-11-23T14:00:48+08:00 ] 221.232.52.45 /index.php/connect/oauth2/authorize/appid/wx25839630a6d7dadb/redirect_uri/http%253A%252F%252Fcar.vhi99.com%252Findex.php%252FHome%252FPayrecord%252Fpay_now/response_type/code/scope/snsapi_base/state/88b57a656d7d0c9d442c25c591373950%23wechat_redirect.html
+ERR: 无法加载模块:Connect
+
+[ 2016-11-23T14:00:58+08:00 ] 117.185.27.114 /index.php/connect/oauth2/authorize/appid/wx25839630a6d7dadb/redirect_uri/http%253A%252F%252Fcar.vhi99.com%252Findex.php%252FHome%252FPayrecord%252Fpay_now/response_type/code/scope/snsapi_base/state/88b57a656d7d0c9d442c25c591373950%23wechat_redirect.html
+ERR: 无法加载模块:Connect
+

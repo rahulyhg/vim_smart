@@ -1,0 +1,285 @@
+<extend name="Layouts/base"/>
+<block name="body">
+    <div class="table-responsive" id="bill_list" v-cloak>
+        <bill_detail :list="bill_detail" v-if="show_detail"></bill_detail>
+        <div v-if="!show_detail">
+            <div style="width:100%; height:50px; text-align:center; line-height:50px; background-color:#389ffe; color:#FFFFFF; font-size:18px;">发票列表</div>
+            <div class="weui-form-preview" v-for="(item,index) in list" @click="set_bill_detail(item)">
+                <div class="weui-form-preview__hd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">总金额</label>
+                        <em class="weui-form-preview__value">{{item.loan_sum}} 元</em>
+                    </div>
+                </div>
+                <div class="weui-form-preview__bd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">车牌号码</label>
+                        <span class="weui-form-preview__value">{{item.car_no_list.join(',')}}</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">消费记录数</label>
+                        <span class="weui-form-preview__value">{{item.pay_list.length}}</span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">发票状态</label>
+                        <span class="weui-form-preview__value">{{item.bill_status_desc[is_audit?0:1]}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+
+    <script type="text/template" id="template_bill_detail">
+        <div>
+            <div style="width:100%; height:50px; text-align:center; line-height:50px; background-color:#389ffe; color:#FFFFFF; font-size:18px;">发票详情</div>
+
+            <div class="weui-form-preview">
+                <div class="weui-form-preview__hd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">总金额</label>
+                        <em class="weui-form-preview__value">{{list.loan_sum}} 元</em>
+                    </div>
+                </div>
+
+                <div class="weui-form-preview__bd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">车牌号码</label>
+                        <span class="weui-form-preview__value">{{list.car_no_list.join(',')}}</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">消费记录数</label>
+                        <span class="weui-form-preview__value">{{list.pay_list.length}}</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">申请人</label>
+                        <span class="weui-form-preview__value">{{list.user_name}}</span>
+                    </div>
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">申请时间</label>
+                        <span class="weui-form-preview__value">{{date(list.bill_create_time,"yyyy-MM-dd hh:mm")}}</span>
+                    </div>
+
+                    <!--<div class="weui-form-preview__item">-->
+                    <!--<label class="weui-form-preview__label">审核人</label>-->
+                    <!--<span class="weui-form-preview__value">{{list.audit_name1||'未审核'}}</span>-->
+                    <!--</div>-->
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">领取方式</label>
+                        <span class="weui-form-preview__value">{{list.receive_type_name}}
+                        </span>
+                    </div>
+
+                    <div v-if="list.receive_type=='express'"  class="weui-form-preview__item" >
+                        <label class="weui-form-preview__label">邮寄地址</label>
+                        <span class="weui-form-preview__value">
+                            <span>{{list.position}}{{list.detail}}</span>
+                        </span>
+                    </div>
+
+                    <!--<div class="weui-form-preview__item">-->
+                    <!--<label class="weui-form-preview__label">联系方式</label>-->
+                    <!--<span class="weui-form-preview__value">-->
+                    <!--<span>{{list.phone||list.user_phone}} </span>-->
+                    <!--</span>-->
+                    <!--</div>-->
+
+
+
+
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">审核人</label>
+                        <span class="weui-form-preview__value">{{list.audit_name1||'未审核'}}</span>
+                    </div>
+
+
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">发票状态</label>
+                        <span class="weui-form-preview__value">{{list.bill_status_desc[is_audit?0:1]}}</span>
+                        <span  v-if="!is_audit" class="weui-form-preview__value">{{list.bill_status_desc[3]}}</span>
+                    </div>
+                </div>
+
+
+
+                <div v-bind:id="'bill_id_' + list.bill_id" class="weui-popup__container">
+                    <div class="weui-popup__overlay"></div>
+                    <div class="weui-popup__modal">
+                        <div style="width:100%; height:50px; text-align:center; line-height:50px; background-color:#389ffe; color:#FFFFFF; font-size:18px;">缴费记录</div>
+                        <!--统计数据-->
+                        <div class="weui-cells">
+                            <div class="weui-cell" style="padding:0 15px">
+                                <div class="weui-cell__bd">
+                                    <p>总金额</p>
+                                </div>
+                                <div class="weui-cell__ft">￥{{list.loan_sum}}</div>
+                            </div>
+
+                            <div class="weui-cell" style="padding:0 15px">
+                                <div class="weui-cell__bd">
+                                    <p>车牌号</p>
+                                </div>
+                                <div class="weui-cell__ft">{{list.car_no_list.join(',')}}</div>
+                            </div>
+                            <div class="weui-cell" style="padding:0 15px">
+                                <div class="weui-cell__bd">
+                                    <p>记录时间</p>
+                                </div>
+                                <div class="weui-cell__ft">{{date(list.min_time,"yyyyMMdd")}}
+                                    - {{date(list.max_time,"yyyyMMdd")}}
+                                </div>
+                            </div>
+                        </div>
+                        <!--/统计数据-->
+                        <div class="weui-form-preview" style="margin-bottom:10px;" v-for="(item,index) in list.pay_list">
+                            <div class="weui-form-preview__hd">
+                                <div class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label"><span style="color:#000000; font-size:16px;">订单号:{{item.pay_no}}</span></label>
+                                    <em class="weui-form-preview__value"><span style="color:fb4746; font-size:16px;">¥{{item.pay_loan}}</span></em>
+                                </div>
+                            </div>
+
+                            <div class="weui-form-preview__bd">
+                                <div class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label">车牌号</label>
+                                    <span class="weui-form-preview__value">{{item.car_no}}</span>
+                                </div>
+                                <div class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label">缴费类型</label>
+                                    <span class="weui-form-preview__value">{{item.pay_record_type_name}}</span>
+                                </div>
+                                <div v-if="item.pay_record_type==='park'" class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label">入场时间</label>
+                                    <span class="weui-form-preview__value">{{date(item.start_time,'yyyy-MM-dd hh:mm')}}</span>
+                                </div>
+                                <div class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label">缴费时间</label>
+                                    <span class="weui-form-preview__value">{{date(item.pay_time,'yyyy-MM-dd hh:mm')}}</span>
+                                </div>
+                                <div class="weui-form-preview__item">
+                                    <label class="weui-form-preview__label">停车场</label>
+                                    <span class="weui-form-preview__value">{{list.garage_name}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="javascript:;" style="background-color: #00a0fe" class="weui-btn weui-btn_primary close-popup">关闭</a>
+                    </div>
+                </div>
+                <div class="weui-form-preview__ft">
+                    <a type="button" class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:" @click="set_bill_status(0)">返回列表</a>
+                    <!--<a v-if="is_audit" type="button" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:" @click="audit(list)">-->
+                    <!--{{list.bill_status_desc[2]}}-->
+                    <!--</a>-->
+                    <button class="weui-form-preview__btn weui-form-preview__btn_primary open-popup" v-bind:data-target="'#bill_id_' + list.bill_id" href="javascript:">
+                        缴费记录
+                    </button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script>
+        Vue.use(Vuex);
+        const store = new Vuex.Store({
+            state: {
+                show_detail:0,
+                bill_detail:[],
+                is_audit:0,
+            },
+            mutations: {
+                set_bill_detail:function(state,bill_detail){
+                    state.bill_detail = bill_detail;
+                },
+                set_show_detail:function(state,is_show){
+                    state.show_detail = is_show;
+                },
+                set_audit:function(state,is_audit){
+                    state.is_audit = is_audit;
+                }
+            }
+        });
+
+        Vue.component('bill_detail', {
+            template: "#template_bill_detail",
+            props:{
+                list:Array
+            },
+            methods:{
+                set_bill_status:function(status){
+                    store.commit('set_show_detail',status);
+                },
+                audit:function(item){
+                    if(item.bill_status>1){
+                        return false;
+                    }
+                    this._post("{:U('audit')}",{bill_id:item.bill_id,bill_status:item.bill_status},function(re){
+                        alert("操作完成");
+                        item = Object.assign(item,re.data)
+                    });
+                }
+            },
+
+            computed:{
+                show_detail:function(){
+                    return store.state.show_detail;
+                },
+                is_audit:function(){
+                    return store.state.is_audit;
+                }
+            },
+        });
+
+        new Vue({
+            el:"#bill_list",
+            data:{
+                list:this.app_json.list,
+            },
+
+            methods:{
+                init_bill_detail:function(){
+                    let bill_id = parseInt("{:I('get.bill_id')}")||0;
+                    if(bill_id){
+                        let item = this.list[bill_id];
+                        this.set_bill_detail(item);
+                    }
+                },
+
+                set_bill_detail:function(item){
+                    if(!!item){
+                        store.commit('set_bill_detail',item);
+                        store.commit('set_show_detail',1);
+                    }
+                },
+                set_bill_status:function(status){
+                    store.commit('set_show_detail',status);
+                },
+
+            },
+            computed:{
+                bill_detail:function(){
+                    return store.state.bill_detail;
+                },
+                show_detail:function(){
+                    return store.state.show_detail;
+                },
+                is_audit:function(){
+                    return store.state.is_audit;
+                }
+            },
+
+            mounted:function(){
+                console.log(this.list);
+                this.init_bill_detail();
+
+                store.commit('set_audit',app_json.is_audit);
+            }
+        });
+
+    </script>
+</block>

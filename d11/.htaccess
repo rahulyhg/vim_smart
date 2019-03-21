@@ -1,0 +1,7 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+# 重写规则
+RewriteRule ^nb$ index.php?class=all
+RewriteRule ^class$ index.php?class=all
+ErrorDocument 404 /index.html

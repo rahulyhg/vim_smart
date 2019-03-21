@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe type="dessert">
+    <description>
+        <locusOne>
+            <trOne>
+                第一位：系统号
+                <tdOne>0：o2o后台的警告</tdOne>
+                <tdOne>1：停车场系统的警告</tdOne>
+                <tdOne>2：咖啡机系统的警告</tdOne>
+            </trOne>
+        </locusOne>
+        <locusTwo>
+            <trOne>
+                第二位：警告级别
+                <tdOne>0：不阻碍执行流程，数据库部分维护失败或者异常类（警告）</tdOne>
+                <tdOne>1：阻碍执行流程，数据亦维护失败 （严重警告）</tdOne>
+                <tdOne>2：阻碍执行流程，并导致其他一系列操作无法进行 （致命）</tdOne>
+                <tdOne>3：页面无法打开的致命错误	（严重致命错误）</tdOne>
+            </trOne>
+        </locusTwo>
+        <locusOther>
+            <trOne>
+                第三位，第四位：警告具体编码
+                <tdOne>
+                    日常数据维护错误：
+                    <trTwo>
+                        01：插入本地数据库失败（add）
+                    </trTwo>
+                    <trTwo>
+                        04：非法的get请求
+                    </trTwo>
+                    <trTwo>
+                        05：维护本地数据库失败（update）
+                    </trTwo>
+                    <trTwo>
+                        06：微信客服消息推送失败
+                    </trTwo>
+                    <trTwo>
+                        07：非法的post请求
+                    </trTwo>
+                    <trTwo>
+                        08：规定的业务逻辑出错
+                    </trTwo>
+                </tdOne>
+                <tdOne>
+                    微信有关错误：
+                    <trTwo>
+                        11：微信支付缺少参数
+                    </trTwo>
+                    <trTwo>
+                        12：微信支付签名验证失败
+                    </trTwo>
+                    <trTwo>
+                        13：未能取回微信支付预付信息
+                    </trTwo>
+                    <trTwo>
+                        14：支付失败，订单号重复出错
+                    </trTwo>
+                    <trTwo>
+                        15：未能向微信发送信息
+                    </trTwo>
+                    <trTwo>
+                        16：快捷登陆跳转地址错误
+                    </trTwo>
+                    <trTwo>
+                        17：支付目录未授权错误
+                    </trTwo>
+                </tdOne>
+                <tdOne>
+                    第三方接口错误
+                    <trTwo>
+                        21：yeelink接口报错，导致开门失败
+                    </trTwo>
+                    <trTwo>
+                        22：unios接口报错，导致开门失败
+                    </trTwo>
+                    <trTwo>
+                        23：unios接口报错，导致制作咖啡失败
+                    </trTwo>
+                    <trTwo>
+                        24：捷顺接口报错，导致停车抬杆失败
+                    </trTwo>
+                    <trTwo>
+                        25：捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单）
+                    </trTwo>
+                    <trTwo>
+                        26：捷顺接口无返回，导致停车场前台功能失效（获取月卡信息）
+                    </trTwo>
+                </tdOne>
+                <tdOne>
+                    异常类：
+                    <trTwo>
+                        31：停车场金额异常
+                    </trTwo>
+                </tdOne>
+            </trOne>
+        </locusOther>
+    </description>
+    <miscoding>
+        <rankOne>
+            警告级别
+            <systemName>
+            O2O系统
+                <title>0001</title>
+                <content>o2o后台发生警告级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>0004</title>
+                <content>o2o后台发生警告级别的错误，错误为非法的get请求</content>
+                <title>0005</title>
+                <content>o2o后台发生警告级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>0006</title>
+                <content>o2o后台发生警告级别的错误，错误为微信客服消息推送失败</content>
+                <title>0007</title>
+                <content>o2o后台发生警告级别的错误，错误为非法的post请求</content>
+                <title>0008</title>
+                <content>o2o后台发生警告级别的错误，错误为规定的业务逻辑出错</content>
+                <title>0011</title>
+                <content>o2o后台发生警告级别的错误，错误为微信支付缺少参数</content>
+                <title>0012</title>
+                <content>o2o后台发生警告级别的错误，错误为微信支付签名验证失败</content>
+                <title>0013</title>
+                <content>o2o后台发生警告级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>0014</title>
+                <content>o2o后台发生警告级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>0015</title>
+                <content>o2o后台发生警告级别的错误，错误为未能向微信发送信息 </content>
+                <title>0016</title>
+                <content>o2o后台发生警告级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>0017</title>
+                <content>o2o后台发生警告级别的错误，错误为支付目录未授权错误 </content>
+                <title>0021</title>
+                <content>o2o后台发生警告级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>0022</title>
+                <content>o2o后台发生警告级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>0023</title>
+                <content>o2o后台发生警告级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>0024</title>
+                <content>o2o后台发生警告级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>0025</title>
+                <content>o2o后台发生警告级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>0026</title>
+                <content>o2o后台发生警告级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>0031</title>
+                <content>o2o后台发生警告级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+            <systemName>
+            智慧停车系统
+                <title>1001</title>
+                <content>智慧停车系统发生警告级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>1004</title>
+                <content>智慧停车系统发生警告级别的错误，错误为非法的get请求</content>
+                <title>1005</title>
+                <content>智慧停车系统发生警告级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>1006</title>
+                <content>智慧停车系统发生警告级别的错误，错误为微信客服消息推送失败</content>
+                <title>1007</title>
+                <content>智慧停车系统发生警告级别的错误，错误为非法的post请求</content>
+                <title>1008</title>
+                <content>智慧停车系统发生警告级别的错误，错误为规定的业务逻辑出错</content>
+                <title>1011</title>
+                <content>智慧停车系统发生警告级别的错误，错误为微信支付缺少参数</content>
+                <title>1012</title>
+                <content>智慧停车系统发生警告级别的错误，错误为微信支付签名验证失败</content>
+                <title>1013</title>
+                <content>智慧停车系统发生警告级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>1014</title>
+                <content>智慧停车系统发生警告级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>1015</title>
+                <content>智慧停车系统发生警告级别的错误，错误为未能向微信发送信息 </content>
+                <title>1016</title>
+                <content>智慧停车系统发生警告级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>1017</title>
+                <content>智慧停车系统发生警告级别的错误，错误为支付目录未授权错误 </content>
+                <title>1021</title>
+                <content>智慧停车系统发生警告级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>1022</title>
+                <content>智慧停车系统发生警告级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>1023</title>
+                <content>智慧停车系统发生警告级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>1024</title>
+                <content>智慧停车系统发生警告级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>1025</title>
+                <content>智慧停车系统发生警告级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>1026</title>
+                <content>智慧停车系统发生警告级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>1031</title>
+                <content>智慧停车系统发生警告级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+            <systemName>
+            自助咖啡系统
+                <title>3001</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>3004</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为非法的get请求</content>
+                <title>3005</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>3006</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为微信客服消息推送失败</content>
+                <title>3007</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为非法的post请求</content>
+                <title>3008</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为规定的业务逻辑出错</content>
+                <title>3011</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为微信支付缺少参数</content>
+                <title>3012</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为微信支付签名验证失败</content>
+                <title>3013</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>3014</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>3015</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为未能向微信发送信息 </content>
+                <title>3016</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>3017</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为支付目录未授权错误 </content>
+                <title>3021</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>3022</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>3023</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>3024</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>3025</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>3026</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>3031</title>
+                <content>自助咖啡系统发生警告级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+        </rankOne>
+        <rankTwo>
+            严重警告级别
+            <systemName>
+                O2O系统
+                <title>0101</title>
+                <content>o2o后台发生严重警告级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>0104</title>
+                <content>o2o后台发生严重警告级别的错误，错误为非法的get请求</content>
+                <title>0105</title>
+                <content>o2o后台发生严重警告级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>0106</title>
+                <content>o2o后台发生严重警告级别的错误，错误为微信客服消息推送失败</content>
+                <title>0107</title>
+                <content>o2o后台发生严重警告级别的错误，错误为非法的post请求</content>
+                <title>0108</title>
+                <content>o2o后台发生严重警告级别的错误，错误为规定的业务逻辑出错</content>
+                <title>0111</title>
+                <content>o2o后台发生严重警告级别的错误，错误为微信支付缺少参数</content>
+                <title>0112</title>
+                <content>o2o后台发生严重警告级别的错误，错误为微信支付签名验证失败</content>
+                <title>0113</title>
+                <content>o2o后台发生严重警告级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>0114</title>
+                <content>o2o后台发生严重警告级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>0115</title>
+                <content>o2o后台发生严重警告级别的错误，错误为未能向微信发送信息 </content>
+                <title>0116</title>
+                <content>o2o后台发生严重警告级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>0117</title>
+                <content>o2o后台发生严重警告级别的错误，错误为支付目录未授权错误 </content>
+                <title>0121</title>
+                <content>o2o后台发生严重警告级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>0122</title>
+                <content>o2o后台发生严重警告级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>0123</title>
+                <content>o2o后台发生严重警告级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>0124</title>
+                <content>o2o后台发生严重警告级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>0125</title>
+                <content>o2o后台发生严重警告级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>0126</title>
+                <content>o2o后台发生严重警告级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>0131</title>
+                <content>o2o后台发生严重警告级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+            <systemName>
+                智慧停车系统
+                <title>1101</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>1104</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为非法的get请求</content>
+                <title>1105</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>1106</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为微信客服消息推送失败</content>
+                <title>1107</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为非法的post请求</content>
+                <title>1108</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为规定的业务逻辑出错</content>
+                <title>1111</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为微信支付缺少参数</content>
+                <title>1112</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为微信支付签名验证失败</content>
+                <title>1113</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>1114</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>1115</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为未能向微信发送信息 </content>
+                <title>1116</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>1117</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为支付目录未授权错误 </content>
+                <title>1121</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>1122</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>1123</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>1124</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>1125</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>1126</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>1131</title>
+                <content>智慧停车系统发生严重警告级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+            <systemName>
+                自助咖啡系统
+                <title>3101</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>3104</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为非法的get请求</content>
+                <title>3105</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>3106</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为微信客服消息推送失败</content>
+                <title>3107</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为非法的post请求</content>
+                <title>3108</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为规定的业务逻辑出错</content>
+                <title>3111</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为微信支付缺少参数</content>
+                <title>3112</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为微信支付签名验证失败</content>
+                <title>3113</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>3114</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>3115</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为未能向微信发送信息 </content>
+                <title>3116</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>3117</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为支付目录未授权错误 </content>
+                <title>3121</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>3122</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>3123</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>3124</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>3125</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>3126</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>3131</title>
+                <content>自助咖啡系统发生严重警告级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+        </rankTwo>
+        <rankThree>
+            致命级别
+            <systemName>
+                O2O系统
+                <title>0201</title>
+                <content>o2o后台发生致命级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>0204</title>
+                <content>o2o后台发生致命级别的错误，错误为非法的get请求</content>
+                <title>0205</title>
+                <content>o2o后台发生致命级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>0206</title>
+                <content>o2o后台发生致命级别的错误，错误为微信客服消息推送失败</content>
+                <title>0207</title>
+                <content>o2o后台发生致命级别的错误，错误为非法的post请求</content>
+                <title>0208</title>
+                <content>o2o后台发生致命级别的错误，错误为规定的业务逻辑出错</content>
+                <title>0211</title>
+                <content>o2o后台发生致命级别的错误，错误为微信支付缺少参数</content>
+                <title>0212</title>
+                <content>o2o后台发生致命级别的错误，错误为微信支付签名验证失败</content>
+                <title>0213</title>
+                <content>o2o后台发生致命级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>0214</title>
+                <content>o2o后台发生致命级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>0215</title>
+                <content>o2o后台发生致命级别的错误，错误为未能向微信发送信息 </content>
+                <title>0216</title>
+                <content>o2o后台发生致命级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>0217</title>
+                <content>o2o后台发生致命级别的错误，错误为支付目录未授权错误 </content>
+                <title>0221</title>
+                <content>o2o后台发生致命级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>0222</title>
+                <content>o2o后台发生致命级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>0223</title>
+                <content>o2o后台发生致命级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>0224</title>
+                <content>o2o后台发生致命级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>0225</title>
+                <content>o2o后台发生致命级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>0226</title>
+                <content>o2o后台发生致命级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>0231</title>
+                <content>o2o后台发生致命级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+            <systemName>
+                智慧停车系统
+                <title>1201</title>
+                <content>智慧停车系统发生致命级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>1204</title>
+                <content>智慧停车系统发生致命级别的错误，错误为非法的get请求</content>
+                <title>1205</title>
+                <content>智慧停车系统发生致命级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>1206</title>
+                <content>智慧停车系统发生致命级别的错误，错误为微信客服消息推送失败</content>
+                <title>1207</title>
+                <content>智慧停车系统发生致命级别的错误，错误为非法的post请求</content>
+                <title>1208</title>
+                <content>智慧停车系统发生致命级别的错误，错误为规定的业务逻辑出错</content>
+                <title>1211</title>
+                <content>智慧停车系统发生致命级别的错误，错误为微信支付缺少参数</content>
+                <title>1212</title>
+                <content>智慧停车系统发生致命级别的错误，错误为微信支付签名验证失败</content>
+                <title>1213</title>
+                <content>智慧停车系统发生致命级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>1214</title>
+                <content>智慧停车系统发生致命级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>1215</title>
+                <content>智慧停车系统发生致命级别的错误，错误为未能向微信发送信息 </content>
+                <title>1216</title>
+                <content>智慧停车系统发生致命级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>1217</title>
+                <content>智慧停车系统发生致命级别的错误，错误为支付目录未授权错误 </content>
+                <title>1221</title>
+                <content>智慧停车系统发生致命级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>1222</title>
+                <content>智慧停车系统发生致命级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>1223</title>
+                <content>智慧停车系统发生致命级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>1224</title>
+                <content>智慧停车系统发生致命级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>1225</title>
+                <content>智慧停车系统发生致命级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>1226</title>
+                <content>智慧停车系统发生致命级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>1231</title>
+                <content>智慧停车系统发生致命级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+            <systemName>
+                自助咖啡系统
+                <title>3201</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>3204</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为非法的get请求</content>
+                <title>3205</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>3206</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为微信客服消息推送失败</content>
+                <title>3207</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为非法的post请求</content>
+                <title>3208</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为规定的业务逻辑出错</content>
+                <title>3211</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为微信支付缺少参数</content>
+                <title>3212</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为微信支付签名验证失败</content>
+                <title>3213</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>3214</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>3215</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为未能向微信发送信息 </content>
+                <title>3216</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>3217</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为支付目录未授权错误 </content>
+                <title>3221</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>3222</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>3223</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>3224</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>3225</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>3226</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>3231</title>
+                <content>自助咖啡系统发生致命级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+        </rankThree>
+        <rankFour>
+            严重致命级别
+            <systemName>
+                O2O系统
+                <title>0301</title>
+                <content>o2o后台发生严重致命级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>0304</title>
+                <content>o2o后台发生严重致命级别的错误，错误为非法的get请求</content>
+                <title>0305</title>
+                <content>o2o后台发生严重致命级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>0306</title>
+                <content>o2o后台发生严重致命级别的错误，错误为微信客服消息推送失败</content>
+                <title>0307</title>
+                <content>o2o后台发生严重致命级别的错误，错误为非法的post请求</content>
+                <title>0308</title>
+                <content>o2o后台发生严重致命级别的错误，错误为规定的业务逻辑出错</content>
+                <title>0311</title>
+                <content>o2o后台发生严重致命级别的错误，错误为微信支付缺少参数</content>
+                <title>0312</title>
+                <content>o2o后台发生严重致命级别的错误，错误为微信支付签名验证失败</content>
+                <title>0313</title>
+                <content>o2o后台发生严重致命级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>0314</title>
+                <content>o2o后台发生严重致命级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>0315</title>
+                <content>o2o后台发生严重致命级别的错误，错误为未能向微信发送信息 </content>
+                <title>0316</title>
+                <content>o2o后台发生严重致命级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>0317</title>
+                <content>o2o后台发生严重致命级别的错误，错误为支付目录未授权错误 </content>
+                <title>0321</title>
+                <content>o2o后台发生严重致命级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>0322</title>
+                <content>o2o后台发生严重致命级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>0323</title>
+                <content>o2o后台发生严重致命级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>0324</title>
+                <content>o2o后台发生严重致命级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>0325</title>
+                <content>o2o后台发生严重致命级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>0326</title>
+                <content>o2o后台发生严重致命级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>0331</title>
+                <content>o2o后台发生严重致命级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+            <systemName>
+                智慧停车系统
+                <title>1301</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>1304</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为非法的get请求</content>
+                <title>1305</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>1306</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为微信客服消息推送失败</content>
+                <title>1307</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为非法的post请求</content>
+                <title>1308</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为规定的业务逻辑出错</content>
+                <title>1311</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为微信支付缺少参数</content>
+                <title>1312</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为微信支付签名验证失败</content>
+                <title>1313</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>1314</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>1315</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为未能向微信发送信息 </content>
+                <title>1316</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>1317</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为支付目录未授权错误 </content>
+                <title>1321</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>1322</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>1323</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>1324</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>1325</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>1326</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>1331</title>
+                <content>智慧停车系统发生严重致命级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+            <systemName>
+                自助咖啡系统
+                <title>3301</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为插入本地数据库失败（add）</content>
+                <title>3304</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为非法的get请求</content>
+                <title>3305</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为维护本地数据库失败（update）</content>
+                <title>3306</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为微信客服消息推送失败</content>
+                <title>3307</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为非法的post请求</content>
+                <title>3308</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为规定的业务逻辑出错</content>
+                <title>3311</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为微信支付缺少参数</content>
+                <title>3312</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为微信支付签名验证失败</content>
+                <title>3313</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为未能取回微信支付预付信息</content>
+                <title>3314</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为支付失败，订单号重复出错 </content>
+                <title>3315</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为未能向微信发送信息 </content>
+                <title>3316</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为快捷登陆跳转地址错误 </content>
+                <title>3317</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为支付目录未授权错误 </content>
+                <title>3321</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为yeelink接口报错，导致开门失败 </content>
+                <title>3322</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为unios接口报错，导致开门失败 </content>
+                <title>3323</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为unios接口报错，导致制作咖啡失败 </content>
+                <title>3324</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为捷顺接口报错，导致停车抬杆失败 </content>
+                <title>3325</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为捷顺接口报错，导致停车场前台功能失效（查验是否在场，查验是否生成第三方订单） </content>
+                <title>3326</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为捷顺接口无返回，导致停车场前台功能失效（获取月卡信息） </content>
+                <title>3331</title>
+                <content>自助咖啡系统发生严重致命级别的错误，错误为停车场金额异常 </content>
+            </systemName>
+        </rankFour>
+    </miscoding>
+</recipe>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>发票申领-邮寄地址</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description">
+    <meta content="" name="author">
+    <!--    <link href="http://www.hdhsmart.com/tpl/Wap/default/static/css/weui.min.css" rel="stylesheet" type="text/css" />-->
+    <!--    <link href="http://www.hdhsmart.com/tpl/Wap/default/static/css/jquery-weui.css" rel="stylesheet" type="text/css" />-->
+    <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css">
+
+    <link href="http://www.hdhsmart.com/tpl/Wap/default/static/css/sweetalert/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="http://www.hdhsmart.com/tpl/Wap/default/static/css/sweetalert/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
+    <link href="http://www.hdhsmart.com/tpl/Wap/default/static/css/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+    <link href="http://www.hdhsmart.com/tpl/Wap/default/static/css/sweetalert/components.min.css" rel="stylesheet" id="style_components" type="text/css">
+    <link href="http://www.hdhsmart.com/tpl/Wap/default/static/css/sweetalert/layout.min.css" rel="stylesheet" type="text/css">
+    <script src="/Car/Admin/Public/js/jquery.js" type="text/javascript"></script>
+    <script src="http://www.hdhsmart.com/tpl/Wap/default/static/js/sweetalert/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://www.hdhsmart.com/tpl/Wap/default/static/js/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="http://www.hdhsmart.com/tpl/Wap/default/static/js/sweetalert/ui-sweetalert.min.js" type="text/javascript"></script>
+
+
+    <style type="text/css">
+        .wb_arrow{
+            border-right: 2px solid #c0c0c0;
+            border-top: 2px solid #c0c0c0;
+            height: 10px;
+            width: 10px;
+            float:right;
+            margin:35px auto 0;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            /*不加这两个属性三角会比上一个略丑, 大家可以试一下*/
+            border-left: 2px solid transparent;
+            border-bottom: 2px solid transparent;
+        }
+        .wb_arrow2{
+            border-right: 2px solid #c0c0c0;
+            border-top: 2px solid #c0c0c0;
+            height: 10px;
+            width: 10px;
+            float:right;
+            margin:40px auto 0;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            /*不加这两个属性三角会比上一个略丑, 大家可以试一下*/
+            border-left: 2px solid transparent;
+            border-bottom: 2px solid transparent;
+        }
+        .sm {width:100%; height:50px; text-align:center; overflow:hidden; line-height:50px; background-color:#0697dc; color:#FFFFFF; font-size:18px;}
+        .jj {width:100%; height:100px; border-bottom:0.8px #bcbab6 solid; overflow:hidden; background-color:#FFFFFF;}
+        .jjd {width:90%; margin:0px auto; padding-top:8px;}
+        .x1 {width:35px; height:35px; float:left; overflow:hidden; border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%; background-color:#0697dc; text-align:center; line-height:35px; color:#FFFFFF; font-size:20px; margin-top:25px;}
+        .x2 {width:70%; margin-left:6%; height:75px; float:left; margin-top:5px;}
+        .x3 {width:70%; margin-left:6%; height:75px; float:left; margin-top:5px;}
+        body,td,th {font-family: 微软雅黑;}
+        .xt {width:100%; height:25px; line-height:25px; font-size:18px; color:#000000;}
+        .xt2 {width:100%; height:25px; line-height:25px; font-size:16px; color:#888888;}
+        .q1 {width:35px; height:35px; float:left; overflow:hidden; border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%; background-color:#9163ff; text-align:center; line-height:35px; color:#FFFFFF; font-size:20px; margin-top:25px;}
+        .q2 {width:70%; margin-left:6%; height:75px; float:left; margin-top:5px; line-height:75px; font-size:18px; color:#cccccc;}
+        .wp {width:100%; margin-top:30px; height:98px; border-bottom:1px #bcbab6 solid; border-top:1px #bcbab6 solid; background-color:#FFFFFF;}
+        .cw {width:50%; float:left; height:98px; overflow:hidden;}
+        .cw2 {position:absolute;z-index:1;width:1px; background-color:#bcbab6;height:98px;left:50%}
+        .iu {width:80%; margin:0px auto;}
+        .iu2 {width:80%; height:98px; overflow:hidden; float:left;}
+        .iu2x {width:90%; height:98px; overflow:hidden; float:left;}
+        .iu3 {width:100%; height:49px; overflow:hidden; line-height:49px; font-size:18px; color:#a5a5a5;}
+        .iu4 {width:100%; height:49px; overflow:hidden; line-height:49px; font-size:18px; color:#333333;}
+        .iu5 {width:100%; height:49px; overflow:hidden; line-height:49px; font-size:18px; color:#999999;}
+        .weui_select {
+            -webkit-appearance: none;
+            border: 0;
+            outline: 0;
+            background-color: transparent;
+            width: 100%;
+            font-size: inherit;
+            height: 49px;
+            line-height: 49px;
+            position: relative;
+            z-index: 1;
+            padding-left: 0px;
+        }
+        .ls {width:100%; position:fixed; bottom:0; height:80px; overflow:hidden;}
+        .ls2 {width:75%; float:left; height:80px; background-color:#5a5a5a;}
+        .ls3 {width:25%; float:left; height:80px; background-color:#999999; text-align:center; line-height:80px; color:#FFFFFF; font-size:18px;}
+        .ls4 {width:90%; margin:0px auto; padding-top:10px; color:#FFFFFF;}
+
+        input[type=checkbox], input[type=radio] {margin:-3px;}
+    </style>
+    <script>
+        document.addEventListener('touchstart',function(){},false);
+    </script>
+</head>
+<body style="background-color: rgb(249, 249, 249);">
+<div id="app">
+<form method="post" action="{:U('apply_bill_express')}">
+    <div style="width:100%;">
+        <input type="hidden" name="billing_adid" value="">
+        <div class="jj">
+            <input type="hidden" name="shipping_adid" value="">
+                <div class="jjd">
+                    <div class="q1">收</div>
+                    <div class="q2">{{selected_address_info.position}} {{selected_address_info.detail}} </div>
+                    <div style="clear:both"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--//地址列表-->
+    <div class="weui-cells weui-cells_checkbox">
+        <label class="weui-cell weui-check__label"  v-for="(item,index) in address_list">
+            <div class="weui-cell__hd">
+                <input type="radio" name="address_id" class="weui-check" v-model="selected_address_id" v-bind:value="item.adress_id">
+                <i class="weui-icon-checked"></i>
+            </div>
+            <div class="weui-cell__bd">
+                <p>{{item.position}}  {{item.detail}}</p>
+            </div>
+        </label>
+        <a href="{:U('add_address')}" class="weui-cell weui-cell_link">
+            <div class="weui-cell__bd">新建地址</div>
+        </a>
+    </div>
+    <div class="weui-btn-area">
+        <button type="submit" style="background-color: #389FFE" class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确认提交</button>
+    </div>
+
+</form>
+
+<div style="height:80px"></div>
+</div>
+<script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/swiper.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/city-picker.min.js"></script>
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+
+<script src="/static/js/vue.min.js"></script>
+<script src="/static/js/vue-route.js"></script>
+<script src="/static/js/vue-resource.min.js"></script>
+<script src="/static/js/vuex.js"></script>
+
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            address_list:app_json.address_list,
+            selected_address_id:app_json.default_address_id,
+        },
+
+        computed:{
+            selected_address_info:function(){
+                let info = this.address_list[0];
+                for(let i in this.address_list){
+                    let row = this.address_list[i];
+                    if(row.adress_id === this.selected_address_id){
+                        info = row;
+                    }
+                }
+                return info;
+            }
+        },
+
+        methods:{},
+        mounted:function(){
+            console.log(app_json);
+            console.log(this.address_list)
+        }
+    });
+</script>
+</body>
+</html>

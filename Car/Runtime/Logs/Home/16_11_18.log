@@ -1,0 +1,9 @@
+[ 2016-11-18T11:03:45+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'pay_no' cannot be null
+
+[ 2016-11-18T16:09:51+08:00 ] 221.232.52.45 /index.php/Home/Payrecord/query_order_sataus/order_no/BK5468237291078405797
+ERR: 非法操作:query_order_sataus
+
+[ 2016-11-18T20:40:33+08:00 ] 121.42.0.38 /extensions/kindeditor/themes/default/default.png)
+ERR: 无法加载控制器:Kindeditor
+

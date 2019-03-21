@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'chanel_id', 1 => 'qrcode_id', 2 => 'title', 3 => 'add_time', 4 => 'last_time', 5 => 'type_id', 6 => 'status', '_autoinc' => true, '_pk' => 'chanel_id', '_type' => array ( 'chanel_id' => 'int(11)', 'qrcode_id' => 'int(11)', 'title' => 'char(20)', 'add_time' => 'int(11)', 'last_time' => 'int(11)', 'type_id' => 'int(11)', 'status' => 'tinyint(1)', ), );?>

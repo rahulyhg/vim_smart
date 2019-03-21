@@ -1,0 +1,51 @@
+[ 2016-11-24T09:29:53+08:00 ] 221.232.52.45 /index.php/Home/Payrecored/pay_now
+ERR: 无法加载控制器:Payrecored
+
+[ 2016-11-24T11:52:29+08:00 ] 221.232.52.45 /index.php/Home/Car/binding_car
+ERR: 无法加载控制器:Car
+
+[ 2016-11-24T11:55:43+08:00 ] 221.232.52.45 /index.php/Home/Car/binding_car
+ERR: 模板不存在:/u02/vhi99/vhi_car/Home/View/Car/binding_car.html
+
+[ 2016-11-24T12:50:56+08:00 ] 119.103.160.72 /index.php/Home/Car/binding_car.html?code=001NVyR808k2YK1Yt9P80upCR80NVyRI&state=2e7f022e90b24e92ac5e57d050c06f88
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null
+
+[ 2016-11-24T12:56:53+08:00 ] 119.103.160.72 /index.php/Home/Car/binding_car.html?code=001NVyR808k2YK1Yt9P80upCR80NVyRI&state=2e7f022e90b24e92ac5e57d050c06f88&code=0314OL8H1CgYi50lMe8H1ws69H14OL8Y&state=45a65d6d5c03d7978c453137c0aec588
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null
+
+[ 2016-11-24T13:03:49+08:00 ] 119.103.160.72 /index.php/Home/Car/binding_car?code=011O0jFt1mF5I90r81Et1wK9Ft1O0jFt&state=aaa484b714333a7b58730f9a7c06fa19
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null
+
+[ 2016-11-24T13:21:48+08:00 ] 119.103.160.72 /index.php/Home/Car/binding_car?code=011O0jFt1mF5I90r81Et1wK9Ft1O0jFt&state=aaa484b714333a7b58730f9a7c06fa19&code=0116bXmB0KOXed2FtqnB03PGmB06bXmi&state=a40bda3da36022f7936534aeac7b126f
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null
+
+[ 2016-11-24T15:09:37+08:00 ] 221.232.52.45 /index.php/Home/Payrecord/pay_now
+ERR: 模板不存在:/u02/vhi99/vhi_car/Home/View/Payrecord/pay_now.html
+
+[ 2016-11-24T16:15:05+08:00 ] 221.232.52.45 /index.php/Home/Car/binding_car?code=021wnyS51Ev7xP1QRHQ51sRnS51wnySl&state=c054c8f79d9720a8799d69962a364784
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'user_name'
+
+[ 2016-11-24T16:17:46+08:00 ] 221.232.52.45 /index.php/Home/Car/binding_car?code=021wnyS51Ev7xP1QRHQ51sRnS51wnySl&state=c054c8f79d9720a8799d69962a364784&code=031EUEli2KpMtG0DT2ki2T5Fli2EUElq&state=1d341d098cb82482e91cb3a6fa78416f
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'user_name'
+
+[ 2016-11-24T16:27:22+08:00 ] 101.226.61.142 /index.php/Home/Car/binding_car?code=031tFrMn16H7pm08PZMn1KrGMn1tFrMa&state=ae91557d8f71eed731d7514e0aa41d8e
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_wx_opid' cannot be null
+
+[ 2016-11-24T16:28:31+08:00 ] 101.226.61.142 /index.php/Home/Car/binding_car?code=001vtvBI0xQkLk2H3qzI02yKBI0vtvBj&state=63253d5acd43555f7ebfbc3a272c7867
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'user_phone'
+
+[ 2016-11-24T16:32:41+08:00 ] 101.226.61.142 /index.php/Home/Car/binding_car?code=031whYLm16qY8l0NLGLm1w5ELm1whYLX&state=87037e3451bec58b4f22ab26319020ed
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'user_phone'
+
+[ 2016-11-24T16:38:56+08:00 ] 101.226.61.142 /index.php/Home/Car/binding_car?code=041bwIfB1Ivhrh0YsegB1jI4gB1bwIf4&state=8de1cffb5249124633c2efa39c082f50
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'user_phone'
+
+[ 2016-11-24T16:41:48+08:00 ] 101.226.69.109 /index.php/Home/Car/binding_car?code=011uBx2Z0G0lQ02Tvs3Z0GVv2Z0uBx2f&state=d20c2c698a82f8e4333b83c571ded6da
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'user_phone'
+
+[ 2016-11-24T16:49:57+08:00 ] 101.226.69.109 /index.php/Home/Car/binding_car?code=021zUDUm1Cnszl0SCTSm1XHvUm1zUDUf&state=14d105d896a3190d9a49c420c1cfd0d9
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'user_phone'
+
+[ 2016-11-24T16:52:25+08:00 ] 101.226.69.109 /index.php/Home/Car/binding_car?code=041v50JA0JaKJc2QuXGA01YUIA0v50JT&state=83a9670f4aa8af5a9a9143b0896d0a06
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_phone'
+

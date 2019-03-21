@@ -1,0 +1,63 @@
+body {margin:0px auto;}
+ul,li{list-style:none;}
+.white {width:1000px; margin:0px auto;}
+.head {width:1000px; height:89px; overflow:hidden; border-bottom:3px #438eb9 solid;}
+.head_wz {width:916px; margin:0px auto; padding-top:20px;}
+.head_wzbt {width:916px; height:30px; overflow:hidden; line-height:30px; font-family:"Î¢ÈíÑÅºÚ"; font-size:16px; color:#000000; font-weight:bold;}
+.head_wzbt2 {width:916px; height:28px; overflow:hidden; line-height:28px; font-family:"Î¢ÈíÑÅºÚ"; font-size:12px; color:#515151;}
+.wxzf {width:916px; padding-top:23px; height:26px; overflow:hidden; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; color:#474747; margin:0px auto;}
+.wzxf_zw {width:668px; margin:0px auto;}
+.wzxf_zw2 {width:668px; height:44px; overflow:hidden; margin:0px auto;}
+.both {clear:both;}
+.bt {height:44px; line-height:44px; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; color:#474747; float:left;}
+.bt2 {height:44px; line-height:40px; font-size:30px; font-family:Arial; color:#fb4746; float:left; margin-left:4px;}
+.bt3 {height:44px; line-height:44px; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; color:#474747; line-height:44px; float:left; margin-left:4px;}
+.wzxf_phone {width:668px; padding-top:26px; margin:0px auto;}
+.rwm {width:284px; float:left;}
+.rwm2 {width:325px; float:right;}
+.rwmx {width:300px; height:300px; overflow:hidden; border:1px #898989 solid; text-align:center;}
+.rwmx2 {width:300px; height:92px; overflow:hidden; margin-top:23px;}
+.phone {width:325px; height:420px; overflow:hidden; background:url(../images/phone.jpg);}
+
+
+
+
+
+.zxcz {width:1000px; height:66px; overflow:hidden; border-bottom:5px #438eb9 solid;}
+.zxn {width:800px; margin:0px auto;}
+.zxfe {width:800px; height:66px; overflow:hidden; font-family:"Î¢ÈíÑÅºÚ"; font-size:20px; color:#000000; line-height:66px; font-weight:bold;}
+.kid {width:800px; height:96px; overflow:hidden;}
+.x1 {width:25px; float:left; margin-top:37px;}
+.x2 {height:96px; line-height:96px; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; color:#000000; float:left; font-weight:bold;}
+.x3 {height:96px; line-height:96px; font-size:24px; font-family:"Î¢ÈíÑÅºÚ"; color:#fb4746; float:left; font-weight:bold; margin-left:4px;}
+.x4 {height:96px; line-height:96px; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; color:#525252; float:left; font-weight:bold; margin-left:4px;}
+.gre {width:800px;}
+.gre2 {height:30px;}
+.hre {width:25px; float:left; margin-top:5px;}
+.hre2 {height:30px; line-height:30px; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; color:#000000; float:left; font-weight:bold;}
+.kk {width:798px; height:162px; overflow:hidden; border:1px #000000 solid; margin-top:27px;}
+.fw {width:798px; height:162px; overflow:hidden; margin:0px auto;}
+.fw ul{width:798px; height:162px; margin:0px auto;}
+.fw ul li{width:266px; height:81px; overflow:hidden; float:left; margin:0px auto; padding-left:50px;}
+.cz {padding-top:31px; float:left; padding-bottom:0px;}
+.cz2 {height:81px; line-height:81px; float:left; font-size:18px; color:#474747; font-family:"Î¢ÈíÑÅºÚ"; margin-left:10px; margin-bottom:0px;}
+.fee {height:80px;}
+.feec {height:60px;}
+.fee2 {width:25px; float:left; margin-top:28px;}
+.fee3 {height:80px; line-height:80px; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; color:#000000; float:left; font-weight:bold;}
+.fee4 {height:40px; line-height:40px; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; color:#000000; float:left; font-weight:bold;}
+.cw {height:50px; width:800px; overflow:hidden;}
+.cw2 {float:left; margin-top:5px;}
+.cw3 {width:60px; height:23px; overflow:hidden; float:left; margin-left:10px; margin-top:4px;}
+.cw4 {height:26px; overflow:hidden; float:left; margin-left:15px; line-height:26px; color:#474747; font-size:16px; font-family:"Î¢ÈíÑÅºÚ"; color:#474747;}
+.cw5 {float:left; margin-top:5px; margin-left:80px;}
+.cw6 {width:37px; height:27px; overflow:hidden; float:left; margin-left:10px; margin-top:4px;}
+.re {height:70px; overflow:hidden;}
+.re2 {height:70px; line-height:70px; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; color:#474747; float:left; font-weight:bold;}
+.re3 {height:70px; line-height:70px; font-size:24px; font-family:"Î¢ÈíÑÅºÚ"; color:#fb4746; float:left; font-weight:bold; margin-left:4px;}
+.re4 {height:70px; line-height:70px; font-size:18px; font-family:"Î¢ÈíÑÅºÚ"; color:#525252; float:left; font-weight:bold; margin-left:4px;}
+.uzi {width:199px; height:50px; overflow:hidden; margin-top:30px;}
+
+
+
+

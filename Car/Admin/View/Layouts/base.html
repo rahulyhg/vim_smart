@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{$title?:"智慧停车场系统"}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
+    <meta content="" name="author" />
+    <include file="Layouts/head"/>
+    <link rel="stylesheet" href="{$Think.config.ADMIN_CSS_URL}weui.css">
+    <link href="//cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">
+    <block name="head"></block>
+</head>
+<script>
+    document.addEventListener('touchstart',function(){},false);
+    var app = {};
+    app.root             = "__ROOT__";
+    app.app              = "__APP__";
+    app.app_dir         = "{:APP_PATH}"
+    app.module_name      = "{:MODULE_NAME}";
+    app.controller_name  = "{:CONTROLLER_NAME}";
+    app.action_name      = "{:ACTION_NAME}";
+    app.url_model        = {:C('URL_MODEL')};
+</script>
+
+<body>
+<block name="header">
+    <header class="pageSliderHide">
+        <div id="backBtn" onclick="history.back(-1)"></div>{$header}
+        <span id="close_window" style="float:right;margin-right: 15px;">X</span>
+        <div style="clear: both"></div>
+    </header>
+</block>
+<block name="body">
+
+</block>
+<include file="Layouts/foot"/>
+<scriopt>
+    <script>
+        //关闭窗口
+        var btn = document.getElementById('close_window');
+        btn.onclick = function(){
+            WeixinJSBridge.invoke('closeWindow',{},function(res){});
+        }
+    </script>
+</scriopt>
+<block name="script"></block>
+
+</body>
+</html>

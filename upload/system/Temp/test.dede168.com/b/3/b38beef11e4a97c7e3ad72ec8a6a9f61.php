@@ -1,0 +1,3 @@
+<?php
+//000000000000a:4:{s:1:"B";a:1:{i:0;a:5:{s:7:"area_id";s:3:"839";s:9:"area_name";s:6:"保定";s:8:"area_url";s:2:"bd";s:12:"first_pinyin";s:1:"b";s:6:"is_hot";s:1:"1";}}s:1:"D";a:1:{i:0;a:5:{s:7:"area_id";s:4:"2629";s:9:"area_name";s:6:"达州";s:8:"area_url";s:6:"dazhou";s:12:"first_pinyin";s:1:"d";s:6:"is_hot";s:1:"1";}}s:1:"G";a:1:{i:0;a:5:{s:7:"area_id";s:3:"424";s:9:"area_name";s:6:"广州";s:8:"area_url";s:10:"gzgdgz1110";s:12:"first_pinyin";s:1:"g";s:6:"is_hot";s:1:"0";}}s:1:"H";a:1:{i:0;a:5:{s:7:"area_id";s:4:"1469";s:9:"area_name";s:6:"衡阳";s:8:"area_url";s:2:"hy";s:12:"first_pinyin";s:1:"h";s:6:"is_hot";s:1:"1";}}}
+?>

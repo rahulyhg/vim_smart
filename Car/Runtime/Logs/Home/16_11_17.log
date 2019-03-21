@@ -1,0 +1,33 @@
+[ 2016-11-17T10:45:22+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '5' for key 'PRIMARY'
+
+[ 2016-11-17T10:47:00+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '6' for key 'PRIMARY'
+
+[ 2016-11-17T10:52:54+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '7' for key 'PRIMARY'
+
+[ 2016-11-17T10:58:29+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY'
+
+[ 2016-11-17T11:15:10+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '2' for key 'PRIMARY'
+
+[ 2016-11-17T11:25:55+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '3' for key 'PRIMARY'
+
+[ 2016-11-17T11:31:33+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '4' for key 'PRIMARY'
+
+[ 2016-11-17T11:35:49+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY'
+
+[ 2016-11-17T13:37:53+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'serv_id' cannot be null
+
+[ 2016-11-17T13:41:02+08:00 ] 221.232.52.45 /index.php/Home/Servicerecord/new_record.html
+ERR: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'serv_id' cannot be null
+
+[ 2016-11-17T15:04:21+08:00 ] 221.232.52.45 /index.php/Home/Payrecord/order_detail/pay_id/5.html
+ERR: 模板不存在:/u02/vhi99/vhi_car/Home/View/Payrecord/order_detail.html
+

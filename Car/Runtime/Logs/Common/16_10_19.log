@@ -1,0 +1,54 @@
+[ 2016-10-19T17:05:36+08:00 ] 127.0.0.1 /index.php/%7Bpigcmsjs/artdialog/iframeTools.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:{pigcmsjs
+
+[ 2016-10-19T17:05:36+08:00 ] 127.0.0.1 /index.php/%7Bpigcmsjs/artdialog/jquery.artDialog.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:{pigcmsjs
+
+[ 2016-10-19T17:05:36+08:00 ] 127.0.0.1 /index.php/%7Bpigcmscss/style.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:{pigcmscss
+
+[ 2016-10-19T17:05:36+08:00 ] 127.0.0.1 /index.php/%7Bpigcms
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:{pigcms
+
+[ 2016-10-19T17:05:36+08:00 ] 127.0.0.1 /index.php/%7Bpigcmsjs/jquery.colorpicker.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+ERR: 无法加载模块:{pigcmsjs
+
+[ 2016-10-19T17:05:36+08:00 ] 127.0.0.1 /index.php/%7Bpigcmsjs/index.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:{pigcmsjs
+
+[ 2016-10-19T17:05:36+08:00 ] 127.0.0.1 /index.php/%7Bpigcmsimages/admin_barclose.gif
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:{pigcmsimages
+
+[ 2016-10-19T17:05:36+08:00 ] 127.0.0.1 /index.php/%7Bpigcmsimages/admin_baropen.gif
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:{pigcmsimages
+
+[ 2016-10-19T17:05:36+08:00 ] 127.0.0.1 /index.php/%7Bpigcms/index.php/Admin/Index/main.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+ERR: 无法加载模块:{pigcms
+

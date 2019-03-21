@@ -1,0 +1,9 @@
+[ 2016-11-15T15:01:27+08:00 ] 221.232.52.45 /index.php/Home/Payrecord/get_user_all_recored
+ERR: 无法加载控制器:Payrecord
+
+[ 2016-11-15T15:02:29+08:00 ] 221.232.52.45 /index.php/Home/Payrecord/get_user_all_recored
+ERR: 无法加载控制器:Payrecord
+
+[ 2016-11-15T15:07:54+08:00 ] 221.232.52.45 /index.php/Home/Payrecord/get_user_all_recored
+ERR: 参数错误或者未定义:user_id
+

@@ -1,0 +1,551 @@
+<!--引入日历插件样式 -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  />
+<link href="{$Think.config.ADMIN_CSS_URL}jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
+
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEAD-->
+                    <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>用户信息修改更新
+                                <small>手动添加用户</small>
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                        <!-- BEGIN PAGE TOOLBAR -->
+                        <!--<div class="page-toolbar">-->
+                            <!--&lt;!&ndash; BEGIN THEME PANEL &ndash;&gt;-->
+                            <!--<div class="btn-group btn-theme-panel">-->
+                                <!--<a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">-->
+                                    <!--<i class="icon-settings"></i>-->
+                                <!--</a>-->
+                                <!--<div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="col-md-4 col-sm-4 col-xs-12">-->
+                                            <!--<h3>HEADER</h3>-->
+                                            <!--<ul class="theme-colors">-->
+                                                <!--<li class="theme-color theme-color-default active" data-theme="default">-->
+                                                    <!--<span class="theme-color-view"></span>-->
+                                                    <!--<span class="theme-color-name">Dark Header</span>-->
+                                                <!--</li>-->
+                                                <!--<li class="theme-color theme-color-light " data-theme="light">-->
+                                                    <!--<span class="theme-color-view"></span>-->
+                                                    <!--<span class="theme-color-name">Light Header</span>-->
+                                                <!--</li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                        <!--<div class="col-md-8 col-sm-8 col-xs-12 seperator">-->
+                                            <!--<h3>LAYOUT</h3>-->
+                                            <!--<ul class="theme-settings">-->
+                                                <!--<li> Theme Style-->
+                                                    <!--<select class="layout-style-option form-control input-small input-sm">-->
+                                                        <!--<option value="square">Square corners</option>-->
+                                                        <!--<option value="rounded" selected="selected">Rounded corners</option>-->
+                                                    <!--</select>-->
+                                                <!--</li>-->
+                                                <!--<li> Layout-->
+                                                    <!--<select class="layout-option form-control input-small input-sm">-->
+                                                        <!--<option value="fluid" selected="selected">Fluid</option>-->
+                                                        <!--<option value="boxed">Boxed</option>-->
+                                                    <!--</select>-->
+                                                <!--</li>-->
+                                                <!--<li> Header-->
+                                                    <!--<select class="page-header-option form-control input-small input-sm">-->
+                                                        <!--<option value="fixed" selected="selected">Fixed</option>-->
+                                                        <!--<option value="default">Default</option>-->
+                                                    <!--</select>-->
+                                                <!--</li>-->
+                                                <!--<li> Top Dropdowns-->
+                                                    <!--<select class="page-header-top-dropdown-style-option form-control input-small input-sm">-->
+                                                        <!--<option value="light">Light</option>-->
+                                                        <!--<option value="dark" selected="selected">Dark</option>-->
+                                                    <!--</select>-->
+                                                <!--</li>-->
+                                                <!--<li> Sidebar Mode-->
+                                                    <!--<select class="sidebar-option form-control input-small input-sm">-->
+                                                        <!--<option value="fixed">Fixed</option>-->
+                                                        <!--<option value="default" selected="selected">Default</option>-->
+                                                    <!--</select>-->
+                                                <!--</li>-->
+                                                <!--<li> Sidebar Menu-->
+                                                    <!--<select class="sidebar-menu-option form-control input-small input-sm">-->
+                                                        <!--<option value="accordion" selected="selected">Accordion</option>-->
+                                                        <!--<option value="hover">Hover</option>-->
+                                                    <!--</select>-->
+                                                <!--</li>-->
+                                                <!--<li> Sidebar Position-->
+                                                    <!--<select class="sidebar-pos-option form-control input-small input-sm">-->
+                                                        <!--<option value="left" selected="selected">Left</option>-->
+                                                        <!--<option value="right">Right</option>-->
+                                                    <!--</select>-->
+                                                <!--</li>-->
+                                                <!--<li> Footer-->
+                                                    <!--<select class="page-footer-option form-control input-small input-sm">-->
+                                                        <!--<option value="fixed">Fixed</option>-->
+                                                        <!--<option value="default" selected="selected">Default</option>-->
+                                                    <!--</select>-->
+                                                <!--</li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash; END THEME PANEL &ndash;&gt;-->
+                        <!--</div>-->
+                        <!-- END PAGE TOOLBAR -->
+                    </div>
+                    <!-- END PAGE HEAD-->
+                    <!-- BEGIN PAGE BREADCRUMB -->
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <a href="#">组织架构管理</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+						<li>
+                            <a href="#">用户信息管理</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <span class="active">用户信息修改更新</span>
+                        </li>
+                    </ul>
+                    <!-- END PAGE BREADCRUMB -->
+                    <!-- BEGIN PAGE BASE CONTENT -->
+                    <!--<div class="m-heading-1 border-green m-bordered">-->
+                        <!--<h3>使用提示</h3>-->
+                        <!--<p> 本操作请谨慎使用，正常情况下仅作为开发人员调试或者临时特殊需要添加记录所用-->
+                            <!--<a class="btn red btn-outline" href="http://jqueryvalidation.org" target="_blank">不会使用请点此联系相关服务人员指导</a>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <div class="row">
+                        <form action="#" method="post" class="form-horizontal" id="form_sample_1" enctype="multipart/form-data">
+                        <div class="col-md-6" style="float: left">
+                            <!-- BEGIN VALIDATION STATES-->
+                            <div class="portlet light portlet-fit portlet-form bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class=" icon-layers font-green"></i>
+                                        <span class="caption-subject font-green sbold uppercase">用户信息修改更新</span>
+                                    </div>
+                                    <div class="actions">
+                                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                            <i class="icon-cloud-upload"></i>
+                                        </a>
+                                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                            <i class="icon-wrench"></i>
+                                        </a>
+                                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                            <i class="icon-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <!-- BEGIN FORM-->
+                                        <div class="form-body">
+                                            <div class="alert alert-danger display-hide">
+                                                <button class="close" data-close="alert"></button> 您填写的信息可能存在问题，请再检查 </div>
+                                            <div class="alert alert-success display-hide">
+                                                <button class="close" data-close="alert"></button> 添加成功，请查看记录列表 </div>
+                                            <div class="form-group form-md-line-input" id="car_no">
+                                                <label class="col-md-2 control-label" for="form_control_1">车牌号
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="" name="car_nos[]" value="{$user_info['car_nos'][0]}">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">请参考系统已有格式录入。临时添加的输入项点击可以删除！ ”</span>
+                                                </div>
+                                            </div>
+
+                                            <foreach name="user_info.car_nos" item="v" key="k">
+                                                <if condition="$k gt '0'">
+                                                    <div class="form-group form-md-line-input">
+                                                        <label class="col-md-2 control-label" for="form_control_1">车牌号
+                                                            <span class="required">*</span>
+                                                        </label>
+                                                        <span onclick='remove_car_no_form(this)'>[-]</span>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" placeholder="" name="car_nos[]" value="{$v}">
+                                                            <div class="form-control-focus"> </div>
+                                                            <span class="help-block">请参考系统已有格式录入。临时添加的输入项点击可以删除！ ”</span>
+                                                        </div>
+                                                    </div>
+                                                </if>
+                                            </foreach>
+                                            <button type="button" class="btn green-haze dropdown-toggle" data-toggle="dropdown" aria-expanded="false" onclick="add_more_car(this)"> 添加更多车辆
+                                                            <i class="fa fa-angle-down"></i>
+                                            </button>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">用户名
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="" name="user_name" value="{$user_info.user_name}">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">请输入用户名”</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">密码
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="password" class="form-control" placeholder="" name="user_pwd1">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">密码留空为不修改，保留原来的密码</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">确认密码
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="password" class="form-control" placeholder="" name="user_pwd2">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">请再次输入密码，不修改留空</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">手机号码
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="" name="user_phone" value="{$user_info.user_phone}">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">请输入11位常用手机号码</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">用户微信
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="" name="user_wxid" value="{$user_info.user_wxid}">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">请输入微信号</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">微信昵称
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="" name="user_wxnik" value="{$user_info.user_wxnik}">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">请输入微信昵称</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- END FORM-->
+                                </div>
+                            </div>
+                            <!-- END VALIDATION STATES-->
+                        </div>
+                        <div class="col-md-6" style="float: right">
+                            <!-- BEGIN VALIDATION STATES-->
+                            <div class="portlet light portlet-fit portlet-form bordered">
+                                <div class="portlet-body">
+                                    <!-- BEGIN FORM-->
+                                        <div class="form-body">
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">用户姓名
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="" name="user_t_name" value="{$user_info.user_t_name}">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">请输入用户的真实姓名</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">用户年龄
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="" name="user_age" value="{$user_info.user_age}">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">请输入0-255区间的整数</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-radios">
+                                                <label class="col-md-2 control-label" for="form_control_1">请选择性别</label>
+                                                <div class="col-md-9">
+                                                    <div class="md-radio-inline">
+                                                        <if condition="$user_info['user_sex'] eq '0'">
+                                                            <div class="md-radio">
+                                                                <input type="radio" checked="checked" id="checkbox1_8" name="user_sex" value="0" class="md-radiobtn">
+                                                                <label for="checkbox1_8">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> 保密 </label>
+                                                            </div>
+                                                            <else />
+                                                            <div class="md-radio">
+                                                                <input type="radio" id="checkbox1_8" name="user_sex" value="0" class="md-radiobtn">
+                                                                <label for="checkbox1_8">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> 保密 </label>
+                                                            </div>
+                                                        </if>
+                                                        <if condition="$user_info['user_sex'] eq '1'">
+                                                            <div class="md-radio">
+                                                                <input type="radio" checked="checked" id="checkbox1_9" name="user_sex" value="1" class="md-radiobtn">
+                                                                <label for="checkbox1_9">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> 男 </label>
+                                                            </div>
+                                                            <else />
+                                                            <div class="md-radio">
+                                                                <input type="radio" id="checkbox1_9" name="user_sex" value="1" class="md-radiobtn">
+                                                                <label for="checkbox1_9">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> 男 </label>
+                                                            </div>
+                                                        </if>
+                                                        <if condition="$user_info['user_sex'] eq '2'">
+                                                            <div class="md-radio">
+                                                                <input type="radio" checked="checked" id="checkbox1_10" name="user_sex" value="2 " class="md-radiobtn">
+                                                                <label for="checkbox1_10">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> 女 </label>
+                                                            </div>
+                                                            <else />
+                                                            <div class="md-radio">
+                                                                <input type="radio" id="checkbox1_10" name="user_sex" value="2 " class="md-radiobtn">
+                                                                <label for="checkbox1_10">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> 女 </label>
+                                                            </div>
+                                                        </if>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">用户住址
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="" name="user_addr" value="{$user_info.user_addr}">
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">请输入用户的大致居住地址</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">用户等级
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control" name="user_level" autocomplete="off">
+                                                        <option value="">--请选择--</option>
+                                                        <if condition="$user_info['user_level'] eq '0'">
+                                                            <option value="0" selected="selected">普通</option>
+                                                            <else />
+                                                            <option value="0">普通</option>
+                                                        </if>
+                                                        <if condition="$user_info['user_level'] eq '1'">
+                                                            <option value="1" selected="selected">会员</option>
+                                                            <else />
+                                                            <option value="1">会员</option>
+                                                        </if>
+                                                        <if condition="$user_info['user_level'] eq '2'">
+                                                            <option value="2" selected="selected">贵宾</option>
+                                                            <else />
+                                                            <option value="2">贵宾</option>
+                                                        </if>
+                                                    </select>
+                                                    <div class="form-control-focus"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">用户权限
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <select name="user_role_id" class="form-control">
+                                                        <foreach name="role_array" item="sv">
+                                                            <option value="{$sv.role_id}"<if condition="$user_info['user_role_id'] eq $sv['role_id']">selected="selected"</if>>{$sv.role_name}</option>
+                                                        </foreach>
+                                                    </select>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="help-block">选择用户的权限</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-md-line-input">
+                                                <label class="col-md-2 control-label" for="form_control_1">用户头像
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <input type="file" name="user_logo" id="image_file" onchange="fileSelected();" />
+                                                    <div class="form-control-focus"> </div>
+                                                    <notempty name="user_info.user_logo">
+                                                        <img id="preview" src="{$Think.config.WEB_DOMAIN}/{$user_info.user_logo}" style="width:80px;" />
+                                                        <else />
+                                                        <img id="preview" style="width:80px;" />
+                                                    </notempty>
+                                                </div>
+                                                <input type="hidden" name="old_user_logo" value="{$user_info.user_logo}">
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit" class="btn green">确认提交</button>
+                                                    <button type="reset" class="btn default" onclick="window.location.href='http://www.hdhsmart.com/Car/index.php?s=/Admin/User/showlist.html'">返 回</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- END FORM-->
+                                </div>
+                            </div>
+                            <!-- END VALIDATION STATES-->
+                        </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- END QUICK SIDEBAR -->
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer" style="text-align: center">
+            <div class="page-footer-inner" style="width: 100%"> 2017 &copy; 汇得行智慧停车系统
+                <a target="_blank" href="http://www.vhi99.com">邻钱科技</a> &nbsp;|&nbsp;
+                <a href="http://www.metronic.com" target="_blank">Metronic</a>
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+        <!-- BEGIN QUICK NAV -->
+        <!--<nav class="quick-nav">-->
+            <!--<a class="quick-nav-trigger" href="#0">-->
+                <!--<span aria-hidden="true"></span>-->
+            <!--</a>-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank" class="active">-->
+                        <!--<span>Purchase Metronic</span>-->
+                        <!--<i class="icon-basket"></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/reviews/4021469?ref=keenthemes" target="_blank">-->
+                        <!--<span>Customer Reviews</span>-->
+                        <!--<i class="icon-users"></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="http://keenthemes.com/showcast/" target="_blank">-->
+                        <!--<span>Showcase</span>-->
+                        <!--<i class="icon-user"></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="http://keenthemes.com/metronic-theme/changelog/" target="_blank">-->
+                        <!--<span>Changelog</span>-->
+                        <!--<i class="icon-graph"></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<span aria-hidden="true" class="quick-nav-bg"></span>-->
+        <!--</nav>-->
+        <div class="quick-nav-overlay"></div>
+        <!-- END QUICK NAV -->
+        <!--[if lt IE 9]>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/respond.min.js"></script>
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/excanvas.min.js"></script> 
+<script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/ie8.fix.min.js"></script> 
+<![endif]-->
+        <!-- BEGIN CORE PLUGINS -->
+        <script src="{$Think.config.ADMIN_JS_URL}jquery.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_ASSETS_URL}global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="{$Think.config.ADMIN_ASSETS_URL}global/scripts/app.min.js" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <!--表单提交检查js-->
+        <!--<script src="{$Think.config.ADMIN_ASSETS_URL}pages/scripts/form-validation-md.min.js" type="text/javascript"></script>-->
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="{$Think.config.ADMIN_ASSETS_URL}layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_ASSETS_URL}layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_ASSETS_URL}layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_ASSETS_URL}layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+        <!--引入日历jquery插件开始-->
+        <!--
+        <script src="{$Think.config.ADMIN_JS_URL}jquery.datetimepicker.js" type="text/javascript"></script>
+        <script src="{$Think.config.ADMIN_JS_URL}jquery.datetimepicker.min.js" type="text/javascript"></script>-->
+        
+        <script src="{$Think.config.ADMIN_JS_URL}jquery.datetimepicker.full.js" type="text/javascript"></script>
+        <!--引入日历jquery插件结束-->
+        
+        
+        <!--引入文件上传插件js开始-->
+        <script src="{$Think.config.ADMIN_JS_URL}uploadPlugjs/script.js" type="text/javascript"></script>
+        <!--引入文件上传插件js结束-->
+        
+        
+        <!--
+        <div class="form-group form-md-line-input" id="car_no">
+            <label class="col-md-3 control-label" for="form_control_1">用户车辆
+                <span class="required">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" placeholder="" name="car_no[]">
+                <div class="form-control-focus"> </div>
+                <span class="help-block">请输入完整车牌号：请参考系统已有格式录入”</span>
+            </div>
+        </div>
+        
+        
+        -->
+        
+        <script type='text/javascript'>
+            //点击产生车牌号录入表单
+            var i=1;
+            function add_more_car(obj){
+                var input_form=$('#car_no').clone();//录入表单模板
+                //----模板制作开始----
+                var laber=input_form.find('label');
+                laber.html('更多车牌号');//修改内容
+                input_form.removeAttr('id');//移除id属性
+                input_form.find('input').val("");//清空输入框内容
+                var notice="<span onclick='remove_car_no_form(this)'>[-]</span>";//设置一个删除临时增加项按钮
+                laber.before(notice);
+                //----模板制作结束----
+                $('#car_no').after(input_form);
+                
+            }
+            
+            //点击删除临时添加的车牌输入框
+            function remove_car_no_form(obj){
+                $(obj).parent().remove();
+            }
+            
+        </script>
+    </body>
+
+</html>

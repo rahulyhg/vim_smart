@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <meta charset="utf-8" />
+        <title>个人中心</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"> 
+        <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="{$Think.config.STATICS_URL}plublic/css/googleapis.css" rel="stylesheet" type="text/css" />
+        <link href="{$Think.config.STATICS_URL}plublic/css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="{$Think.config.STATICS_URL}plublic/css/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="{$Think.config.STATICS_URL}plublic/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="{$Think.config.STATICS_URL}plublic/css/bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+		<link href="{$Think.config.STATICS_URL}plublic/css/sweetalert.css" rel="stylesheet" type="text/css" />
+        <!-- BEGIN THEME GLOBAL STYLES -->
+        <link href="{$Think.config.STATICS_URL}plublic/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="{$Think.config.STATICS_URL}plublic/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="{$Think.config.STATICS_URL}plublic/css/layout/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="{$Think.config.STATICS_URL}plublic/css/layout/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="{$Think.config.STATICS_URL}plublic/css/layout/custom.min.css" rel="stylesheet" type="text/css" />
+		<link href="{$Think.config.STATICS_URL}plublic/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="{$Think.config.STATICS_URL}plublic/css/weui.min.css" rel="stylesheet" type="text/css" />
+		<link href="{$Think.config.STATICS_URL}plublic/css/member.css" rel="stylesheet" type="text/css" />
+		<link href="{$Think.config.STATICS_URL}plublic/css/weui.css" rel="stylesheet" type="text/css" />
+		<link href="{$Think.config.STATICS_URL}plublic/css/weui2.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME LAYOUT STYLES -->
+        <style type="text/css">
+		.xf:link{color:#ffba00; text-decoration:none;}
+		.xf:visited{color:#ffba00; text-decoration:none;}
+		.xf:active{color:#ffba00; text-decoration:none;}
+		.xf:hover{color:#ffba00; text-decoration:none;}
+		
+		.kk {width:33%; background-color:#FFFFFF; height:100px; float:left; box-sizing: border-box;}
+		.kk2 {width:34%; border-left:1px #eeeeee solid; border-right:1px #eeeeee solid; background-color:#ffffff; height:100px; float:left; box-sizing: border-box;}
+		.kk3 {width:33%; background-color:#FFFFFF; height:100px; float:left; box-sizing: border-box;}
+		.fez.active, .fez:active:focus, .fez:active:hover, .fez:focus, .fez:hover {border-color: #278ff0;
+    color: #ffffff;
+    background-color: #278ff0;}
+		.btn.blue:not(.btn-outline) {
+    color: #FFF;
+    background-color: #389ffe;
+    height: 45px;
+    border-color: #389ffe;
+}
+.re {width:100%; height:50px; overflow:hidden; border-bottom:1px #e3e3e3 solid; background-color:#FFFFFF;}
+.re:hover {background-color:#e3e3e3;}
+*{
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-khtml-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+-o-user-select:none;
+}
+
+[class*=" fa-"]:not(.fa-stack), [class*=" glyphicon-"], [class*=" icon-"], [class^=fa-]:not(.fa-stack), [class^=glyphicon-], [class^=icon-] {
+	font-size: 20px;
+	color:#389ffe;
+}
+.weui_tabbar_icon {
+	text-align: center;
+	padding-top:4px;
+}
+ hr, p {
+            margin:0;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+		.member-photo-img2 {
+    display: block;
+    width: 35%;
+    height: auto;
+    margin: 0.625rem auto;
+}
+.member-photo-img2 {
+    position: relative;
+}
+.member-photo-img2 img {
+    -webkit-transition: all 1.5s;
+    -o-transition: all 1.5s;
+    transition: all 1.5s;
+    border-radius: 50%;
+}
+.member-photo-img2 img {
+    border-radius: 9999px;
+    height: 100%;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+}
+		</style>
+</head>
+<script>
+  document.addEventListener('touchstart',function(){},false);
+</script>
+    <!-- END HEAD -->
+	<!-- {$Think.session.newinfo.headimgurl} -->
+    <body style="background-color:#efefef;">
+		  <div style="width:100%;">
+		  	  <div class="member-photo">
+				<div class="member-photo-img2">
+					<a href="#">
+						<img src="{$user_info_array.user_headerimg}">
+					</a>
+				</div>
+				<div style="width:100%; text-align:center; line-height:30px; margin-top:15px; color:#FFFFFF; font-size:18px;">{$user_info_array.nick_name}</div>
+				<!--<if condition="$user_info_array.is_yuka eq 1">
+					<if condition="$user_info_array.yueka_day lt 0">
+						<div style="width:100%; text-align:center; line-height:30px; margin-top:20px; color:#FFFFFF;">请完善资料后查看包月数据<a href="__APP__?m=Home&c=User&a=user_yueka_recharge" class="xf">[完善]</a></div>
+						<else/>
+						<div style="width:100%; text-align:center; line-height:30px; margin-top:20px; color:#FFFFFF;">月卡剩余：{$user_info_array.yueka_day}天　<a href="__APP__?m=Home&c=User&a=user_yueka_recharge" class="xf">[延期]</a></div>
+					</if>
+				<else/>
+				<div style="width:100%; text-align:center; line-height:30px; margin-top:20px; color:#FFFFFF;">您为临时停车用户　<a href="__APP__?m=Home&c=User&a=new_user_info" class="xf">[开通月卡]</a></div>
+				</if>-->
+			    <div style="margin:20px auto; width:180px; height:35px; line-height:35px; color:#FFFFFF; overflow:hidden;border-radius:20px; background-color:#000000; text-align:center; font-size:14px;">积分：{$user_info_array.score_count}</div>
+			  </div>
+		  </div>
+		  <div style="margin-top:8px; width:100%; border-top:1px #e3e3e3 solid; border-bottom:1px #eeeeee solid;">
+		  	  <div class="kk">
+			  	  <div style="width:100%; height:60px; text-align:center; line-height:2; font-family:Arial; color:#f17d00; font-size:36px;">{$user_info_array.sum_money}</div>
+				  <div style="width:100%; height:40px; text-align:center; line-height:20px; color:#b9b9b9; font-size:14px;">累计消费(元)</div>
+			  </div>
+			  <div class="kk2">
+			  	  <div style="width:100%; height:60px; text-align:center; line-height:2; font-family:Arial; color:#f17d00; font-size:36px;">{$user_info_array.how_long}</div>
+				  <div style="width:100%; height:40px; text-align:center; line-height:20px; color:#b9b9b9; font-size:14px;">累计时长(时)</div>
+			  </div>
+			  <div class="kk3">
+			  	  <div style="width:100%; height:60px; text-align:center; line-height:2; font-family:Arial; color:#f17d00; font-size:36px;">0</div>
+				  <div style="width:100%; height:40px; text-align:center; line-height:20px; color:#b9b9b9; font-size:14px;">累计充值(元)</div>
+			  </div>
+			  <div style="clear:both"></div>
+		  </div>
+		  <div style="margin-top:8px; width:100%; border-top:1px #e3e3e3 solid; border-bottom:1px #eeeeee solid;">
+			  <volist name="arr" id="vo">
+				  <a href="{$vo.url}">
+					  <div class="re">
+						  <div style="width:4%; float:left; margin-left:5%; padding-top:11px;"><img src="{$Think.config.STATICS_URL}/plublic/img/{$vo.icon}" style="width:100%; height:auto;"></div>
+						  <div style="float:left; line-height:50px; margin-left:3%; color:#000000; font-family:'微软雅黑';">{$vo.name}</div>
+						  <div class="wb_arrow"></div>
+						  <div style="clear:both"></div>
+					  </div>
+				  </a>
+			  </volist>
+		  </div>
+		  <div style="height:55px; overflow:hidden; width:100%;"></div>
+		  <!--<div style="margin:15px auto; width:90%;">
+		  	  <button class="btn blue fez" style="width:100%;" type="submit" id="showLoadingToast"><span style="font-weight:bold;">&nbsp;&nbsp;&nbsp;返回&nbsp;&nbsp;&nbsp;</span></button>
+		  </div>-->
+
+		  <div class="tab-bottom">
+
+			  <div class="weui_tabbar ">
+				  <a href="{$Think.config.web_domain}/index.php?m=Home&c=Car&a=use_service" class="weui_tabbar_item">
+					  <div class="weui_tabbar_icon">
+						  <i class="fa fa-car"></i>
+					  </div>
+					  <p class="weui_tabbar_label">我的车辆</p>
+				  </a>
+				  <!--<a href="{$Think.config.web_domain}/index.php?m=Home&c=Bill&a=record" class="weui_tabbar_item">
+					  <div class="weui_tabbar_icon">
+						  <i class="fa fa-ticket"></i>
+					  </div>
+					  <p class="weui_tabbar_label">发票领取</p>
+				  </a>-->
+				  <a href="{$Think.config.web_domain}/index.php?m=Home&c=User&a=user_index" class="weui_tabbar_item  weui_bar_item_on">
+					  <div class="weui_tabbar_icon">
+						  <i class="fa fa-user"></i>
+					  </div>
+					  <p class="weui_tabbar_label">个人中心</p>
+				  </a>
+				  <!--<a href="{$Think.config.web_domain}/index.php?m=Home&c=Feedback&a=index&user_id={$Think.session.user_id}" class="weui_tabbar_item">
+                      <div class="weui_tabbar_icon">
+                          <i class="fa fa-question-circle"></i>
+                      </div>
+                      <p class="weui_tabbar_label">问题反馈</p>
+                  </a>-->
+			  </div>
+		  </div>
+    </body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>智慧停车场系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
+    <meta content="" name="author" />
+    <!-- jquery WEUI css -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+    <link href="{$Think.config.STATICS_URL}plublic/css/example.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/sweetalert.css" rel="stylesheet" type="text/css" />
+
+    <script src="{$Think.config.STATICS_URL}plublic/js/zepto.min.js"></script>
+    <script src="{$Think.config.STATICS_URL}plublic/js/router.min.js"></script>
+    <script src="{$Think.config.STATICS_URL}plublic/js/example.js"></script>
+    </head>
+<script>
+    document.addEventListener('touchstart',function(){},false);
+</script>
+<body>
+<h1>停车缴费录入</h1>
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>当前班次</p>
+        </div>
+        <div class="weui-cell__ft">{$info.duty}</div>
+    </div>
+</div>
+</body>
+<!-- jquery WEUI  js-->
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<script>
+    $(function(){
+        $(".weui-cell__ft").on('click',function () {
+            $.actions({
+                actions: [{
+                    text: "早班",
+                    onClick: function() {
+                        //do something
+                    }
+                },{
+                    text: "中班",
+                    onClick: function() {
+                        //do something
+                    }
+                },{
+                    text: "晚班",
+                    onClick: function() {
+                        //do something
+                    }
+                }]
+            });
+        });
+    });
+</script>
+</html>

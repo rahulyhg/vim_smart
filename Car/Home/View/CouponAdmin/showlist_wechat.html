@@ -1,0 +1,130 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>智慧停车场系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
+    <meta content="" name="author" />
+    <link href="__ADMIN_CSS__weui.css" rel="stylesheet" type="text/css" />
+    <link href="__ADMIN_CSS__weui.min.css" rel="stylesheet" type="text/css" />
+    <link href="__ADMIN_CSS__bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        <!--
+        body{
+
+            -moz-user-select:none;/*火狐*/
+
+            -webkit-user-select:none;/*webkit浏览器*/
+
+            -ms-user-select:none;/*IE10*/
+
+            -khtml-user-select:none;/*早期浏览器*/
+
+            user-select:none;
+
+            -webkit-tap-highlight-color:rgba(0,0,0,0);
+
+        }
+
+        .bs:link{color:#000000; text-decoration:none;}
+        .bs:visited{color:#000000; text-decoration:none;}
+        .bs:active{color:#000000; text-decoration:none;}
+        .bs:hover{color:#000000; text-decoration:none;}
+
+        .weui-media-box__title {font-size:24px; margin-bottom: 0; font-family:"微软雅黑";}
+        .weui-cell_link {
+            color: #999999;
+            font-size: 14px;
+        }
+        .weui-media-box__desc {
+            color: #666;}
+        .weui-panel {
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+            width: 95%;
+            margin: 10px auto;
+            margin-bottom:0;
+            border-radius: 6px;
+        }
+        .weui-cell:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px dashed #c8c8c8;
+            color: #d9d9d9;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(.5);
+            transform: scaleY(.5);
+            left: 15px;
+        }
+        body{
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+        }
+        footer{
+            position: absolute;
+            bottom:10px;
+            left:0;
+            height:50px;
+            width:100%;
+            padding:10px;
+        }
+        -->
+    </style></head>
+<script>
+    document.addEventListener('touchstart',function(){},false);
+</script>
+<body style="background-color:#f2f2f2;">
+
+<div style="width:100%; height:50px; text-align:center; line-height:50px; background-color:#389ffe; color:#FFFFFF; font-size:18px;">发放优惠券</div>
+
+
+<volist name="act_infos" id="row" empty="暂无数据">
+    <div class="weui-panel weui-panel_access act_id" act_id="{$row.act_id}">
+        <div class="weui-cell_access">
+            <div class="weui-panel__bd">
+                <div class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="{$row.act_poster_img}" alt="" style="width:50px; height:50px;border-radius: 50px; margin-top:5px;">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <p class="weui-media-box__desc">{$row.act_name}</p>
+                        <h4 class="weui-media-box__title">{:D('Coupon')->act_desc($row['cp_hilt'],$row['cp_type'])}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-panel__ft">
+                <div class="weui-cell weui-cell_link">
+                    <div class="weui-cell__bd">{$row.acttype_name}</div>
+                    <div style="float:right;">剩余{:ceil( ($row['act_end_time']-time()) / 3600 / 24)}天到期</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</volist>
+
+<!--<footer>-->
+    <!--<button  class="center-block btn btn-lg btn-primary" style="background-color:#389FFE;width:95%" onclick="history.go(-1)">返回</button>-->
+<!--</footer>-->
+<script src="__ADMIN_JS__jquery.js"></script>
+<script>
+    $('.act_id').click(function(){
+        var act_id = $(this).attr('act_id');
+        window.location.href = "{:U('CouponAdmin/share_qrcode_wechat')}" + "&act_id="+ act_id;
+    });
+</script>
+</body>
+</html>

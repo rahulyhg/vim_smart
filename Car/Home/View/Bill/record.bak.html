@@ -1,0 +1,243 @@
+<extend name="Layouts/base"/>
+<block name="head">
+    <style type="text/css">
+
+        body{
+
+            -moz-user-select:none;/*火狐*/
+
+            -webkit-user-select:none;/*webkit浏览器*/
+
+            -ms-user-select:none;/*IE10*/
+
+            -khtml-user-select:none;/*早期浏览器*/
+
+            user-select:none;
+
+            -webkit-tap-highlight-color:rgba(0,0,0,0);
+
+        }
+
+
+
+        .bs:link{color:#8b8b8b; text-decoration:none;}
+        .bs:visited{color:#8b8b8b; text-decoration:none;}
+        .bs:active{color:#8b8b8b; text-decoration:none;}
+        .bs:hover{color:#6b6b6b; text-decoration:none;}
+
+        .weui_btn_primary {
+            background-color: #389ffe;
+        }
+        .weui_btn_primary:not(.weui_btn_disabled):active {
+            color: #ffffff;
+            background-color: #2e8ce2;
+        }
+
+        a:hover {
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .cw {border-bottom:1px #dfdfdf solid; border-top:1px #dfdfdf solid; background-color:#FFFFFF; width:100%; height:110px; overflow:hidden; margin-bottom:10px;}
+
+
+        .md-checkbox label>.box {
+            top: 0;
+            border: 2px solid #d4d4d4;
+            height: 20px;
+            width: 20px;
+            z-index: 5;
+            border-radius:50px;
+            -webkit-transition-delay: .2s;
+            -moz-transition-delay: .2s;
+            transition-delay: .2s;
+        }
+
+        .md-checkbox label>.check {
+            top: -4px;
+            left: 6px;
+            width: 10px;
+            height: 20px;
+            border: 2px solid #389ffe;
+            border-top: none;
+            border-left: none;
+            opacity: 0;
+            z-index: 5;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            transform: rotate(180deg);
+            -webkit-transition-delay: .3s;
+            -moz-transition-delay: .3s;
+            transition-delay: .3s;
+        }
+        -->
+    </style></head>
+</block>
+<block name="body">
+    <div style="width:100%; height:50px; text-align:center; line-height:50px; background-color:#389ffe; color:#FFFFFF; font-size:18px;">缴费记录</div>
+    <div style="width:100%; margin:0px auto;" id="app">
+        <div style="width:100%; height:50px; overflow:hidden;">
+            <div style="padding-left:15px; line-height:50px; float:left; font-size:14px; color:#8b8b8b;">{{date(date_start,"yyyy-MM-dd")}} 至今</div>
+            <div style="padding-right:15px; line-height:50px; float:right; font-size:14px; color:#8b8b8b;">开票说明</div>
+            <div style="clear:both"></div>
+        </div>
+        <form action='{:U("Bill/apply_bill")}' method="post" id="frm1">
+        <div style="width:100%;" v-for="(item,index) in list">
+
+                <div class="cw">
+                    <div style="width:15%; float:left; margin-left:5%; padding-top:30px;">
+                            <!--已加入发票-->
+                            <img id="img0" v-bind:src="selected_backgroup_img" style="width:50px; height:50px;">
+                    </div>
+                    <div style="width:57%; float:left; margin-left:5%; padding-top:16px;">
+                        <div style="line-height:25px; font-size:16px;">{{date(item.pay_time,"yyyy-MM-dd hh:mm")}}</div>
+                        <div style="line-height:25px; font-size:14px; color:#939393;">消费金额：
+                            <span class="pay_loan" style="color:#389ffe;">{{item.pay_loan}}</span> 元
+                        </div>
+                        <div style="line-height:25px; font-size:14px; color:#939393;">车牌号码：{{item.car_no}}</div>
+                    </div>
+
+                    <div style="clear:both"></div>
+                </div>
+        </div>
+        <div style="width:100%; height:80px; overflow:hidden;"></div>
+
+            <!--car_no-->
+            <!--:-->
+            <!--"鄂-APS693"-->
+            <!--end_time-->
+            <!--:-->
+            <!--"0"-->
+            <!--garage_id-->
+            <!--:-->
+            <!--"2"-->
+            <!--out_no-->
+            <!--:-->
+            <!--"0"-->
+            <!--pay_id-->
+            <!--:-->
+            <!--"1526"-->
+            <!--pay_loan-->
+            <!--:-->
+            <!--"0.00"-->
+            <!--pay_status-->
+            <!--:-->
+            <!--"1"-->
+            <!--pay_time-->
+            <!--:-->
+            <!--"0"-->
+            <!--start_time-->
+            <!--:-->
+            <!--"1487639401"-->
+            <!--user_id-->
+            <!--:-->
+            <!--"424"-->
+            <!--waiter-->
+            <!--:-->
+            <!--"0"-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div style="position:fixed; bottom:0; width:100%; height:80px; overflow:hidden; background-color:#FFFFFF; border-top:1px #dfdfdf solid; z-index:11111;">
+                    <div style="float:left; margin-left:5%;">
+                        <label><div style="width:100%; padding-top:16px; ">
+                            <div style="float:left;"><div class="md-checkbox">
+                                <input type="checkbox" id="checkbox1" class="md-check2 quanxuan">
+                                <label for="checkbox1">
+                                    <span class="inc"></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span>
+                                </label>
+                            </div>
+                            </div>
+                            <div style="float:left; font-size:16px; color:#7f7f7f; line-height:1.4; font-weight:bold;">全选</div>
+                            <div style="clear:both"></div>
+                        </div></label>
+                        <div style="width:100%; line-height:1.9; font-size:16px; color:#7f7f7f;"><span id="total_record">0</span>条记录 共<span style="color:#389ffe; font-weight:bold;" id="total_pay_loan">0.00</span>元</div>
+                    </div>
+                    <div style="float:right; margin-right:10px; width:130px; margin-top:5px;">
+                        <div class="weui_btn_area">
+                            <button class="weui_btn weui_btn_primary"  type="submit" id="submit">领取发票</button>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+
+        </form>
+    </div>
+</block>
+<block name="script">
+    <script src="/static/js/vue.min.js"></script>
+    <script src="/static/js/vue-route.js"></script>
+    <script src="/static/js/vue-resource.min.js"></script>
+    <script src="/static/js/vuex.js"></script>
+    <script>
+
+        // 日期函数
+        function formatDate(date, fmt) {
+            function padLeftZero(str) {
+                return ('00' + str).substr(str.length);
+            }
+
+            if (/(y+)/.test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+            }
+            let o = {
+                'M+': date.getMonth() + 1,
+                'd+': date.getDate(),
+                'h+': date.getHours(),
+                'm+': date.getMinutes(),
+                's+': date.getSeconds()
+            };
+            for (let k in o) {
+                if (new RegExp(`(${k})`).test(fmt)) {
+                    let str = o[k] + '';
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+                }
+            }
+            return fmt;
+
+        };
+
+
+
+        new Vue({
+            el:'#app',
+            data:{
+                list:app_json.onemonth_res,
+                date_start:app_json.t_3m,
+            },
+            methods:{
+                date:function(timestamp,fmt){
+                    return formatDate(new Date(timestamp*1000),fmt);
+                }
+            },
+            computed:{
+                img_root:function(){
+                    return "{$Think.config.STATICS_URL}";
+                },
+                selected_backgroup_img(){
+                    return this.img_root + 'plublic/img/car1.jpg';
+                },
+                not_selected_backgroup_img(){
+                    return this.img_root + 'plublic/img/car2.jpg';
+                }
+            },
+            mounted:function(){
+
+            }
+        });
+    </script>
+</block>

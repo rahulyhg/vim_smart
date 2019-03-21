@@ -1,0 +1,1 @@
+{pigcms{$PrintTemplate}

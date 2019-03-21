@@ -1,0 +1,22 @@
+{
+    "name": "administrator/trunk",
+    "authors": [
+        {
+            "name": "yzp",
+            "email": "yzp@qq.com"
+        }
+    ],
+     "require": {
+        "mpdf/mpdf": "^6.1"
+    },
+
+    "autoload": {
+        "files": [
+
+        ],
+        "classmap": [
+            "vendor/Wechat",
+            "vendor/Alipay/src"
+        ]
+    }
+}

@@ -1,0 +1,410 @@
+<extend name="Layouts/base"/>
+<block name="head">
+    <style type="text/css">
+
+        body{
+
+            -moz-user-select:none;/*火狐*/
+
+            -webkit-user-select:none;/*webkit浏览器*/
+
+            -ms-user-select:none;/*IE10*/
+
+            -khtml-user-select:none;/*早期浏览器*/
+
+            user-select:none;
+
+            -webkit-tap-highlight-color:rgba(0,0,0,0);
+			background-color:#f8f8f8;
+
+        }
+
+
+
+        .bs:link{color:#8b8b8b; text-decoration:none;}
+        .bs:visited{color:#8b8b8b; text-decoration:none;}
+        .bs:active{color:#8b8b8b; text-decoration:none;}
+        .bs:hover{color:#6b6b6b; text-decoration:none;}
+
+        .weui_btn_primary {
+            background-color: #389ffe;
+        }
+        .weui_btn_primary:not(.weui_btn_disabled):active {
+            color: #ffffff;
+            background-color: #2e8ce2;
+        }
+
+        a:hover {
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .cw {border-bottom:1px #dfdfdf solid; border-top:1px #dfdfdf solid; background-color:#FFFFFF; width:100%; height:110px; overflow:hidden; margin-bottom:10px;}
+
+
+        .md-checkbox label>.box {
+            top: 0;
+            border: 2px solid #d4d4d4;
+            height: 20px;
+            width: 20px;
+            z-index: 5;
+            border-radius:50px;
+            -webkit-transition-delay: .2s;
+            -moz-transition-delay: .2s;
+            transition-delay: .2s;
+        }
+
+        .md-checkbox label>.check {
+            top: -4px;
+            left: 6px;
+            width: 10px;
+            height: 20px;
+            border: 2px solid #389ffe;
+            border-top: none;
+            border-left: none;
+            opacity: 0;
+            z-index: 5;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            transform: rotate(180deg);
+            -webkit-transition-delay: .3s;
+            -moz-transition-delay: .3s;
+            transition-delay: .3s;
+        }
+		.weui-form-preview__bd {
+			padding: 7px 15px;
+			font-size: .9em;
+			text-align: left;
+			color: #999;
+			line-height: 2;
+		}
+		.weui-icon-success {
+			font-size: 23px;
+			color: rgb(56, 159, 254);
+		}
+		.weui-form-preview__hd {
+			position: relative;
+			padding: 5px 15px;
+			text-align: right;
+			line-height: 2.5em;
+		}
+		.weui-btn_primary {
+			background-color:rgb(56, 159, 254);
+		}
+		.weui-btn_primary:not(.weui-btn_disabled):visited{color:#fff}
+		.weui-btn_primary:not(.weui-btn_disabled):active{color:hsla(0,0%,100%,.6);background-color:#3886ff}
+		.weui-form-preview__value {
+			display: block;
+			overflow: hidden;
+			word-break: normal;
+			word-wrap: break-word;
+			font-size: 16px;
+		    text-align:right;
+		}
+		.weui-form-preview__label {
+			float: left;
+			margin-right: 1em;
+			min-width: 4em;
+			color: #999;
+			text-align: justify;
+			text-align-last: justify;
+			font-size: 16px;
+		}
+        -->
+    </style></head>
+</block>
+<block name="body">
+    <div style="width:100%; margin:0px auto;" id="app"  v-cloak>
+        <div class="weui-navbar">
+            <a class="weui-navbar__item"
+               v-bind:class="{'weui-bar__item--on':tab == 'not-apply'}"
+               @click="tab = 'not-apply'"
+            >
+                未申请
+            </a>
+            <a class="weui-navbar__item"
+               v-bind:class="{'weui-bar__item--on':tab == 'applied'}"
+               @click="tab = 'applied'"
+            >
+                已申请
+            </a>
+        </div>
+        <form action="">
+            <br>
+            <br>
+            <div v-show="show_no_data_prompt" style="text-align: center">
+                <br>
+                暂无数据
+            </div>
+		<div class="weui-form-preview" style="margin-bottom:10px;" v-for="(item,index) in show_list">
+            <div class="weui-form-preview__hd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label"><span style="color:#000000; font-size:16px;">订单号:{{item.pay_no}}</span></label>
+                    <em class="weui-form-preview__value"><span style="color:fb4746; font-size:16px;">¥{{item.pay_loan}}</span></em>
+                </div>
+            </div>
+
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">车牌号</label>
+                    <span class="weui-form-preview__value">{{item.car_no}}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">缴费类型</label>
+                    <span class="weui-form-preview__value">{{item.pay_record_type_name}}</span>
+                </div>
+                <div v-if="item.pay_record_type==='park'" class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">入场时间</label>
+                    <span class="weui-form-preview__value">{{date(item.start_time,'yyyy-MM-dd hh:mm')}}</span>
+                </div>
+				<div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">缴费时间</label>
+                    <span class="weui-form-preview__value">{{date(item.pay_time,'yyyy-MM-dd hh:mm')}}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">停车场</label>
+                    <span class="weui-form-preview__value">{{item.garage_name}}</span>
+                </div>
+            </div>
+        </div>
+        </form>
+        <div style="width:100%; height:80px; overflow:hidden;"></div>
+        <div v-show="tab == 'not-apply'" style="position:fixed; bottom:0; width:100%; height:80px; overflow:hidden; background-color:#FFFFFF; border-top:1px #dfdfdf solid; z-index:11111;">
+            <div style="float:left; margin-left:5%;">
+                <div style="width:100%; line-height:1.9; font-size:16px; color:#7f7f7f; margin-top:10px;">
+                    <span id="total_record">{{checked_list.length}}</span>
+                    条记录 共
+                    <span style="color:#389ffe; font-weight:bold;" id="total_pay_loan">{{loan_sum}}</span>
+                    元
+                </div>
+                <div style="padding-top:4px"><i class="question-circle-o"></i>开票信息</div>
+            </div>
+            <div v-if="filter_list.length>0" style="float:right; margin-right:5px; width:110px; margin-top:25px;">
+                <a @click="submit()" class="weui-btn weui-btn_mini weui-btn_primary" style="font-size:16px;">领取发票</a>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</block>
+<block name="script">
+
+
+    <script>
+
+        let vue_app = new Vue({
+            el:'#app',
+            data:{
+                list:app_json.list,
+                date_start:app_json.t_3m,
+                checked_list:[],
+                bill_status_desc_list:app_json.bill_status_desc_list,
+                tab:"not-apply",
+                pub_funcs:{}
+            },
+            methods:{
+                //全选反选
+                checked_all:function(){
+                    if(this.checked_list.length<this.filter_list.length){
+                        this.checked_list = this.filter_list;
+                    }else{
+                        this.checked_list = [];
+                    }
+                },
+                //同php
+                array_colnum:function(field,fcb){
+                    let arr = [];
+
+                    if(typeof(fcb) !=='function'){
+                        fcb = function(){return true}
+                    }
+                    for(let i in this.checked_list){
+                        let item = this.checked_list[i];
+                        if(fcb(item)){
+                            arr.push(item[field]);
+                        }
+                    }
+                    return arr;
+                },
+
+                get_img_url:function(item){
+                    if(this.pay_ids.indexOf(item.pay_id)>-1){
+                        return this.selected_backgroup_img;
+                    }else{
+                        return this.not_selected_backgroup_img;
+                    }
+                },
+
+                step_desc:function(item){
+                    let desc = "";
+                    if(item.bill_status>-1){
+                        desc = this.bill_status_desc_list[item.bill_status][0];
+                    }else{
+//                        desc = "未知错误！";
+                    }
+                    return desc
+                },
+
+                setCookie: function (cname, cvalue, sec) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (sec * 1000));
+                    var expires = "expires=" + d.toUTCString();
+                    document.cookie = cname + "=" + cvalue + "; " + expires;
+                },
+
+                //异步提交
+                submit:function(){
+                    let self = this;
+                    let pay_ids = {
+                        park:self.park_pay_ids,
+                        yueka:self.yueka_pay_ids
+                    }
+                    if(this.loan_sum<this.get_bill_minimum_loan) return false;
+
+
+                    //自己领取
+                    let byself = function (){
+                        let url = "{:U('apply_bill')}",
+                            params = JSON.parse(JSON.stringify(pay_ids)),
+                            callback = function(re){
+                                window.location.href = "{:U('apply_success',array('receive_type'=>'byself'))}";
+                            };
+                        self._post(url,params,callback);
+                    }
+                    //寄送
+                    let express =  function (){
+                        let url = "{:U('apply_bill_express')}",
+                            params = JSON.stringify(pay_ids);
+                        self.setCookie('pay_ids',params,24*3600);
+                        window.location.href = "{:U('express_order')}";
+                    }
+
+                    //将express函数暴露在外，让行内js使用 vue_app.$data.pub_funcs.xxx
+                    this.pub_funcs.express = express;
+
+                    if(this.loan_sum<this.can_express_minimum_loan){
+                        byself();
+                    }else{
+                        $.modal({
+                            title: "发票领取",
+                            text: "如需邮寄请完善资料, <a onclick='vue_app.$data.pub_funcs.express()'>去完善资料</a>",
+                            buttons: [
+                                { text: "确定", onClick: byself },
+//                                { text: "邮寄", onClick: express },
+                                { text: "取消", className: "default", onClick: function(){}},
+                            ]
+                        });
+                    }
+
+                }
+            },
+            computed:{
+                get_bill_minimum_loan:function(){
+                    return 0.01;
+                },
+
+                can_express_minimum_loan:function(){
+                    return 200;
+                },
+
+                img_root:function(){
+                    return "{$Think.config.STATICS_URL}";
+                },
+                //选中的时候车图片
+                selected_backgroup_img(){
+                    return this.img_root + 'plublic/img/car1.jpg';
+                },
+                //未选择的时候车图片
+                not_selected_backgroup_img(){
+                    return this.img_root + 'plublic/img/car2.jpg';
+                },
+                //过滤掉已经申请了发票的数据,还未申请的消费记录
+                filter_list:function(){
+                    let filter_list = [];
+                    for(let i in this.list){
+                        let item = this.list[i];
+                        if(item.bill_id==0){
+                            filter_list.push(item);
+                        }
+                    }
+                    return filter_list;
+                },
+
+                applied_list:function(){
+                    let applied_list = [];
+                    for(let i in this.list){
+                        let item = this.list[i];
+                        if(item.bill_id>0){
+                            applied_list.push(item);
+                        }
+                    }
+                    return applied_list;
+                },
+
+                show_list:function(){
+                    let show_list = [];
+                    switch(this.tab){
+                        case 'not-apply':
+                            show_list = this.filter_list;
+                            break;
+                        case 'applied':
+                            show_list = this.applied_list;
+                            break;
+                    }
+                    return show_list;
+
+                },
+
+                //总金额
+                loan_sum:function(){
+                   let arr = this.array_colnum('pay_loan'),
+                       sum = 0.00;
+                   if(arr.length>0){
+                       sum = arr.reduce(function (x, y) {
+                           return parseFloat(x) + parseFloat(y);
+                       });
+                   }
+                   return  parseFloat(sum).toFixed(2);
+                },
+
+                pay_ids:function(){
+                    return this.array_colnum('pay_id');
+                },
+
+                park_pay_ids:function(){
+                    return this.array_colnum('pay_id',function(item){
+                        return item.pay_record_type === "park";
+                    });
+                },
+
+                yueka_pay_ids:function(){
+                    return this.array_colnum('pay_id',function(item){
+                        return item.pay_record_type === "yueka";
+                    });
+                },
+
+                //全选按钮
+                check_all_button_status:function(){
+                    return this.filter_list.length === this.checked_list.length;
+                },
+
+                show_no_data_prompt:function(){
+                    let re1 = this.filter_list.length === 0;
+                    re1 *= this.tab === "not-apply";
+                    let re2 = this.applied_list.length === 0;
+                    re2 *= this.tab === "applied";
+
+                    return re1 || re2;
+                }
+
+
+
+
+            },
+            mounted:function(){
+                this.checked_all();
+                this.show_list = this.filter_list;
+                console.log(this.show_list);
+            }
+        });
+    </script>
+</block>

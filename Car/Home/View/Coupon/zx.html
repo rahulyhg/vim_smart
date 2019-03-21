@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+    <title>智慧停车场系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
+    <meta content="" name="author" />
+	<link href="{$Think.config.STATICS_URL}plublic/css/weui.css" rel="stylesheet" type="text/css" />
+	<link href="{$Think.config.STATICS_URL}plublic/css/weui2.css" rel="stylesheet" type="text/css" />
+	<link href="{$Think.config.STATICS_URL}plublic/css/weui.min.css" rel="stylesheet" type="text/css" />
+	<script src="{$Think.config.STATICS_URL}plublic/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript">
+
+var InterValObj; //timer变量，控制时间
+var count = 59; //间隔函数，1秒执行
+var curCount;//当前剩余秒数
+
+function sendMessage() {
+  　curCount = count;
+　　//设置button效果，开始计时
+     $("#btnSendCode").attr("disabled", "true");
+     $("#btnSendCode").val(curCount + "秒");
+     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+　　  //向后台发送处理数据
+     $.ajax({
+     　　type: "POST", //用POST方式传输
+     　　dataType: "text", //数据格式:JSON
+     　　url: 'Login.ashx', //目标地址
+    　　 data: "dealType=" + dealType +"&uid=" + uid + "&code=" + code,
+    　　 error: function (XMLHttpRequest, textStatus, errorThrown) { },
+     　　success: function (msg){ }
+     });
+}
+
+//timer处理函数
+function SetRemainTime() {
+            if (curCount == 0) {                
+                window.clearInterval(InterValObj);//停止计时器
+                $("#btnSendCode").removeAttr("disabled");//启用按钮
+                $("#btnSendCode").val("重新发送");
+            }
+            else {
+                curCount--;
+					$("#btnSendCode").val(curCount + "秒");
+            }
+        }
+</script>
+<style type="text/css">
+<!--
+body{
+
+-moz-user-select:none;/*火狐*/
+
+-webkit-user-select:none;/*webkit浏览器*/
+
+-ms-user-select:none;/*IE10*/
+
+-khtml-user-select:none;/*早期浏览器*/
+
+user-select:none;
+
+-webkit-tap-highlight-color:rgba(0,0,0,0);
+
+}
+
+.bs:link{color:#000000; text-decoration:none;}
+.bs:visited{color:#000000; text-decoration:none;}
+.bs:active{color:#000000; text-decoration:none;}
+.bs:hover{color:#000000; text-decoration:none;}
+
+.weui-vcode-btn {
+    color: #fb4746;
+}
+.weui-vcode-btn:active {
+    color: #df3534;
+}
+.weui-vcode-btn {
+    padding: 0 .9em 0 .7em;
+}
+.weui_btn_primary {
+    background-color: #fb4746;
+}
+.weui_btn_primary:not(.weui_btn_disabled):active {
+  color: #ffffff;
+  background-color: #df3534;
+}
+.weui_cells_tips {
+    margin-top: 3.8em;
+    color: #888;
+    margin-left: 14px;
+    margin-right: 14px;
+    font-size: 14px;
+	background-color:#FFFFFF;
+	border-radius: 5px;
+	padding-top:10px; 
+	padding-bottom:10px;
+	border:1px #D9D9D9 solid;
+
+}
+
+-->
+</style></head>
+<script>
+    document.addEventListener('touchstart',function(){},false);
+</script>
+<body style="background-color:#f2f2f2;">
+<div style="width:100%; height:50px; text-align:center; line-height:50px; background-color:#fb4746; color:#FFFFFF; font-size:18px;">会员注册</div>
+<div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">姓　名</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" placeholder="请输入你的姓名">
+                </div>
+            </div>
+		<div class="weui_cell">
+            <div class="weui_cell_hd"><label class="weui_label">手机号</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="tel" required="" pattern="[0-9]{11}" maxlength="11" placeholder="输入你现在的手机号" emptytips="请输入手机号" notmatchtips="请输入正确的手机号">
+            </div>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+            </div>
+        </div>
+        <div class="weui_cell weui_vcode">
+            <div class="weui_cell_hd"><label class="weui_label">验证码</label></div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="tel" required="" pattern="[0-9]{11}" placeholder="点击验证码更换" tips="请输入验证码">
+            </div>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+                <input id="btnSendCode" type="button" value="获取验证码" onclick="sendMessage()" class="weui-vcode-btn" style="border:none; background:none;"/>
+            </div>
+        </div>
+    </div>
+<div class="weui_btn_area">
+        	<a class="weui_btn weui_btn_primary" href="#">确 认</a>
+</div>
+<div class="weui_cells_tips">1.今天上午，全国人大代表、湖北省人大常委会副主任、华中师范大学教授、长江教育研究院院长周洪宇接受法晚记者时表示，今年他带来25份议案建议，其中包括建议将元宵节纳入国家法定假日。</div>
+<div class="weui-footer weui-footer-fixed-bottom">
+            <p class="weui-footer__text">Power by:汇得行控股（中国）有限公司</p>
+</div>
+</body>
+</html>

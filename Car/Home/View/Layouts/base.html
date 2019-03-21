@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title>{$title?:"智慧停车场系统"}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta content="Preview page of Metronic Admin Theme #4 for bootstrap inputs, input groups, custom checkboxes and radio controls and more" name="description" />
+    <meta content="" name="author" />
+    <!-- head 中 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+
+    <link href="{$Think.config.STATICS_URL}plublic/css/components.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+    <!--头部外联样式 end-->
+    <block name="head"></block>
+
+
+    <script>
+        document.addEventListener('touchstart',function(){},false);
+    </script>
+    <script>
+        var app = {};
+        app.root             = "__ROOT__";
+        app.app              = "__APP__";
+        app.app_dir         = "{:APP_PATH}"
+        app.module_name      = "{:MODULE_NAME}";
+        app.controller_name  = "{:CONTROLLER_NAME}";
+        app.action_name      = "{:ACTION_NAME}";
+        app.url_model        = {:C('URL_MODEL')};
+    </script>
+</head>
+<body>
+    <block name="body"></block>
+
+    <!-- body 最后 -->
+    <script src="{$Think.config.STATICS_URL}plublic/js/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+    <script src="/static/js/vue.min.js"></script>
+    <script src="/static/js/vue-route.js"></script>
+    <script src="/static/js/vue-resource.min.js"></script>
+    <script src="/static/js/vuex.js"></script>
+    <script>
+        // 日期函数
+        function formatDate(date, fmt) {
+            function padLeftZero(str) {
+                return ('00' + str).substr(str.length);
+            }
+
+            if (/(y+)/.test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+            }
+            let o = {
+                'M+': date.getMonth() + 1,
+                'd+': date.getDate(),
+                'h+': date.getHours(),
+                'm+': date.getMinutes(),
+                's+': date.getSeconds()
+            };
+            for (let k in o) {
+                if (new RegExp(`(${k})`).test(fmt)) {
+                    let str = o[k] + '';
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+                }
+            }
+            return fmt;
+
+        };
+
+
+
+
+        //时间格式化
+        Vue.prototype.date = function(timestamp,fmt){
+            return formatDate(new Date(timestamp*1000),fmt);
+        }
+        /**
+         * vue全局注册函数
+         */
+        //get
+        Vue.prototype._get =  function(url,params,callback){
+            var opt = {
+                'params':params
+            }
+            this.$http.get(url,opt).then(function(response){
+                // 响应成功回调
+                if(response.body.error==0){
+                    callback(response.body);
+                }else{
+                    console.log(response.body);
+                    alert("发生错误");
+                }
+            }, function(response){
+                alert(response.status+" 发生错误");
+            });
+
+        };
+        //post
+        Vue.prototype._post = function(url,params,callback){
+            this.$http.post(url,params).then(function(response){
+                // 响应成功回调
+                if(response.body.error==0){
+                    callback(response.body);
+                }else{
+                    alert("发生错误:"+response.body.msg);
+                }
+            }, function(response){
+                alert(response.status+" 发生错误");
+            });
+
+        };
+
+    </script>
+
+    <!--底部外联js start-->
+
+    <!--底部外联js end-->
+    <block name="script"></block>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>智慧停车系统</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name='apple-touch-fullscreen' content='yes'/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{$Think.config.STATICS_URL}plublic/css/smart-house/common.css?210"/>
+    <link rel="stylesheet" type="text/css" href="{$Think.config.STATICS_URL}plublic/css/smart-house/village.css?211"/>
+    <link rel="stylesheet" type="text/css" href="{$Think.config.STATICS_URL}plublic/css/smart-house/weui.css"/>
+    <link rel="stylesheet" type="text/css" href="{$Think.config.STATICS_URL}plublic/css/smart-house/animate.css"/><!--7.18晚-->
+    <link href="{$Think.config.STATICS_URL}plublic/css/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{$Think.config.STATICS_URL}plublic/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <!--<link rel="stylesheet" type="text/css" href="{pigcms{$static_path}css/example.css"/>-->
+    <link rel="stylesheet" type="text/css" href="{$Think.config.STATICS_URL}plublic/css/smart-house/style.css"/>
+    <script type="text/javascript" src="{pigcms{:C('JQUERY_FILE_190')}" charset="utf-8"></script>
+    <script type="text/javascript" src="{$Think.config.STATICS_URL}plublic/js/smart-js/fastclick.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{$Think.config.STATICS_URL}plublic/js/smart-js/jquery.cookie.js" charset="utf-8"></script>
+    <script type="text/javascript" src="{$Think.config.STATICS_URL}plublic/js/smart-js/common.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="{$Think.config.STATICS_URL}plublic/css/smart-house/jquery.fs.boxer.css">
+    <!--<script src="{pigcms{$static_public}boxer/js/jquery-1.8.3.min.js"></script>-->
+    <script src="{$Think.config.STATICS_URL}plublic/js/smart-js/zepto.min.js"></script><!--7.18晚-->
+    <script src="{$Think.config.STATICS_URL}plublic/js/smart-js/jquery.fs.boxer.js"></script>
+    <style type="text/css">
+        <!--
+        .kkw {float:left; height:33px; line-height:33px; margin-left:10px; font-size:12px;}
+        .shtx_kek {
+            float: left;
+            line-height: 33px;
+            border: 0;
+            font-size: 14px;
+            margin-left: 8px;
+            width: 60%;
+            color: #b6b6b6;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            -o-text-overflow:ellipsis;
+            overflow: hidden;
+        }
+        -->
+    </style>
+</head>
+<body>
+<header class="pageSliderHide"><div class="back"></div>退款审核</header>
+<form id="access_form" onSubmit="return false;">
+    <div class="shtx_dkx">
+        <div class="shtx_xm">
+            <div class="shtx_pic"><img src="{$Think.config.STATICS_URL}plublic/img/smart-img/q1.jpg" style="width:12px; height:15px; margin-top:10px;"/></div>
+            <div class="kkw">操作人员&nbsp;&nbsp;</div>
+            <div class="shtx_kk"><!--刘德华-->{$refund_arr.workman}</div>
+            <div class="both"></div>
+        </div>
+        <div class="shtx_xm">
+            <div class="shtx_pic"><img src="{$Think.config.STATICS_URL}plublic/img/smart-img/q2.jpg" style="width:12px; height:18px; margin-top:8px;"/></div>
+            <div class="kkw">申请车牌&nbsp;&nbsp;</div>
+            <div class="shtx_kk"><!--18086681360-->{$refund_arr.car_no}</div>
+            <div class="both"></div>
+        </div>
+        <div class="shtx_xm">
+            <div class="shtx_pic"><img src="{$Think.config.STATICS_URL}plublic/img/smart-img/q3.jpg" style="width:12px; height:16px; margin-top:8px;"/></div>
+            <div class="kkw">退款金额&nbsp;&nbsp;</div>
+            <div class="shtx_kek">{$refund_arr.fee}元
+            </div>
+            <div class="both"></div>
+        </div>
+        <div class="shtx_xm">
+            <div class="shtx_pic"><img src="{$Think.config.STATICS_URL}plublic/img/smart-img/q3.jpg" style="width:12px; height:16px; margin-top:8px;"/></div>
+            <div class="kkw">请求时间&nbsp;&nbsp;</div>
+            <div class="shtx_kek">{$refund_arr.time|date="Y-m-d H:i:s",###}
+            </div>
+            <div class="both"></div>
+        </div>
+        <div class="shtx_xm">
+            <div class="shtx_pic"><img src="{$Think.config.STATICS_URL}plublic/img/smart-img/q3.jpg" style="width:12px; height:16px; margin-top:8px;"/></div>
+            <div class="kkw">退款原因&nbsp;&nbsp;</div>
+            <div class="shtx_kek">{$refund_arr.reason}
+            </div>
+            <div class="both"></div>
+        </div>
+    </div>
+    <div class="zkd">
+        <div style="float:left;width:48%;"><a href="javascript:;" class="weui_btn weui_btn_warn btn_check back">返回</a></div>
+        <div style="float:right;width:48%;"><a href="javascript:;" class="weui_btn weui_btn_warn btn_check" id="confirm">确认退款</a></div>
+        <div style="clear:both"></div>
+    </div>
+</form>
+<script src="{$Think.config.STATICS_URL}plublic/js/jquery/jquery.min.js" type="text/javascript"></script>
+<script src="{$Think.config.STATICS_URL}plublic/js/sweetalert.min.js" type="text/javascript"></script>
+<script src="{$Think.config.STATICS_URL}plublic/js/ui-sweetalert.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(".back").click(function () {
+        WeixinJSBridge.call('closeWindow');
+    });
+
+    $("#confirm").click(function () {
+        var pay_id="{$refund_arr.pay_id}";
+        //alert(pay_id);
+        var fee='{$refund_arr.fee}';
+        var openid='{$refund_arr.openid}';
+        var car_no='{$refund_arr.car_no}';
+        var reason='{$refund_arr.reason}';
+        swal({
+            title: "您是否确认退款？",
+            //text: "用户已完成缴费，请确认开通后再处理，如有异议请电话通知客户",
+            type: "info",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            confirmButtonText: "确定",
+            confirmButtonColor: "#FE575E",
+            cancelButtonText:"取消",
+            showLoaderOnConfirm: true,
+        },function(){
+            $.ajax({
+                url:"{:U('car_refund')}",
+                data:{'pay_id':pay_id,'fee':fee,'openid':openid,'car_no':car_no,'reason':reason},
+                type:'post',
+                dataType:'json',
+                success:function (res) {
+                   if(res.error==0){
+                       swal("退款成功！", "退款金额: " +fee+'元', "success");
+                       $("#confirm").parent().html('<a href="TEL:18696163623" class="weui_btn weui_btn_warn btn_check">联系本人</a>')
+                   }
+                }
+            });
+        });
+    })
+</script>
+</body>
+</html>

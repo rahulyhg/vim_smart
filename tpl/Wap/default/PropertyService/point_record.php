@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>后台管理</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name='apple-touch-fullscreen' content='yes'>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <link href="http://www.hdhsmart.com/Car/Admin/Public/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://www.hdhsmart.com/Car/Admin/Public/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://www.hdhsmart.com/Car/Admin/Public/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="http://www.hdhsmart.com/Car/Admin/Public/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="http://www.hdhsmart.com/Car/Admin/Public/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- head 中 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+    <style type="text/css">
+        body {font-family:"微软雅黑";}
+        .zk {width:95%; margin:0px auto;}
+        .zk2 {width:100%; margin-top:30px; border-radius:8px; background-color:#FFFFFF;}
+        .sm {width:100%; height:46px; overflow:hidden; padding-top:12px;}
+        .kk {width:5px; height:20px; float:left; margin-top:8px;}
+        .kk2 {height:20px; line-height:20px; float:left; font-size:16px; margin-left:8px; color:#515455; margin-top:8px;}
+        .kkf {float:right; height:34px; margin-right:14px;width: 45%;}
+        .xm {width:100%; height:8px; overflow:hidden; border-bottom:1px #e1e1e1 solid;}
+
+    </style>
+</head>
+<body style="background-color:#72c7fe;">
+<div class="zk">
+    <div class="zk2">
+        <div class="sm">
+            <div class="kk" style="background-color:#f8cf6a;"></div>
+            <div class="kk2"><if condition="$point_status eq 1">巡更异常({pigcms{$ok_Record_num})<else />已巡更({pigcms{$nowPointCount})</if></div>
+            <div class="kk2"><span onclick="comeBack()">返回</span></div>
+            <div class="kkf">
+                <div class="input-icon right">
+                    <i class="fa fa-search" onclick="sea()"></i>
+                    <input type="text" class="form-control input-circle" id="searchInput" <if condition="isset($searchV)">value="{pigcms{$searchV}"<else />placeholder="搜索"</if> >
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="xm"></div>
+        <!--        <php>dump($is_record)</php>-->
+        <div style="width:100%;" id="henfan">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" id="hehe">
+                <tr>
+                    <td height="40" align="center" style="border-bottom:1px #e1e1e1 solid; font-size:16px; color:#909090;">编号</td>
+                    <td height="40" align="center" style="border-bottom:1px #e1e1e1 solid; font-size:16px; color:#909090;">楼层</td>
+                    <td height="40" align="center" style="border-bottom:1px #e1e1e1 solid; font-size:16px; color:#909090;">巡更人</td>
+                    <td height="40" align="center" style="border-bottom:1px #e1e1e1 solid; font-size:16px; color:#909090;">状态</td>
+                </tr>
+                <foreach name="pointRecord" item="vo">
+                    <tr>
+                        <td height="40" align="center" style="font-size:14px; color:#515455; border-bottom:1px #efefef solid;">{pigcms{$vo.pigcms_id}</td>
+                        <td height="40" align="center" style="font-size:14px; color:#515455; border-bottom:1px #efefef solid;">{pigcms{$vo.room_name}</td>
+                        <td height="40" align="center" style="font-size:14px; color:#515455; border-bottom:1px #efefef solid;">{pigcms{$vo.name}</td>
+                        <if condition="$vo['point_status'] eq 0">
+                            <td height="40" align="center" style="font-size:14px; color:#515455; border-bottom:1px #efefef solid;">正常</td>
+                            <else />
+                            <td height="40" align="center" style="font-size:14px; color:#cc463d; border-bottom:1px #efefef solid;">异常</td>
+                        </if>
+                    </tr>
+                </foreach>
+            </table>
+<!--            <div style="width:100%; height:40px; overflow:hidden; text-align:center; line-height:40px; color:#2494dd; font-size:16px;" onclick="more_all()" id="more">更多</div>-->
+<!--            <div style="width:100%; height:40px; overflow:hidden; text-align:center; line-height:40px; color:#2494dd; font-size:16px;display: none;" onclick="one()" id="one" >收起</div>-->
+        </div>
+        <div class="weui-loadmore" id="okya">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips" id="aiyo">正在加载</span>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<!-- body 最后 -->
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+
+<!-- 如果使用了某些拓展插件还需要额外的JS -->
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
+<script>
+    // var more = "{pigcms{$more}";
+    // var search = $("#searchInput").val();
+    // if (search != '') {
+    //     $("#more").hide();
+    //     $("#one").hide();
+    // } else {
+    //     if (more == 1) {
+    //         $("#more").hide();
+    //         $("#one").show();
+    //     } else {
+    //         $("#more").show();
+    //         $("#one").hide();
+    //     }
+    // }
+    var village_id = "{pigcms{$village_id}";
+    var search = $("#searchInput").val();
+    var time = "{pigcms{$time}";
+    var point_status = "{pigcms{$point_status}";
+    var lt = 0;
+    var gt = 0;
+
+    function sea() {
+        var search = $("#searchInput").val();
+        window.location.href = "{pigcms{:U('point_record')}"+"&point_status="+point_status+"&search="+search+"&ym="+time+"&village_id="+village_id;
+    }
+
+    $(window).keyup(function(event) {
+        if(event.keyCode ==13){
+            var search = $("#searchInput").val();
+            window.location.href = "{pigcms{:U('point_record')}"+"&point_status="+point_status+"&search="+search+"&ym="+time+"&village_id="+village_id;
+        }
+    });
+
+    $(document.body).infinite();
+
+    $(document.body).infinite(50);
+
+    var loading = false;  //状态标记
+    $(document.body).infinite().on("infinite", function() {
+        if(loading) return;
+        loading = true;
+        setTimeout(function() {
+            lt = 0;
+            $("#hehe tr").each(function() {
+                lt ++;
+            });
+            gt = parseInt(lt)-1;
+            $.ajax({
+                url:"{pigcms{:U('point_record_ajax')}",
+                type:"get",
+                data:"point_status="+point_status+"&search="+search+"&ym="+time+"&more="+gt+"&village_id="+village_id,
+                // dataType:'json',
+                success:function (res) {
+                    if (res){
+                        // console.log(gt);
+                        // console.log(res);
+                        $("#hehe").append(res);
+                    } else {
+                        $("#henfan").append("<p style='font-size: 12px;text-align: center;'> 已经到底啦 </p>");
+                        $(document.body).destroyInfinite();
+                        $("#okya").hide();
+                    }
+
+                }
+            });
+            loading = false;
+        }, 500);   //模拟延迟
+    });
+
+    lt = 0;
+    $("#hehe tr").each(function() {
+        lt ++;
+    });
+    gt = parseInt(lt)-1;
+    if (gt < 10) {
+        $(document.body).destroyInfinite();
+        $("#okya").hide();
+    }
+
+
+    // function more_all() {
+    //     var time = "{pigcms{$time}";
+    //     var search = $("#searchInput").val();
+    //     var point_status = "{pigcms{$point_status}";
+    //     window.location.href = "{pigcms{:U('point_record')}"+"&point_status="+point_status+"&search="+search+"&more=1"+"&ym="+time;
+    //     $("#more").hide();
+    // }
+    //
+    //
+    // function one() {
+    //     var time = "{pigcms{$time}";
+    //     var search = $("#searchInput").val();
+    //     var point_status = "{pigcms{$point_status}";
+    //     window.location.href = "{pigcms{:U('point_record')}"+"&point_status="+point_status+"&search="+search+"&more=0"+"&ym="+time;
+    //     $("#one").hide();
+    // }
+
+    function comeBack() {
+        var time = "{pigcms{$begin_time}";
+        // alert(time);
+        window.location.href = "{pigcms{:U('administration')}"+"&ym="+time+"&village_id="+village_id;
+
+    }
+
+
+</script>
+</body>
+</html>
