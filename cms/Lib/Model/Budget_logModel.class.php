@@ -298,23 +298,12 @@ class Budget_logModel extends Model{
                     }*/
                     $cache_money=$value1['sum']['sum_money'];
                     $cache_sum=$value1['sum']['sum_sum'];
-                    //修改处
-                    if($year < date('Y')){
-                        $cache['children'][$value1['type_name']]['sum_money']+=$cache_money;
-                        $cache['children'][$value1['type_name']]['difference']+=$cache_money-$cache_sum;
-                    }else{
-                        $cache['children'][$value1['type_name']]['sum_money']=0;
-                        $cache['children'][$value1['type_name']]['difference']=0;
-                    }
+                    $cache['children'][$value1['type_name']]['sum_money']+=$cache_money;
+                    $cache['children'][$value1['type_name']]['difference']+=$cache_money-$cache_sum;
                     $cache['children'][$value1['type_name']]['sum_sum']+=$cache_sum;
                 }
-                if($year < date("Y")){
                     $cache['sum_money']=$log_sum['sum_money'];
                     $cache['difference']=$log_sum['sum_money']-$log_sum['sum_sum'];
-                }else{
-                    $cache['sum_money']=0;
-                    $cache['difference']=0;
-                }
                 $cache['sum_sum']=$log_sum['sum_sum'];
                 if($cache['type_name']=='收入明细'){
                     $sum['sum_money'] +=$cache['sum_money'];
@@ -322,13 +311,8 @@ class Budget_logModel extends Model{
                     $sum['difference'] +=$cache['difference'];
                     /*dump($sum);*/
                     //修改处
-                    if($year < date('Y')){
                         $data['input']['sum_money']=$cache['sum_money'];
                         $data['input']['difference']=$cache['difference'];
-                    }else{
-                        $data['input']['sum_money']=0;
-                        $data['input']['difference']=0;
-                    }
                     $data['input']['1']=$cache;
                     $data['input']['sum_sum']=$cache['sum_sum'];
                     //计算增值税
@@ -337,27 +321,21 @@ class Budget_logModel extends Model{
                     $data_cache['children']['增值税及附加']['type_name']='增值税及附加';
                     if($village_id==54){
                         //修改处
-                        if($year < date("Y")){
+
                             $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+0.03)*0.03*(1+0.055);//增值税金额都由6.3%计算
-                        }else{
-                            $data_cache['children']['增值税及附加']['sum_money']=0;//增值税金额都由6.3%计算
-                        }
+
                         $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+0.03)*0.03*(1+0.055);
                     }elseif($village_id==70){
                         $cache_type=0.03;
-                        if($year < date("Y")){
+                        //修改处
                             $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+$cache_type)*$cache_type*(1+0.115);//增值税金额都由6.3%计算
-                        }else{
-                            $data_cache['children']['增值税及附加']['sum_money']=0;
-                        }
+
                         $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+$cache_type)*$cache_type*(1+0.115);
                     }else{
                         $cache_type=0.06;
-                        if($year < date("Y")){
+                        //修改处
                             $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+$cache_type)*$cache_type*(1+0.115);//增值税金额都由6.3%计算
-                        }else{
-                            $data_cache['children']['增值税及附加']['sum_money']=0;//增值税金额都由6.3%计算
-                        }
+
                         $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+$cache_type)*$cache_type*(1+0.115);
                     }
 
@@ -367,21 +345,15 @@ class Budget_logModel extends Model{
                     $data_cache['difference']=$data_cache['children']['增值税及附加']['difference'];
                     $data['output']['4']=$data_cache;
                     //修改处
-                    if($year < date("Y")){
+
                         $data['output']['sum_money'] +=$data_cache['sum_money'];
                         $data['output']['difference'] +=$data_cache['difference'];
-                    }else{
-                        $data['output']['sum_money'] =0;
-                        $data['output']['difference'] =0;
-                    }
+
                     $data['output']['sum_sum'] +=$data_cache['sum_sum'];
-                    if($year < date("Y")){
+                    //修改处
                         $sum['sum_money'] -=$data_cache['sum_money'];
                         $sum['difference'] -=$data_cache['difference'];
-                    }else{
-                        $sum['sum_money'] = 0;
-                        $sum['difference'] = 0;
-                    }
+
                     $sum['sum_sum'] -=$data_cache['sum_sum'];
 
                     /*dump($sum);*/
@@ -391,13 +363,10 @@ class Budget_logModel extends Model{
                     $sum['difference'] -=$cache['difference'];
                     /*dump($sum);*/
                     $data['output'][$value['type_id']]=$cache;
-                    if($year < date("Y")){
+                    //修改处
                         $data['output']['sum_money'] +=$cache['sum_money'];
                         $data['output']['difference'] +=$cache['difference'];
-                    }else{
-                        $data['output']['sum_money'] =0;
-                        $data['output']['difference'] =0;
-                    }
+
                     $data['output']['sum_sum'] +=$cache['sum_sum'];
                 }
             }

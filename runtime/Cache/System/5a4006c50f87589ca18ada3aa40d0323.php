@@ -1,7 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit();?>
-
-    <!--头部文件-->
-    <!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.7
 Version: 4.7.1
@@ -1896,248 +1893,1046 @@ table tr:nth-last-of-type(2) .dropdown-menu {
       <script>console.log('I have left')</script>
     </div>
     <!-- END SIDEBAR -->
-   {__CONTENT__}
-    
+   
+<link href="/Car/Admin/Public/assets/global/plugins/plugins.min.css" rel="stylesheet" type="text/css" />
+<link href="/Car/Admin/Public/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+
+<!--头部设置结束-->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<link href="/Car/Admin/Public/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+<link href="/Car/Admin/Public/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/Car/Admin/Public/assets/global/plugins/datatables/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+<link href="/Car/Admin/Public/assets/global/plugins/datatables/sweetalert/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!-- END PAGE LEVEL PLUGINS -->
+<style type="text/css">
+</style>
+
+<!-- BEGIN CONTENT BODY -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1><?php echo $breadcrumb[count($breadcrumb)-1][0] ?>
+                </h1>
+            </div>
+        </div>
+        <ul class="page-breadcrumb breadcrumb">
+            <?php if(is_array($breadcrumb)): $k = 0; $__LIST__ = $breadcrumb;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($k % 2 );++$k; if($k==(count($breadcrumb))){ ?>
+                    <li>
+                        <span class="active"><?php echo ($row[0]); ?></span>
+                    </li>
+
+                <?php  }else{ ?>
+
+                    <li>
+                        <a href="<?php echo ($row[1]); ?>"><?php echo ($row[0]); ?></a>
+                        <i class="fa fa-circle"></i>
+                    </li>
+
+                <?php  } endforeach; endif; else: echo "" ;endif; ?>
+        </ul>
+        <!-- END PAGE BREADCRUMB -->
+        <!-- BEGIN PAGE BASE CONTENT -->
 
 
+<!--表格开始-->
 
-    <!--/头部文件-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light bordered">
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <?php if($add_action['url']): ?><div class="btn-group">
+                                        <a href="javascript:;" >
+                                            <button class="btn sbold green" onclick="window.top.artiframe('<?php echo ($add_action['url']); ?>','<?php echo ($add_action['name']); ?>',600,400,true,false,false,addbtn,'add',true);" > <?php echo ($add_action['name']); ?>
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </a>
+                                    </div><?php endif; ?>
+                                </div>
 
-
-
-
-<!--<div class="page-container">-->
-    <!-- BEGIN SIDEBAR -->
-
-    <!--主体-->
-    <div class="page-content-wrapper" id="main">
-        <!-- BEGIN CONTENT BODY -->
-        <div class="page-content">
-            <!-- BEGIN PAGE HEAD-->
-            <div class="page-head">
-                <!-- BEGIN PAGE TITLE -->
-                <div class="page-title">
-                    <h1><?php $breadcrumb = $breadcrumb_diy?:$breadcrumb; echo $breadcrumb[count($breadcrumb)-1][0]; ?>
-                    </h1>
+                            </div>
+                        </div>
+<!--业务区-->
+<style type="text/css">
+    <!--
+    .table-checkable tr>td:first-child, .table-checkable tr>th:first-child {
+        text-align: center;
+        max-width: 100px;
+        min-width: 40px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .record_check_time{
+        width: 60px;
+        border: none;
+        text-align: center;
+        height: 30px;
+    }
+    th{
+        border: none;text-align: center;height: 30px;
+    }
+    #form td{
+        text-align: center;
+    }
+    -->
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <?php if(!$isLiu): ?><a href="<?php echo U('Budget_predict/output_excel_one',array('id'=>$predict_info['predict_id']));?>" >
+            <button type="button" class="btn green">导出此表格</button>
+        </a><?php endif; ?>
+        <br/>
+        <div class="portlet box green">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i> </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
                 </div>
             </div>
-            <ul class="page-breadcrumb breadcrumb">
-                <?php if(is_array($breadcrumb)): $k = 0; $__LIST__ = $breadcrumb;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($k % 2 );++$k; if($k==(count($breadcrumb))){ ?>
-                        <li>
-                            <span class="active"><?php echo ($row[0]); ?></span>
-                        </li>
+        </div>
+        <form action="__SELF__" method="post" enctype="multipart/form-data" id="form">
 
-                    <?php  }else{ ?>
+            <div class="portlet-body" style="width:100%;overflow-x: scroll;">
+                <div class="row">
+                    <div class="tabbable-custom nav-justified">
+                        <ul class="nav nav-tabs nav-justified">
+                            <li class="active">
+                                <a href="#tab_all" data-toggle="tab"> 预算主表</a>
+                            </li>
+                            <li>
+                                <a href="#tab_4" data-toggle="tab">收入明细表</a>
+                            </li>
+                            <?php if(is_array($data_type)): foreach($data_type as $k=>$vo): if($k == 4): else: ?>
+                                    <li>
+                                    <a href="#tab_<?php echo ($k); ?>" data-toggle="tab"> <?php echo ($vo['info']['type_name']); ?>明细表</a>
+                                    </li><?php endif; endforeach; endif; ?>
+                            <!--<li>
+                                <a href="#tab_overtime" data-toggle="tab"> 加班费明细表</a>
+                            </li>
+                            <li>
+                                <a href="#tab_clothes_fee" data-toggle="tab"> 工服费明细表</a>
+                            </li>
+                            <li>
+                                <a href="#tab_dispatch" data-toggle="tab"> 劳务和派遣明细表</a>
+                            </li>-->
+                        </ul>
+                        <div class="tab-content">
+                            <div class='tab-pane fad  active' id="tab_all">
+                                <div class="portlet-body form form-horizontal">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column">
+                                        <thead>
+                                        <tr>
+                                            <td colspan="7" align="center" style="font-size: 25px"><?php echo ($predict_info['year']); ?>年<?php echo ($title1); ?>年度预算编制汇总表</td>
+                                        </tr>
+                                        <tr>
+                                            <th width="5%">序号</th>
+                                            <th width="10%" colspan="2">预算项目</th>
+                                            <th width="10%">金额</th>
+                                            <th width="10%">编制说明</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>一</td>
+                                            <td colspan="2">收入合计</td>
+                                            <td><?php echo number_format($predict_all['input']['sum_sum'],2);?></td>
+                                            <td>含税金额</td>
+                                        </tr>
+                                        <?php if(is_array($predict_all['input']['1']['children'])): $i = 0; $__LIST__ = $predict_all['input']['1']['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                                                <td><?php echo ($i); ?></td>
+                                                <td colspan="2"><?php echo ($vo['type_name']); ?></td>
+                                                <td><div class="tagDiv"><?php echo number_format($vo['sum_sum'],2);?></div></td>
+                                                <td><div class="tagDiv" title="<?php echo ($vo2['type_remark']); ?>"><?php echo ($vo["type_remark"]); ?></div></td>
+                                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                        <tr>
+                                            <td>二</td>
+                                            <td colspan="2">支出合计</td>
+                                            <td><?php echo number_format($predict_all['output']['sum_sum'],2);?></td>
+                                            <td>含税金额</td>
+                                        </tr>
+                                        <?php if(is_array($predict_all['output'])): foreach($predict_all['output'] as $ke=>$vo): if(is_array($vo['children'])): $k = 0; $__LIST__ = $vo['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($k % 2 );++$k;?><tr>
+                                                    <?php if($k == 1): ?><td rowspan="<?php echo count($vo['children'])+1;?>" style="text-align:center;vertical-align:middle;"><?php echo ($ke); ?></td>
+                                                        <td rowspan="<?php echo count($vo['children'])+1;?>" style="text-align:center;vertical-align:middle;"><?php echo ($vo['type_name']); ?></td>
+                                                        <?php else: endif; ?>
+                                                    <td><div class="tagDiv"><?php echo ($vo1['type_name']); ?></div></td>
+                                                    <td><div class="tagDiv"><?php echo number_format($vo1['sum_sum'],2);?></div></td>
+                                                    <td><div class="tagDiv" title="<?php echo ($vo2['remark']); ?>"><?php echo ($vo1["type_remark"]); ?></div></td>
+                                                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            <?php if(is_array($vo)): ?><tr>
+                                                    <td>小计</td>
+                                                    <td><div class="tagDiv"><?php echo number_format($vo['sum_sum'],2);?></div></td>
+                                                    <td></td>
+                                                </tr><?php endif; endforeach; endif; ?>
+                                        <tr>
+                                            <td>三</td>
+                                            <td colspan="2">净收支</td>
+                                            <td><?php echo number_format($predict_all['sum']['sum_sum'],2);?></td>
+                                            <td>含税金额</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <?php if(is_array($data_type)): foreach($data_type as $k=>$vo): if($k == 1): ?><div class='tab-pane' id="tab_<?php echo ($k); ?>">
 
-                        <li>
-                            <a href="<?php echo ($row[1]); ?>"><?php echo ($row[0]); ?></a>
-                            <i class="fa fa-circle"></i>
-                        </li>
+                                        <div class="portlet-body form form-horizontal">
+                                            <table class="table table-striped table-bordered table-hover table-checkable order-column" >
+                                                <thead>
+                                                <tr>
+                                                    <th rowspan="2">部门</th>
+                                                    <th rowspan="2">岗位</th>
+                                                    <th rowspan="2">人数</th>
+                                                    <th rowspan="2">工作月数</th>
+                                                    <th rowspan="2">月工资</th>
+                                                    <th rowspan="2">社保</th>
+                                                    <th rowspan="2">社补</th>
+                                                    <th rowspan="2">公积金</th>
+                                                    <th colspan="5">月福利费</th>
+                                                    <th colspan="5">年度小计</th>
+                                                    <th rowspan="2">年度小计</th>
+                                                    <th rowspan="2">编制说明</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>餐费补贴</th>
+                                                    <th>通信费</th>
+                                                    <th>降温费</th>
+                                                    <th>慰问费</th>
+                                                    <th>其它</th>
+                                                    <th>工资</th>
+                                                    <th>社保社补</th>
+                                                    <th>公积金</th>
+                                                    <th>福利费</th>
+                                                    <th>年度奖金</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php if(is_array($department_child_list)): foreach($department_child_list as $k1=>$vo1): if(empty($vo['data'][$k1]) and $vo1['type'] == 1): ?><!--<tr>
+                                                            <td id="personnel_<?php echo ($k1); ?>" style="vertical-align:middle;"  rowspan="<?php echo count($vo['data'][$k1])+1;?>"><?php echo ($vo1['name']); ?></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
 
-                    <?php  } endforeach; endif; else: echo "" ;endif; ?>
-            </ul>
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                    <div class="portlet light bordered">
-                        <div class="portlet-body">
-                            <div class="table-toolbar">
-                                <div class="row">
-                                    <div class="col-md-12" id="table-toolbar-left">
-                                        
-    <div class="btn-group">
-        <?php if(!$isLeader): ?><a href="<?php echo U('Budget/check_money_list_change');?>">
-            <button  class="btn sbold green" >预算金额更改
-                </button>
-        </a>
-         <?php else: ?>
-            <a href="<?php echo U('Budget/check_record_list');?>">
-                <button  class="btn sbold green" >返回
-                </button>
-            </a><?php endif; ?>
-        </a>
-    </div>
-    <div class="btn-group">
-        <a href="<?php echo U('Budget/ajax_excel_print',array('project_id_change'=>$project_id_change,'year'=>$year));?>">
-            <button id="sample_editable_1_new" class="btn sbold red">导出excel表格
-                <i class="fa fa-plus"></i>
-            </button>
-        </a>
-    </div>
-
-    <!--<div class="btn-group1">
-        <a href="javascript:">
-            <button  class="btn sbold green" onclick="sub()">批量打印选中缴费
-            </button>
-        </a>
-    </div>
-    <div class="btn-group" style="margin-left: 10px">
-        <a href="javascript:">
-            <button  class="btn sbold green" onclick="sub_project()">打印当前全部缴费单(筛选后的)
-            </button>
-        </a>
-    </div>-->
-    <!--    筛选-->
-    <div class="btn-group">
-        <span>筛选：</span>
-        <span id="filter">
-                <span>
-                    <div class="btn-group">
-                        <select id="datetimepicker"  class="form-control" placeholder="" name="startDate" onchange="change_url('year',this.options[this.options.selectedIndex].value)">
-                            <?php $__FOR_START_28081__=2017;$__FOR_END_28081__=date('Y')+2;for($i=$__FOR_START_28081__;$i < $__FOR_END_28081__;$i+=1){ ?><option value="<?php echo ($i); ?>"><?php echo ($i); ?></option><?php } ?>
-                        </select>
-                    </div>
-                    <div class="btn-group">
-                        <select name="company_id" id="company_id"  class="form-control search" onchange="change_url('company_id',this.options[this.options.selectedIndex].value)">
-                                <?php if(is_array($company_list)): foreach($company_list as $key=>$vo): ?><option value="<?php echo ($vo['id']); ?>"><?php echo ($vo['deptname']); ?></option><?php endforeach; endif; ?>
-                        </select>
-                    </div>
-                    <div class="btn-group">
-                        <select name="project_id" id="project_id"  class="form-control search" onchange="change_url('project_id_change',this.options[this.options.selectedIndex].value)">
-                                <option value="">总表</option>
-                                <?php if(is_array($project_list)): foreach($project_list as $key=>$vo1): ?><option value="<?php echo ($key); ?>"><?php echo ($vo1); ?></option><?php endforeach; endif; ?>
-                        </select>
-                    </div>
-
-                </span>
-            </span>
-    </div>
-
-
-
+                                                        </tr>-->
+                                                        <?php elseif( $vo1['type'] == 1): ?>
+                                                        <?php $cache_key=key($vo['data'][$k1]);?>
+                                                        <?php if(is_array($vo['data'][$k1])): foreach($vo['data'][$k1] as $k2=>$vo2): ?><tr>
+                                                                <?php if($k2 == $cache_key): ?><td id="personnel_<?php echo ($k1); ?>" style="vertical-align:middle;" rowspan="<?php echo count($vo['data'][$k1]);?>"><?php echo ($vo1['name']); ?></td><?php endif; ?>
+                                                                <td><?php echo ($vo2['job']); ?></td>
+                                                                <td><?php echo ($vo2['num']); ?></td>
+                                                                <td><?php echo ($vo2['month']); ?></td>
+                                                                <td><?php echo ($vo2['month_0']); ?></td>
+                                                                <td><?php echo ($vo2['month_1']); ?></td>
+                                                                <td><?php echo ($vo2['month_8']); ?></td>
+                                                                <td><?php echo ($vo2['month_2']); ?></td>
+                                                                <td><?php echo ($vo2['month_3']); ?></td>
+                                                                <td><?php echo ($vo2['month_4']); ?></td>
+                                                                <td><?php echo ($vo2['month_5']); ?></td>
+                                                                <td><?php echo ($vo2['month_6']); ?></td>
+                                                                <td><?php echo ($vo2['month_7']); ?></td>
+                                                                <td><?php echo ($sum['1'][$k1][$k2]['month_0']); ?></td>
+                                                                <td><?php echo ($sum['1'][$k1][$k2]['month_1']); ?></td>
+                                                                <td><?php echo ($sum['1'][$k1][$k2]['month_2']); ?></td>
+                                                                <td><?php echo ($sum['1'][$k1][$k2]['month_other']); ?></td>
+                                                                <td><?php echo ($sum['1'][$k1][$k2]['year_end']); ?></td>
+                                                                <td><?php echo ($sum['1'][$k1][$k2]['sum']); ?></td>
+                                                                <td title="<?php echo ($vo2['remark']); ?>"><?php echo ($vo2['remark']); ?></td>
+                                                            </tr><?php endforeach; endif; endif; endforeach; endif; ?>
+                                                <tr style="color: red">
+                                                    <td colspan="2">合计</td>
+                                                    <td><?php echo ($sum['1']['sum']['num']); ?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><?php echo ($sum['1']['sum']['month_0']); ?></td>
+                                                    <td><?php echo ($sum['1']['sum']['month_1']); ?></td>
+                                                    <td><?php echo ($sum['1']['sum']['month_2']); ?></td>
+                                                    <td><?php echo ($sum['1']['sum']['month_other']); ?></td>
+                                                    <td><?php echo ($sum['1']['sum']['year_end']); ?></td>
+                                                    <td><?php echo ($sum['1']['sum']['sum']); ?></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">工龄工资</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td colspan="12"></td>
+                                                    <td>
+                                                        <a href="#tab_gongling" data-toggle="modal">
+                                                            <button type="button" class="btn btn-xs blue">
+                                                                点击查看工龄工资明细
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                    <td></td>
+                                                    <td><?php echo ($sum['gongling']['sum']['sum']); ?></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">加班工资</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td colspan="12">按基本工资/计薪天数*3计算</td>
+                                                    <td>
+                                                        <a href="#tab_overtime" data-toggle="modal">
+                                                            <button type="button" class="btn btn-xs blue">
+                                                                点击查看加班费明细
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                    <td><?php echo ($sum['overtime']['sum']['sum']); ?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">总计</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td colspan="12"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><?php echo $sum['overtime']['sum']['sum']+$sum['1']['sum']['sum']+$sum['gongling']['sum']['sum'];?></td>
+                                                    <td></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="btn-group pull-right">
-                                            
-
-                                            
+                                    <?php else: ?>
+                                    <div class='tab-pane fad' id="tab_<?php echo ($k); ?>">
+                                        <div class="portlet-body form form-horizontal">
+                                            <table class="table table-striped table-bordered table-hover table-checkable order-column">
+                                                <thead>
+                                                <tr>
+                                                    <th colspan="2">项目</th>
+                                                    <th><?php echo ($year); ?>年预算金额</th>
+                                                    <th><?php echo $year-1;?>年实际金额</th>
+                                                    <th><?php echo $year-2;?>年实际金额</th>
+                                                    <th>备注</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php if(vo['children']): if(is_array($vo['children'])): foreach($vo['children'] as $k1=>$vo1): if($k1 == 0): else: ?>
+                                                            <?php if(is_array($vo1['children'])): $k2 = 0; $__LIST__ = $vo1['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($k2 % 2 );++$k2;?><tr>
+                                                                    <?php if($k2 == 1): ?><td rowspan="<?php echo count($vo1['children'])+1;?>" style="text-align:center;vertical-align:middle;"><?php echo ($vo1['type_name']); ?></td><?php endif; ?>
+                                                                    <td title="<?php echo ($vo2['remark']); ?>"><?php echo ($vo2['type_name']); ?></td>
+                                                                    <td>
+                                                                        <?php echo ($vo['data'][$k1]['children'][$vo2['type_id']]['type_data']['sum']); ?>
+                                                                        <?php if($vo1['type_name'] == '工服费'): ?><a href="#tab_clothesfee" data-toggle="modal">
+                                                                                <button type="button" class="btn btn-xs blue">
+                                                                                    点击查看工服费明细
+                                                                                </button>
+                                                                            </a>
+                                                                            <?php elseif($vo1['type_name'] == '派遣和劳务支出'): ?>
+                                                                            <a href="#tab_dispatch" data-toggle="modal">
+                                                                                <button type="button" class="btn btn-xs blue">
+                                                                                    点击查看派遣和劳务支出明细
+                                                                                </button>
+                                                                            </a>
+                                                                            <?php elseif($vo2['type_name'] == '物业费服务收入' and !empty($property)): ?>
+                                                                                <a href="#tab_property" data-toggle="modal">
+                                                                                    <button type="button" class="btn btn-xs blue">
+                                                                                        点击查看物业费详细
+                                                                                    </button>
+                                                                                </a>
+                                                                            <?php elseif($vo2['type_name'] == '资产购置费' and !empty($zichan)): ?>
+                                                                                <a href="#tab_zichan" data-toggle="modal">
+                                                                                    <button type="button" class="btn btn-xs blue">
+                                                                                        点击查看资产购置费详细
+                                                                                    </button>
+                                                                                </a>
+                                                                            <?php elseif($vo2['type_name'] == '其他运行费用' and !empty($yunxing)): ?>
+                                                                                <a href="#tab_yunxing" data-toggle="modal">
+                                                                                    <button type="button" class="btn btn-xs blue">
+                                                                                        点击查看其他运行费用详细
+                                                                                    </button>
+                                                                                </a><?php endif; ?>
+                                                                    </td>
+                                                                    <td><?php echo $vo['last_data'][$k1]['children'][$vo2['type_id']]['type_data']['sum']?number_format($vo['last_data'][$k1]['children'][$vo2['type_id']]['type_data']['sum'],2):'-';?></td>
+                                                                    <td><?php echo $vo['last_last_data'][$k1]['children'][$vo2['type_id']]['type_data']['sum']?number_format($vo['last_last_data'][$k1]['children'][$vo2['type_id']]['type_data']['sum'],2):'-';?></td>
+                                                                    <td title="<?php echo ($vo['data'][$k1]['children'][$vo2['type_id']]['type_data']['remark']); ?>"><?php echo ($vo['data'][$k1]['children'][$vo2['type_id']]['type_data']['remark']); ?></td>
+                                                                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                                            <tr style="color: red">
+                                                                <td>小计</td>
+                                                                <td><?php echo $sum[$k][$k1]['sum']?$sum[$k][$k1]['sum']:'';?></td>
+                                                                <?php if($k == 4): ?><td><?php echo $log_sum['last']['input']['1']['children'][$vo1['type_name']]['sum_sum']?number_format($log_sum['last']['input']['1']['children'][$vo1['type_name']]['sum_sum'],2):'-';?></td>
+                                                                    <td><?php echo $log_sum['last_last']['input']['1']['children'][$vo1['type_name']]['sum_sum']?number_format($log_sum['last_last']['input']['1']['children'][$vo1['type_name']]['sum_sum'],2):'-';?></td>
+                                                                    <?php else: ?>
+                                                                    <td><?php echo $log_sum['last']['output'][$k]['children'][$vo1['type_name']]['sum_sum']?number_format($log_sum['last']['output'][$k]['children'][$vo1['type_name']]['sum_sum'],2):'-';?></td>
+                                                                    <td><?php echo $log_sum['last_last']['output'][$k]['children'][$vo1['type_name']]['sum_sum']?number_format($log_sum['last']['output'][$k]['children'][$vo1['type_name']]['sum_sum'],2):'-';?></td><?php endif; ?>
+                                                                <td></td>
+                                                            </tr><?php endif; endforeach; endif; ?>
+                                                    <?php else: endif; ?>
+                                                <tr  style="color: red">
+                                                    <td>合计</td>
+                                                    <td></td>
+                                                    <td><?php echo ($sum[$k]['sum']['sum']); ?></td>
+                                                    <?php if($k == 4): ?><td><?php echo $log_sum['last']['input']['1']['sum_sum']?number_format($log_sum['last']['input']['1']['sum_sum'],2):'-';?></td>
+                                                        <td><?php echo $log_sum['last_last']['input']['1']['sum_sum']?number_format($log_sum['last_last']['input']['1']['sum_sum'],2):'-';?></td>
+                                                    <?php else: ?>
+                                                        <td><?php echo $log_sum['last']['output'][$k]['sum_sum']?number_format($log_sum['last']['output'][$k]['sum_sum'],2):'-';?></td>
+                                                        <td><?php echo $log_sum['last_last']['output'][$k]['sum_sum']?number_format($log_sum['last_last']['output'][$k]['sum_sum'],2):'-';?></td><?php endif; ?>
+                                                    <td></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><?php endif; endforeach; endif; ?>
+                            <div  id="tab_overtime" class="modal fade" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" style="width: 60%;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                            <h4 class="modal-title">加班工资明细</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        <div class="portlet-body form form-horizontal">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column">
+                                        <thead>
+                                        <tr>
+                                            <th>部门</th>
+                                            <th>岗位</th>
+                                            <!--<th>人数</th>-->
+                                            <?php if($predict_info['overtime_type'] == 1): ?><th>制度工资</th>
+                                                <?php else: ?>
+                                                <th>每日加班工资</th><?php endif; ?>
+                                            <th>天数</th>
+                                            <th>每天班次数</th>
+                                            <th>每班次人数</th>
+                                            <th>加班工资<br/></th>
+                                            <th>备注</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php if(is_array($department_child_list)): foreach($department_child_list as $k1=>$vo1): if(empty($overtime[$k1]) and $vo1['type'] == 1): ?><!--<tr>
+                                                    <td id="personnel_overtime_<?php echo ($k1); ?>" style="vertical-align:middle;"  rowspan="<?php echo count($overtime[$k1])+1;?>"><?php echo ($vo1['name']); ?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>-->
+                                                <?php elseif($vo1['type'] == 1): ?>
+                                                <?php $cache_key=key($overtime[$k1])?>
+                                                <?php if(is_array($overtime[$k1])): foreach($overtime[$k1] as $k2=>$vo2): ?><tr>
+                                                        <?php if($k2 == $cache_key): ?><td id="personnel_overtime_<?php echo ($k1); ?>" style="vertical-align:middle;" rowspan="<?php echo count($overtime[$k1]);?>"><?php echo ($vo1['name']); ?></td><?php endif; ?>
+                                                        <td><?php echo ($vo2['job']); ?></td>
+                                                        <!--<td><?php echo ($vo2['num']); ?></td>-->
+                                                        <td><?php echo $vo2['overtime']?$vo2['overtime']:$vo2['regime'];?></td>
+                                                        <td><?php echo ($vo2['day']); ?></td>
+                                                        <td><?php echo ($vo2['classes']); ?></td>
+                                                        <td><?php echo ($vo2['classes_num']); ?></td>
+                                                        <td><?php echo ($sum['overtime'][$k1][$k2]['overtime']); ?></td>
+                                                        <td title="<?php echo ($vo2['remark']); ?>"><?php echo ($vo2['remark']); ?></td>
+                                                    </tr><?php endforeach; endif; endif; endforeach; endif; ?>
+                                        <tr style="color: red">
+                                            <td colspan="2">合计</td>
+                                            <td><?php echo ($sum['overtime']['sum']['num']); ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><?php echo ($sum['overtime']['sum']['sum']); ?></td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                        <div class="modal-footer">
+                                            <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">关闭</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
-    <div class="tabbable-custom nav-justified" style="width:100%;overflow-x: scroll;">
-    <ul class="nav nav-tabs nav-justified">
-        <li class="active">
-        <a href="<?php echo U('Budget/check_excel_print',array('type'=>'sum'));?>" onclick="loading();"> 执行主表 </a>
-        </li>
-        <?php if(is_array($type_list)): $i = 0; $__LIST__ = $type_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
-            <a href="<?php echo U('Budget/check_excel_print',array('type'=>$vo['type_id']));?>" onclick="loading();"> <?php echo ($vo['type_name']); ?> </a>
-            </li><?php endforeach; endif; else: echo "" ;endif; ?>
-    </ul>
-    <table class="table table-striped table-bordered table-hover" id="sample_1" >
-        <thead>
-        <tr>
-           <td colspan="7" align="center" style="font-size: 25px"><?php echo ($year); ?>年<?php echo ($title1); ?>预算执行汇总表</td>
-        </tr>
-        <tr>
-            <th width="5%">序号</th>
-            <th width="10%" colspan="2">预算项目</th>
-            <th width="10%">预算金额</th>
-            <th width="10%">执行金额</th>
-            <th width="10%">两者差异</th>
-           <th width="10%">编制说明</th>
-       </tr>
-       </thead>
-       <tbody>
-       <tr>
-           <td>一</td>
-           <td colspan="2">收入合计</td>
-          <td><?php echo number_format($data['input']['sum_money'],2);?></td>
-           <td><?php echo number_format($data['input']['sum_sum'],2);?></td>
-           <td><?php echo number_format($data['input']['difference'],2);?></td>
-           <td>含税金额</td>
-       </tr>
-       <?php if(is_array($data['input']['1']['children'])): $i = 0; $__LIST__ = $data['input']['1']['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-           <td><?php echo ($i); ?></td>
-           <td colspan="2"><?php echo ($vo['type_name']); ?></td>
-           <td><div class="tagDiv"><?php echo number_format($vo['sum_money'],2);?></div></td>
-           <td><div class="tagDiv"><?php echo number_format($vo['sum_sum'],2);?></div></td>
-           <td><div class="tagDiv"><?php echo number_format($vo['difference'],2);?></div></td>
-           <td><div class="tagDiv"><?php echo ($vo["type_remark"]); ?></div></td>
-           </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-       <tr>
-           <td>二</td>
-           <td colspan="2">支出合计</td>
-           <td><?php echo number_format($data['output']['sum_money'],2);?></td>
-           <td><?php echo number_format($data['output']['sum_sum'],2);?></td>
-           <td><?php echo number_format($data['output']['difference'],2);?></td>
-           <td>含税金额</td>
-       </tr>
-       <?php if(is_array($data['output'])): foreach($data['output'] as $ke=>$vo): if(is_array($vo['children'])): $k = 0; $__LIST__ = $vo['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($k % 2 );++$k;?><tr>
-               <?php if($k == 1): ?><td rowspan="<?php echo count($vo['children'])+1;?>" style="text-align:center;vertical-align:middle;"><?php echo ($ke); ?></td>
-                   <td rowspan="<?php echo count($vo['children'])+1;?>" style="text-align:center;vertical-align:middle;"><?php echo ($vo['type_name']); ?></td>
-                   <?php else: endif; ?>
-                   <td><div class="tagDiv"><?php echo ($vo1['type_name']); ?></div></td>
-                   <td><div class="tagDiv"><?php echo number_format($vo1['sum_money'],2);?></div></td>
-                   <td><div class="tagDiv"><?php echo number_format($vo1['sum_sum'],2);?></div></td>
-                   <td><div class="tagDiv"><?php echo number_format($vo1['difference'],2);?></div></td>
-                   <td><div class="tagDiv"><?php echo ($vo1["type_remark"]); ?></div></td>
-           </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-           <?php if(is_array($vo)): ?><tr>
-                   <td>小计</td>
-                   <td><div class="tagDiv" id="<?php echo ($key); ?>"><?php echo number_format($vo['sum_money'],2);?></div></td>
-                   <td><div class="tagDiv"><?php echo number_format($vo['sum_sum'],2);?></div></td>
-                   <td><div class="tagDiv"><?php echo number_format($vo['difference'],2);?></div></td>
-                   <td></td>
-               </tr><?php endif; endforeach; endif; ?>
-       <tr>
-           <td>三</td>
-           <td colspan="2">净收支</td>
-           <td><?php echo number_format($data['sum']['sum_money'],2);?></td>
-           <td><?php echo number_format($data['sum']['sum_sum'],2);?></td>
-           <td><?php echo number_format($data['sum']['difference'],2);?></td>
-           <td>含税金额</td>
-       </tr>
-       </tbody>
-   </table>
-   </div>
-
-                            
-                                <!--        弹出层容器-->
-                                <div class="modal fade" tabindex="-1" role="dialog" id="common_modal">
-                                    <div class="modal-dialog modal-lg" role="document" style="width:1200px">
-                                        <div class="modal-content">
-
+                            <!--工龄工资明细-->
+                            <div  id="tab_gongling" class="modal fade" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" style="width: 60%;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                            <h4 class="modal-title">工龄工资明细</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        <div class="portlet-body form form-horizontal">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column">
+                                        <thead>
+                                        <tr>
+                                            <th>部门</th>
+                                            <th>岗位</th>
+                                            <th>人数</th>
+                                            <th>天数</th>
+                                            <th>工龄工资</th>
+                                            <th>备注</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php if(is_array($department_child_list)): foreach($department_child_list as $k1=>$vo1): if(empty($gongling[$k1]) and $vo1['type'] == 1): ?><!--<tr>
+                                                    <td id="personnel_overtime_<?php echo ($k1); ?>" style="vertical-align:middle;"  rowspan="<?php echo count($overtime[$k1])+1;?>"><?php echo ($vo1['name']); ?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>-->
+                                                <?php elseif($vo1['type'] == 1): ?>
+                                                <?php $cache_key=key($gongling[$k1])?>
+                                                <?php if(is_array($gongling[$k1])): foreach($gongling[$k1] as $k2=>$vo2): ?><tr>
+                                                        <?php if($k2 == $cache_key): ?><td id="personnel_overtime_<?php echo ($k1); ?>" style="vertical-align:middle;" rowspan="<?php echo count($gongling[$k1]);?>"><?php echo ($vo1['name']); ?></td><?php endif; ?>
+                                                        <td><?php echo ($vo2['job']); ?></td>
+                                                        <td><?php echo ($vo2['num']); ?></td>
+                                                        <td><?php echo ($vo2['money']); ?></td>
+                                                        <td><?php echo ($sum['gongling'][$k1][$k2]['sum']); ?></td>
+                                                        <td title="<?php echo ($vo2['remark']); ?>"><?php echo ($vo2['remark']); ?></td>
+                                                    </tr><?php endforeach; endif; endif; endforeach; endif; ?>
+                                        <tr style="color: red">
+                                            <td colspan="2">合计</td>
+                                            <td><?php echo ($sum['gongling']['sum']['num']); ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><?php echo ($sum['gongling']['sum']['sum']); ?></td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                        <div class="modal-footer">
+                                            <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">关闭</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" tabindex="-1" role="dialog" id="sub_modal">
-                                    <div class="modal-dialog modal-lg" role="document" style="width:1000px">
-                                        <div class="modal-content">
+                            </div>
+                            <!--物业服务费明细表-->
+                            <div  id="tab_property" class="modal fade" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                                <div class="modal-dialog" style="width: 60%;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                            <h4 class="modal-title">物业费明细表</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                <div class="portlet-body form form-horizontal">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" >
+                                        <thead>
+                                        <tr>
+                                            <th colspan="2" rowspan="2">收费类别</th>
+                                            <th colspan="3">以前年度</th>
+                                            <th colspan="4">本年度</th>
+                                            <th rowspan="2">本年度预算数</th>
+                                            <th rowspan="2">编制说明</th>
+                                        </tr>
+                                        <tr>
+                                            <th>上年欠费</th>
+                                            <th>预算比例</th>
+                                            <th>列入本年预算数</th>
+                                            <th>可收费面积</th>
+                                            <th>收费标准</th>
+                                            <th>预算比例</th>
+                                            <th>本年收入</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
+                                        <?php if(is_array($property_list)): foreach($property_list as $k1=>$vo1): if(empty($property[$k1])): ?><tr>
+                                                    <td id="property_<?php echo ($k1); ?>" style="vertical-align:middle;"  rowspan="<?php echo count($property[$k1])+1;?>"><?php echo ($vo1); ?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td id="property_last_<?php echo ($k1); ?>" rowspan="<?php echo count($property[$k1])+1;?>" style="vertical-align:middle;"><?php echo ($proportion[$k1][last]); ?>%</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td id="property_now_<?php echo ($k1); ?>" rowspan="<?php echo count($property[$k1])+1;?>" style="vertical-align:middle;"><?php echo ($proportion[$k1][now]); ?>%</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td rowspan="<?php echo count($property[$k1])+1;?>" style="vertical-align:middle;width: 300px">
+                                                        <?php if($vo1 == '写字楼'): ?>以在管物业可收费面积为依据，按上年未收（含历欠）<?php echo ($proportion[$k1][last]); ?>%和当年应<?php echo ($proportion[$k1][now]); ?>%计算，中途退租和出租的均不作调整。
+                                                            <?php else: ?>
+                                                            以实际向业主交房面积为依据，按上年未收（含历欠）按<?php echo ($proportion[$k1][last]); ?>%，当年应收<?php echo ($proportion[$k1][now]); ?>%计算，不论何因均不考虑扣减<?php endif; ?>
+                                                    </td>
+                                                </tr>
+                                                <?php else: ?>
+                                                <?php $cache_key=key($property[$k1])?>
+                                                <?php if(is_array($property[$k1])): foreach($property[$k1] as $k2=>$vo2): ?><tr>
+                                                        <?php if($k2 == $cache_key): ?><td id="property_<?php echo ($k1); ?>" style="vertical-align:middle;" rowspan="<?php echo count($property[$k1]);?>"><?php echo ($vo1); ?></td><?php endif; ?>
+                                                        <td><?php echo ($vo2['name']); ?></td>
+                                                        <td><?php echo ($vo2['year_last_0']); ?></td>
+                                                        <?php if($k2 == $cache_key): ?><td id="property_last_<?php echo ($k1); ?>" rowspan="<?php echo count($property[$k1]);?>" style="vertical-align:middle;"><?php echo ($proportion[$k1][last]); ?>%</td><?php endif; ?>
+                                                        <td><?php echo ($sum['property'][$k1][$k2]['year_last_sum']); ?></td>
+                                                        <td><?php echo ($vo2['year_now_0']); ?></td>
+                                                        <td><?php echo ($vo2['year_now_1']); ?></td>
+                                                        <?php if($k2 == $cache_key): ?><td id="property_now_<?php echo ($k1); ?>" rowspan="<?php echo count($property[$k1]);?>" style="vertical-align:middle;"><?php echo ($proportion[$k1][now]); ?>%</td><?php endif; ?>
+                                                        <td><?php echo ($sum['property'][$k1][$k2]['year_now_sum']); ?></td>
+                                                        <td><?php echo ($sum['property'][$k1][$k2]['sum']); ?></td>
+                                                        <?php if($k2 == $cache_key): ?><td rowspan="<?php echo count($property[$k1]);?>" style="vertical-align:middle;width: 300px">
+                                                            <?php if($vo1 == '写字楼'): ?>以在管物业可收费面积为依据，按上年未收（含历欠）<?php echo ($proportion[$k1][last]); ?>%和当年应<?php echo ($proportion[$k1][now]); ?>%计算，中途退租和出租的均不作调整。
+                                                                <?php else: ?>
+                                                                以实际向业主交房面积为依据，按上年未收（含历欠）按<?php echo ($proportion[$k1][last]); ?>%，当年应收<?php echo ($proportion[$k1][now]); ?>%计算，不论何因均不考虑扣减<?php endif; ?>
+                                                        </td><?php endif; ?>
+
+                                                    </tr><?php endforeach; endif; endif; endforeach; endif; ?>
+                                        <tr style="color: red;">
+                                            <td colspan="2">合计</td>
+                                            <td><?php echo ($sum['property']['sum']['year_last_0']); ?></td>
+                                            <td></td>
+                                            <td><?php echo ($sum['property']['sum']['year_last_sum']); ?></td>
+                                            <td><?php echo ($sum['property']['sum']['year_now_0']); ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><?php echo ($sum['property']['sum']['year_now_sum']); ?></td>
+                                            <td><?php echo ($sum['property']['sum']['sum']); ?></td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                        <div class="modal-footer">
+                                            <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">关闭</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" tabindex="-1" role="dialog" id="third_modal">
-                                    <div class="modal-dialog modal-lg" role="document" style="width:1000px">
-                                        <div class="modal-content">
+                            </div>
+                            <!--工服费表-->
+                            <div  id="tab_clothesfee" class="modal fade" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" style="width: 60%;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                            <h4 class="modal-title">工服费明细表</h4>
+                                        </div>
+                                        <div class="modal-body">
 
+                                <div class="portlet-body form form-horizontal">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" >
+                                        <thead>
+                                        <tr>
+                                            <th>部门</th>
+                                            <th>岗位</th>
+                                            <th>人数</th>
+                                            <th>计算标准<br/>（元/每人/月）</th>
+                                            <th>月份</th>
+                                            <th>工服费</th>
+                                            <th>备注</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        <?php if(is_array($department_child_list)): foreach($department_child_list as $k1=>$vo1): if(empty($clothesfee[$k1])): ?><!--<tr>
+                                                    <td id="personnel_clothesfee_<?php echo ($k1); ?>" style="vertical-align:middle;"  rowspan="<?php echo count($clothesfee[$k1])+1;?>"><?php echo ($vo1['name']); ?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>-->
+                                                <?php else: ?>
+                                                <?php $cache_key=key($clothesfee[$k1])?>
+                                                <?php if(is_array($clothesfee[$k1])): foreach($clothesfee[$k1] as $k2=>$vo2): ?><tr>
+                                                        <?php if($k2 == $cache_key): ?><td id="personnel_clothesfee_<?php echo ($k1); ?>" style="vertical-align:middle;" rowspan="<?php echo count($clothesfee[$k1]);?>"><?php echo ($vo1['name']); ?></td><?php endif; ?>
+                                                        <td><?php echo ($vo2['job']); ?></td>
+                                                        <td><?php echo ($vo2['num']); ?></td>
+                                                        <td><?php echo ($vo2['price']); ?></td>
+                                                        <td><?php echo ($vo2['month']); ?></td>
+                                                        <td><?php echo ($sum['clothesfee'][$k1][$k2]['clothesfee']); ?></td>
+                                                        <td title="<?php echo ($vo2['remark']); ?>"><?php echo ($vo2['remark']); ?></td>
+                                                    </tr><?php endforeach; endif; endif; endforeach; endif; ?>
+                                        <tr style="color: red">
+                                            <td colspan="2">合计</td>
+                                            <td><?php echo ($sum['clothesfee']['sum']['num']); ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><?php echo ($sum['clothesfee']['sum']['sum']); ?></td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                        <div class="modal-footer">
+                                            <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">关闭</button>
                                         </div>
                                     </div>
                                 </div>
-                                <!--        弹出层容器-->
-                            
+                            </div>
+                            <!--资产购置费-->
+                            <div  id="tab_zichan" class="modal fade" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                                <div class="modal-dialog" style="width: 60%;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                            <h4 class="modal-title">资产购置费明细表</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="btn-group" style="margin-top:10px;">
+                                            </div>
+                                            <div class="portlet-body form form-horizontal">
+                                                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="zichan">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>
+                                                            项目明细
+                                                        </th>
+                                                        <th>
+                                                            单价
+                                                        </th>
+                                                        <th>
+                                                            数量
+                                                        </th>
+                                                        <th>
+                                                            合计
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <?php if(empty($zichan)): else: ?>
+                                                        <?php if(is_array($zichan)): foreach($zichan as $k1=>$vo1): ?><tr>
+                                                                <td><?php echo ($vo1['name']); ?></td>
+                                                                <td><?php echo ($vo1['unit']); ?></td>
+                                                                <td><?php echo ($vo1['num']); ?></td>
+                                                                <td><?php echo ($vo1['sum']); ?></td>
+                                                            </tr><?php endforeach; endif; endif; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">关闭</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--其它运行费用详细-->
+                            <div  id="tab_yunxing" class="modal fade" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                                <div class="modal-dialog" style="width: 60%;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                            <h4 class="modal-title">其它运行费用明细表</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="btn-group" style="margin-top:10px;">
+                                            </div>
+                                            <div class="portlet-body form form-horizontal">
+                                                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="yunxing">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>
+                                                            项目明细
+                                                        </th>
+                                                        <th>
+                                                            具体金额
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <?php if(empty($yunxing)): else: ?>
+                                                        <?php if(is_array($yunxing)): foreach($yunxing as $k1=>$vo1): ?><tr>
+                                                                <td><?php echo ($vo1['name']); ?></td>
+                                                                <td><?php echo ($vo1['sum']); ?></td>
+                                                            </tr><?php endforeach; endif; endif; ?>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">关闭</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--派遣和劳务支出表-->
+                            <div  id="tab_dispatch" class="modal fade" role="dialog" aria-hidden="true" >
+                                <div class="modal-dialog" style="width: 60%;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                            <h4 class="modal-title">劳务和派遣费用明细表</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                <div class="portlet-body form form-horizontal">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" >
+                                        <thead>
+                                        <tr>
+                                            <th rowspan="2">部门</th>
+                                            <th rowspan="2">岗位</th>
+                                            <th rowspan="2">人数</th>
+                                            <th rowspan="2">工作月数</th>
+                                            <th rowspan="2">月工资</th>
+                                            <th rowspan="2">社保</th>
+                                            <th rowspan="2">社补</th>
+                                            <th rowspan="2">公积金</th>
+                                            <th colspan="2">月福利费</th>
+                                            <th colspan="6">年度小计</th>
+                                            <th rowspan="2">年度合计</th>
+                                            <th rowspan="2">备注</th>
+                                        </tr>
+                                        <tr>
+                                            <th>降温费</th>
+                                            <th>慰问费</th>
+                                            <th>工资</th>
+                                            <th>五险一金</th>
+                                            <th>福利费</th>
+                                            <th>管理费</th>
+                                            <th>保险费</th>
+                                            <th>年终奖</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php if(is_array($department_child_list)): foreach($department_child_list as $k1=>$vo1): if(empty($dispatch[$k1]) and $vo1['type'] == 2): ?><!--<tr>
+                                                    <td id="personnel_<?php echo ($k1); ?>" style="vertical-align:middle;"  rowspan="<?php echo count($dispatch[$k1])+1;?>"><?php echo ($vo1['name']); ?></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+
+                                                </tr>-->
+                                                <?php elseif($vo1['type'] == 2): ?>
+                                                <?php $cache_key=key($dispatch[$k1]);?>
+                                                <?php if(is_array($dispatch[$k1])): foreach($dispatch[$k1] as $k2=>$vo2): ?><tr>
+                                                        <?php if($k2 == $cache_key): ?><td id="personnel_<?php echo ($k1); ?>" style="vertical-align:middle;" rowspan="<?php echo count($dispatch[$k1]);?>"><?php echo ($vo1['name']); ?></td><?php endif; ?>
+                                                        <td><?php echo ($vo2['job']); ?></td>
+                                                        <td><?php echo ($vo2['num']); ?></td>
+                                                        <td><?php echo ($vo2['month']); ?></td>
+                                                        <td><?php echo ($vo2['month_0']); ?></td>
+                                                        <td><?php echo ($vo2['month_1']); ?></td>
+                                                        <td><?php echo ($vo2['month_6']); ?></td>
+                                                        <td><?php echo ($vo2['month_2']); ?></td>
+                                                        <td><?php echo ($vo2['month_3']); ?></td>
+                                                        <td><?php echo ($vo2['month_4']); ?></td>
+                                                        <td><?php echo ($sum['dispatch'][$k1][$k2]['month_0']); ?></td>
+                                                        <td><?php echo ($sum['dispatch'][$k1][$k2]['month_1']); ?></td>
+                                                        <td><?php echo ($sum['dispatch'][$k1][$k2]['month_other']); ?></td>
+                                                        <td><?php echo ($sum['dispatch'][$k1][$k2]['month_5']); ?></td>
+                                                        <td><?php echo ($sum['dispatch'][$k1][$k2]['insurance']); ?></td>
+                                                        <td><?php echo ($sum['dispatch'][$k1][$k2]['year_end']); ?></td>
+                                                        <td><?php echo ($sum['dispatch'][$k1][$k2]['sum']); ?></td>
+                                                        <td title="<?php echo ($vo2['remark']); ?>"><?php echo ($vo2['remark']); ?></td>
+                                                    </tr><?php endforeach; endif; endif; endforeach; endif; ?>
+                                        <tr style="color: red">
+                                            <td colspan="2">合计</td>
+                                            <td><?php echo ($sum['dispatch']['sum']['num']); ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><?php echo ($sum['dispatch']['sum']['month_0']); ?></td>
+                                            <td><?php echo ($sum['dispatch']['sum']['month_1']); ?></td>
+                                            <td><?php echo ($sum['dispatch']['sum']['month_other']); ?></td>
+                                            <td><?php echo ($sum['dispatch']['sum']['month_5']); ?></td>
+                                            <td><?php echo ($sum['dispatch']['sum']['insurance']); ?></td>
+                                            <td><?php echo ($sum['dispatch']['sum']['year_end']); ?></td>
+                                            <td><?php echo ($sum['dispatch']['sum']['sum']); ?></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr style="color: red">
+                                            <td colspan="2">总计</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><?php echo ($sum['dispatch']['sum']['sum']); ?></td>
+                                            <td></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                        <div class="modal-footer">
+                                            <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">关闭</button>
+                                        </div>
                         </div>
                     </div>
-                    <!-- END EXAMPLE TABLE PORTLET-->
+                </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+                <div class="form-actions">
+                    <div class="row" style="margin-top:30px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <?php if(is_array($predict_log)): foreach($predict_log as $key=>$vo): ?><tr>
+                                    <td width="25%" height="160" rowspan="2" align="center" valign="middle" style="border:1px #e7ecf1 solid; font-size:24px;"><?php echo ($vo['admin_role_name']); ?></td>
+                                    <td width="75%" height="100" colspan="2" align="center" valign="top" style="border:1px #e7ecf1 solid; border-left:none;"><textarea readonly="readonly" name="textarea" style="width:95%; height:80px; border:1px #e7ecf1 solid; margin-top:10px;"><?php echo ($vo['remark']); ?></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td height="50" align="left" valign="middle" style="border:1px #e7ecf1 solid; border-left:none; border-top:none; padding-left:2.5%; font-size:16px;">日期：
+                                        <input name="textfield" type="text" value="<?php echo date('Y-m-d H:i:s',$vo['updatetime']);?>" readonly  style="height:40px; line-height:40px; border:1px #e7ecf1 solid; width:80%; font-size:16px;"/></td>
+                                    <td height="50" align="left" valign="middle" style="border:1px #e7ecf1 solid; border-left:none; border-top:none; padding-left:2.5%; font-size:16px;">签名：
+                                        <input name="textfield2" type="text" value="<?php echo ($vo['admin_name']); ?>" readonly style="height:40px; line-height:40px; border:1px #e7ecf1 solid; width:80%; font-size:16px;"/></td>
+                                </tr><?php endforeach; endif; ?>
+                            <?php if(empty($display_button)): if($action_now and $action_now['status'] == $predict_info['status']): ?><tr>
+                                    <td height="50" style="border:1px #e7ecf1 solid; border-top:none;">&nbsp;</td>
+                                    <td height="50" colspan="2" align="left" style="border:1px #e7ecf1 solid; border-top:none; border-left:none;">
+                                        <textarea  name="remark" style="width:95%; height:80px; border:1px #e7ecf1 solid; margin-top:10px;" placeholder="填写备注"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="50" style="border:1px #e7ecf1 solid; border-top:none;">&nbsp;</td>
+                                    <td height="50" colspan="2" align="left" style="border:1px #e7ecf1 solid; border-top:none; border-left:none;">
+                                        <if condition="$predict_info['status'] eq 6">
+                                            <button onclick="apply_predict_one(<?php echo ($predict_info['predict_id']); ?>)" type="button" class="btn default" >应用到预算执行报表</button><?php endif; ?>
+                                        <a href="#add_status" data-toggle="modal"><button type="button" class="btn default" >退回修改</button></a>
+                                        <a href="<?php echo U('edit_predict_one',array('id'=>$predict_info['predict_id']));?>"><button type="button" class="btn green" style="margin-left: 2.5%">调整预算金额</button></a>
+                                            <button type="button" class="btn red"  onclick="add_status_check(<?php echo ($action_now['next']['status']); ?>,'审核通过')"><?php echo ($action_now['next']['name']); ?></button>
+
+
+                                    </td>
+                                </tr><?php endif; ?>
+                            </if>
+
+                </table>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div  id="add_status" class="modal fade" role="dialog" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 60%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">退回步骤列表</h4>
+            </div>
+            <div style="width:100%;">
+
+                <div class="portlet-body form form-horizontal">
+                    <div class="col-md-12" style="text-align:center;">
+                    <?php if(is_array($action_now['return'])): foreach($action_now['return'] as $key=>$vo): ?><button type="button" class="btn red" onclick="add_status_check(<?php echo ($vo['status']); ?>,'<?php echo ($vo['name']); ?>')"><?php echo ($vo['name']); ?></button><br/><br/><?php endforeach; endif; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--        弹出层容器-->
+<div class="modal fade" tabindex="-1" role="dialog" id="common_modal">
+    <div class="modal-dialog modal-lg" role="document" style="width:1200px">
+        <div class="modal-content">
 
         </div>
     </div>
-    <!--主体-->
 </div>
-<!--底部文件-->
+<!--业务区结束-->
+
+<!--引入js1-->
+</div>
+</div>
+<!-- END EXAMPLE TABLE PORTLET-->
+</div>
+</div>
+<!--表格结束-->
+
+
+</div>
+</div>
+
+
+
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2017 &copy; 智慧助手系统
-        <a target="_blank" href="http://www.vhi99.com">邻钱科技</a>
-        <!--      &nbsp;|&nbsp;   <a href="http://www.metronic.com" target="_blank">Metronic</a>-->
+    <div class="page-footer-inner"> 2017 &copy; 汇得行智慧助手系统
+        <a target="_blank" href="http://www.vhi99.com">邻钱科技</a> &nbsp;|&nbsp;
+        <a href="http://www.metronic.com" target="_blank">Metronic</a>
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
     </div>
 </div>
+<!-- END FOOTER -->
+<!-- BEGIN QUICK NAV -->
+<!--<nav class="quick-nav">-->
+<!--<a class="quick-nav-trigger" href="#0">-->
+<!--<span aria-hidden="true"></span>-->
+<!--</a>-->
+<!--<ul>-->
+<!--<li>-->
+<!--<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank" class="active">-->
+<!--<span>Purchase Metronic</span>-->
+<!--<i class="icon-basket"></i>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/reviews/4021469?ref=keenthemes" target="_blank">-->
+<!--<span>Customer Reviews</span>-->
+<!--<i class="icon-users"></i>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="http://keenthemes.com/showcast/" target="_blank">-->
+<!--<span>Showcase</span>-->
+<!--<i class="icon-user"></i>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="http://keenthemes.com/metronic-theme/changelog/" target="_blank">-->
+<!--<span>Changelog</span>-->
+<!--<i class="icon-graph"></i>-->
+<!--</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--<span aria-hidden="true" class="quick-nav-bg"></span>-->
+<!--</nav>-->
 <div class="quick-nav-overlay"></div>
 <!-- END QUICK NAV -->
 <!--[if lt IE 9]>
@@ -2145,19 +2940,27 @@ table tr:nth-last-of-type(2) .dropdown-menu {
 <script src="/Car/Admin/Public/assets/global/plugins/excanvas.min.js"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/ie8.fix.min.js"></script>
 <![endif]-->
-
+<!-- BEGIN CORE PLUGINS -->
+<!--<script src="/Car/Admin/Public/assets/global/plugins/jquery.min.js" type="text/javascript"></script>-->
+<script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="/Car/Admin/Public/assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="/Car/Admin/Public/assets/global/scripts/app.min.js" type="text/javascript"></script>
-
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<!--<script src="/Car/Admin/Public/assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>-->
+<!-- END PAGE LEVEL SCRIPTS -->
+<!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="/Car/Admin/Public/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
@@ -2169,204 +2972,296 @@ table tr:nth-last-of-type(2) .dropdown-menu {
 <script src="/Car/Admin/Public/js/sweetalert.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/js/ui-sweetalert.min.js" type="text/javascript"></script>
 
-<script src="http://www.bootcss.com/p/underscore/underscore-min.js"></script>
-<script src="<?php echo ($static_public); ?>kindeditor/kindeditor.js"></script>
-<script src="/Car/Admin/Public/js/jquery.datetimepicker.full.js" type="text/javascript"></script>
-<script src="./static/js/vue.min.js"></script>
-<script src="./static/js/vue-route.js"></script>
-<script src="./static/js/vue-resource.min.js"></script>
-<script src="./static/js/vuex.js"></script>
-<script src="./static/js/ui-buttons.js"></script>
+<!--插入layer弹层js结束-->
 
-<script type="text/javascript">
-    //表格显示控制js代码区
-    var table = $('#sample_1');
 
-    // begin first table
-    var jstr = '<?php echo ($table_sort); ?>';
-    var table_sort;
-    if(jstr){
-        table_sort = JSON.parse(jstr);
-    }else{
-        table_sort = [1, "desc"];
-    }
-    table.dataTable({
 
-        // Internationalisation. For more info refer to http://datatables.net/manual/i18n
-        "language": {
-            "aria": {
-                "sortAscending": ": activate to sort column ascending",
-                "sortDescending": ": activate to sort column descending"
-            },
-            "emptyTable": "No data available in table",
-            "info": "当前显示 _START_ 到 _END_ ​条记录 共 _TOTAL_ ​条记录",
-            "infoEmpty": "No records found",
-            "infoFiltered": "(filtered1 from _MAX_ total records)",
-            "lengthMenu": "每页显示条数 _MENU_",
-            "search": "搜索:",
-            "zeroRecords": "No matching records found",
-            "paginate": {
-                "previous":"Prev",
-                "next": "Next",
-                "last": "Last",
-                "first": "First"
-            }
-        },
-        "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+<!--弹出层必要css,js-->
+<link rel="stylesheet" href="<?php echo ($static_public); ?>js/artdialog/skins/mydialog.css?4.1.7">
+<script src="<?php echo ($static_public); ?>js/artdialog/jquery.artDialog.js"></script>
+<script type="text/javascript" src="./tpl/System/Static/js/index1.js"></script>
+<script>
+    (function(E,C,D,A){var B,$,_,J="@ARTDIALOG.DATA",K="@ARTDIALOG.OPEN",H="@ARTDIALOG.OPENER",I=C.name=C.name||"@ARTDIALOG.WINNAME"+(new Date).getTime(),F=C.VBArray&&!C.XMLHttpRequest;E(function(){!C.jQuery&&document.compatMode==="BackCompat"&&alert("artDialog Error: document.compatMode === \"BackCompat\"")});var G=D.top=function(){var _=C,$=function(A){try{var _=C[A].document;_.getElementsByTagName}catch($){return!1}return C[A].artDialog&&_.getElementsByTagName("frameset").length===0};return $("top")?_=C.top:$("parent")&&(_=C.parent),_}();D.parent=G,B=G.artDialog,_=function(){return B.defaults.zIndex},D.data=function(B,A){var $=D.top,_=$[J]||{};$[J]=_;if(A)_[B]=A;else return _[B];return _},D.removeData=function(_){var $=D.top[J];$&&$[_]&&delete $[_]},D.through=$=function(){var $=B.apply(this,arguments);return G!==C&&(D.list[$.config.id]=$),$},G!==C&&E(C).bind("unload",function(){var A=D.list,_;for(var $ in A)A[$]&&(_=A[$].config,_&&(_.duration=0),A[$].close(),delete A[$])}),D.open=function(B,P,O){P=P||{};var N,L,M,X,W,V,U,T,S,R=D.top,Q="position:absolute;left:-9999em;top:-9999em;border:none 0;background:transparent",a="width:100%;height:100%;border:none 0";if(O===!1){var Z=(new Date).getTime(),Y=B.replace(/([?&])_=[^&]*/,"$1_="+Z);B=Y+(Y===B?(/\?/.test(B)?"&":"?")+"_="+Z:"")}var G=function(){var B,C,_=L.content.find(".aui_loading"),A=N.config;M.addClass("aui_state_full"),_&&_.hide();try{T=W.contentWindow,U=E(T.document),S=T.document.body}catch($){W.style.cssText=a,A.follow?N.follow(A.follow):N.position(A.left,A.top),P.init&&P.init.call(N,T,R),P.init=null;return}B=A.width==="auto"?U.width()+(F?0:parseInt(E(S).css("marginLeft"))):A.width,C=A.height==="auto"?U.height():A.height,setTimeout(function(){W.style.cssText=a},0),N.size(B,C),A.follow?N.follow(A.follow):N.position(A.left,A.top),P.init&&P.init.call(N,T,R),P.init=null},I={zIndex:_(),init:function(){N=this,L=N.DOM,X=L.main,M=L.content,W=N.iframe=R.document.createElement("iframe"),W.src=B,W.name="Open"+N.config.id,W.style.cssText=Q,W.setAttribute("frameborder",0,0),W.setAttribute("allowTransparency",!0),V=E(W),N.content().appendChild(W),T=W.contentWindow;try{T.name=W.name,D.data(W.name+K,N),D.data(W.name+H,C)}catch($){}V.bind("load",G)},close:function(){V.css("display","none").unbind("load",G);if(P.close&&P.close.call(this,W.contentWindow,R)===!1)return!1;M.removeClass("aui_state_full"),V[0].src="about:blank",V.remove();try{D.removeData(W.name+K),D.removeData(W.name+H)}catch($){}}};typeof P.ok=="function"&&(I.ok=function(){return P.ok.call(N,W.contentWindow,R)}),typeof P.cancel=="function"&&(I.cancel=function(){return P.cancel.call(N,W.contentWindow,R)}),delete P.content;for(var J in P)I[J]===A&&(I[J]=P[J]);return $(I)},D.open.api=D.data(I+K),D.opener=D.data(I+H)||C,D.open.origin=D.opener,D.close=function(){var $=D.data(I+K);return $&&$.close(),!1},G!=C&&E(document).bind("mousedown",function(){var $=D.open.api;$&&$.focus(!0)}),D.load=function(C,D,B){B=B||!1;var G=D||{},H={zIndex:_(),init:function(A){var _=this,$=_.config;E.ajax({url:C,success:function($){_.content($),G.init&&G.init.call(_,A)},cache:B})}};delete D.content;for(var F in G)H[F]===A&&(H[F]=G[F]);return $(H)},D.alert=function(A){return $({id:"Alert",zIndex:_(),icon:"warning",fixed:!0,lock:!0,content:A,ok:!0})},D.confirm=function(C,A,B){return $({id:"Confirm",zIndex:_(),icon:"question",fixed:!0,lock:!0,opacity:0.1,content:C,ok:function($){return A.call(this,$)},cancel:function($){return B&&B.call(this,$)}})},D.prompt=function(D,B,C){C=C||"";var A;return $({id:"Prompt",zIndex:_(),icon:"question",fixed:!0,lock:!0,opacity:0.1,content:["<div style=\"margin-bottom:5px;font-size:12px\">",D,"</div>","<div>","<input value=\"",C,"\" style=\"width:18em;padding:6px 4px\" />","</div>"].join(""),init:function(){A=this.DOM.content.find("input")[0],A.select(),A.focus()},ok:function($){return B&&B.call(this,A.value,$)},cancel:!0})},D.tips=function(B,A){return $({id:"Tips",zIndex:_(),title:!1,cancel:!1,fixed:!0,lock:!1}).content("<div style=\"padding: 0 1em;\">"+B+"</div>").time(A||1.5)},E(function(){var A=D.dragEvent;if(!A)return;var B=E(C),$=E(document),_=F?"absolute":"fixed",H=A.prototype,I=document.createElement("div"),G=I.style;G.cssText="display:none;position:"+_+";left:0;top:0;width:100%;height:100%;"+"cursor:move;filter:alpha(opacity=0);opacity:0;background:#FFF",document.body.appendChild(I),H._start=H.start,H._end=H.end,H.start=function(){var E=D.focus.DOM,C=E.main[0],A=E.content[0].getElementsByTagName("iframe")[0];H._start.apply(this,arguments),G.display="block",G.zIndex=D.defaults.zIndex+3,_==="absolute"&&(G.width=B.width()+"px",G.height=B.height()+"px",G.left=$.scrollLeft()+"px",G.top=$.scrollTop()+"px"),A&&C.offsetWidth*C.offsetHeight>307200&&(C.style.visibility="hidden")},H.end=function(){var $=D.focus;H._end.apply(this,arguments),G.display="none",$&&($.DOM.main[0].style.visibility="visible")}})})(window.jQuery||window.art,this,this.artDialog)
+</script>
 
-        "lengthMenu": [
-            [5, 15, 20, -1],
-            [5, 15, 20, "全部"] // change per page values here
-        ],
-        // set the initial value
-        "pageLength": parseInt("<?php echo ($table_init_length); ?>")||15,
-        "pagingType": "bootstrap_full_number",
-        "columnDefs": [
-            {  // set default column settings
-                'orderable': false,
-                'targets': [0]
-            },
-            {
-                "className": "dt-right",
-                //"targets": [2]
-            }
-        ],
-        "order": [
-            table_sort
-        ] // set first column as a default sort by asc
-    });
+<script src="./tpl/System/Static/js/common1.js"></script>
+<!--弹出层必要css,js-->
 
-    var tableWrapper = jQuery('#sample_1_wrapper');
 
-    table.find('.group-checkable').change(function () {
-        var set = jQuery(this).attr("data-set");
-        var checked = jQuery(this).is(":checked");
-        jQuery(set).each(function () {
-            if (checked) {
-                $(this).prop("checked", true);
-                $(this).parents('tr').addClass("active");
-            } else {
-                $(this).prop("checked", false);
-                $(this).parents('tr').removeClass("active");
-            }
+
+
+<script>
+    $(function(){
+        $("[name='change_state']").click(function(){
+
+            var pigcms_id = $(this).siblings(":first").text();
+            var is_use = $(this).text();
+            $.ajax({
+                url: "<?php echo U('Terrace/change_state');?>",
+                type: "GET",
+                data: {'pigcms_id': pigcms_id,'is_use':is_use},
+                success: function (res) {
+                    if(res == 1){
+                        alert("警告！将关闭所有平台！");
+                        location.reload()
+                    }else if(res ==2){
+                        location.reload()
+                    }else{
+                        alert('改变失败');
+                    }
+                }
+            });
         });
     });
 
-    table.on('change', 'tbody tr .checkboxes', function () {
-        $(this).parents('tr').toggleClass("active");
-    });
+</script>
+</script>
 
+<script src="/Car/Admin/Public/assets/pages/scripts/ui-blockui.min.js" type="text/javascript"></script>
+
+<script src="/Car/Admin/Public/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+<script src="/Car/Admin/Public/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+<script src="/Car/Admin/Public/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+<script src="/Car/Admin/Public/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+<script src="/Car/Admin/Public/assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+<script src="/Car/Admin/Public/assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+
+<script src="/Car/Admin/Public/assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+
+
+<!--引入js-->
+
+<!--自定义js代码区开始-->
+<script>
+    function add_status(status) {
+        $('#form').append('<input value="'+status+'" name="status" type="hidden" />');
+    }
+    function add_status_check(status,text) {
+        add_status(status);
+        swal({
+                title: "确认执行"+text+"吗？",
+                text: "请确认",
+                type: "warning",
+                html:true,
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确认",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    $("#form").submit();
+                }
+            });
+    }
+</script>
+<!--资产购置费方法-->
+<script>
+    var check='';
+    var check_end='';
+    check=<?php echo count($data_type[2]['data'][23])?:1;?>;
+    <?php end($data_type[2]['data'][23]); ?>
+    check_end=<?php echo key($data_type[2]['data'][23])?:1;?>;
+    /*删除一行*/
+    function deleteRow_check(r)
+    {
+        if(check==1){
+            swal({title:"当前项目仅剩一条，无法删除，不需要的话可以留空",showLoaderOnConfirm:true});
+            return false;
+        }
+        $(r).parents("tr").remove();
+        check--;
+        $('#check').attr('rowspan',check);
+    }
+    /*添加一行*/
+    function addrow_check() {
+        check++;
+        check_end++;
+        var html='<tr>';
+        html +='<td><input value="" name="data[2][23][children]['+check_end+'][type_name]" type="text" class="record_check_time"/></td>';
+        html +='<td><input value="" name="data[2][23][children]['+check_end+'][type_data][sum]" type="text" class="record_check_time"/></td>';
+        html +='<td><button type="button" class="btn btn-xs red" onclick="deleteRow_check(this)">删除此行 </button></td>';
+        html +='</tr>';
+        if(check==2){
+            $('#check').parent('tr').after(html);
+        }else{
+            $('#check').parent('tr').nextAll().eq((check-3)).after(html);
+        }
+        $('#check').attr('rowspan',check);
+
+    }
+</script>
+<!--人员支出页面方法-->
+<script>
+    var personnel=new Array();
+    var personnel_end=new Array();
+    <?php if(is_array($department_child_list)): foreach($department_child_list as $k=>$vo): ?>personnel[<?php echo ($k); ?>]=<?php echo count($data_type[1]['data'][$k])?:1;?>;
+    <?php end($data_type[1]['data'][$k]); ?>
+    personnel_end[<?php echo ($k); ?>]=<?php echo key($data_type[1]['data'][$k])?:1;?>;<?php endforeach; endif; ?>
+    /*删除一行*/
+    function deleteRow(r,personnel_type)
+    {
+        if(personnel[personnel_type]==1){
+            swal({title:"当前项目仅剩一条，无法删除，不需要的话可以留空",showLoaderOnConfirm:true});
+            return false;
+        }
+        $(r).parents("tr").remove();
+        personnel[personnel_type]--;
+        $('#personnel_'+personnel_type).attr('rowspan',personnel[personnel_type]);
+    }
+    /*添加一行*/
+    function addrow() {
+        if($("#add_personnel option:selected").val()){
+            var personnel_type=$("#add_personnel option:selected").val();
+            var personnel_val=$("#add_personnel option:selected").text();
+            personnel[personnel_type]++;
+            personnel_end[personnel_type]++;
+            var html='<tr>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][job]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][num]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][month]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][clothes_fee]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][month_0]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][month_1]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][month_2]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][month_3]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][month_4]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][month_5]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][month_6]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][month_7]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[1]['+personnel_type+']['+personnel_end[personnel_type]+'][year_end]" type="text" class="record_check_time"/></td>';
+            html +='<td><button type="button" class="btn btn-xs red" onclick="deleteRow(this,'+personnel_type+')">删除此行 </button></td>';
+            html +='</tr>';
+            if(personnel[personnel_type]==2){
+                $('#personnel_'+personnel_type).parent('tr').after(html);
+            }else{
+                $('#personnel_'+personnel_type).parent('tr').nextAll().eq((personnel[personnel_type]-3)).after(html);
+            }
+            $('#personnel_'+personnel_type).attr('rowspan',personnel[personnel_type]);
+
+        }else{
+            return false;
+        }
+    }
 </script>
 <script>
-    /**
-     * vue全局注册函数
-     */
-    //get
-    Vue.prototype._get =  function(url,params,callback){
-        var opt = {
-            'params':params
+    var personnel_overtime=new Array();
+    var personnel_end_overtime=new Array();
+    <?php if(is_array($department_child_list)): foreach($department_child_list as $k=>$vo): ?>personnel_overtime[<?php echo ($k); ?>]=<?php echo count($overtime['data'][$k])?:1;?>;
+    <?php end($overtime['data'][$k]); ?>
+    personnel_end_overtime[<?php echo ($k); ?>]=<?php echo key($overtime['data'][$k])?:1;?>;<?php endforeach; endif; ?>
+    /*删除一行*/
+    function deleteRow_overtime(r,personnel_type)
+    {
+        if(personnel_overtime[personnel_type]==1){
+            swal({title:"当前项目仅剩一条，无法删除，不需要的话可以留空",showLoaderOnConfirm:true});
+            return false;
         }
-        this.$http.get(url,opt).then(function(response){
-            // 响应成功回调
-            if(response.body.err==0){
-                callback(response.body);
+        $(r).parents("tr").remove();
+        personnel_overtime[personnel_type]--;
+        $('#personnel_overtime_'+personnel_type).attr('rowspan',personnel_overtime[personnel_type]);
+    }
+    /*添加一行*/
+    function addrow_overtime() {
+        if($("#add_personnel_overtime option:selected").val()){
+            var personnel_type=$("#add_personnel_overtime option:selected").val();
+            var personnel_val=$("#add_personnel_overtime option:selected").text();
+            personnel_overtime[personnel_type]++;
+            personnel_end_overtime[personnel_type]++;
+            var html='<tr>';
+            html +='<td><input value="" name="data[overtime]['+personnel_type+']['+personnel_end_overtime[personnel_type]+'][job]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[overtime]['+personnel_type+']['+personnel_end_overtime[personnel_type]+'][num]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[overtime]['+personnel_type+']['+personnel_end_overtime[personnel_type]+'][regime]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[overtime]['+personnel_type+']['+personnel_end_overtime[personnel_type]+'][remark]" type="text" class="record_check_time"/></td>';
+            html +='<td><button type="button" class="btn btn-xs red" onclick="deleteRow_overtime(this,'+personnel_type+')">删除此行 </button></td>';
+            html +='</tr>';
+            console.log(personnel_overtime[personnel_type]);
+            if(personnel_overtime[personnel_type]==2){
+                $('#personnel_overtime_'+personnel_type).parent('tr').after(html);
             }else{
-                console.log(response.body);
-                alert("发生错误");
+                $('#personnel_overtime_'+personnel_type).parent('tr').nextAll().eq((personnel_overtime[personnel_type]-3)).after(html);
             }
-        }, function(response){
-            alert(response.status+" 发生错误");
-        });
+            $('#personnel_overtime_'+personnel_type).attr('rowspan',personnel_overtime[personnel_type]);
 
-    };
-    //post
-    Vue.prototype._post = function(url,params,callback){
-            this.$http.post(url,params).then(function(response){
-                // 响应成功回调
-                if(response.body.err==0){
-                    callback(response.body);
-                }else{
-                    alert("发生错误:"+response.body.msg);
-                }
-            }, function(response){
-                alert(response.status+" 发生错误");
-            });
-
-        };
-    //判断是否是数组
-    function isArray(o){
-        return Object.prototype.toString.call(o)=='[object Array]';
+        }else{
+            return false;
+        }
     }
-    //补0函数
-    function padNumber(num, fill) {
-        //改自：http://blog.csdn.net/aimingoo/article/details/4492592
-        var len = ('' + num).length;
-        return (Array(
-            fill > len ? fill - len + 1 || 0 : 0
-        ).join(0) + num);
-    }
-    //改变群发控制状态
-    function change_wxmsg(village_id){
-        $.ajax({
-            url:"<?php echo U('ajax_change_wxmsg');?>",
-            type:'post',
-            data:{'village_id':village_id},
-            dataType:'json',
-            async:false,
-            success:function(res){
-
-            }
-        });
-    }
-        $("[name='my-checkbox']").bootstrapSwitch({
-            onText:"已启动",
-            offText:"已关闭",
-            onColor:"success",
-            offColor:"danger",
-            size:"normal",
-            handleWidth:'100px',
-            labelWidth:'55px',
-            state:Boolean(<?php echo ($is_wxmsg); ?>),
-            onSwitchChange:function(event,state){
-                change_wxmsg('<?php echo ($village_id); ?>');
-            }
-        });
 </script>
-<!--自定义js代码区开始-->
-
-<!--/底部文件-->
-
-
-
-
-
-   <script>
-       $.datetimepicker.setLocale('ch');
-       /*$('#datetimepicker').datetimepicker({
-           lang:"zh",           //语言选择中文
-           format:"Y",      //格式化日期
-            timepicker:false,    //关闭时间选项
-           datepicker: false,//关闭日期选项
-           yearStart:2000,     //设置最小年份
-           yearEnd:2050,        //设置最大年份
-           todayButton:false    //关闭选择今天按钮
-       });*/
-
-       $('#company_id').val('<?php echo ($company_id); ?>');
-       $('#project_id').val('<?php echo ($project_id_change); ?>');
-       $('#datetimepicker').val('<?php echo ($year); ?>');
-       function change_url(type,val) {
-           //console.log(val);
-           if(type=='project_id_change'&&val==''){
-               type='company_id';
-               val=<?php echo ($company_id); ?>;
-           }
-           window.location.href='<?php echo U('Budget/check_excel_print',array('type'=>$_GET['type']));?>&'+type+'='+val;
-       }
-   </script>
+<!--物业费收入计算-->
+<script>
+    var property=new Array();
+    var property_end=new Array();
+    <?php if(is_array($property_list)): foreach($property_list as $k=>$vo): ?>property[<?php echo ($k); ?>]=<?php echo count($property['data'][$k])?:1;?>;
+    <?php end($vo); ?>
+    property_end[<?php echo ($k); ?>]=<?php echo key($property['data'][$k])?:1;?>;<?php endforeach; endif; ?>
+    /*删除一行*/
+    function deleteRow_property(r,personnel_type)
+    {
+        if(property[personnel_type]==1){
+            swal({title:"当前项目仅剩一条，无法删除，不需要的话可以留空",showLoaderOnConfirm:true});
+            return false;
+        }
+        $(r).parents("tr").remove();
+        property[personnel_type]--;
+        $('#property_'+personnel_type).attr('rowspan',property[personnel_type]);
+        $('#property_last_'+personnel_type).attr('rowspan',property[personnel_type]);
+        $('#property_now_'+personnel_type).attr('rowspan',property[personnel_type]);
 
 
+    }
+    /*添加一行*/
+    function addrow_property() {
+        if($("#add_property option:selected").val()){
+            var personnel_type=$("#add_property option:selected").val();
+            var personnel_val=$("#add_property option:selected").text();
+            property[personnel_type]++;
+            property_end[personnel_type]++;
+            var html='<tr>';
+            html +='<td><input value="" name="data[property]['+personnel_type+']['+property_end[personnel_type]+'][name]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[property]['+personnel_type+']['+property_end[personnel_type]+'][year_last_0]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[property]['+personnel_type+']['+property_end[personnel_type]+'][year_now_0]" type="text" class="record_check_time"/></td>';
+            html +='<td><input value="" name="data[property]['+personnel_type+']['+property_end[personnel_type]+'][year_now_1]" type="text" class="record_check_time"/></td>';
+            html +='<td></td>';
+            html +='<td><button type="button" class="btn btn-xs red" onclick="deleteRow_property(this,'+personnel_type+')">删除此行 </button></td>';
+            html +='</tr>';
+            if(property[personnel_type]==2){
+                $('#property_'+personnel_type).parent('tr').after(html);
+            }else{
+                $('#property_'+personnel_type).parent('tr').nextAll().eq((property[personnel_type]-3)).after(html);
+            }
+            $('#property_'+personnel_type).attr('rowspan',property[personnel_type]);
+            $('#property_last_'+personnel_type).attr('rowspan',property[personnel_type]);
+            $('#property_now_'+personnel_type).attr('rowspan',property[personnel_type]);
+
+        }else{
+            return false;
+        }
+    }
+    /*应用至预算汇总方法*/
+    function apply_predict_one(id) {
+        swal({
+            title: "是否应用至预算汇总表?",
+            text: "请确认",
+            type: "warning",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "确认",
+            cancelButtonText: "取消",
+            closeOnConfirm: false,
+            showCancelButton: true,
+        }, function (iscom){
+            if(iscom){
+                swal({title:"正在应用至预算汇总表中，请耐心等待。",showLoaderOnConfirm:true});
+                window.location.href='<?php echo U("Budget/apply_predict_one");?>&id='+id;
+            }else{
+                swal.close();
+            }
+            /*$.post("<?php echo U('Contract/store_ajax_del_pic');?>",{path:path});
+             $(obj).closest('.upload_pic_li').remove();
+             swal.close();*/
+        })
+    }
+</script>
 <!--自定义js代码区结束-->
-</body>
-
-</html>

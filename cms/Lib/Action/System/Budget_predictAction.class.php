@@ -95,7 +95,6 @@ class Budget_predictAction extends BaseAction{
     public function predict_in(){
         //预算领导及集团领导特殊处理
         if(($this->is_finance!=0&&$this->is_finance!=4)||in_array(101,$this->role_id)){
-            echo 1;die;
             $this->check_predict_list();
         }else{
             $this->village_predict_list();

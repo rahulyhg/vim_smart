@@ -121,11 +121,9 @@
                             </a>
                             </li>
                         </if>
-                        <if condition="$is_finance eq 4 and $vo['status'] eq 6">
                             <li onclick="apply_predict_one({pigcms{$vo['predict_id']})">
                                     <i class="icon-tag"></i> 应用至预算汇总报表
                             </li>
-                        </if>
 
                     </ul>
                 </div>
@@ -345,7 +343,7 @@
             }, function (iscom){
                 if(iscom){
                     swal({title:"正在应用至预算汇总表中，请耐心等待。",showLoaderOnConfirm:true});
-                    window.location.href='{pigcms{:U("Budget/apply_predict_one")}&id='+id;
+                    window.location.href='{pigcms{:U("Budget_predict/apply_predict_one")}&id='+id;
                 }else{
                     swal.close();
                 }

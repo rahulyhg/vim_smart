@@ -1947,25 +1947,24 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                                         
     <div class="btn-group">
         <?php if(!$isLeader): ?><a href="<?php echo U('Budget/check_money_list_change');?>">
-            <button  class="btn sbold green" >预算金额更改
+                <button  class="btn sbold green" >预算金额更改
                 </button>
-        </a>
-         <?php else: ?>
+            </a>
+            <?php else: ?>
             <a href="<?php echo U('Budget/check_record_list');?>">
                 <button  class="btn sbold green" >返回
                 </button>
             </a><?php endif; ?>
-        </a>
     </div>
     <div class="btn-group">
-        <a href="<?php echo U('Budget/ajax_excel_print',array('project_id_change'=>$project_id_change,'year'=>$year));?>">
+        <a href="<?php echo U('Budget/ajax_excel_print',array('company_id'=>$company_id,'year'=>$year));?>">
             <button id="sample_editable_1_new" class="btn sbold red">导出excel表格
                 <i class="fa fa-plus"></i>
             </button>
         </a>
     </div>
 
-    <!--<div class="btn-group1">
+    <!--<div class="btn-group">
         <a href="javascript:">
             <button  class="btn sbold green" onclick="sub()">批量打印选中缴费
             </button>
@@ -1984,7 +1983,8 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                 <span>
                     <div class="btn-group">
                         <select id="datetimepicker"  class="form-control" placeholder="" name="startDate" onchange="change_url('year',this.options[this.options.selectedIndex].value)">
-                            <?php $__FOR_START_28081__=2017;$__FOR_END_28081__=date('Y')+2;for($i=$__FOR_START_28081__;$i < $__FOR_END_28081__;$i+=1){ ?><option value="<?php echo ($i); ?>"><?php echo ($i); ?></option><?php } ?>
+                            <option value="">总表</option>
+                            <?php $__FOR_START_4936__=2017;$__FOR_END_4936__=date('Y')+2;for($i=$__FOR_START_4936__;$i < $__FOR_END_4936__;$i+=1){ ?><option value="<?php echo ($i); ?>"><?php echo ($i); ?></option><?php } ?>
                         </select>
                     </div>
                     <div class="btn-group">
@@ -1994,7 +1994,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                     </div>
                     <div class="btn-group">
                         <select name="project_id" id="project_id"  class="form-control search" onchange="change_url('project_id_change',this.options[this.options.selectedIndex].value)">
-                                <option value="">总表</option>
+                                <option value="" selected="selected">总表</option>
                                 <?php if(is_array($project_list)): foreach($project_list as $key=>$vo1): ?><option value="<?php echo ($key); ?>"><?php echo ($vo1); ?></option><?php endforeach; endif; ?>
                         </select>
                     </div>
@@ -2017,81 +2017,85 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                             </div>
                             
     <div class="tabbable-custom nav-justified" style="width:100%;overflow-x: scroll;">
-    <ul class="nav nav-tabs nav-justified">
-        <li class="active">
-        <a href="<?php echo U('Budget/check_excel_print',array('type'=>'sum'));?>" onclick="loading();"> 执行主表 </a>
-        </li>
-        <?php if(is_array($type_list)): $i = 0; $__LIST__ = $type_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
-            <a href="<?php echo U('Budget/check_excel_print',array('type'=>$vo['type_id']));?>" onclick="loading();"> <?php echo ($vo['type_name']); ?> </a>
-            </li><?php endforeach; endif; else: echo "" ;endif; ?>
-    </ul>
-    <table class="table table-striped table-bordered table-hover" id="sample_1" >
-        <thead>
-        <tr>
-           <td colspan="7" align="center" style="font-size: 25px"><?php echo ($year); ?>年<?php echo ($title1); ?>预算执行汇总表</td>
-        </tr>
-        <tr>
-            <th width="5%">序号</th>
-            <th width="10%" colspan="2">预算项目</th>
-            <th width="10%">预算金额</th>
-            <th width="10%">执行金额</th>
-            <th width="10%">两者差异</th>
-           <th width="10%">编制说明</th>
-       </tr>
-       </thead>
-       <tbody>
-       <tr>
-           <td>一</td>
-           <td colspan="2">收入合计</td>
-          <td><?php echo number_format($data['input']['sum_money'],2);?></td>
-           <td><?php echo number_format($data['input']['sum_sum'],2);?></td>
-           <td><?php echo number_format($data['input']['difference'],2);?></td>
-           <td>含税金额</td>
-       </tr>
-       <?php if(is_array($data['input']['1']['children'])): $i = 0; $__LIST__ = $data['input']['1']['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-           <td><?php echo ($i); ?></td>
-           <td colspan="2"><?php echo ($vo['type_name']); ?></td>
-           <td><div class="tagDiv"><?php echo number_format($vo['sum_money'],2);?></div></td>
-           <td><div class="tagDiv"><?php echo number_format($vo['sum_sum'],2);?></div></td>
-           <td><div class="tagDiv"><?php echo number_format($vo['difference'],2);?></div></td>
-           <td><div class="tagDiv"><?php echo ($vo["type_remark"]); ?></div></td>
-           </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-       <tr>
-           <td>二</td>
-           <td colspan="2">支出合计</td>
-           <td><?php echo number_format($data['output']['sum_money'],2);?></td>
-           <td><?php echo number_format($data['output']['sum_sum'],2);?></td>
-           <td><?php echo number_format($data['output']['difference'],2);?></td>
-           <td>含税金额</td>
-       </tr>
-       <?php if(is_array($data['output'])): foreach($data['output'] as $ke=>$vo): if(is_array($vo['children'])): $k = 0; $__LIST__ = $vo['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($k % 2 );++$k;?><tr>
-               <?php if($k == 1): ?><td rowspan="<?php echo count($vo['children'])+1;?>" style="text-align:center;vertical-align:middle;"><?php echo ($ke); ?></td>
-                   <td rowspan="<?php echo count($vo['children'])+1;?>" style="text-align:center;vertical-align:middle;"><?php echo ($vo['type_name']); ?></td>
-                   <?php else: endif; ?>
-                   <td><div class="tagDiv"><?php echo ($vo1['type_name']); ?></div></td>
-                   <td><div class="tagDiv"><?php echo number_format($vo1['sum_money'],2);?></div></td>
-                   <td><div class="tagDiv"><?php echo number_format($vo1['sum_sum'],2);?></div></td>
-                   <td><div class="tagDiv"><?php echo number_format($vo1['difference'],2);?></div></td>
-                   <td><div class="tagDiv"><?php echo ($vo1["type_remark"]); ?></div></td>
-           </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-           <?php if(is_array($vo)): ?><tr>
-                   <td>小计</td>
-                   <td><div class="tagDiv" id="<?php echo ($key); ?>"><?php echo number_format($vo['sum_money'],2);?></div></td>
-                   <td><div class="tagDiv"><?php echo number_format($vo['sum_sum'],2);?></div></td>
-                   <td><div class="tagDiv"><?php echo number_format($vo['difference'],2);?></div></td>
-                   <td></td>
-               </tr><?php endif; endforeach; endif; ?>
-       <tr>
-           <td>三</td>
-           <td colspan="2">净收支</td>
-           <td><?php echo number_format($data['sum']['sum_money'],2);?></td>
-           <td><?php echo number_format($data['sum']['sum_sum'],2);?></td>
-           <td><?php echo number_format($data['sum']['difference'],2);?></td>
-           <td>含税金额</td>
-       </tr>
-       </tbody>
-   </table>
-   </div>
+        <!--<ul class="nav nav-tabs nav-justified">
+            <li class="active">
+                <a href="<?php echo U('Budget/check_excel_print',array('type'=>'sum'));?>" onclick="loading();"> 执行主表 </a>
+            </li>
+            <?php if(is_array($type_list)): $i = 0; $__LIST__ = $type_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                    <a href="<?php echo U('Budget/check_excel_print',array('type'=>$vo['type_id']));?>" onclick="loading();"> <?php echo ($vo['type_name']); ?> </a>
+                </li><?php endforeach; endif; else: echo "" ;endif; ?>
+        </ul>-->
+        <table class="table table-striped table-bordered table-hover" style="overflow-x: auto" id="sample_1" >
+            <thead>
+            <tr>
+                <td colspan="<?php echo count($data)*2+5;?>" align="center" style="font-size: 25px"><?php echo ($year); ?>年<?php echo ($title); ?>预算执行汇总表</td>
+            </tr>
+            <tr>
+                <th width="5%" rowspan="2">序号</th>
+                <th width="20%" colspan="2" rowspan="2">预算项目</th>
+                <th width="10%" colspan="2" >合计</th>
+                <?php if(is_array($data)): foreach($data as $key=>$vo): ?><th width="10%" colspan="2"><?php echo ($vo['village_name']); ?></th><?php endforeach; endif; ?>
+            </tr>
+            <tr>
+                <th width="5%">预算金额</th>
+                <th width="5%">执行金额</th>
+                <?php if(is_array($data)): foreach($data as $key=>$vo): ?><th width="5%">预算金额</th>
+                    <th width="5%">执行金额</th><?php endforeach; endif; ?>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>一</td>
+                <td colspan="2">收入合计</td>
+                <td><?php echo number_format($sum['input']['sum_money'],2);?></td>
+                <td><?php echo number_format($sum['input']['sum_sum'],2);?></td>
+                <?php if(is_array($data)): foreach($data as $key=>$vo1): if(is_array($vo1)): ?><td><?php echo number_format($vo1['input']['sum_money'],2);?></td>
+                    <td><?php echo number_format($vo1['input']['sum_sum'],2);?></td><?php endif; endforeach; endif; ?>
+            </tr>
+            <?php if(is_array($sum['input']['1']['children'])): $i = 0; $__LIST__ = $sum['input']['1']['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                    <td><?php echo ($i); ?></td>
+                    <td colspan="2"><?php echo ($vo['type_name']); ?></td>
+                    <td><div class="tagDiv"><?php echo number_format($vo['sum_money'],2);?></div></td>
+                    <td><div class="tagDiv"><?php echo number_format($vo['sum_sum'],2);?></div></td>
+                    <?php if(is_array($data)): foreach($data as $key1=>$vo1): ?><td><div class="tagDiv"><?php echo number_format($vo1['input']['1']['children'][$key]['sum_money'],2);?></div></td>
+                                <td><div class="tagDiv"><?php echo number_format($vo1['input']['1']['children'][$key]['sum_sum'],2);?></div></td><?php endforeach; endif; ?>
+                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+            <tr>
+                <td>二</td>
+                <td colspan="2">支出合计</td>
+                <td><?php echo number_format($sum['output']['sum_money'],2);?></td>
+                <td><?php echo number_format($sum['output']['sum_sum'],2);?></td>
+                <?php if(is_array($data)): foreach($data as $key=>$vo): ?><td><?php echo number_format($vo['output']['sum_money'],2);?></td>
+                    <td><?php echo number_format($vo['output']['sum_sum'],2);?></td><?php endforeach; endif; ?>
+            </tr>
+            <?php if(is_array($sum['output'])): foreach($sum['output'] as $ke=>$vo): if(is_array($vo['children'])): $k = 0; $__LIST__ = $vo['children'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($k % 2 );++$k;?><tr>
+                        <?php if($k == 1): ?><td rowspan="<?php echo count($vo['children'])+1;?>" style="text-align:center;vertical-align:middle;"><?php echo ($ke); ?></td>
+                            <td rowspan="<?php echo count($vo['children'])+1;?>" style="text-align:center;vertical-align:middle;"><?php echo ($vo['type_name']); ?></td>
+                            <?php else: endif; ?>
+                        <td><div class="tagDiv"><?php echo ($vo1['type_name']); ?></div></td>
+                        <td><div class="tagDiv"><?php echo number_format($vo1['sum_money'],2);?></div></td>
+                        <td><div class="tagDiv"><?php echo number_format($vo1['sum_sum'],2);?></div></td>
+                        <?php if(is_array($data)): foreach($data as $key1=>$value): ?><td><div class="tagDiv"><?php echo number_format($value['output'][$ke]['children'][$key]['sum_money'],2);?></div></td>
+                            <td><div class="tagDiv"><?php echo number_format($value['output'][$ke]['children'][$key]['sum_sum'],2);?></div></td><?php endforeach; endif; ?>
+                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                <?php if(is_array($vo)): ?><tr>
+                        <td>小计</td>
+                        <td><div class="tagDiv"><?php echo number_format($vo['sum_money'],2);?></div></td>
+                        <td><div class="tagDiv"><?php echo number_format($vo['sum_sum'],2);?></div></td>
+                        <?php if(is_array($data)): foreach($data as $key=>$value): ?><td><div class="tagDiv"><?php echo number_format($value['output'][$ke]['sum_money'],2);?></div></td>
+                            <td><div class="tagDiv"><?php echo number_format($value['output'][$ke]['sum_sum'],2);?></div></td><?php endforeach; endif; ?>
+                    </tr><?php endif; endforeach; endif; ?>
+            <tr>
+                <td>三</td>
+                <td colspan="2">净收支</td>
+                <td><?php echo number_format($sum['sum']['sum_money'],2);?></td>
+                <td><?php echo number_format($sum['sum']['sum_sum'],2);?></td>
+                <?php if(is_array($data)): foreach($data as $key=>$vo): ?><td><?php echo number_format($vo['sum']['sum_money'],2);?></td>
+                    <td><?php echo number_format($vo['sum']['sum_sum'],2);?></td><?php endforeach; endif; ?>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
                             
                                 <!--        弹出层容器-->
@@ -2340,30 +2344,26 @@ table tr:nth-last-of-type(2) .dropdown-menu {
 
 
 
-   <script>
-       $.datetimepicker.setLocale('ch');
-       /*$('#datetimepicker').datetimepicker({
-           lang:"zh",           //语言选择中文
-           format:"Y",      //格式化日期
-            timepicker:false,    //关闭时间选项
-           datepicker: false,//关闭日期选项
-           yearStart:2000,     //设置最小年份
-           yearEnd:2050,        //设置最大年份
-           todayButton:false    //关闭选择今天按钮
-       });*/
+    <script>
+        $.datetimepicker.setLocale('ch');
+        /*$('#datetimepicker').datetimepicker({
+         lang:"zh",           //语言选择中文
+         format:"Y",      //格式化日期
+         timepicker:false,    //关闭时间选项
+         datepicker: false,//关闭日期选项
+         yearStart:2000,     //设置最小年份
+         yearEnd:2050,        //设置最大年份
+         todayButton:false    //关闭选择今天按钮
+         });*/
 
-       $('#company_id').val('<?php echo ($company_id); ?>');
-       $('#project_id').val('<?php echo ($project_id_change); ?>');
-       $('#datetimepicker').val('<?php echo ($year); ?>');
-       function change_url(type,val) {
-           //console.log(val);
-           if(type=='project_id_change'&&val==''){
-               type='company_id';
-               val=<?php echo ($company_id); ?>;
-           }
-           window.location.href='<?php echo U('Budget/check_excel_print',array('type'=>$_GET['type']));?>&'+type+'='+val;
-       }
-   </script>
+        $('#company_id').val('<?php echo ($company_id); ?>');
+        /*$('#project_id').val('<?php echo ($project_id_change); ?>');*/
+        $('#datetimepicker').val('<?php echo ($year); ?>');
+        function change_url(type,val) {
+            console.log(val);
+            window.location.href='<?php echo U('Budget/check_excel_print',array('type'=>$_GET['type']));?>&'+type+'='+val;
+        }
+    </script>
 
 
 <!--自定义js代码区结束-->
