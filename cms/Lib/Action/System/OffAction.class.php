@@ -20,7 +20,7 @@ class OffAction extends BaseAction{
     }
 
     /**
-     *物品管理
+     *物品管理123
      **/
     public function off_list_news(){
 
