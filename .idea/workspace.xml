@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afbcdb1a-3641-4aa8-86bf-75ca59626aa5" name="Default" comment="ss">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/upload/example/广发项目宿舍动态管理表.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/phpexcel/phpexcel" afterPath="$PROJECT_DIR$/vendor/phpexcel/phpexcel" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/Lib/Action/System/BudgetAction.class.php" afterPath="$PROJECT_DIR$/cms/Lib/Action/System/BudgetAction.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/Lib/Action/System/OffAction.class.php" afterPath="$PROJECT_DIR$/cms/Lib/Action/System/OffAction.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/Lib/Model/OffModel.class.php" afterPath="$PROJECT_DIR$/cms/Lib/Model/OffModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/runtime/Cache/System/0705a6203bb26518a9cf02456f326d30.php" afterPath="$PROJECT_DIR$/runtime/Cache/System/0705a6203bb26518a9cf02456f326d30.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/runtime/Cache/System/84e4c1079a6f59d4520e8e8035372eda.php" afterPath="$PROJECT_DIR$/runtime/Cache/System/84e4c1079a6f59d4520e8e8035372eda.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/runtime/Cache/System/9c63899ef6ac6522c6f4b0f23de212af.php" afterPath="$PROJECT_DIR$/runtime/Cache/System/9c63899ef6ac6522c6f4b0f23de212af.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/runtime/Cache/System/f6fe91adec6549a7b85304410582f5b9.php" afterPath="$PROJECT_DIR$/runtime/Cache/System/f6fe91adec6549a7b85304410582f5b9.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/System/Off/staff_house_add.php" afterPath="$PROJECT_DIR$/tpl/System/Off/staff_house_add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/System/Off/staff_import_step.php" afterPath="$PROJECT_DIR$/tpl/System/Off/staff_import_step.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/System/Off/staff_list.php" afterPath="$PROJECT_DIR$/tpl/System/Off/staff_list.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/System/Off/staff_news_list.php" afterPath="$PROJECT_DIR$/tpl/System/Off/staff_news_list.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,10 +17,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OffAction.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OffAction.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cms/Lib/Action/System/OffAction.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="601">
+            <state relative-caret-position="9909">
               <caret line="2987" column="27" lean-forward="false" selection-start-line="2987" selection-start-column="27" selection-end-line="2987" selection-end-column="27" />
               <folding>
                 <marker date="1553161134873" expanded="true" signature="34744:34842" ph="..." />
@@ -68,8 +58,8 @@
       <file leaf-file-name="OffModel.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cms/Lib/Model/OffModel.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="746">
-              <caret line="797" column="18" lean-forward="true" selection-start-line="797" selection-start-column="18" selection-end-line="797" selection-end-column="18" />
+            <state relative-caret-position="21519">
+              <caret line="797" column="18" lean-forward="false" selection-start-line="797" selection-start-column="18" selection-end-line="797" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -78,7 +68,7 @@
       <file leaf-file-name="staff_house_add.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_house_add.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
+            <state relative-caret-position="3456">
               <caret line="128" column="132" lean-forward="false" selection-start-line="128" selection-start-column="132" selection-end-line="128" selection-end-column="132" />
               <folding>
                 <marker date="1553154838182" expanded="true" signature="13218:13244" ph="..." />
@@ -91,8 +81,8 @@
       <file leaf-file-name="staff_news_list.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_news_list.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="201" column="68" lean-forward="true" selection-start-line="201" selection-start-column="68" selection-end-line="201" selection-end-column="68" />
+            <state relative-caret-position="5427">
+              <caret line="201" column="68" lean-forward="false" selection-start-line="201" selection-start-column="68" selection-end-line="201" selection-end-column="68" />
               <folding>
                 <marker date="1553157716250" expanded="true" signature="21693:21725" ph="..." />
                 <marker date="1553157716250" expanded="true" signature="22081:22096" ph="..." />
@@ -104,12 +94,38 @@
       <file leaf-file-name="staff_record.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_record.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="622">
-              <caret line="91" column="24" lean-forward="false" selection-start-line="91" selection-start-column="24" selection-end-line="144" selection-end-column="32" />
+            <state relative-caret-position="581">
+              <caret line="299" column="28" lean-forward="false" selection-start-line="299" selection-start-column="28" selection-end-line="299" selection-end-column="28" />
               <folding>
-                <element signature="n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <marker date="1553128036803" expanded="true" signature="15374:15406" ph="..." />
-                <marker date="1553128036803" expanded="true" signature="15762:15777" ph="..." />
+                <marker date="1553215983641" expanded="true" signature="15374:15406" ph="..." />
+                <marker date="1553215983641" expanded="true" signature="15762:15777" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="staff_list.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_list.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="628">
+              <caret line="124" column="36" lean-forward="true" selection-start-line="124" selection-start-column="36" selection-end-line="124" selection-end-column="36" />
+              <folding>
+                <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <marker date="1553218268091" expanded="true" signature="17542:17574" ph="..." />
+                <marker date="1553218268091" expanded="true" signature="17930:17945" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery.dataTables.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cashier/pigcms_static/plugins/js/dataTables/jquery.dataTables.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="704">
+              <caret line="14669" column="11" lean-forward="true" selection-start-line="14669" selection-start-column="11" selection-end-line="14669" selection-end-column="11" />
+              <folding>
+                <marker date="1552279624780" expanded="true" signature="111898:111923" ph="..." />
+                <marker date="1552279624780" expanded="true" signature="412948:412956" ph="…" />
               </folding>
             </state>
           </provider>
@@ -118,32 +134,9 @@
       <file leaf-file-name="新建文本文档 (9).php" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Desktop/新建文本文档 (9).php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
+            <state relative-caret-position="297">
               <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="70" selection-end-column="8" />
-              <folding>
-                <element signature="n#table#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ul#0;n#div#0;n#td#4;n#tr#0;n#foreach#0;n#table#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="staff_list.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_list.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-807">
-              <caret line="121" column="36" lean-forward="true" selection-start-line="121" selection-start-column="36" selection-end-line="121" selection-end-column="36" />
-              <folding>
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ul#0;n#div#0;n#td#4;n#tr#0;n#foreach#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <marker date="1553161275615" expanded="true" signature="17456:17488" ph="..." />
-                <marker date="1553161275615" expanded="true" signature="17844:17859" ph="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -151,8 +144,8 @@
       <file leaf-file-name="OffAction.class(1).php" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Desktop/OffAction.class(1).php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="3493" column="29" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="3505" selection-end-column="1" />
+            <state relative-caret-position="94149">
+              <caret line="3493" column="29" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3505" selection-end-column="1" />
               <folding>
                 <marker date="1553127872581" expanded="true" signature="34844:34942" ph="..." />
                 <marker date="1553127872581" expanded="true" signature="34900:34937" ph="..." />
@@ -189,22 +182,9 @@
       <file leaf-file-name="BudgetAction.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cms/Lib/Action/System/BudgetAction.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="92" column="41" lean-forward="true" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+            <state relative-caret-position="2484">
+              <caret line="92" column="41" lean-forward="false" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="staff_edit.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_edit.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="296" column="17" lean-forward="false" selection-start-line="296" selection-start-column="17" selection-end-line="296" selection-end-column="17" />
-              <folding>
-                <marker date="1553129045684" expanded="true" signature="13182:13208" ph="..." />
-                <marker date="1553129045684" expanded="true" signature="14135:14161" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -238,11 +218,11 @@
       <find>staff_house_add</find>
       <find>批量导入</find>
       <find>staff_import_step</find>
-      <find>sample_1</find>
-      <find>datatables</find>
       <find>staff_news</find>
       <find>staff_list</find>
       <find>bootstrap</find>
+      <find>datatables</find>
+      <find>sample_1</find>
     </findStrings>
     <replaceStrings>
       <replace>/Home/Public/</replace>
@@ -298,7 +278,6 @@
         <option value="D:/webroot/vhi_smart/trunk/cms/Lib/Model/GroupMsgModel.class.php" />
         <option value="D:/webroot/vhi_smart/trunk/cms/Lib/Action/System/GroupMsgAction.class.php" />
         <option value="$PROJECT_DIR$/tpl/System/Off/staff_add.php" />
-        <option value="$PROJECT_DIR$/tpl/System/Off/staff_record.php" />
         <option value="$PROJECT_DIR$/tpl/System/Off/staff_house_village_edit.php" />
         <option value="$PROJECT_DIR$/tpl/System/Off/staff_edit.php" />
         <option value="$PROJECT_DIR$/cms/Lib/Action/System/BudgetAction.class.php" />
@@ -309,6 +288,7 @@
         <option value="$PROJECT_DIR$/tpl/System/Off/staff_news_list.php" />
         <option value="$USER_HOME$/Desktop/新建文本文档 (9).php" />
         <option value="$PROJECT_DIR$/cms/Lib/Action/System/OffAction.class.php" />
+        <option value="$PROJECT_DIR$/tpl/System/Off/staff_record.php" />
         <option value="$PROJECT_DIR$/tpl/System/Off/staff_list.php" />
       </list>
     </option>
@@ -344,7 +324,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -467,6 +446,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -590,19 +570,20 @@
       <workItem from="1552957429774" duration="30152000" />
       <workItem from="1553041803434" duration="32522000" />
       <workItem from="1553127780895" duration="26916000" />
+      <workItem from="1553215311645" duration="2663000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265104000" />
+    <option name="totallyTimeSpent" value="267767000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Key Promoter X" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Api Debugger" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17066666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17226666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -632,13 +613,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/memcached/memcached.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="646" column="20" lean-forward="false" selection-start-line="646" selection-start-column="20" selection-end-line="646" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tpl/System/House/wxmsg_log_list.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1404">
@@ -650,7 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="173" column="0" lean-forward="false" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -675,27 +648,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/GroupMsgAction.class1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5565">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/GroupMsgModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17256">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/GroupMsgAction.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="226" column="27" lean-forward="false" selection-start-line="226" selection-start-column="20" selection-end-line="226" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/GroupMsgAction.class1.php" />
+    <entry file="file://$USER_HOME$/Desktop/GroupMsgModel.class.php" />
+    <entry file="file://$USER_HOME$/Desktop/GroupMsgAction.class.php" />
     <entry file="file://$PROJECT_DIR$/tpl/System/House/audit_group_msg.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2190">
@@ -806,9 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="112" column="80" lean-forward="true" selection-start-line="112" selection-start-column="80" selection-end-line="112" selection-end-column="80" />
-          <folding>
-            <marker date="1553048101626" expanded="true" signature="10813:10819" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -816,7 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
           <caret line="766" column="7" lean-forward="true" selection-start-line="766" selection-start-column="7" selection-end-line="766" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -852,7 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3732">
           <caret line="75" column="50" lean-forward="false" selection-start-line="75" selection-start-column="50" selection-end-line="75" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -860,7 +810,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2025">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -868,10 +817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3240">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1552279351816" expanded="true" signature="20944:20976" ph="..." />
-            <marker date="1552279351816" expanded="true" signature="21332:21347" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -879,10 +824,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="631">
           <caret line="448" column="7" lean-forward="true" selection-start-line="448" selection-start-column="7" selection-end-line="448" selection-end-column="7" />
-          <folding>
-            <marker date="1553127872665" expanded="true" signature="15374:15406" ph="..." />
-            <marker date="1553127872665" expanded="true" signature="15762:15777" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -890,7 +831,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="7" column="3" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1155" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -898,10 +838,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="8" column="38" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="333" selection-end-column="7" />
-          <folding>
-            <marker date="1553127872629" expanded="true" signature="13170:13196" ph="..." />
-            <marker date="1553127872629" expanded="true" signature="14123:14149" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -909,10 +845,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="10" column="43" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="347" selection-end-column="7" />
-          <folding>
-            <marker date="1553127872649" expanded="true" signature="13149:13175" ph="..." />
-            <marker date="1553127872649" expanded="true" signature="14102:14128" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -920,10 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1617">
           <caret line="335" column="39" lean-forward="true" selection-start-line="335" selection-start-column="39" selection-end-line="335" selection-end-column="39" />
-          <folding>
-            <marker date="1553128168967" expanded="true" signature="13257:13283" ph="..." />
-            <marker date="1553128168967" expanded="true" signature="14210:14236" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -931,16 +859,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="331">
           <caret line="313" column="56" lean-forward="true" selection-start-line="313" selection-start-column="20" selection-end-line="313" selection-end-column="56" />
-          <folding>
-            <marker date="1553066850856" expanded="true" signature="12702:12728" ph="..." />
-            <marker date="1553066850856" expanded="true" signature="13655:13681" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_edit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
+        <state relative-caret-position="7992">
           <caret line="296" column="17" lean-forward="false" selection-start-line="296" selection-start-column="17" selection-end-line="296" selection-end-column="17" />
           <folding>
             <marker date="1553129045684" expanded="true" signature="13182:13208" ph="..." />
@@ -951,8 +875,8 @@
     </entry>
     <entry file="file://$USER_HOME$/Desktop/OffAction.class(1).php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="3493" column="29" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="3505" selection-end-column="1" />
+        <state relative-caret-position="94149">
+          <caret line="3493" column="29" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3505" selection-end-column="1" />
           <folding>
             <marker date="1553127872581" expanded="true" signature="34844:34942" ph="..." />
             <marker date="1553127872581" expanded="true" signature="34900:34937" ph="..." />
@@ -989,7 +913,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
           <caret line="109" column="47" lean-forward="true" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -997,13 +920,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="10" column="85" lean-forward="false" selection-start-line="10" selection-start-column="85" selection-end-line="10" selection-end-column="85" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_house_add.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
+        <state relative-caret-position="3456">
           <caret line="128" column="132" lean-forward="false" selection-start-line="128" selection-start-column="132" selection-end-line="128" selection-end-column="132" />
           <folding>
             <marker date="1553154838182" expanded="true" signature="13218:13244" ph="..." />
@@ -1014,24 +936,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/Lib/Action/System/BudgetAction.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="92" column="41" lean-forward="true" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+        <state relative-caret-position="2484">
+          <caret line="92" column="41" lean-forward="false" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/Lib/Model/OffModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="746">
-          <caret line="797" column="18" lean-forward="true" selection-start-line="797" selection-start-column="18" selection-end-line="797" selection-end-column="18" />
+        <state relative-caret-position="21519">
+          <caret line="797" column="18" lean-forward="false" selection-start-line="797" selection-start-column="18" selection-end-line="797" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_news_list.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="201" column="68" lean-forward="true" selection-start-line="201" selection-start-column="68" selection-end-line="201" selection-end-column="68" />
+        <state relative-caret-position="5427">
+          <caret line="201" column="68" lean-forward="false" selection-start-line="201" selection-start-column="68" selection-end-line="201" selection-end-column="68" />
           <folding>
             <marker date="1553157716250" expanded="true" signature="21693:21725" ph="..." />
             <marker date="1553157716250" expanded="true" signature="22081:22096" ph="..." />
@@ -1039,9 +961,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Desktop/新建文本文档 (9).php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="70" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_record.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="299" column="28" lean-forward="false" selection-start-line="299" selection-start-column="28" selection-end-line="299" selection-end-column="28" />
+          <folding>
+            <marker date="1553215983641" expanded="true" signature="15374:15406" ph="..." />
+            <marker date="1553215983641" expanded="true" signature="15762:15777" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cashier/pigcms_static/plugins/js/dataTables/jquery.dataTables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="14669" column="11" lean-forward="true" selection-start-line="14669" selection-start-column="11" selection-end-line="14669" selection-end-column="11" />
+          <folding>
+            <marker date="1552279624780" expanded="true" signature="111898:111923" ph="..." />
+            <marker date="1552279624780" expanded="true" signature="412948:412956" ph="…" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="124" column="36" lean-forward="true" selection-start-line="124" selection-start-column="36" selection-end-line="124" selection-end-column="36" />
+          <folding>
+            <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <marker date="1553218268091" expanded="true" signature="17542:17574" ph="..." />
+            <marker date="1553218268091" expanded="true" signature="17930:17945" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cms/Lib/Action/System/OffAction.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
+        <state relative-caret-position="9909">
           <caret line="2987" column="27" lean-forward="false" selection-start-line="2987" selection-start-column="27" selection-end-line="2987" selection-end-column="27" />
           <folding>
             <marker date="1553161134873" expanded="true" signature="34744:34842" ph="..." />
@@ -1071,47 +1035,6 @@
             <marker date="1553161134873" expanded="true" signature="83663:83669" ph=" " />
             <marker date="1553161134873" expanded="true" signature="83670:83676" ph=" " />
             <marker date="1553161134873" expanded="true" signature="83718:83749" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_record.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="91" column="24" lean-forward="false" selection-start-line="91" selection-start-column="24" selection-end-line="144" selection-end-column="32" />
-          <folding>
-            <element signature="n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <marker date="1553128036803" expanded="true" signature="15374:15406" ph="..." />
-            <marker date="1553128036803" expanded="true" signature="15762:15777" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/新建文本文档 (9).php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="70" selection-end-column="8" />
-          <folding>
-            <element signature="n#table#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ul#0;n#div#0;n#td#4;n#tr#0;n#foreach#0;n#table#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/System/Off/staff_list.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-807">
-          <caret line="121" column="36" lean-forward="true" selection-start-line="121" selection-start-column="36" selection-end-line="121" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ul#0;n#div#0;n#td#4;n#tr#0;n#foreach#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <marker date="1553161275615" expanded="true" signature="17456:17488" ph="..." />
-            <marker date="1553161275615" expanded="true" signature="17844:17859" ph="..." />
           </folding>
         </state>
       </provider>

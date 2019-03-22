@@ -2011,6 +2011,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                                 <th style="width: 350px; text-align: center;">员工姓名</th>
                                 <th style="width: 350px; text-align: center;">项目名称</th>
                                 <th style="width: 350px; text-align: center;">房间号</th>
+                                <th style="width: 350px; text-align: center;">操作</th>
                             </tr>
                             </thead>
                             <?php if(is_array($info)): foreach($info as $key=>$vo): ?><tr>
@@ -2218,10 +2219,8 @@ table tr:nth-last-of-type(2) .dropdown-menu {
     }
     //表格显示控制js代码区
     var table = $('#sample_1');
-
     // begin first table
     table.dataTable({
-
         // Internationalisation. For more info refer to http://datatables.net/manual/i18n
         "language": {
             "aria": {
