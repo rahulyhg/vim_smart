@@ -27,20 +27,20 @@ class PropertyServiceAction extends BaseAction{
         $this->is_supper_admin = session('system.account')==="admin";
 
 
-            $pigcms_admin_id = session('system.id');
+        $pigcms_admin_id = session('system.id');
 
-            $this->village_id = filter_village(0, 2);
-            //dump(M()->_sql());exit;
+        $this->village_id = filter_village(0, 2);
+        //dump(M()->_sql());exit;
 
-            $this->village = D('House_village')->where(array('village_id'=>$this->village_id))->find();
+        $this->village = D('House_village')->where(array('village_id'=>$this->village_id))->find();
 
 
 
-            if(empty($this->village)){
+        if(empty($this->village)){
 
-                $this->error('该小区不存在！');
+            $this->error('该小区不存在！');
 
-            }
+        }
 
 
 
@@ -725,7 +725,7 @@ class PropertyServiceAction extends BaseAction{
     public function detail_import(){
 
         if(IS_POST){
-            
+
 
             //区分高级权限
 
@@ -1513,7 +1513,7 @@ class PropertyServiceAction extends BaseAction{
 
             $condition['pigcms_id'] = $_POST['pigcms_id'];
 
-           // $condition['village_id'] = $this->village_id;
+            // $condition['village_id'] = $this->village_id;
 
 
 
@@ -1625,13 +1625,13 @@ class PropertyServiceAction extends BaseAction{
         $id = I('post.id');
         $field = I('post.field');
         $value= I('post.value');
-       if(!isset($id)||empty($id)) exit();
-       $res = M('house_village_floor')->where(array('id'=>array('eq',$id)))->data(array($field=>$value))->save();
-       if($res){
-           echo 1;
-       }else{
-           echo 2;
-       }
+        if(!isset($id)||empty($id)) exit();
+        $res = M('house_village_floor')->where(array('id'=>array('eq',$id)))->data(array($field=>$value))->save();
+        if($res){
+            echo 1;
+        }else{
+            echo 2;
+        }
     }
 
 
@@ -1751,7 +1751,7 @@ class PropertyServiceAction extends BaseAction{
     public function pay_order_list(){
         $id = I('get.id');
         if($_SESSION['system']['account']==SUPER_ADMIN){
-           //超级管理员所看到的页面
+            //超级管理员所看到的页面
             $field = array(
                 'p.*',
                 'a.realname',
@@ -2113,32 +2113,32 @@ class PropertyServiceAction extends BaseAction{
         if(IS_POST){
             //执行的是添加
             $data=$_POST;
-           /* if(empty($data['uid'])&&empty($data['bind_id'])&&empty($data['company_id'])){
-                //代表未进入bind表中且公司名称也不在表中
-                //入公司表
-                $company_array = array(
-                    'company_name'=>trim($data['company_name']),
-                    'village_id'=>trim($data['village_id']),
-                    'company_phone'=>trim($data['phone']),
-                    'floor'=>trim($data['floor']),
-                    'add_time'=>$data['add_time']
-                );
-                $company_id = M('company')->data($company_array)->add();
-                if($company_id){
-                    //入bind表
-                    $bind_array =array(
-                        'village_id'=>trim($data['village_id']),
-                        'uid'=>0,
-                        'name'=>trim($data['name']),
-                        'phone'=>trim($data['phone']),
-                        'housesize'=>trim($data['housesize']),
-                        'address'=>trim($data['address']),
-                        'role'=>1,
-                        'company'=>trim($data['company_name']),
-                        'company_id'=>trim($data['company_id']),
-                    );
-                }
-            }*/
+            /* if(empty($data['uid'])&&empty($data['bind_id'])&&empty($data['company_id'])){
+                 //代表未进入bind表中且公司名称也不在表中
+                 //入公司表
+                 $company_array = array(
+                     'company_name'=>trim($data['company_name']),
+                     'village_id'=>trim($data['village_id']),
+                     'company_phone'=>trim($data['phone']),
+                     'floor'=>trim($data['floor']),
+                     'add_time'=>$data['add_time']
+                 );
+                 $company_id = M('company')->data($company_array)->add();
+                 if($company_id){
+                     //入bind表
+                     $bind_array =array(
+                         'village_id'=>trim($data['village_id']),
+                         'uid'=>0,
+                         'name'=>trim($data['name']),
+                         'phone'=>trim($data['phone']),
+                         'housesize'=>trim($data['housesize']),
+                         'address'=>trim($data['address']),
+                         'role'=>1,
+                         'company'=>trim($data['company_name']),
+                         'company_id'=>trim($data['company_id']),
+                     );
+                 }
+             }*/
         }else{
             //显示所有社区
             $village_array = M('house_village')->where(array('status'=>1))->select();
@@ -2190,22 +2190,22 @@ class PropertyServiceAction extends BaseAction{
      * @author 祝君伟
      * @time 2017年8月5日11:28:49
      */
-   /* public function check_this_company(){
-        $village_id = I('post.village_id');
-        $company_name = I('post.company_name');
-        $company_info = M('company')->where(array('village_id'=>$village_id,'company_name'=>$company_name))->find();
-        if($company_info == null){
-            echo json_encode(array('error'=>1));
-        }else{
-            $res_array = array(
-                'error'=>0,
-                'floor'=>$company_info['floor'],
-                'company_id'=>$company_info['company_id']
-            );
-            echo json_encode($res_array);
-        }
+    /* public function check_this_company(){
+         $village_id = I('post.village_id');
+         $company_name = I('post.company_name');
+         $company_info = M('company')->where(array('village_id'=>$village_id,'company_name'=>$company_name))->find();
+         if($company_info == null){
+             echo json_encode(array('error'=>1));
+         }else{
+             $res_array = array(
+                 'error'=>0,
+                 'floor'=>$company_info['floor'],
+                 'company_id'=>$company_info['company_id']
+             );
+             echo json_encode($res_array);
+         }
 
-    }*/
+     }*/
 
     /**
      * 该人名是否在表中
@@ -2217,7 +2217,7 @@ class PropertyServiceAction extends BaseAction{
         $name = I('post.name');
         $bind_info = M('house_village_user_bind')->where(array('village_id'=>$village_id,'name'=>$name))->find();
         if($bind_info == NULL){
-           echo json_encode(array('error'=>1));
+            echo json_encode(array('error'=>1));
         }else{
             $res_array = array(
                 'error'=>0,
@@ -2642,11 +2642,11 @@ class PropertyServiceAction extends BaseAction{
             //④其他费用
             $other_actual_payment = I('post.other_price');
             //当前的账单的信息
-          /* var_dump($water_actual_payment);
-            var_dump($electric_actual_payment);
-            var_dump($property_actual_payment);
-            var_dump($other_actual_payment);
-            exit;*/
+            /* var_dump($water_actual_payment);
+              var_dump($electric_actual_payment);
+              var_dump($property_actual_payment);
+              var_dump($other_actual_payment);
+              exit;*/
             $billInfo = M('house_village_user_paylist')->find($pid);
             $total_water = M('house_village_pay_order')->field(array('*','SUM(actual_payment)'=>'total'))->where(array('pid'=>$pid,'order_type'=>'water'))->group('pid')->select();
             $total_electric = M('house_village_pay_order')->field(array('*','SUM(actual_payment)'=>'total'))->where(array('pid'=>$pid,'order_type'=>'electric'))->group('pid')->select();
@@ -4055,18 +4055,18 @@ class PropertyServiceAction extends BaseAction{
         if(!$id){
             echo 2;
         }else{
-           $info =  M('house_village_user_paylist')->find($id);
-           $otherArray = unserialize($info['use_other']);
-           $other_price = 0;
-           foreach ($otherArray as $key=>$value){
-               if($key==$field_name){
-                   $otherArray[$field_name] = $field_value;
-                   $other_price = $other_price+$field_value;
-               }else{
-                   $other_price +=$value;
-               }
-           }
-           //vd($other_price);exit;
+            $info =  M('house_village_user_paylist')->find($id);
+            $otherArray = unserialize($info['use_other']);
+            $other_price = 0;
+            foreach ($otherArray as $key=>$value){
+                if($key==$field_name){
+                    $otherArray[$field_name] = $field_value;
+                    $other_price = $other_price+$field_value;
+                }else{
+                    $other_price +=$value;
+                }
+            }
+            //vd($other_price);exit;
             $res = M('house_village_user_paylist')->where(array('pigcms_id'=>$id))->data(array('use_other'=>serialize($otherArray),'other_price'=>$other_price))->save();
             if($res){
                 //再次查询所有的价格返回
@@ -4948,39 +4948,39 @@ class PropertyServiceAction extends BaseAction{
     public function enter_list_test(){
 
 
-            //微信类库
-            $wechat = new WechatModel();
-            $url=C('WEB_DOMAIN').'/wap.php?m=Wap&c=PropertyService&a=payListInfo&id=1276';
-            //流程审批提醒模板ID
-            $tpl_id = "xLpzcYPX-Kgwsx6Ym3sHjp_CmZhn_n65_-v6CxC4gAc";
-            $data = array(
-                'first'=>array(
-                    'value'=>"您的".date('Y-m')."账单已经生成",
-                    'color'=>"#029700",
-                ),
-                'keyword1'=>array(
-                    'value'=>"请点击查看本月账单",
-                    'color'=>"#000000",
-                ),
-                'keyword2'=>array(
-                    'value'=>'lalala',//人
-                    'color'=>"#000000",
-                ),
-                'keyword3'=>array(
-                    'value'=>'请尽快缴费，避免对您的使用造成影响',
-                    'color'=>"#000000",
-                ),
-                'keyword4'=>array(
-                    'value'=>date('Y-m-d H:i:s',time()),
-                    'color'=>"#000000",
-                ),
-            );
+        //微信类库
+        $wechat = new WechatModel();
+        $url=C('WEB_DOMAIN').'/wap.php?m=Wap&c=PropertyService&a=payListInfo&id=1276';
+        //流程审批提醒模板ID
+        $tpl_id = "xLpzcYPX-Kgwsx6Ym3sHjp_CmZhn_n65_-v6CxC4gAc";
+        $data = array(
+            'first'=>array(
+                'value'=>"您的".date('Y-m')."账单已经生成",
+                'color'=>"#029700",
+            ),
+            'keyword1'=>array(
+                'value'=>"请点击查看本月账单",
+                'color'=>"#000000",
+            ),
+            'keyword2'=>array(
+                'value'=>'lalala',//人
+                'color'=>"#000000",
+            ),
+            'keyword3'=>array(
+                'value'=>'请尽快缴费，避免对您的使用造成影响',
+                'color'=>"#000000",
+            ),
+            'keyword4'=>array(
+                'value'=>date('Y-m-d H:i:s',time()),
+                'color'=>"#000000",
+            ),
+        );
 
-            $res = $wechat->send_tpl_message('ohgcf0jGkXflfD05o04YssN3HIwE', $tpl_id, $url, $data);
-            if($res[0]['errcode']!==0){
-                //TODO::与用户方逻辑无关，暂不提醒，应记录在日志系统当中
-                // $this->error("推送消息失败");
-            }
+        $res = $wechat->send_tpl_message('ohgcf0jGkXflfD05o04YssN3HIwE', $tpl_id, $url, $data);
+        if($res[0]['errcode']!==0){
+            //TODO::与用户方逻辑无关，暂不提醒，应记录在日志系统当中
+            // $this->error("推送消息失败");
+        }
 
 
 
@@ -5140,8 +5140,8 @@ class PropertyServiceAction extends BaseAction{
     public function edit_meter_act($meter_hash){
         //$meter_code = I('post.meter_code');
         $last_cousume = I('post.last_cousume');
-       // if(!$meter_code) $this->error("请输入设备编号");
-       // if(!$last_cousume) $this->error("请输入用量");
+        // if(!$meter_code) $this->error("请输入设备编号");
+        // if(!$last_cousume) $this->error("请输入用量");
 
         //数据
         $data = $_POST;
@@ -5365,24 +5365,24 @@ class PropertyServiceAction extends BaseAction{
         $sum['sum']=$sum['over']=$sum['now']=$sum['empty']=0;*/
         $model = M('house_village_room');
         $where=array('r1.status'=>array('eq',0),'r1.village_id'=>array('eq',session('system.village_id')),'r1.fid'=>array('neq','0'));//,'r1.roomsize'=>array('neq',0)
-            //主查询
+        //主查询
         if(!empty($_SESSION['project_id'])){
             $where['r1.project_id']=$_SESSION['project_id'];
         }
-            /*$newArray = $model
-                ->alias('r1')
-                ->field(array(
-                    'r1.*',
-                    'up.*',
-                    'uc.carspace_number',
-                    'uc.carspace_defaulttime',
-                    'uc.carspace_endtime'
-                ))
-                ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_UPTOWN__ up ON up.rid=r1.id')
-                ->join('LEFT JOIN __HOUSE_VILLAGE_USER_CAR__ uc ON uc.rid=r1.id')
-                ->where($where)
-                ->select();*/
-            //dump(M()->_sql());exit;
+        /*$newArray = $model
+            ->alias('r1')
+            ->field(array(
+                'r1.*',
+                'up.*',
+                'uc.carspace_number',
+                'uc.carspace_defaulttime',
+                'uc.carspace_endtime'
+            ))
+            ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_UPTOWN__ up ON up.rid=r1.id')
+            ->join('LEFT JOIN __HOUSE_VILLAGE_USER_CAR__ uc ON uc.rid=r1.id')
+            ->where($where)
+            ->select();*/
+        //dump(M()->_sql());exit;
 
         if(empty($this->project_id)){
             $this->project_id=$_SESSION['project_id'];
@@ -5399,7 +5399,8 @@ class PropertyServiceAction extends BaseAction{
         $is_code=0;
         if(in_array($village_id,array(7,8,9))) $is_code=1;
 
-        $type_list_all=M('house_village_otherfee_type')->where(array('status'=>1,'village_id'=>$this->village_id,))->select();
+        $type_list_all=M('house_village_otherfee_type')->where(array('status'=>1,'village_id'=>$this->village_id))->select();
+        //dump($type_list_all);die;
         $project_info=M('house_village_project')->where(array('pigcms_id'=>$this->project_id))->find();
         $fee_type_list=D('House_village_fee_type')->get_type_list();
         $this->assign('fee_type_list',$fee_type_list);
@@ -5488,7 +5489,6 @@ class PropertyServiceAction extends BaseAction{
      *
      */
     public function ajax_room_list_uptown(){
-
         $village_id =  filter_village(0,2);
         $project_id=$_SESSION['project_id'];
         //判断是否是小区，进行跳转 by zhukeqin
@@ -5571,7 +5571,7 @@ class PropertyServiceAction extends BaseAction{
         //dump(M()->_sql());exit;
         foreach ($list as $value){
             $array=array(
-              'check_id'=>'<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input type="checkbox" class="checkboxes" value="'.$value['id'].'"><span></span></label>',
+                'check_id'=>'<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input type="checkbox" class="checkboxes" value="'.$value['id'].'"><span></span></label>',
                 'desc'=>$value['desc'],
                 'tung_build'=>$value['tung_build'].'栋',
                 'tung_unit'=>$value['tung_unit'].'单元',
@@ -5811,47 +5811,47 @@ class PropertyServiceAction extends BaseAction{
      * @author zhukeqin
      */
     public function room_property_uptown(){
-            $id = I('get.id');
-            if ($_GET['default_village_id']) {
-                $village_id = $_GET['default_village_id'];
-            } else {
-                $village_id = $_SESSION['system']['village_id'];
-            }
-            //dump($_SESSION);
-            $thisRoom=M('house_village_room')->where('id='.$id)->find();
-            if(empty($thisRoom)){
-                $this->error('所选房间不存在！');
-            }
-            $property_list = M('house_village_room_propertylist')->where(array('rid'=>$id,'fee_type'=>'0'))->order('pigcms_id desc')->select();
-            foreach ($property_list as &$value){
-                if(empty($value['admin_id'])){
-                    $value['type_str']='<span style="color: green;">线上支付</span>';
-                    $user_info=M('house_village_user_bind')->where('uid='.$value['uid'])->find();
-                        $value['user_name']=$user_info['name'];
-                        $value['user_phone']=$user_info['phone'];
-                }else{
-                    switch ($value['type']){
-                        case 1:$value['type_str']='<span style="color: red;">线上支付</span>';break;
-                        case 2:$value['type_str']='<span style="color: red;">现金</span>';break;
-                        case 3:$value['type_str']='<span style="color: red;">转账</span>';break;
-                        case 4:$value['type_str']='<span style="color: red;">POS单</span>';break;
-                        case 5:$value['type_str']='<span style="color: red;">现金缴款单</span>';break;
-                    }
-                    $admin_info=M('admin')->where('id='.$value['admin_id'])->find();
-                    $value['admin_name']=$admin_info['realname'];
-                    $value['admin_phone']=$admin_info['phone'];
+        $id = I('get.id');
+        if ($_GET['default_village_id']) {
+            $village_id = $_GET['default_village_id'];
+        } else {
+            $village_id = $_SESSION['system']['village_id'];
+        }
+        //dump($_SESSION);
+        $thisRoom=M('house_village_room')->where('id='.$id)->find();
+        if(empty($thisRoom)){
+            $this->error('所选房间不存在！');
+        }
+        $property_list = M('house_village_room_propertylist')->where(array('rid'=>$id,'fee_type'=>'0'))->order('pigcms_id desc')->select();
+        foreach ($property_list as &$value){
+            if(empty($value['admin_id'])){
+                $value['type_str']='<span style="color: green;">线上支付</span>';
+                $user_info=M('house_village_user_bind')->where('uid='.$value['uid'])->find();
+                $value['user_name']=$user_info['name'];
+                $value['user_phone']=$user_info['phone'];
+            }else{
+                switch ($value['type']){
+                    case 1:$value['type_str']='<span style="color: red;">线上支付</span>';break;
+                    case 2:$value['type_str']='<span style="color: red;">现金</span>';break;
+                    case 3:$value['type_str']='<span style="color: red;">转账</span>';break;
+                    case 4:$value['type_str']='<span style="color: red;">POS单</span>';break;
+                    case 5:$value['type_str']='<span style="color: red;">现金缴款单</span>';break;
                 }
-                switch ($value['status']){
-                    case 0:$value['status_str']='<span style="color: red;">未支付</span>';break;
-                    case 1:$value['status_str']='<span style="color: green;">已支付</span>';break;
-                }
-                $value['last_endtime_str']=date('Y年n月j日',strtotime($value['last_endtime']));
-                $value['new_endtime_str']=date('Y年n月j日',strtotime($value['new_endtime']));
-                $value['pay_time_str']=date('Y-m-d H:i:s',$value['pay_time']);
+                $admin_info=M('admin')->where('id='.$value['admin_id'])->find();
+                $value['admin_name']=$admin_info['realname'];
+                $value['admin_phone']=$admin_info['phone'];
             }
-            $this->assign('property_list',$property_list);
-            $this->assign('thisRoom',$thisRoom);
-            $this->display();
+            switch ($value['status']){
+                case 0:$value['status_str']='<span style="color: red;">未支付</span>';break;
+                case 1:$value['status_str']='<span style="color: green;">已支付</span>';break;
+            }
+            $value['last_endtime_str']=date('Y年n月j日',strtotime($value['last_endtime']));
+            $value['new_endtime_str']=date('Y年n月j日',strtotime($value['new_endtime']));
+            $value['pay_time_str']=date('Y-m-d H:i:s',$value['pay_time']);
+        }
+        $this->assign('property_list',$property_list);
+        $this->assign('thisRoom',$thisRoom);
+        $this->display();
 
 
     }
@@ -6081,8 +6081,8 @@ class PropertyServiceAction extends BaseAction{
                 $carspace_endtime=$carinfo['carspace_end'];
                 $car_info=array(
                     'carspace_end'=>$carspace_endtime,
-                  'carspace_endtime'=>$carspace_endtime,
-                  'carspace_defaulttime'=>$carspace_endtime
+                    'carspace_endtime'=>$carspace_endtime,
+                    'carspace_defaulttime'=>$carspace_endtime
                 );
                 M('house_village_user_car')->where('pigcms_id='.$carspace_id)->data($car_info)->save();
             }
@@ -6128,7 +6128,7 @@ class PropertyServiceAction extends BaseAction{
      * @time 2017年9月8日14:14:47
      *
      */
-    public function point_list(){        
+    public function point_list(){
         $is_del = $_GET['is_del'];
         // var_dump($is_del);exit();
         if ($_GET['default_village_id']) {
@@ -6187,7 +6187,7 @@ class PropertyServiceAction extends BaseAction{
             $data=array('is_del'=>0);
             $re=M('house_village_point')->where(array('id'=>$id))->data($data)->save();
             echo $re;
-        }        
+        }
     }
 
 
@@ -6198,27 +6198,27 @@ class PropertyServiceAction extends BaseAction{
      */
     public function point_add(){
         if(IS_POST){
-           $model = M('house_village_point');
-           $data =$_POST;
-               //判断该点位有没添加，添加过则跳过
-               $is_point = $model->where(array('rid'=>$data['rid'],'orientation'=>$data['pointname']))->find();
-               if($is_point){
-                   $this->error($data['pointname'].'已存在，点位添加失败');
-               }else{
-                   $pointArray = array(
-                       'rid'=>$data['rid'],
-                       'name'=>$data['pointname'],
-                       'desc'=>$data['desc'],
-                       'orientation'=>$data['pointname'],
-                       'type' => 0,
-                   );
-                   $res = $model->data($pointArray)->add();
-                   if($res){
+            $model = M('house_village_point');
+            $data =$_POST;
+            //判断该点位有没添加，添加过则跳过
+            $is_point = $model->where(array('rid'=>$data['rid'],'orientation'=>$data['pointname']))->find();
+            if($is_point){
+                $this->error($data['pointname'].'已存在，点位添加失败');
+            }else{
+                $pointArray = array(
+                    'rid'=>$data['rid'],
+                    'name'=>$data['pointname'],
+                    'desc'=>$data['desc'],
+                    'orientation'=>$data['pointname'],
+                    'type' => 0,
+                );
+                $res = $model->data($pointArray)->add();
+                if($res){
 
-                   }else{
-                       $this->error($data['pointname'].'点位添加失败');
-                   }
-               }
+                }else{
+                    $this->error($data['pointname'].'点位添加失败');
+                }
+            }
 
             $this->success('点位添加成功');
 
@@ -6365,19 +6365,19 @@ class PropertyServiceAction extends BaseAction{
             //构建子查询
             $chlidSql = M('house_village_user_bind')->field(array('uid','`name`','MAX(pigcms_id)'))->group('uid')->buildSql();
             //主查询
-           /* $pointRecord = M()
-                ->table($chlidSql.' b')
-                ->field($field)
-                ->join('LEFT JOIN __VILLAGE_POINT_RECORD__ r on b.uid=r.uid')
-                ->join('LEFT JOIN __HOUSE_VILLAGE_POINT__ p on p.id=r.pid')
-                ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM__ m on m.id=p.rid')
-                ->join('LEFT JOIN __HOUSE_VILLAGE__ v on v.village_id=m.village_id')
-                ->where($_map)
-                ->order('r.point_status desc,r.check_time desc')
-                ->limit(500)
-                ->select();*/
+            /* $pointRecord = M()
+                 ->table($chlidSql.' b')
+                 ->field($field)
+                 ->join('LEFT JOIN __VILLAGE_POINT_RECORD__ r on b.uid=r.uid')
+                 ->join('LEFT JOIN __HOUSE_VILLAGE_POINT__ p on p.id=r.pid')
+                 ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM__ m on m.id=p.rid')
+                 ->join('LEFT JOIN __HOUSE_VILLAGE__ v on v.village_id=m.village_id')
+                 ->where($_map)
+                 ->order('r.point_status desc,r.check_time desc')
+                 ->limit(500)
+                 ->select();*/
 
-           $_map = filter_village($_map,1,'m');
+            $_map = filter_village($_map,1,'m');
 
             $pointRecord = M('village_point_safety_record')
                 ->alias('r')
@@ -6896,7 +6896,7 @@ class PropertyServiceAction extends BaseAction{
 
 
 
-        //打包下载
+    //打包下载
     public function products_zip_z(){
 //        $ids = I('post.ids');
 //        $ids = "225,226,227";
@@ -7150,7 +7150,7 @@ class PropertyServiceAction extends BaseAction{
             }
 
         } else {
-                header("location:http://www.hdhsmart.com/wap.php?g=Wap&c=PropertyService&a=punch_safety_card_C&pro_qrcode=".$_GET['pro_qrcode']);
+            header("location:http://www.hdhsmart.com/wap.php?g=Wap&c=PropertyService&a=punch_safety_card_C&pro_qrcode=".$_GET['pro_qrcode']);
             $pro_qrcode = I('get.pro_qrcode');
             $role_id = $_SESSION['admin_id'];
             if ($role_id) $this->assign('isOpen',1);
@@ -7219,7 +7219,7 @@ class PropertyServiceAction extends BaseAction{
         $this->display();
     }
 
-     /**
+    /**
      * 消防点列表
      * @author libin
      * @time 2018年8月22日11:14:47
@@ -7269,7 +7269,7 @@ class PropertyServiceAction extends BaseAction{
 
     }
 
-     /**
+    /**
      * 二维码展示页面
      */
     public function qrcode_safety_point(){
@@ -7294,9 +7294,9 @@ class PropertyServiceAction extends BaseAction{
         $this->assign('thisPointArray',$thisPointArray);
         $this->display('qrcode_safety_point');
     }
-    
 
-     /**
+
+    /**
      * 消防点添加
      * @author libin
      * @time 2018年8月22日15:14:47
@@ -7304,40 +7304,40 @@ class PropertyServiceAction extends BaseAction{
      */
     public function point_safety_add(){
         if(IS_POST){
-           $model = M('house_village_point');
-           $data =$_POST;
-           // print_r($data);exit;
-           $point_arr = [];
-           for ($i=1; $i <= $data['number']; $i++) { 
-               $data['orientation'] = $data['head'].'_'.$i;
-               $point_arr[] = $data['orientation'];
-           }
-           // print_r($point_arr);exit;
-               //判断该点位有没添加，添加过则跳过
-               foreach ($point_arr as  $v) {
-                   $data['pointname'] =$v;
-                   $is_point = $model->where(array('type'=>1))->where(array('rid'=>$data['rid'],'orientation'=>$data['pointname']))->find();
-               
-               
-                   if($is_point){
-                       $this->error($data['pointname'].'已存在，点位添加失败');
-                   }else{
-                       $pointArray = array(
-                           'rid'=>$data['rid'],
-                           'name'=>$data['pointname'],
-                           'desc'=>$data['desc'],
-                           'orientation'=>$data['pointname'],
-                           'type' => 1
-                       );
-                       $res = $model->data($pointArray)->add();
-                   }
-                   
-                   if($res){
+            $model = M('house_village_point');
+            $data =$_POST;
+            // print_r($data);exit;
+            $point_arr = [];
+            for ($i=1; $i <= $data['number']; $i++) {
+                $data['orientation'] = $data['head'].'_'.$i;
+                $point_arr[] = $data['orientation'];
+            }
+            // print_r($point_arr);exit;
+            //判断该点位有没添加，添加过则跳过
+            foreach ($point_arr as  $v) {
+                $data['pointname'] =$v;
+                $is_point = $model->where(array('type'=>1))->where(array('rid'=>$data['rid'],'orientation'=>$data['pointname']))->find();
 
-                   }else{
-                       $this->error($data['pointname'].'点位添加失败');
-                   }
-               }
+
+                if($is_point){
+                    $this->error($data['pointname'].'已存在，点位添加失败');
+                }else{
+                    $pointArray = array(
+                        'rid'=>$data['rid'],
+                        'name'=>$data['pointname'],
+                        'desc'=>$data['desc'],
+                        'orientation'=>$data['pointname'],
+                        'type' => 1
+                    );
+                    $res = $model->data($pointArray)->add();
+                }
+
+                if($res){
+
+                }else{
+                    $this->error($data['pointname'].'点位添加失败');
+                }
+            }
 
             $this->success('点位添加成功');
 
@@ -7431,7 +7431,7 @@ class PropertyServiceAction extends BaseAction{
             if ($is_set['night_shift']) {
                 $time_end = $is_set['night_time_to'];
                 if ($night_to_num>12&&$night_to_num<24) {
-                    $num_end = $night_to_num;                    
+                    $num_end = $night_to_num;
                 } else {
                     $num_end = $night_to_num + 24;
                 }
@@ -7500,7 +7500,7 @@ class PropertyServiceAction extends BaseAction{
                 $time_start = $status['night_time_from'];
                 $num_start = $night_from_num;
             }
-            
+
         }
         $num = array($num_start,$num_end,$time_end,$time_start);
         return $num;
@@ -7535,21 +7535,21 @@ class PropertyServiceAction extends BaseAction{
 
         //给设置班次的模态框传值(数据表里已经保存的数据)
         if(I('get.village_id')){
-                $setArr = M('house_village_shift')->where(array('village_id'=>I('get.village_id')))->find();
-            }else{
-                $setArr = M('house_village_shift')->where(array('village_id'=>session('system.village_id')))->find();
-            }        
+            $setArr = M('house_village_shift')->where(array('village_id'=>I('get.village_id')))->find();
+        }else{
+            $setArr = M('house_village_shift')->where(array('village_id'=>session('system.village_id')))->find();
+        }
         // var_dump($setArr);exit();
         $this->assign('setArr',$setArr);
 
         //对班次数据进行处理
         if(I('get.village_id')){
-                $timeArr = $this->get_shift_time(I('get.village_id'));
-            }else{
-                $timeArr = $this->get_shift_time(session('system.village_id'));
-            }
-        
-        
+            $timeArr = $this->get_shift_time(I('get.village_id'));
+        }else{
+            $timeArr = $this->get_shift_time(session('system.village_id'));
+        }
+
+
         //条件
         $_map =array('p.is_del'=>0);
         $point_status && $_map['point_status']=array('eq',$point_status);
@@ -7558,7 +7558,7 @@ class PropertyServiceAction extends BaseAction{
         if (!$setArr) {
             $setArr = M('house_village_shift')->where(array('id'=>1))->find();
         }
-       
+
         if(isset($_GET['d_time'])&&!isset($_GET['work_time'])){
             $thisDayStart = strtotime($_GET['d_time'])+$timeArr[0]*3600;
             $thisDayEnd = strtotime($_GET['d_time'])+$timeArr[1]*3600;
@@ -7600,7 +7600,7 @@ class PropertyServiceAction extends BaseAction{
                 $thisDayEnd = strtotime('+1 day',strtotime(date('Y-m-d').$setArr['night_time_to']));
                 $this->assign('w_time',3);
             }
-        }       
+        }
 
         //已经巡检的巡更点
         $nowPointCount = M('village_point_record')->alias('r')
@@ -7626,19 +7626,19 @@ class PropertyServiceAction extends BaseAction{
             //构建子查询
             $chlidSql = M('house_village_user_bind')->field(array('uid','`name`','MAX(pigcms_id)'))->group('uid')->buildSql();
             //主查询
-           /* $pointRecord = M()
-                ->table($chlidSql.' b')
-                ->field($field)
-                ->join('LEFT JOIN __VILLAGE_POINT_RECORD__ r on b.uid=r.uid')
-                ->join('LEFT JOIN __HOUSE_VILLAGE_POINT__ p on p.id=r.pid')
-                ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM__ m on m.id=p.rid')
-                ->join('LEFT JOIN __HOUSE_VILLAGE__ v on v.village_id=m.village_id')
-                ->where($_map)
-                ->order('r.point_status desc,r.check_time desc')
-                ->limit(500)
-                ->select();*/
+            /* $pointRecord = M()
+                 ->table($chlidSql.' b')
+                 ->field($field)
+                 ->join('LEFT JOIN __VILLAGE_POINT_RECORD__ r on b.uid=r.uid')
+                 ->join('LEFT JOIN __HOUSE_VILLAGE_POINT__ p on p.id=r.pid')
+                 ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM__ m on m.id=p.rid')
+                 ->join('LEFT JOIN __HOUSE_VILLAGE__ v on v.village_id=m.village_id')
+                 ->where($_map)
+                 ->order('r.point_status desc,r.check_time desc')
+                 ->limit(500)
+                 ->select();*/
 
-           $_map = filter_village($_map,1,'m');
+            $_map = filter_village($_map,1,'m');
 
             $pointRecord = M('village_point_record')
                 ->alias('r')
@@ -7687,7 +7687,7 @@ class PropertyServiceAction extends BaseAction{
             ->where(array('r.village_id'=>session('system.village_id')))
             ->where(array('p.status'=>array('eq',0),'p.is_del'=>array('eq',0)))
             ->count()?:0;
-            // vd(M()->_sql());exit;
+        // vd(M()->_sql());exit;
         //未巡更的点
         $lowPointCount = $pointCount-$nowPointCount;
 
@@ -7696,7 +7696,7 @@ class PropertyServiceAction extends BaseAction{
         //查询近30天的巡更记录
         $month_pointRecord = $this->get_month_point_record();
         $this->assign('month_pointRecord',$month_pointRecord);
-        
+
         $this->assign('pointRecord',$pointRecord);
         $this->assign('lowPointCount',$lowPointCount);
         $this->assign('pointCount',$pointCount);
@@ -7724,7 +7724,7 @@ class PropertyServiceAction extends BaseAction{
             ->count()?:0;
 
         //查询是否设置班次
-        $is_set = $this->get_shift_time($village_id);        
+        $is_set = $this->get_shift_time($village_id);
 
         $newArr = array();
         foreach ($array as $k => $v) {
@@ -7753,7 +7753,7 @@ class PropertyServiceAction extends BaseAction{
     /**
      *设置社区的班次
      */
-    public function village_shift_setting(){       
+    public function village_shift_setting(){
         $data = $_POST;
         $data['morning_time_from'] = $data['morning_time_from'].':00';
         $data['morning_time_to'] = $data['morning_time_to'].':00';
@@ -7768,9 +7768,9 @@ class PropertyServiceAction extends BaseAction{
             unset($data['village_id']);
             $res = M('house_village_shift')->where(array('id'=>$is_set['id']))->data($data)->save();
         }else{//不存在则增加
-           $res = D('house_village_shift')->data($data)->add();
+            $res = D('house_village_shift')->data($data)->add();
         }
-        echo $res;                   
+        echo $res;
     }
 
 
@@ -7787,7 +7787,7 @@ class PropertyServiceAction extends BaseAction{
         }
 
         //查询是否设置班次        
-        $is_set = $this->get_shift_time($village_id);            
+        $is_set = $this->get_shift_time($village_id);
 
         //获取时间段
         $time_from = I('post.time_from');
@@ -7822,7 +7822,7 @@ class PropertyServiceAction extends BaseAction{
             $time = strtotime($v);
             $Start_Time = $time+$is_set[0]*3600;
             $End_Time = $time+$is_set[1]*3600;
-        
+
 
             //总巡更点
             $pointNum = M('house_village_point')->alias('p')
@@ -7840,7 +7840,7 @@ class PropertyServiceAction extends BaseAction{
                 ->where(array('r.check_time'=>array('between',array($Start_Time,$End_Time))))
                 ->where(array('m.village_id'=>$village_id,'p.is_del'=>0))
                 ->select()[0]['num'];
-                // ->count();                            
+            // ->count();
 
             //已巡更数
             $nowPointCount += $yes_Count;
@@ -7848,7 +7848,7 @@ class PropertyServiceAction extends BaseAction{
         //总巡更次数
         $pointTol = $pointNum*$daysCount;
         // $pointTol = $pointNum*3*$num;
-        
+
         //未巡更点数量
         $lowPointCount = $pointTol - $nowPointCount;
         //巡更率
@@ -7874,10 +7874,10 @@ class PropertyServiceAction extends BaseAction{
         vd($_GET['work_time']);exit;*/
         //对班次数据进行处理
         if(I('get.village_id')){
-                $timeArr = $this->get_shift_time(I('get.village_id'));
-            }else{
-                $timeArr = $this->get_shift_time(session('system.village_id'));
-            }
+            $timeArr = $this->get_shift_time(I('get.village_id'));
+        }else{
+            $timeArr = $this->get_shift_time(session('system.village_id'));
+        }
 
         if ($setArr) {//设置了班次就使用班次的时间
             // var_dump($setArr);exit();
@@ -8089,7 +8089,7 @@ class PropertyServiceAction extends BaseAction{
         $this->assign('thisPointArray',$thisPointArray);
         $this->display('qrcode_point');
     }
-    
+
 
     /**
      * 二维码预览页面
@@ -8134,7 +8134,7 @@ class PropertyServiceAction extends BaseAction{
                 $row['location'] = '-'.$village[1]; //位置
                 $row['orientation'] = ""; //方位
                 $row['meter_cate'] = $meter_cate;
-                $row['village_name'] = $village[0]; 
+                $row['village_name'] = $village[0];
             }
             unset($row);
             $this->assign('list',$list);

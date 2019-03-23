@@ -9,27 +9,27 @@
     </div>-->
     <div class="btn-group">
         <a href="#form_modal2" data-toggle="modal">
-            
+
             <button  class="btn sbold btn-danger" >
-			<i class="fa fa-user"></i>
-			业主缴费录入
+                <i class="fa fa-user"></i>
+                业主缴费录入
             </button>
         </a>
     </div>
     <div class="btn-group">
         <a href="{pigcms{:U('Receipt/receipt_list')}">
-            
+
             <button  class="btn sbold btn-danger" >
-			<i class="fa fa-file-text-o"></i>
-			历史缴费记录
+                <i class="fa fa-file-text-o"></i>
+                历史缴费记录
             </button>
         </a>
     </div>
     <div class="btn-group">
         <a href="{pigcms{:U('Property/month')}">
             <button  class="btn sbold btn-danger" >
-			<i class="fa fa-table"></i>
-			报表台账
+                <i class="fa fa-table"></i>
+                报表台账
             </button>
         </a>
     </div>
@@ -37,8 +37,8 @@
     <div class="btn-group">
         <a href="#form_modal3" data-toggle="modal">
             <button  class="btn sbold green" >
-			<i class="fa fa-pie-chart"></i>
-			经营数据分析
+                <i class="fa fa-pie-chart"></i>
+                经营数据分析
             </button>
         </a>
     </div>
@@ -46,16 +46,16 @@
     <div class="btn-group">
         <a href="javascript:">
             <button  class="btn sbold green" onclick="sub()">
-			<i class="fa fa-print"></i>
-			打印选中催收单
+                <i class="fa fa-print"></i>
+                打印选中催收单
             </button>
         </a>
     </div>
     <div class="btn-group">
         <a href="javascript:">
             <button  class="btn sbold green" onclick="sub_project()">
-			<i class="fa fa-print"></i>
-			打印全部欠费催收单
+                <i class="fa fa-print"></i>
+                打印全部欠费催收单
             </button>
         </a>
     </div>
@@ -63,16 +63,16 @@
     <div class="btn-group">
         <a href="{pigcms{:U('Room/owner_uptown_import_step1')}">
             <button id="sample_editable_1_new" class="btn sbold green">
-			<i class="fa fa-plus"></i>
-			单元导入
+                <i class="fa fa-plus"></i>
+                单元导入
             </button>
         </a>
     </div>
     <div class="btn-group">
         <a href="{pigcms{:U('Otherfee/getotherfee_list')}" target="_blank">
             <button id="sample_editable_1_new" class="btn sbold green">
-			<i class="fa fa-th-list"></i>
-			收费类目管理
+                <i class="fa fa-th-list"></i>
+                收费类目管理
             </button>
         </a>
     </div>
@@ -448,11 +448,11 @@
                         </tr>
                         <tr>
                             <td align="center">地产应补金额</td>
-                            <td align="center" colspan="{pigcms{:count(sum['data'])+2}">{pigcms{:number_format($sum['sum']['add_money'],2)}</td>
+                            <td align="center" colspan="{pigcms{count(sum['data'])+2}">{pigcms{:number_format($sum['sum']['add_money'],2)}</td>
                         </tr>
                         <tr>
                             <td align="center">截止{pigcms{:date('Y年12月31日')}欠费金额</td>
-                            <td align="center" colspan="{pigcms{:count(sum['data'])+2}">{pigcms{:number_format($sum['sum']['noprepay_money'],2)}</td>
+                            <td align="center" colspan="{pigcms{count(sum['data'])+2}">{pigcms{:number_format($sum['sum']['noprepay_money'],2)}</td>
                         </tr>
                     </table>
                 </div>
@@ -955,6 +955,7 @@
         }
         $('#otherfee_type_id').change(function(){
             var p1=$(this).children('option:selected').val();
+
             var room_name=$("input[name='room_name']").val();
             $.ajax({
                 url:"{pigcms{:U('Property/ajax_otherfee_type')}",
@@ -995,7 +996,7 @@
             });
         });
         $("#room_name").bigAutocomplete({
-            url:'{pigcms{:U('Property/ajax_room_list')}',
+                url:'{pigcms{:U('Property/ajax_room_list')}',
             callback:function(data){
             $('.property').css('display','none');
             $('.carspace').css('display','none');

@@ -826,7 +826,7 @@ class BudgetAction extends BaseAction
         $this->assign('where',$where);
         if($type=='sum'){
             if(!empty($where['company_id'])){
-                if(count($project_list)==1&&!empty($project_list)){
+                if(count($project_list)==1&&!empty($project_list)&& $where['company_id'] != "all_company"){
                     //$village_id_get=array_pop($project_list);
                     $village_id_get=key($project_list);//获取项目id
                     $where['village_id']=explode(',',$village_id_get)['0'];

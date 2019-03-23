@@ -615,14 +615,15 @@ class PropertyModel extends Model{
             $where['r.project_id']=$this->project_id;
         }
         $where['r.id']=$rid;
+//dump($where);die;
         $room_list=M('house_village_room')
             ->alias('r')
             ->join('left join __HOUSE_VILLAGE_USER_BIND__ ub on ub.pigcms_id=r.owner_id')
             ->where($where)
             ->field($field)
             ->find();
+//
         //dump(M()->_sql());
-        $otherfee_list=array();
 
         $otherfee_list=array(
             'room_name'=>$room_list['room_name'],
@@ -654,7 +655,6 @@ class PropertyModel extends Model{
         $otherfee_list['sum_recive']=$sum_recive;
         $otherfee_list['sum_true']=$sum_true;
         $otherfee_list['sum_nowend']=round($otherfee_list['sum_last']+$sum_recive-$sum_true,2);
-
 
         $data = array(
             'rid'=>$rid,

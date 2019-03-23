@@ -1066,7 +1066,11 @@ class PropertyAction extends BaseAction
     public function ajax_otherfee_type(){
             $otherfee_type_id=$_POST['otherfee_type_id'];
             $room_name=$_POST['room_name'];
+            //,'project_id'=>$this->project_id
             $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
+            if(empty($room_info)){
+                $room_info=M('house_village_room')->where(array('room_name'=>$room_name))->find();
+            }
             $_SESSION['rid']=$room_info['id'];
             if($otherfee_type_id=='property'){
                 $data=M('house_village_room_uptown')->where(array('rid'=>$room_info['id']))->find();
@@ -1075,6 +1079,7 @@ class PropertyAction extends BaseAction
             }else{
                 $data=M('house_village_otherfee_type')->where(array('otherfee_type_id'=>$otherfee_type_id))->find();
             }
+
             echo json_encode(array('type'=>$otherfee_type_id,'data'=>$data));
     }
     /**
@@ -1103,13 +1108,19 @@ class PropertyAction extends BaseAction
      * ajax 添加费用
      */
     public function ajax_in_fee(){
+
+        //,'project_id'=>$this->project_id
         $room_name=$_POST['room_name'];
         $type=$_POST['otherfee_type_id'];
         $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
         if(empty($room_info)){
+            $room_info=M('house_village_room')->where(array('room_name'=>$room_name))->find();
+        }
+        if(empty($room_info)){
             echo json_encode(array('err'=>1,'msg'=>'该房间不存在'));
             die;
         }
+
         $model=new RoomModel();
         $property_model=new PropertyModel();
         if($type=='property'){
@@ -1120,6 +1131,7 @@ class PropertyAction extends BaseAction
             $property_model->carspace_update_cache($_POST['carspace_id']);
         }else{
             $check=M('house_village_otherfee_type')->where(array('village_id'=>$this->village_id,'status'=>1,'otherfee_type_id'=>$type))->find();
+//            dump($this->village_id);die;
             if(!$check){
                 echo json_encode(array('err'=>1,'msg'=>'缴费类型不存在'));
                 die;

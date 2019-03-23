@@ -25,12 +25,12 @@ class RoomAction extends BaseAction
 //        4-2-3201
         $str = $_GET['str'];
         echo $str;
-         preg_match("/(.*)-(\d{2}(?=\d{2})|\d{1}(?=\d{2}))(\d{0,2})/",$str,$matches);
-         //\d{1}(?=\d{3})
-         if(!$matches[3]){
-             $matches[3] = $matches[2];
-             $matches[2] = "1";
-         }
+        preg_match("/(.*)-(\d{2}(?=\d{2})|\d{1}(?=\d{2}))(\d{0,2})/",$str,$matches);
+        //\d{1}(?=\d{3})
+        if(!$matches[3]){
+            $matches[3] = $matches[2];
+            $matches[2] = "1";
+        }
         dump($matches);
     }
 
@@ -41,7 +41,7 @@ class RoomAction extends BaseAction
             dump($_FILES);
             $file = $_FILES['test'];
             $data =  import_excel($file,'E',10);
-             dump($data);
+            dump($data);
         }else{
             $this->display();
         }
@@ -106,7 +106,7 @@ class RoomAction extends BaseAction
     }
     public function test8(){
         $model = new WechatModel();
-       // $data =  {"media":'@Path\filename.jpg'}
+        // $data =  {"media":'@Path\filename.jpg'}
         dump(__DIR__);
         $file = '/u02/vhi99/vhi_smart/Car/Admin/Public/assets/layouts/layout4/img/avatar9.jpg';
         $re = is_file($file);
@@ -301,7 +301,7 @@ class RoomAction extends BaseAction
             array('批量导入','#'),
         );
         $model = new RoomModel();
-            $village_list=$model->get_village_list(array('village_id'=>$this->village_id));
+        $village_list=$model->get_village_list(array('village_id'=>$this->village_id));
         $project_list=M('house_village_project')->where('village_id='.$this->village_id)->select();
         $project_info=M('house_village_project')->where(array('pigcms_id'=>$this->project_id))->find();
         $this->assign('project_info',$project_info);
@@ -482,7 +482,7 @@ class RoomAction extends BaseAction
         //vd($village_id);exit;
         //判断是否是小区，进行跳转 by zhukeqin
         if(M('house_village')->where('village_id='.$village_id)->find()['village_type']==1){
-           header('Location:'.U('ownerlist_updown_news'));
+            header('Location:'.U('ownerlist_updown_news'));
         }
         $ownerlist = $model->ownerlist($village_id);
 
@@ -511,15 +511,19 @@ class RoomAction extends BaseAction
         $role_id = $_SESSION['system']['role_id'];
         // var_dump($admin);
         $role_idArr = explode(',',$role_id);
-        if (in_array(78, $role_idArr)) {
-            $this->assign('role_id',1);
+        //小区管理员
+        if (in_array(78, $role_idArr) ) {
+            $role_id=1;
         }
-
+        //小区类客服助理
+        if (in_array(38, $role_idArr)) {
+            $role_id=2;
+        }
         $model = new RoomModel();
         $village_id =  filter_village(0,2);
         //$ownerlist = $model->ownerlist_updown($village_id);
 
-        //vd($ownerlist);exit();
+        // vd($ownerlist);exit();
         $this->assign('list',$ownerlist);
         /*$fstatus_list = $model->get_fstatus_list();
         $this->assign('fstatus_list',$fstatus_list);*/
@@ -536,8 +540,13 @@ class RoomAction extends BaseAction
         //设置权限
         $role_id = $_SESSION['system']['role_id'];
         $role_idArr = explode(',',$role_id);
-        if (in_array(78, $role_idArr)) {
+        //小区管理员
+        if (in_array(78, $role_idArr) ) {
             $role_id=1;
+        }
+        //小区类客服助理
+        if (in_array(38, $role_idArr)) {
+            $role_id=2;
         }
         $start=I('post.start');
         $length=I('post.length');
@@ -546,37 +555,49 @@ class RoomAction extends BaseAction
             unset($length);
         }
         $model = M('house_village_user_bind');
-        $where_all=$where=array('village_id'=>array('eq',$village_id));
+        $where_all=$where=array('b.village_id'=>array('eq',$village_id));
         if(!empty($_POST['search']['value'])){
-            $where['usernum|phone|name']=array('like',$_POST['search']['value']);
+            $where['b.usernum|b.phone|b.name']=array('like',$_POST['search']['value']);
+        }
+        if(!empty($project_id)){
+            $where['r.project_id'] = $project_id;
         }
         //主查询
-        if(!empty($length)){
-            $list = $model
-                ->where($where)
-                ->limit($start,$length)
-                ->select();
-        }else{
-            $list = $model
-                ->where($where)
-                ->select();
+        $list = $this->get_list($where,$start,$length);
+        if(empty($list)){
+            unset($where['r.project_id']);
+            $list = $this->get_list($where,$start,$length);
         }
         $list_dimcount=$model
+            ->alias('b')
+            ->field(array(
+                'b.*',
+                'r.room_name'
+            ))
+            ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM__ r ON r.owner_id=b.pigcms_id')
             ->where($where)
             ->count();
         $list_count= $model
+            ->alias('b')
+            ->field(array(
+                'b.*',
+                'r.room_name'
+            ))
+            ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM__ r ON r.owner_id=b.pigcms_id')
             ->where($where_all)
             ->count();
-        //dump(M()->_sql());exit;
+        // dump(M()->_sql());exit;
         foreach ($list as $value){
             $array=array(
                 'check_id'=>'<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input type="checkbox" class="checkboxes" value="'.$value['id'].'"><span></span></label>',
                 'pigcms_id'=>$value['pigcms_id'],
                 'name'=>$value['name'],
+                'room_name'=>$value['room_name'],
                 'phone'=>$value['phone'],
                 'usernum'=>$value['usernum'],
                 'action'=>''
             );
+            //小区管理员开放编辑和删除
             if($role_id==1){
                 $array['action']='<div class="btn-group">
                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 操作
@@ -594,7 +615,21 @@ class RoomAction extends BaseAction
                         </li>
                     </ul>
                 </div>';
-            }else{
+                //客服助理开放编辑
+            }elseif ($role_id==2) {
+                $array['action']='<div class="btn-group">
+                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 操作
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-left" role="menu" style="position:relative;">
+
+                        <li>
+                            <a href="'.U('edit_owner_uptown',array('id'=>$value['pigcms_id'])).'">
+                                <i class="icon-tag"></i> 编辑 </a>
+                        </li>
+                    </ul>
+                </div>';
+            }else {
                 $array['action']='<div class="btn-group">
                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 操作
                         <i class="fa fa-angle-down"></i>
@@ -607,6 +642,7 @@ class RoomAction extends BaseAction
             $list_reload[]=$array;
 
         }
+
         if(empty($list_reload)){
             $list_reload=array();
         }
@@ -617,6 +653,33 @@ class RoomAction extends BaseAction
             'data'=>$list_reload
         );
         echo json_encode($result_array);
+    }
+
+    public function get_list($where,$start=0,$length=0)
+    {
+        if(!empty($length)){
+            $list = M('house_village_user_bind')
+                ->alias('b')
+                ->field(array(
+                    'b.*',
+                    'r.room_name'
+                ))
+                ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM__ r ON r.owner_id=b.pigcms_id')
+                ->where($where)
+                ->limit($start,$length)
+                ->select();
+        }else{
+            $list = M('house_village_user_bind')
+                ->alias('b')
+                ->field(array(
+                    'b.*',
+                    'r.room_name'
+                ))
+                ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM__ r ON r.owner_id=b.pigcms_id')
+                ->where($where)
+                ->select();
+        }
+        return $list;
     }
     /**
      * 业主绑定房间弹出层
@@ -991,7 +1054,7 @@ class RoomAction extends BaseAction
 
 
 
-       foreach($tenantlist as $key=> &$row){
+        foreach($tenantlist as $key=> &$row){
             $row['room_names'] = $model->format_room_str($row['room_names'],'<br />');
 
             $row['is_out'] = boolval($row['rinfo']);
@@ -1004,12 +1067,12 @@ class RoomAction extends BaseAction
                 unset($tenantlist[$key]);
             }
 
-       }
-       unset($row);
+        }
+        unset($row);
 
 
         //过滤
-       $model->filterlist_by_tid($tenantlist);
+        $model->filterlist_by_tid($tenantlist);
         $this->assign('list',$tenantlist);
         //获取入住状态
         $fstatus_list = $model->get_fstatus_list();
@@ -1153,7 +1216,7 @@ class RoomAction extends BaseAction
         }
     }
 
-    
+
     /**
      * 入住单位设备弹出层
      * @param $tid
@@ -1426,12 +1489,12 @@ class RoomAction extends BaseAction
         }
 
         $this->assign('presentVillage',$presentVillage);
-        
-        
+
+
         //条件
         $_map =array('p.is_del'=>0);
         $point_status && $_map['point_status']=array('eq',$point_status);
-       
+
         if(isset($_GET['d_time'])&&!isset($_GET['work_time'])){
             $thisDayStart = strtotime($_GET['d_time'])+8*3600;
             $thisDayEnd = strtotime($_GET['d_time'])+32*3600;
@@ -1523,7 +1586,7 @@ class RoomAction extends BaseAction
             $meter = M('house_village_meters')->where(array('id'=>$meter_id))->select();
             $meter_cate = M('house_village_meter_cate')->where(array('id'=>$meter[0]['cate_id']))->select();
 
-            $meterArray[$k]['meter_code'] = $meter[0]['meter_code']; 
+            $meterArray[$k]['meter_code'] = $meter[0]['meter_code'];
             $meterArray[$k]['room_name'] = $meter[0]['meter_desc'];
             $meterArray[$k]['meter_cate'] = $meter_cate[0]['desc'];
             $meterArray[$k]['meter_sign'] = $meter_cate[0]['sign'];
@@ -1549,7 +1612,7 @@ class RoomAction extends BaseAction
      * 记录详情
      *
      */
-    public function meters_record_detail(){        
+    public function meters_record_detail(){
         $data = $_GET;
         //表名
         $table_name = $data['field'].'_config_record';
@@ -1567,10 +1630,10 @@ class RoomAction extends BaseAction
             $cate_type = M('house_village_meter_cate')->where(array('id'=>$val['cate_id']))->select();
             $meter[$key]['cates']['cate_type'] = $cate_type[0]['desc'];
             $meter[$key]['cates']['cate_id'] = $cate_type[0]['id'];
-            $configArr = M('house_village_meters_custom')->where(array('meter_hash'=>$val['meter_hash']))->select(); 
+            $configArr = M('house_village_meters_custom')->where(array('meter_hash'=>$val['meter_hash']))->select();
             // var_dump($configArr);
             //剔除信息为空的数据          
-            foreach ($configArr as $k => $v) {               
+            foreach ($configArr as $k => $v) {
                 if ($v['val'] == '') {
                     unset($configArr[$k]);
                 }
@@ -1581,10 +1644,10 @@ class RoomAction extends BaseAction
         foreach ($meter as $key => $va) {
             foreach ($va['configArr'] as $k => $v) {
                 $desc = M('re_setmeter_config_custom')->where(array('id'=>$v['custom_id']))->getField('desc');
-                $meter[$key]['configArr'][$k]['desc'] = $desc;              
+                $meter[$key]['configArr'][$k]['desc'] = $desc;
             }
         }
-        
+
         // var_dump($meter);
         //该设备的二级参数
         $cateArray = array();
@@ -1600,7 +1663,7 @@ class RoomAction extends BaseAction
                 $cateArray[$ke]['cateArr'] = $cateArr;
             }
             $meter[$key]['cates']['cateArray'] = $cateArray;
-        }           
+        }
         // var_dump($meter);      
 
         $this->assign("meter",$meter);
@@ -1611,7 +1674,7 @@ class RoomAction extends BaseAction
      * 设备属性修改
      */
     public function modal_meter_update() {
-        if (IS_POST) {           
+        if (IS_POST) {
             $model = new RoomModel();
             $meter_config = $_POST['custom_id'];
             $meter_hash = M('house_village_meters')->where(array('id'=>$_POST['meters_id']))->getField('meter_hash');
@@ -1641,7 +1704,7 @@ class RoomAction extends BaseAction
                     $this->error('修改失败',U('meterlist_news'));
                 }
             }
-                        
+
         } else {
             $meter_hash = $_GET['meter_hash'];
             if (!$meter_hash) $this->assign('没有选择设备');
@@ -1659,7 +1722,7 @@ class RoomAction extends BaseAction
             }else{
                 $village_list=$model->get_village_list(array('village_id'=>$this->village_id));
             }
-           // dump($village_list);exit;
+            // dump($village_list);exit;
             $this->assign_json('metersArr',$metersArr);
             $this->assign_json('type_tree',$model->get_type_tree($this->village_id));
             $this->assign_json('village_list',$village_list);
@@ -1745,7 +1808,7 @@ class RoomAction extends BaseAction
             qr($url);
         } else {
             $url = C('WEB_DOMAIN') . '/wap.php?g=Wap&c=Meter&a=enter&meter_hash=' . $meter_hash;
-            qr($url);    
+            qr($url);
         }
     }
 
@@ -1765,9 +1828,9 @@ class RoomAction extends BaseAction
         $meter_info['meter_type'] = $meter_type;
         $meter_cate = M('house_village_meter_cate')->where(array('id'=>$meter_info['cate_id']))->select();
         $meter_info['meter_cate'] = $meter_cate[0]['desc'];
-        $configArr = M('house_village_meters_custom')->where(array('meter_hash'=>$meter_info['meter_hash']))->select(); 
+        $configArr = M('house_village_meters_custom')->where(array('meter_hash'=>$meter_info['meter_hash']))->select();
         //剔除信息为空的数据          
-        foreach ($configArr as $k => $v) {               
+        foreach ($configArr as $k => $v) {
             if ($v['val'] == '') {
                 unset($configArr[$k]);
             }
@@ -1782,7 +1845,7 @@ class RoomAction extends BaseAction
         $meter_info['configArr'] = $configArr;
 
         $meter_info['be_cousume'] = explode(',', $meter_info['be_cousume']);
-        $meter_info['use_count'] =  $meter_info['be_cousume'][1] - $meter_info['be_cousume'][0];   
+        $meter_info['use_count'] =  $meter_info['be_cousume'][1] - $meter_info['be_cousume'][0];
         $this->assign('meter_hash',$meter_info['meter_hash']);
         $this->assign('modal_title',$meter_info['meter_code']);
         $this->assign('meter_info',$meter_info);
@@ -1848,15 +1911,15 @@ class RoomAction extends BaseAction
             $data=array('is_del'=>0);
             $re=M('house_village_meters')->where(array('id'=>$id))->data($data)->save();
             echo $re;
-        }        
+        }
     }
 
 
     /**
      * 添加设备
      */
-    public function add_meter(){      
-        
+    public function add_meter(){
+
         //导航设置
         $breadcrumb_diy = array(
             array('物业服务','#'),
@@ -2023,7 +2086,7 @@ class RoomAction extends BaseAction
         foreach ($data as $k => $v) {
             if ($meter_config[$k]['val']) {
                 $data[$k]['val'] = $meter_config[$k]['val'];
-            }           
+            }
         }
         // var_dump($data);
 
@@ -2184,7 +2247,7 @@ class RoomAction extends BaseAction
         $this->html_option('table_init_length',-1);
         $this->html_option('table_sort',array(1,'asc'));
         $model = new RoomModel();
-         $village_id = session('system.village_id');
+        $village_id = session('system.village_id');
         $list = $model->preview_list($tid,$village_id,$ym);
         //dump(M()->_sql());exit;
         //楼层数据处理
@@ -2335,7 +2398,7 @@ class RoomAction extends BaseAction
         );
 
 //        dump($room_data);exit;
-        
+
         $this->assign($assign);
         $this->assign('modal_title',"抄表记录-" .$info['tenantname'] . "($tid)");
         $this->assign_json('room_data',$room_data);
@@ -2536,22 +2599,22 @@ class RoomAction extends BaseAction
         $is_create = M('house_village_user_paylist')->where(array('usernum'=>$tenant_bill['usernum'],'create_date'=>$ym))->find();
         /*if(!$is_create){*/
 
-            //未创建订单
-            if($ym){
-                $billArray = $model->create_bill($tenant_bill,$ym);
-            }else{
-                $billArray = $model->create_bill($tenant_bill);
+        //未创建订单
+        if($ym){
+            $billArray = $model->create_bill($tenant_bill,$ym);
+        }else{
+            $billArray = $model->create_bill($tenant_bill);
+        }
+        if(!$is_create){
+            //vd($billArray);exit;
+            $re = M('house_village_user_paylist')->data($billArray)->add();
+            //echo mysql_error();exit;
+            if(!$re){
+                exit('系统出错，数据生成失败');
             }
-            if(!$is_create){
-                //vd($billArray);exit;
-                $re = M('house_village_user_paylist')->data($billArray)->add();
-                //echo mysql_error();exit;
-                if(!$re){
-                    exit('系统出错，数据生成失败');
-                }
-            }else{
-                $re = M('house_village_user_paylist')->data($billArray)->where(array('pigcms_id'=>$is_create['pigcms_id']))->save();
-            }
+        }else{
+            $re = M('house_village_user_paylist')->data($billArray)->where(array('pigcms_id'=>$is_create['pigcms_id']))->save();
+        }
 
         /*}*/
         //再次获取数据
@@ -2976,7 +3039,7 @@ class RoomAction extends BaseAction
 
 
 
-       //处理数据
+        //处理数据
         foreach($list as $key=>&$row){
             $row['room_names'] = [];
             $row['roomsizes'] = 0;//物业总面积
@@ -3228,7 +3291,7 @@ class RoomAction extends BaseAction
         // $idArray = array('113');
         // $is_set = in_array($config_id, $idArray);
         // $this->assign('is_set',$is_set);
-               
+
         if ($config_id == 113) {
             // var_dump($config_id);
             $config_new=array(
@@ -3259,8 +3322,8 @@ class RoomAction extends BaseAction
                 'desc'=>"新建计费配置",
                 'pid'=>$config_id
             );
-        }        
-        
+        }
+
         //拼接通用设备类型和项目专属设备类型
         foreach ($village_list as $k=>$v){
             $search2=$model->meter_config_village_list(0,$config_id,$k);
@@ -3294,7 +3357,7 @@ class RoomAction extends BaseAction
         echo $message;
     }
 
-   /**
+    /**
      * 根据key判断该点位是否存在
      */
     public function check_key(){
@@ -3320,17 +3383,17 @@ class RoomAction extends BaseAction
         } else {
             $message = false;
         }
-        echo $message;      
+        echo $message;
     }
 
     /**
      * 根据id查询其二级分类
      */
     public function get_cates(){
-        $id = I('post.id');        
-        $cates = M('house_village_meter_cate')->where(array('meter_type_id'=>$id))->select(); 
+        $id = I('post.id');
+        $cates = M('house_village_meter_cate')->where(array('meter_type_id'=>$id))->select();
         $cates = json_encode($cates);
-        echo $cates;                    
+        echo $cates;
     }
 
 
@@ -3378,7 +3441,7 @@ class RoomAction extends BaseAction
         }else{
             $this->error("请填写标记","",$data);
         }
-        
+
     }
 
     /**
@@ -3438,7 +3501,7 @@ class RoomAction extends BaseAction
         $cate = $model->meter_cate_info($cate_id);
 
         //判断是否为工程部设备,是则选择2模板，不是则选择1模板
-        $meter_type_id = M('house_village_meter_cate')->where(array('id'=>$cate_id))->getField('meter_type_id');       
+        $meter_type_id = M('house_village_meter_cate')->where(array('id'=>$cate_id))->getField('meter_type_id');
         if ($meter_type_id == 113) {
             // var_dump($meter_type_id);
             $this->assign('meter_type_id',$meter_type_id);

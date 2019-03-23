@@ -20,7 +20,7 @@ class OffAction extends BaseAction{
     }
 
     /**
-     *物品管理12345
+     *物品管理
      **/
     public function off_list_news(){
 
@@ -2681,18 +2681,11 @@ class OffAction extends BaseAction{
             }
             $str = substr($str,0,-1);
             $v['name'] = $str;
-            /*if(empty($v['name_id'][0])){
-                $count = 0;
-            }else{
-                $count = count($v['name_id']);
-            }
-            $v['bed_count'] = $v['bed_number'] + $count;*/
             if($v['bed_number'] == 0){
                 $v['bed_number'] = "床位已满";
             }
         }
         unset($v);
-//        dump($house);die;
         //取出宿舍表所有项目信息
         $village = M('staff')->alias('a')
             ->join('left join pigcms_house_village b ON a.village_id=b.village_id')
@@ -2802,10 +2795,6 @@ class OffAction extends BaseAction{
         $where = array('village_id'=>$village_id,'room'=>$room);
         $staff_house_info = M('staff')->where($where)->field('bed_number,department,comment,name_id,staff_id')->find();
         $arr = explode(',',$staff_house_info['name_id']);
-//        foreach($arr as $v){
-//            $array[] = M('staff_name')->where(array('id'=>$v))->find()['name'];
-//        }
-//        $staff_house_info['name'] = $array;
         $staff_house_info['name_id'] = $arr;
         //取出所有员工信息
         $info = M('staff_name')->select();
@@ -2858,8 +2847,6 @@ class OffAction extends BaseAction{
                 $data['name_id'] = implode(',',$data['name_id']);
                 $re = M('staff')->save($data);
                 if ($re !== false) {
-//                        $data['start_time'] = time();
-//                        M('staff_record')->add($data);
                     $this->success('更新成功',U('Off/staff_news'));
                 } else {
                     $this->error('更新失败',U('Off/staff_house_edit',array('id'=>$data['staff_id'])));
@@ -2882,25 +2869,7 @@ class OffAction extends BaseAction{
                 ->find();
             $staff['name_id'] = explode(',',$staff['name_id']);
             //取出所有员工
-//            $data = M('staff')->field('staff_id,name_id')->select();
-//            $staff_info = M('staff_name')->select();
-//            foreach($staff_info as $s){
-//                $arr[]=$s['id'];
-//            }
-//            foreach($arr as $k=>$v){
-//                foreach($data as $s){
-//                    $arr1 = explode(',',$s['name_id']);
-//                    if(in_array($v,$arr1)){
-//                        unset($arr[$k]);
-//                    }
-//                }
-//            }
-//            foreach($staff['name_id'] as $v){
-//                array_push($arr,$v);
-//            }
-//            $where['id'] = array('in',$arr);
-//            $staff_name = M('staff_name')->where($where)->select();
-            //取出所有员工
+
             $staff_name = M('staff_name')->select();
             //取出所有项目信息
             $vallage = M('house_village')->field('village_id,village_name')->select();
@@ -3224,7 +3193,6 @@ class OffAction extends BaseAction{
     {
         if($_POST){
             $data = $_POST;
-            //dump($data);die;
             //不能大于剩余床位
             if($data['bed_number'] <=0){
                 $this->error('该宿舍床位不足',U('Off/staff_edit',array('id'=>$data['name_id'])));
@@ -3364,12 +3332,17 @@ class OffAction extends BaseAction{
             if ($result) {
                 $this->error('房间号不能重复', U('Off/staff_house_add'));
             }
+            if(empty($names[0])){
+                $count = 0;
+            }else{
+                $count = count($names);
+            }
             //住宿员工不能超过床位数
-            if (count($names) > $data['bed_number']) {
+            if ($count > $data['bed_number']) {
                 $this->error('宿舍员工数不能大于床位数', U('Off/staff_house_add'));
             }
             //床位数自动改变
-            $data['bed_number'] = $data['bed_number'] - count($data['name_id']);
+            $data['bed_number'] = $data['bed_number'] - $count;
             //增加员工数加入记录表
             foreach($names as $name){
                 $insertId = M('staff_name')->add(array('name'=>$name));
@@ -3381,46 +3354,7 @@ class OffAction extends BaseAction{
                 }
             }
             $data['name_id'] = implode(',',$data['name_id']);
-            /* $data['name_id'] = implode(',',$data['name_id']);
-             if(!empty($data['name_id'])){
-                 $arr1 = explode(',',$data['name_id']);
-                 //删除原宿舍员工
-                 $staff_data = M('staff')->select();
-                 foreach($arr1 as $v){
-                     foreach($staff_data as &$s){
-                         $array = explode(',',$s['name_id']);
-                         for($i=0;$i<count($array);$i++){
-                             if($v == $array[$i]){
-                                 //删除员工id，增加房间数
-                                 unset($array[$i]);
-                                 $s['name_id'] = implode(',',$array);
-                                 $s['bed_number'] = $s['bed_number'] + 1;
-                                 //加入记录表
-                                 $name = M('staff_name')->where(array('id'=>$v))->find()['name'];
-                                 $where = array('village_id'=>$s['village_id'],'room'=>$s['room'],'name'=>$name);
-                                 M('staff_record')->where($where)->setField('end_time',time());
-                                 $result = M('staff')->save($s);
-                             }
-                         }
-                     }
-                 }
-                 if($result){
-                     $re = M('staff')->add($data);
-                     if ($re) {
-                         $arr2 = explode(',',$data['name_id']);
-                         foreach($arr2 as $id){
-                             $data['name'] = M('staff_name')->where(array('id'=>$id))->find()['name'];
-                             $data['start_time'] = time();
-                             M('staff_record')->add($data);
-                         }
-                         $this->success('添加宿舍成功',U('Off/staff_news'));
-                     } else {
-                         $this->error('添加宿舍失败',U('Off/staff_house_add'));
-                     }
-                 }else{
-                     $this->error('添加员工失败',U('Off/staff_house_add'));
-                 }
-             }*/
+
             $re = M('staff')->add($data);
             if ($re) {
                 $this->success('添加宿舍成功', U('Off/staff_news'));
@@ -3447,7 +3381,6 @@ class OffAction extends BaseAction{
             array('宿舍信息列表',U('staff_news')),
             array('批量导入','#'),
         );
-        // $this->assign('village_list',$model->get_village_list());
         $this->assign('breadcrumb_diy',$breadcrumb_diy);
         $this->display();
     }
@@ -3467,25 +3400,16 @@ class OffAction extends BaseAction{
         $this->assign('breadcrumb_diy',$breadcrumb_diy);
         //获取社区名
         $model = new OffModel();
-//        echo 1;die;
         $file = $_FILES['test'];
-//        dump($file);die;
-        // $village_id = session('system.village_id');
-        // $village_name = $model->get_village_list()[$village_id];
-
         if($file){
             //导入数据
             $list = $model->staff_excel_to_data($file);
-//            dump($list);die;
             foreach($list['body'] as $k=>&$v){
                 if(!is_numeric($v['number'])){
                     unset($list['body'][$k]);
                 }
             }
             $this->assign_json('list',$list);
-            // $this->assign_json('selected_village_id',$village_id);
-            // $this->assign_json('selected_village_name',$village_name);
-            // $this->assign('selected_village_name',$village_name);
             $this->display();
         }else{
             $this->error("文件格式错误",U('supplier_import_step'));
