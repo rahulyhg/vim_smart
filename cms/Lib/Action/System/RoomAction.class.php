@@ -3915,5 +3915,79 @@ class RoomAction extends BaseAction
         }
     }
 
+    /**
+     * @author zhukeqin
+     * 水电费批量导入
+     */
+    public function water_uptown_import_step1()
+    {
+        //导航设置
+        $breadcrumb_diy = array(
+            array('物业服务','#'),
+            array('业主列表',U('ownerlist_uptown_news')),
+            array('批量导入','#'),
+        );
+        $this->assign('breadcrumb_diy',$breadcrumb_diy);
+        $this->display();
+    }
 
+    /**
+     * @author zhukeqin
+     * 水电费批量导入
+     */
+    public function water_uptown_import_step2()
+    {
+        $start_time = strtotime(I('post.start_time'));
+//        dump($start_time);die;
+        $end_time = strtotime(I('post.end_time'));
+        if(empty($start_time) || empty($end_time)){
+            $this->error('请选择月份');
+        }
+        //导航设置
+        $breadcrumb_diy = array(
+            array('物业服务','#'),
+            array('业主列表',U('ownerlist_uptown_news')),
+            array('批量导入','#'),
+        );
+        $this->assign('breadcrumb_diy',$breadcrumb_diy);
+        $this->assign('start_time',$start_time);
+        $this->assign('end_time',$end_time);
+        //获取社区名
+        $model = new OffModel();
+        $file = $_FILES['test'];
+        if($file){
+            //导入数据
+            $list = $model->water_excel_to_data($file);
+            foreach($list['body'] as $k=>&$v){
+                if(!is_numeric($v['number'])){
+                    unset($list['body'][$k]);
+                }
+            }
+            $this->assign_json('list',$list);
+            $this->display();
+        }else{
+            $this->error("文件格式错误",U('supplier_import_step'));
+        }
+    }
+
+
+    /**
+     * 第三步导入数据
+     */
+    public function water_uptown_import_step3(){
+        $data = $_POST;
+        $village_id = $_SESSION['system']['village_id'];
+        // var_dump($village_id);exit();
+        $data['data'] = json_decode(htmlspecialchars_decode($data['data']),true);
+//        dump($data);die;
+        // echo $village_id;
+        $model = new OffModel();
+        $re = $model->insert_water_data_to_database($data,$village_id);
+        if($re){
+            return $this->success("操作成功","",$data);
+        }else{
+            $error = $model->get_import_error();
+            return $this->error($error['msg'],"",$error['data']);
+        }
+    }
 }

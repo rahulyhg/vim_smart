@@ -54,13 +54,13 @@ class PropertyAction extends BaseAction
             $this->month_number=12;
         }
         $this->type_list=array(
-          array(
-              'otherfee_type_name'=>'物业服务费',
-              'url'=>U('property'),
-              'type'=>'property',
-          ),
             array(
-              'otherfee_type_name'=>'包月泊车费',
+                'otherfee_type_name'=>'物业服务费',
+                'url'=>U('property'),
+                'type'=>'property',
+            ),
+            array(
+                'otherfee_type_name'=>'包月泊车费',
                 'url'=>U('carspace'),
                 'type'=>'carspace',
             ),
@@ -846,27 +846,27 @@ class PropertyAction extends BaseAction
             $phpexcel->getActiveSheet()->getStyle('A2:'.PHPExcel_Cell::stringFromColumnIndex($min+2).$low)->getBorders()->getAllBorders()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
         }
         //月报表
-            $phpexcel->createSheet();//新建一个页面
-            $phpexcel->setActiveSheetIndex($sheet+1);
-            $phpexcel->getActiveSheet()->setTitle('月报表');
-            $phpexcel->getActiveSheet()->setCellValue('A1', $this->year.'年'.$village_info['village_name'].$project_info['desc'].'物业收费月报表');
-            $phpexcel->getActiveSheet()->getStyle('A1')->getFont()->setName('黑体');
-            $phpexcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
-            $phpexcel->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);
-            //合并单元格
-            $phpexcel->getActiveSheet()->mergeCells('A1:J1');
+        $phpexcel->createSheet();//新建一个页面
+        $phpexcel->setActiveSheetIndex($sheet+1);
+        $phpexcel->getActiveSheet()->setTitle('月报表');
+        $phpexcel->getActiveSheet()->setCellValue('A1', $this->year.'年'.$village_info['village_name'].$project_info['desc'].'物业收费月报表');
+        $phpexcel->getActiveSheet()->getStyle('A1')->getFont()->setName('黑体');
+        $phpexcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
+        $phpexcel->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);
+        //合并单元格
+        $phpexcel->getActiveSheet()->mergeCells('A1:J1');
 
-            //填入表头
-            $phpexcel->getActiveSheet()->setCellValue('A2', '序号');
-            $phpexcel->getActiveSheet()->getStyle('A2')->getFont()->setName('黑体');
-            $phpexcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(true);
-            $phpexcel->getActiveSheet()->setCellValue('B2', '收款名目');
-            $phpexcel->getActiveSheet()->getStyle('B2')->getFont()->setName('黑体');
-            $phpexcel->getActiveSheet()->getStyle('B2')->getFont()->setBold(true);
-            $phpexcel->getActiveSheet()->getColumnDimension('B')->setWidth(30);
-            $phpexcel->getActiveSheet()->setCellValue('C2', '本年实收累计');
-            $phpexcel->getActiveSheet()->getStyle('C2')->getFont()->setName('黑体');
-            $phpexcel->getActiveSheet()->getStyle('C2')->getFont()->setBold(true);
+        //填入表头
+        $phpexcel->getActiveSheet()->setCellValue('A2', '序号');
+        $phpexcel->getActiveSheet()->getStyle('A2')->getFont()->setName('黑体');
+        $phpexcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(true);
+        $phpexcel->getActiveSheet()->setCellValue('B2', '收款名目');
+        $phpexcel->getActiveSheet()->getStyle('B2')->getFont()->setName('黑体');
+        $phpexcel->getActiveSheet()->getStyle('B2')->getFont()->setBold(true);
+        $phpexcel->getActiveSheet()->getColumnDimension('B')->setWidth(30);
+        $phpexcel->getActiveSheet()->setCellValue('C2', '本年实收累计');
+        $phpexcel->getActiveSheet()->getStyle('C2')->getFont()->setName('黑体');
+        $phpexcel->getActiveSheet()->getStyle('C2')->getFont()->setBold(true);
         $phpexcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
         for($i=1;$i<=$this->month_number;$i++) {
             $min=2+$i;
@@ -876,26 +876,26 @@ class PropertyAction extends BaseAction
         $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min+1).'2', '备注');
         $phpexcel->getActiveSheet()->getColumnDimension(PHPExcel_Cell::stringFromColumnIndex($min))->setWidth(20);
         $data=$property->month();
-            $fee_list=$data['fee_list'];
-            $sum=$data['sum'];
+        $fee_list=$data['fee_list'];
+        $sum=$data['sum'];
 
-            foreach ($fee_list as $key=>$value){
-                $low=$key+3;
-                $phpexcel->getActiveSheet()->setCellValue('A'.$low, $key+1);
-                $phpexcel->getActiveSheet()->setCellValue('B'.$low, $value['otherfee_type_name']);
-                $phpexcel->getActiveSheet()->setCellValue('C'.$low, number_format($value['list']['sum'],2));
-                unset($value['list']['sum']);
-                $remark=$value['list']['remark'];
-                unset($value['list']['remark']);
-                foreach ($value['list'] as $key1=>$value1){
-                    $min=2+$key1;
-                    if(!empty($value1)){
-                        $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low, number_format($value1,2));
-                    }
+        foreach ($fee_list as $key=>$value){
+            $low=$key+3;
+            $phpexcel->getActiveSheet()->setCellValue('A'.$low, $key+1);
+            $phpexcel->getActiveSheet()->setCellValue('B'.$low, $value['otherfee_type_name']);
+            $phpexcel->getActiveSheet()->setCellValue('C'.$low, number_format($value['list']['sum'],2));
+            unset($value['list']['sum']);
+            $remark=$value['list']['remark'];
+            unset($value['list']['remark']);
+            foreach ($value['list'] as $key1=>$value1){
+                $min=2+$key1;
+                if(!empty($value1)){
+                    $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low, number_format($value1,2));
                 }
-                //$phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min+1).$low, $remark);
             }
-            $low=$low+1;
+            //$phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min+1).$low, $remark);
+        }
+        $low=$low+1;
         $phpexcel->getActiveSheet()->setCellValue('A'.$low, '合计');
         $phpexcel->getActiveSheet()->mergeCells('A'.$low.':B'.$low);
         $phpexcel->getActiveSheet()->setCellValue('C'.$low, $value['remark']);
@@ -926,20 +926,20 @@ class PropertyAction extends BaseAction
         $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['4'],2));
         $low1=$low+5;
         $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['5'],2));
-            for($i=1;$i<=$this->month_number;$i++) {
-                $min=2+$i;
-                $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low, number_format($sum['list'][$i]['sum'],2));
-                $low1=$low+1;
-                $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['list'][$i]['1'],2));
-                $low1=$low+2;
-                $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['list'][$i]['2'],2));
-                $low1=$low+3;
-                $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['list'][$i]['3'],2));
-                $low1=$low+4;
-                $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['list'][$i]['4'],2));
-                $low1=$low+5;
-                $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['list'][$i]['5'],2));
-            }
+        for($i=1;$i<=$this->month_number;$i++) {
+            $min=2+$i;
+            $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low, number_format($sum['list'][$i]['sum'],2));
+            $low1=$low+1;
+            $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['list'][$i]['1'],2));
+            $low1=$low+2;
+            $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['list'][$i]['2'],2));
+            $low1=$low+3;
+            $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['list'][$i]['3'],2));
+            $low1=$low+4;
+            $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['list'][$i]['4'],2));
+            $low1=$low+5;
+            $phpexcel->getActiveSheet()->setCellValue(PHPExcel_Cell::stringFromColumnIndex($min).$low1, number_format($sum['list'][$i]['5'],2));
+        }
 
         $phpexcel->getActiveSheet()->getStyle('A2:'.PHPExcel_Cell::stringFromColumnIndex($min).$low1)->getBorders()->getAllBorders()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
 
@@ -968,7 +968,7 @@ class PropertyAction extends BaseAction
         $project=M('house_village_project')->where('pigcms_id='.$project_id)->find();
         if($fee_lastyear_id=='property'){
             $key_list=array(
-              'lastyear_receive'=>6,
+                'lastyear_receive'=>6,
                 'lastyear_advance'=>7,
             );
         }elseif($fee_lastyear_id=='carspace'){
@@ -1032,7 +1032,7 @@ class PropertyAction extends BaseAction
         }
         $keyword=$_POST['keyword'];
         $where=array(
-          'project_id'=>$project_id,
+            'project_id'=>$project_id,
             'fid'=>array('neq','0')
         );
         if(empty($_POST['type'])){
@@ -1064,23 +1064,18 @@ class PropertyAction extends BaseAction
      * ajax获取类型及相关信息
      */
     public function ajax_otherfee_type(){
-            $otherfee_type_id=$_POST['otherfee_type_id'];
-            $room_name=$_POST['room_name'];
-            //,'project_id'=>$this->project_id
-            $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
-            if(empty($room_info)){
-                $room_info=M('house_village_room')->where(array('room_name'=>$room_name))->find();
-            }
-            $_SESSION['rid']=$room_info['id'];
-            if($otherfee_type_id=='property'){
-                $data=M('house_village_room_uptown')->where(array('rid'=>$room_info['id']))->find();
-            }elseif ($otherfee_type_id=='carspace'){
-                $data=M('house_village_user_car')->where(array('rid'=>$room_info['id']))->select();
-            }else{
-                $data=M('house_village_otherfee_type')->where(array('otherfee_type_id'=>$otherfee_type_id))->find();
-            }
-
-            echo json_encode(array('type'=>$otherfee_type_id,'data'=>$data));
+        $otherfee_type_id=$_POST['otherfee_type_id'];
+        $room_name=$_POST['room_name'];
+        $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
+        $_SESSION['rid']=$room_info['id'];
+        if($otherfee_type_id=='property'){
+            $data=M('house_village_room_uptown')->where(array('rid'=>$room_info['id']))->find();
+        }elseif ($otherfee_type_id=='carspace'){
+            $data=M('house_village_user_car')->where(array('rid'=>$room_info['id']))->select();
+        }else{
+            $data=M('house_village_otherfee_type')->where(array('otherfee_type_id'=>$otherfee_type_id))->find();
+        }
+        echo json_encode(array('type'=>$otherfee_type_id,'data'=>$data));
     }
     /**
      * @author zhukeqin
@@ -1108,19 +1103,13 @@ class PropertyAction extends BaseAction
      * ajax 添加费用
      */
     public function ajax_in_fee(){
-
-        //,'project_id'=>$this->project_id
         $room_name=$_POST['room_name'];
         $type=$_POST['otherfee_type_id'];
         $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
         if(empty($room_info)){
-            $room_info=M('house_village_room')->where(array('room_name'=>$room_name))->find();
-        }
-        if(empty($room_info)){
             echo json_encode(array('err'=>1,'msg'=>'该房间不存在'));
             die;
         }
-
         $model=new RoomModel();
         $property_model=new PropertyModel();
         if($type=='property'){
@@ -1131,7 +1120,6 @@ class PropertyAction extends BaseAction
             $property_model->carspace_update_cache($_POST['carspace_id']);
         }else{
             $check=M('house_village_otherfee_type')->where(array('village_id'=>$this->village_id,'status'=>1,'otherfee_type_id'=>$type))->find();
-//            dump($this->village_id);die;
             if(!$check){
                 echo json_encode(array('err'=>1,'msg'=>'缴费类型不存在'));
                 die;

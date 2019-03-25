@@ -235,31 +235,31 @@
                                     </div>
                                     <div class="other_fee" style="display: none;">
                                         <if condition="$is_code">
-                                            <div class="form-group form-md-line-input"  style="width:30%; float:left;">
-                                                <label class="col-md-5 control-label" for="form_control_1" >起码
+                                            <div class="form-group form-md-line-input"  style="width:42%; float:left;">
+                                                <label class="col-md-6 control-label" for="form_control_1" >起码
                                                     <span class="required">*</span>
                                                 </label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="md-checkbox-list">
                                                         <input type="text" name="code_start" value=""  class="form-control autocount" >
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group form-md-line-input"  style="width:30%; float:left;">
-                                                <label class="col-md-5 control-label" for="form_control_1 " >止码
+                                                <label class="col-md-6 control-label" for="form_control_1 " >止码
                                                     <span class="required">*</span>
                                                 </label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="md-checkbox-list">
                                                         <input type="text" name="code_end" value=""  class="form-control autocount" >
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group form-md-line-input"  style="width:30%; float:left;">
-                                                <label class="col-md-5 control-label" for="form_control_1" >单价
+                                            <div class="form-group form-md-line-input"  style="width:33%; float:left;">
+                                                <label class="col-md-6 control-label" for="form_control_1" >单价
                                                     <span class="required">*</span>
                                                 </label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="md-checkbox-list">
                                                         <input type="text" name="unit" value=""  class="form-control autocount" >
                                                     </div>
@@ -311,7 +311,7 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-7" >
-                                            <textarea    value="" name="remark" class="form-control"></textarea>
+                                            <textarea    value="" name="remark" class="form-control" style="height:34px;"></textarea>
                                         </div>
                                     </div>
                                     <div style="clear:both"></div>
@@ -448,11 +448,11 @@
                         </tr>
                         <tr>
                             <td align="center">地产应补金额</td>
-                            <td align="center" colspan="{pigcms{count(sum['data'])+2}">{pigcms{:number_format($sum['sum']['add_money'],2)}</td>
+                            <td align="center" colspan="{pigcms{:count(sum['data'])+2}">{pigcms{:number_format($sum['sum']['add_money'],2)}</td>
                         </tr>
                         <tr>
                             <td align="center">截止{pigcms{:date('Y年12月31日')}欠费金额</td>
-                            <td align="center" colspan="{pigcms{count(sum['data'])+2}">{pigcms{:number_format($sum['sum']['noprepay_money'],2)}</td>
+                            <td align="center" colspan="{pigcms{:count(sum['data'])+2}">{pigcms{:number_format($sum['sum']['noprepay_money'],2)}</td>
                         </tr>
                     </table>
                 </div>
@@ -955,7 +955,6 @@
         }
         $('#otherfee_type_id').change(function(){
             var p1=$(this).children('option:selected').val();
-
             var room_name=$("input[name='room_name']").val();
             $.ajax({
                 url:"{pigcms{:U('Property/ajax_otherfee_type')}",

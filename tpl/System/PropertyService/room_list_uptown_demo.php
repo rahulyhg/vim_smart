@@ -990,6 +990,11 @@
                             $('#fee_true').html('已退<span class="required">*</span>');
                             $('#fee_true_div').css('display','none');
                         }
+                        if(res.res != null){
+                            $("input[name='code_start']").val(res.res.start_code);
+                            $("input[name='code_end']").val(res.res.end_code);
+                            $("input[name='unit']").val(res.res.price);
+                        }
                     }
                 }
             });

@@ -1158,4 +1158,103 @@ class OffModel extends Model
         return $data;
     }
 
+    /**
+     * 水电费导入
+     * 文件参考格式
+     * http://www.hdhsmart.com/upload/example/supplier.xls
+     */
+    public function water_excel_to_data($file)
+    {
+        $arr = import_excel_sheet($file,'','','',1);
+//         dump($arr);die;
+        $tmp = array();
+        $title = array(
+            '序号',
+            '房间号',
+            '业主姓名',
+            '起码',
+            '止码',
+            '单价',
+            // '合作状态',
+        );
+        $room_pro_name_arr = [];//记录供应商名称
+        //为查询是否为重复数据做准备
+        foreach($arr as $key=> $row){
+            $tmp[] = array(
+                'number'            => $row[0],
+                'room'              => $row[1],
+                'owner_name'        => $row[2],
+                'start_code'        => $row[3],
+                'end_code'          => $row[4],
+                'price'             => $row[5],
+            );
+        }
+
+        $data = array(
+            'title'=>$title,
+            'body'=>$tmp
+        );
+        // var_dump($data);exit();
+        return $data;
+    }
+
+    //导入数据库
+    public function insert_water_data_to_database($data){
+        // $this->database_id = $id;
+        $this->startTrans();
+        $flag = 1;
+        foreach($data['data'] as $row){
+            //将数据导入水电表
+            $oid = $this->insert_to_water_base($row,$data['start_time'],$data['end_time']);
+            $row['oid'] = $oid;
+            $flag *= $oid;
+            if(!$flag) {
+                $this->rollback();
+                break;
+            };
+        }
+
+        if($flag){
+            $this->commit();
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    /**
+     * 向合同表添加数据
+     * supplier_list
+     */
+    public function insert_to_water_base($info,$start_time,$end_time){
+        //查询是否存在该房间号
+        $data = M('house_village_room')->alias('a')
+            ->join('left join pigcms_house_village_user_bind b on a.oid = b.pigcms_id')
+            ->where(array('a.room_name'=>trim($info['room']),'b.name'=>trim($info['owner_name'])))
+            ->find();
+//        dump($info);die;
+        if(empty($data)){
+            $this->set_import_error(1,"没有房间号或业主信息",mysql_error());
+            $oid = 0;
+            return $oid;
+        }
+        //存入数据表
+        $arr = array(
+            'rid'           =>$data['id'],
+            'owner_name'    =>$info['owner_name'],
+            'start_code'    =>$info['start_code'],
+            'end_code'      =>$info['end_code'],
+            'price'         =>$info['price'],
+            'start_time'    =>$start_time,
+            'end_time'      =>$end_time
+        );
+        $oid = M('house_village_water')->add($arr);
+        if ($oid) {
+            $this->set_import_error(1,"水电费导入成功",mysql_error());
+        } else {
+            $this->set_import_error(1,"水电费导入失败",mysql_error());
+        }
+        return $oid;
+    }
 }

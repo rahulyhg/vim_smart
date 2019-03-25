@@ -5398,7 +5398,7 @@ class PropertyServiceAction extends BaseAction{
         //起止码是否可见
         $is_code=0;
         if(in_array($village_id,array(7,8,9))) $is_code=1;
-
+        //$is_code = 1;
         $type_list_all=M('house_village_otherfee_type')->where(array('status'=>1,'village_id'=>$this->village_id))->select();
         //dump($type_list_all);die;
         $project_info=M('house_village_project')->where(array('pigcms_id'=>$this->project_id))->find();

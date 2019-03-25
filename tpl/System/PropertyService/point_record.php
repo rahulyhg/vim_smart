@@ -253,8 +253,8 @@ div.xdsoft_datetimepicker {
     			<div class="input-group input-large date-picker input-daterange">
         			<input type="text" class="form-control" name="from" id="time_from">
         			<span class="input-group-addon"> to </span>
-        			<input type="text" class="form-control" name="to" id="time_to" onchange=""> 
-                </div>						
+        			<input type="text" class="form-control" name="to" id="time_to" onchange="">
+                </div>
 			
 			</div>
 			<div style="clear:both"></div>
@@ -438,6 +438,7 @@ div.xdsoft_datetimepicker {
 <!--选择不同日期获取该时间段的巡更率 -->
 <script type="text/javascript">
     $("input[name='to']").change(function(){
+        alert(1);
         var time_from = $("#time_from").val();
         var time_to = $("#time_to").val();
         // console.log(time_from);
