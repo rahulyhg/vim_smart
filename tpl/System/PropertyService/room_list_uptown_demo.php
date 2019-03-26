@@ -68,6 +68,16 @@
             </button>
         </a>
     </div>
+
+    <div class="btn-group">
+        <a href="{pigcms{:U('Room/water_uptown_import_step1')}">
+            <button id="sample_editable_1_new" class="btn sbold green">
+                <i class="fa fa-plus"></i>
+                水电费批量导入
+            </button>
+        </a>
+    </div>
+
     <div class="btn-group">
         <a href="{pigcms{:U('Otherfee/getotherfee_list')}" target="_blank">
             <button id="sample_editable_1_new" class="btn sbold green">

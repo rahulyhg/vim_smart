@@ -101,6 +101,7 @@ class OtherfeeAction extends BaseAction{
             ->field(array('of.*','ot.type'=>'otherfee_type','ot.otherfee_type_name'))
             ->where(array('of.rid'=>$rid,'of.status'=>1))
             ->select();
+        //dump($otherfee_list);die;
         $this->assign('otherfee_list',$otherfee_list);
         $this->display();
     }

@@ -624,12 +624,13 @@ class PropertyModel extends Model{
             ->find();
 //
         //dump(M()->_sql());
-
+//
         $otherfee_list=array(
             'room_name'=>$room_list['room_name'],
             'name'=>$room_list['user_name'],
             'rid'=>$room_list['rid'],
         );
+        //计算当前房间号从1月到当前月各交的费用
         for($i=1;$i<=$this->month_number;$i++){
             $time_start=strtotime($year.'-'.$i);
             $j=$i+1;
@@ -644,8 +645,10 @@ class PropertyModel extends Model{
             $otherfee_list['list'][$i]['pay_recive']=$all_recive;
             $otherfee_list['list'][$i]['pay_true']=$all;
         }
+
         //$otherfee_list[$key]['remark']=str_replace('-','.',$value['carspace_start']).'-'.str_replace('-','.',$value['carspace_end']);
 
+        //计算1月到当前月总共交的费用
         $sum_recive=$sum_true=0;
         foreach ($otherfee_list['list'] as $key=>$value1){
             $sum_recive +=$value1['pay_recive'];
@@ -655,7 +658,7 @@ class PropertyModel extends Model{
         $otherfee_list['sum_recive']=$sum_recive;
         $otherfee_list['sum_true']=$sum_true;
         $otherfee_list['sum_nowend']=round($otherfee_list['sum_last']+$sum_recive-$sum_true,2);
-
+        //dump($otherfee_list);die;
         $data = array(
             'rid'=>$rid,
             'village_id' => $this->village_id,

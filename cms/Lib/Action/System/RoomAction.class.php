@@ -3937,11 +3937,14 @@ class RoomAction extends BaseAction
      */
     public function water_uptown_import_step2()
     {
-        $start_time = strtotime(I('post.start_time'));
-//        dump($start_time);die;
-        $end_time = strtotime(I('post.end_time'));
+        $start_time = I('post.start_time');
+        $end_time = I('post.end_time');
         if(empty($start_time) || empty($end_time)){
             $this->error('请选择月份');
+        }
+        $type = I('post.type');
+        if(empty($type)){
+            $this->error('请选择缴费类型');
         }
         //导航设置
         $breadcrumb_diy = array(
@@ -3952,6 +3955,7 @@ class RoomAction extends BaseAction
         $this->assign('breadcrumb_diy',$breadcrumb_diy);
         $this->assign('start_time',$start_time);
         $this->assign('end_time',$end_time);
+        $this->assign('type',$type);
         //获取社区名
         $model = new OffModel();
         $file = $_FILES['test'];
@@ -3979,7 +3983,7 @@ class RoomAction extends BaseAction
         $village_id = $_SESSION['system']['village_id'];
         // var_dump($village_id);exit();
         $data['data'] = json_decode(htmlspecialchars_decode($data['data']),true);
-//        dump($data);die;
+        //dump($data);die;
         // echo $village_id;
         $model = new OffModel();
         $re = $model->insert_water_data_to_database($data,$village_id);

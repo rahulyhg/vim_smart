@@ -1065,6 +1065,7 @@ class PropertyAction extends BaseAction
      */
     public function ajax_otherfee_type(){
         $otherfee_type_id=$_POST['otherfee_type_id'];
+        //dump($otherfee_type_id);die;
         $room_name=$_POST['room_name'];
         $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
         $_SESSION['rid']=$room_info['id'];
@@ -1074,8 +1075,36 @@ class PropertyAction extends BaseAction
             $data=M('house_village_user_car')->where(array('rid'=>$room_info['id']))->select();
         }else{
             $data=M('house_village_otherfee_type')->where(array('otherfee_type_id'=>$otherfee_type_id))->find();
+            $where = array(
+                'otherfee_type_id'=>$otherfee_type_id,
+                'rid'              =>$room_info['id'],
+                'village_id'       =>$this->village_id,
+                'project_id'       =>$this->project_id
+            );
+            $result = M('house_village_otherfee')->where($where)->order('creattime desc')->find();
+            //计算剩余应交金额
+            if($data['otherfee_type_name'] == "水费"){
+                $info = M('house_village_water')->where(array('rid'=>$room_info['id'],'type'=>"水费"))->field("sum(start_code) start_code,sum(end_code) end_code,price")->find();
+                if($result){
+                    $info['fee_receive'] = ($result['fee_receive']-$result['fee_true'])+($info['end_code'] - $info['start_code'])*$info['price'];
+                    $info['fee_receive_code'] = $result['fee_receive']-$result['fee_true'];
+                }else{
+                    $info['fee_receive'] = ($info['end_code'] - $info['start_code'])*$info['price'];
+                    $info['fee_receive_code'] = 0;
+                }
+            }elseif($data['otherfee_type_name'] == "电费"){
+                $info = M('house_village_water')->where(array('rid'=>$room_info['id'],'type'=>"电费"))->field("sum(start_code) start_code,sum(end_code) end_code,price")->find();
+                if($result){
+                    $info['fee_receive'] = ($result['fee_receive']-$result['fee_true'])+($info['end_code'] - $info['start_code'])*$info['price'];
+                    $info['fee_receive_code'] = $result['fee_receive']-$result['fee_true'];
+                }else{
+                    $info['fee_receive'] = ($info['end_code'] - $info['start_code'])*$info['price'];
+                    $info['fee_receive_code'] = 0;
+                }
+            }
         }
-        echo json_encode(array('type'=>$otherfee_type_id,'data'=>$data));
+
+        echo json_encode(array('type'=>$otherfee_type_id,'data'=>$data,'info'=>$info));
     }
     /**
      * @author zhukeqin
@@ -1103,6 +1132,7 @@ class PropertyAction extends BaseAction
      * ajax 添加费用
      */
     public function ajax_in_fee(){
+        //dump($_POST);die;
         $room_name=$_POST['room_name'];
         $type=$_POST['otherfee_type_id'];
         $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
@@ -1145,6 +1175,8 @@ class PropertyAction extends BaseAction
                 'updatetime'=>time(),
                 'explain'=>$_POST['explain']
             );
+            //删除批量导入记录
+            $result = M('house_village_water')->where(array('rid'=>$room_info['id'],'type'=>$check['otherfee_type_name']))->delete();
             $result=M('house_village_otherfee')->data($data)->add();
             $property_model->other_update_cache($room_info['id'],$type);
         }

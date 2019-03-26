@@ -21,9 +21,17 @@
             <div class="input-group input-large date-picker input-daterange">
                 <input type="text" class="form-control" name="start_time" id="time_from">
                 <span class="input-group-addon"> to </span>
-                <input type="text" class="form-control" name="end_time" id="time_to" onchange="">
+                <input type="text" class="form-control" name="end_time" id="time_to" >
             </div>
 
+            <label class="col-md-2 control-label" for="form_control_1">选择类型
+                <span class="required"></span>
+            </label>
+                <select name="type" id="">
+                    <option value="-1">请选择类型</option>
+                    <option value="水费">水费</option>
+                    <option value="电费">电费</option>
+                </select>
             <!--<div class="form-group form-md-line-input">
                 <label class="col-md-2 control-label" for="form_control_1">选择社区
                     <span class="required"></span>
@@ -126,17 +134,18 @@
                         }
                     });
             }
+
         </script>
         <!--获取日期时间插件 -->
         <script type="text/javascript">
             $.datetimepicker.setLocale('ch');
             $('#time_from').datetimepicker({
-                format: 'Y/m/d',
+                format: 'Y-m-d',
                 lang:"zh",
                 timepicker:false
             });
             $('#time_to').datetimepicker({
-                format: 'Y/m/d',
+                format: 'Y-m-d',
                 lang:"zh",
                 timepicker:false
             });

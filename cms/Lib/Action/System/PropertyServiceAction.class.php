@@ -5390,6 +5390,7 @@ class PropertyServiceAction extends BaseAction{
             $_SESSION['project_id']=$this->project_id;
         }
         $sum=D('Property')->get_info_sum($this->village_id,$this->project_id);
+//        dump($sum);die;
         //$project_list=M('house_village_project')->where(array('village_id'=>$this->village_id))->select();
         /*if(empty($this->project_id)){
             $this->project_id=$_SESSION['project_id']=$project_list['0']['pigcms_id'];
@@ -5657,6 +5658,7 @@ class PropertyServiceAction extends BaseAction{
             'recordsFiltered'=>$list_dimcount,
             'data'=>$list_reload
         );
+        //dump($result_array);die;
         echo json_encode($result_array);
     }
     /**

@@ -50,6 +50,7 @@
     </div>
     <input type="hidden" name="start_time" value="{pigcms{$start_time}">
     <input type="hidden" name="end_time" value="{pigcms{$end_time}">
+    <input type="hidden" name="type" value="{pigcms{$type}">
 </block>
 
 <block name="script">
@@ -82,6 +83,7 @@
             }
             var start_time = $("input[name='start_time']").val();
             var end_time = $("input[name='end_time']").val();
+            var type = $("input[name='type']").val();
             let data = list.$data.body,
                 village_id = list.$data.village_id;
             // console.log(data);return false;
@@ -92,7 +94,8 @@
                         data:JSON.stringify(data),
                         village_id:village_id,
                         start_time:start_time,
-                        end_time:end_time
+                        end_time:end_time,
+                        type:type
                     },
                     type:'post',
                     beforeSend:function(){

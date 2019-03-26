@@ -1205,7 +1205,7 @@ class OffModel extends Model
         $flag = 1;
         foreach($data['data'] as $row){
             //将数据导入水电表
-            $oid = $this->insert_to_water_base($row,$data['start_time'],$data['end_time']);
+            $oid = $this->insert_to_water_base($row,$data['start_time'],$data['end_time'],$data['type']);
             $row['oid'] = $oid;
             $flag *= $oid;
             if(!$flag) {
@@ -1227,7 +1227,7 @@ class OffModel extends Model
      * 向合同表添加数据
      * supplier_list
      */
-    public function insert_to_water_base($info,$start_time,$end_time){
+    public function insert_to_water_base($info,$start_time,$end_time,$type){
         //查询是否存在该房间号
         $data = M('house_village_room')->alias('a')
             ->join('left join pigcms_house_village_user_bind b on a.oid = b.pigcms_id')
@@ -1247,7 +1247,8 @@ class OffModel extends Model
             'end_code'      =>$info['end_code'],
             'price'         =>$info['price'],
             'start_time'    =>$start_time,
-            'end_time'      =>$end_time
+            'end_time'      =>$end_time,
+            'type'          =>$type
         );
         $oid = M('house_village_water')->add($arr);
         if ($oid) {

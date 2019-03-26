@@ -1,4 +1,12 @@
 <extend name="./tpl/System/Public_news/base.php" />
+<link href="/Car/Admin/Public/assets/global/plugins/plugins.min.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    #asd{
+        /* font-size: 50px; */
+        width: 100px;
+        padding: 0px 110px;
+    }
+</style>
 <block name="table-toolbar-left">
     <!--<div class="btn-group">
         <a href="{pigcms{:U('PropertyService/room_add_uptown')}">
@@ -68,6 +76,16 @@
             </button>
         </a>
     </div>
+
+    <div class="btn-group">
+        <a href="{pigcms{:U('Room/water_uptown_import_step1')}">
+            <button id="sample_editable_1_new" class="btn sbold green">
+                <i class="fa fa-plus"></i>
+                水电费批量导入
+            </button>
+        </a>
+    </div>
+
     <div class="btn-group">
         <a href="{pigcms{:U('Otherfee/getotherfee_list')}" target="_blank">
             <button id="sample_editable_1_new" class="btn sbold green">
@@ -235,6 +253,9 @@
                                     </div>
                                     <div class="other_fee" style="display: none;">
                                         <if condition="$is_code">
+
+
+
                                             <div class="form-group form-md-line-input"  style="width:42%; float:left;">
                                                 <label class="col-md-6 control-label" for="form_control_1" >起码
                                                     <span class="required">*</span>
@@ -265,6 +286,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                         </if>
                                         <div class="form-group form-md-line-input"  style="width:50%; float:left;">
                                             <label class="col-md-5 control-label" for="form_control_1" id="fee_receive">应收
@@ -272,7 +295,7 @@
                                             </label>
                                             <div class="col-md-7">
                                                 <div class="md-checkbox-list">
-                                                    <input type="text" name="fee_receive" value=""  class="form-control" >
+                                                    <input type="text" name="fee_receive" value=""  class="form-control control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -283,7 +306,7 @@
                                             </label>
                                             <div class="col-md-7">
                                                 <div class="md-checkbox-list">
-                                                    <input type="text" name="fee_true" value=""  class="form-control" >
+                                                    <input type="text" name="fee_true" value=""  class="form-control control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -314,7 +337,19 @@
                                             <textarea    value="" name="remark" class="form-control" style="height:34px;"></textarea>
                                         </div>
                                     </div>
+
                                     <div style="clear:both"></div>
+                                    <div class="form-group form-md-line-input" >
+                                        <div id="asd">
+                                        <a href="{pigcms{:U('Room/owner_uptown_import_step1')}">
+                                            <button id="sample_editable_1_new" class="btn sbold green">
+                                                <i class="fa fa-plus"></i>
+                                                查看明细
+                                            </button>
+                                        </a>
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div style="float:left; width:35%;">
 
@@ -335,6 +370,7 @@
                                             <span id="user_info_id"></span>
                                         </div>
                                     </div>
+
                                     <div class="property" style="display: none;">
                                         <div class="form-group form-md-line-input" >
                                             <label class="col-md-4 control-label" for="form_control_1">物业费到期时间
@@ -446,14 +482,7 @@
                                 </td>
                             </foreach>
                         </tr>
-                        <tr>
-                            <td align="center">地产应补金额</td>
-                            <td align="center" colspan="{pigcms{:count(sum['data'])+2}">{pigcms{:number_format($sum['sum']['add_money'],2)}</td>
-                        </tr>
-                        <tr>
-                            <td align="center">截止{pigcms{:date('Y年12月31日')}欠费金额</td>
-                            <td align="center" colspan="{pigcms{:count(sum['data'])+2}">{pigcms{:number_format($sum['sum']['noprepay_money'],2)}</td>
-                        </tr>
+
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -794,6 +823,17 @@
     </table>
 </block>
 <block name="script">
+    <!--引入js-->
+    <include file="Public_news:script"/>
+    <!--引入js-->
+
+    <!--自定义js代码区开始-->
+    <script type="text/javascript" src="{pigcms{$static_public}js/artdialog/jquery.artDialog.js"></script>
+    <script type="text/javascript" src="{pigcms{$static_public}js/artdialog/iframeTools.js"></script>
+    <!-- <script src="/Car/Admin/Public/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+    <script src="/Car/Admin/Public/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+     -->
+    <link rel="stylesheet" href="http://www.hdhsmart.com/Car/Admin/Public/css/jquery.datetimepicker.css">
     <script>
         $(".search").change(
             function () {
@@ -954,6 +994,11 @@
             }
         }
         $('#otherfee_type_id').change(function(){
+            $("input[name='code_start']").val('');
+            $("input[name='code_end']").val('');
+            $("input[name='unit']").val('');
+            $("input[name='fee_receive']").val('');
+            $("input[name='fee_true']").val('');
             var p1=$(this).children('option:selected').val();
             var room_name=$("input[name='room_name']").val();
             $.ajax({
@@ -981,6 +1026,50 @@
                         $('.property').css('display','none');
                         $('.carspace').css('display','none');
                         $('.other_fee').css('display','block');
+                        if(res.info.start_code != null && res.info.fee_receive != 0){
+
+                            $("input[name='code_start']").val(res.info.start_code);
+                            $("input[name='code_end']").val(res.info.end_code);
+                            $("input[name='unit']").val(res.info.price);
+                            $("input[name='fee_receive']").val(res.info.fee_receive);
+                            $("input[name='fee_true']").val(res.info.fee_receive);
+                            $(".control").focus(function(){
+                                var code_start=$("input[name='code_start']").val();
+                                var code_end=$("input[name='code_end']").val();
+                                var unit=$("input[name='unit']").val();
+                                if(code_start&&code_end&&unit){
+                                    var sum=(code_end-code_start)*unit + res.info.fee_receive_code;
+                                    $("input[name='fee_receive']").val(sum.toFixed(2));
+                                    $("input[name='fee_true']").val(sum.toFixed(2));
+                                }
+                            });
+                        }else if(res.info.fee_receive != 0 && res.info.start_code == null){
+                            $("input[name='fee_receive']").val(res.info.fee_receive);
+                            $("input[name='fee_true']").val(res.info.fee_receive);
+                            /*自动计算*/
+                            $(".control").focus(function(){
+                                var code_start=$("input[name='code_start']").val();
+                                var code_end=$("input[name='code_end']").val();
+                                var unit=$("input[name='unit']").val();
+                                if(code_start&&code_end&&unit){
+                                    var sum=(code_end-code_start)*unit + res.info.fee_receive_code;
+                                    $("input[name='fee_receive']").val(sum.toFixed(2));
+                                    $("input[name='fee_true']").val(sum.toFixed(2));
+                                }
+                            });
+                        }else{
+                            /*自动计算*/
+                            $(".control").focus(function(){
+                                var code_start=$("input[name='code_start']").val();
+                                var code_end=$("input[name='code_end']").val();
+                                var unit=$("input[name='unit']").val();
+                                if(code_start&&code_end&&unit){
+                                    var sum=(code_end-code_start)*unit;
+                                    $("input[name='fee_receive']").val(sum.toFixed(2));
+                                    $("input[name='fee_true']").val(sum.toFixed(2));
+                                }
+                            });
+                        }
                         if(res.data.type=='1'){
                             $('#fee_receive').html('应收<span class="required">*</span>');
                             $('#fee_true').html('实收<span class="required">*</span>');
@@ -1205,16 +1294,20 @@
         if(sessionStorage.getItem('room_over_endtime'))$('#room_over_endtime').val(sessionStorage.getItem('room_over_endtime'));
         if(sessionStorage.getItem('room_house_type'))$('#room_house_type').val(sessionStorage.getItem('room_house_type'));
         if(sessionStorage.getItem('room_type'))$('#room_type').val(sessionStorage.getItem('room_type'));
-        /*自动计算*/
-        $('.autocount').change(function(){
-            var code_start=$("input[name='code_start']").val();
-            var code_end=$("input[name='code_end']").val();
-            var unit=$("input[name='unit']").val();
-            if(code_start&&code_end&&unit){
-                var sum=(code_end-code_start)*unit;
-                $("input[name='fee_receive']").val(sum.toFixed(2));
-                $("input[name='fee_true']").val(sum.toFixed(2));
-            }
+
+    </script>
+    <!--获取日期时间插件 -->
+    <script type="text/javascript">
+        $.datetimepicker.setLocale('ch');
+        $('#time_from').datetimepicker({
+            format: 'Y-m-d',
+            lang:"zh",
+            timepicker:false
+        });
+        $('#time_to').datetimepicker({
+            format: 'Y-m-d',
+            lang:"zh",
+            timepicker:false
         });
     </script>
 </block>
