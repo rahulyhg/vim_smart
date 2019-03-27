@@ -33,9 +33,7 @@
             </thead>
             <tbody>
             <tr v-for="(item,index) in body" v-bind:class="{'text-warning':item.is_exist}">
-                <td>{{item.number}}</td>
                 <td>{{item.room}}</td>
-                <td>{{item.owner_name}}</td>
                 <td>{{item.start_code}}</td>
                 <td>{{item.end_code}}</td>
                 <td>{{item.price}}</td>

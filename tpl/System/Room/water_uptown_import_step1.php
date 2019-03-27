@@ -15,14 +15,29 @@
                 </div>
             </div>
 
-            <label class="col-md-2 control-label" for="form_control_1">选择月份
+            <label class="col-md-2 control-label" for="form_control_1">抄表日期
                 <span class="required"></span>
             </label>
             <div class="input-group input-large date-picker input-daterange">
                 <input type="text" class="form-control" name="start_time" id="time_from">
                 <span class="input-group-addon"> to </span>
-                <input type="text" class="form-control" name="end_time" id="time_to" >
+                <input type="text" class="form-control" name="end_time" id="time_to" onchange="">
             </div>
+            <!--<div class="input-group input-large date-picker input-daterange">
+                <select name="start_time" id="sel" class="form-control show_mouth show_mouth1" >
+                    <option value="0">选择月份</option>
+                    <for start="1" end="13">
+                        <option value="{pigcms{$i}" >{pigcms{$i}月</option>
+                    </for>
+                </select>
+                <span class="input-group-addon"> to </span>
+                <select name="end_time" id="sels" class="form-control show_mouth show_mouth2" style="float:left">
+                    <option value="0">选择月份</option>
+                    <for start="1" end="13">
+                        <option value="{pigcms{$i}" >{pigcms{$i}月</option>
+                    </for>
+                </select>
+            </div>-->
 
             <label class="col-md-2 control-label" for="form_control_1">选择类型
                 <span class="required"></span>

@@ -6,6 +6,9 @@
         width: 100px;
         padding: 0px 110px;
     }
+    div.xdsoft_datetimepicker {
+        z-index: 111000;
+    }
 </style>
 <block name="table-toolbar-left">
     <!--<div class="btn-group">
@@ -141,10 +144,10 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">费用录入</h4>
                 </div>
+
                 <div class="modal-body">
                     <form action="__SELF__" method="post" class="form-horizontal" id="form_sample_1" enctype="multipart/form-data" autocomplete="off">
                         <div class="portlet-body">
-                            <!-- BEGIN FORM-->
 
                             <div class="form-body">
                                 <div style="width:64%; float:left; border-right: 1px #d0d0d0 solid;">
@@ -254,8 +257,6 @@
                                     <div class="other_fee" style="display: none;">
                                         <if condition="$is_code">
 
-
-
                                             <div class="form-group form-md-line-input"  style="width:42%; float:left;">
                                                 <label class="col-md-6 control-label" for="form_control_1" >起码
                                                     <span class="required">*</span>
@@ -310,6 +311,9 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+
                                     </div>
                                     <div class="form-group form-md-line-input" style="width:50%; float:left;" >
                                         <label class="col-md-5 control-label" for="form_control_1">缴费方式
@@ -337,20 +341,12 @@
                                             <textarea    value="" name="remark" class="form-control" style="height:34px;"></textarea>
                                         </div>
                                     </div>
-
                                     <div style="clear:both"></div>
-                                    <div class="form-group form-md-line-input" >
-                                        <div id="asd">
-                                        <a href="{pigcms{:U('Room/owner_uptown_import_step1')}">
-                                            <button id="sample_editable_1_new" class="btn sbold green">
-                                                <i class="fa fa-plus"></i>
-                                                查看明细
-                                            </button>
-                                        </a>
 
-                                        </div>
-                                    </div>
+
                                 </div>
+
+
                                 <div style="float:left; width:35%;">
 
                                     <div id="room_info" class="form-group form-md-line-input" style="display: none;">
@@ -412,12 +408,55 @@
                                 </div>
                             </div>-->
                         </div>
+
                         <div class="alert alert-danger" style="display: none">
                             <strong>错误！</strong><span></span></div>
 
                         <div class="alert alert-success" style="display: none">
                             <strong>成功！</strong><span></span></div>
+
+                        <div  class="input-mouth" style="display:none;">
+
+                            <div class="input-group input-large date-picker input-daterange" style="left:100px">
+                                <input type="text" class="form-control" name="start_mouth" id="time_from" >
+                                <span class="input-group-addon"> to </span>
+                                <input type="text" class="form-control" name="end_mouth" id="time_to" >
+                            </div>
+
+
+                            <script src="/Car/Admin/Public/js/jquery.datetimepicker.full.js" type="text/javascript"></script>
+                            <!--获取日期时间插件 -->
+                            <script type="text/javascript">
+                                $.datetimepicker.setLocale('ch');
+                                $('#time_from').datetimepicker({
+                                    format: 'Y-m-d',
+                                    lang:"zh",
+                                    timepicker:false
+                                });
+                                $('#time_to').datetimepicker({
+                                    format: 'Y-m-d',
+                                    lang:"zh",
+                                    timepicker:false
+                                });
+                            </script>
+                        </div>
                     </form>
+
+                    <div class="form-group form-md-line-input show_detail" style="display: none; height:30px;">
+                        <div style="width:200px;margin-left:100px">
+                            <a href="#" id="show_detailed" target="_blank">
+                                <button id="sample_editable_1_new" class="btn sbold green">
+                                    <i class="fa fa-plus"></i>
+                                    查看明细
+                                </button>
+                            </a>
+
+                        </div>
+                    </div>
+
+
+
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn green"  id="handInput">确认提交</button>
@@ -427,6 +466,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
     <div id="form_modal3" class="modal fade" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
@@ -834,6 +875,7 @@
     <script src="/Car/Admin/Public/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
      -->
     <link rel="stylesheet" href="http://www.hdhsmart.com/Car/Admin/Public/css/jquery.datetimepicker.css">
+
     <script>
         $(".search").change(
             function () {
@@ -1007,6 +1049,8 @@
                 type: "POST",
                 dataType: 'json',
                 success:function(res){
+                    $('.input-mouth').css('display','none');
+                    $('.show_detail').css('display','none');
                     if(res.type == 'property'){
                         $('.property').css('display','block');
                         $('.carspace').css('display','none');
@@ -1027,7 +1071,6 @@
                         $('.carspace').css('display','none');
                         $('.other_fee').css('display','block');
                         if(res.info.start_code != null && res.info.fee_receive != 0){
-
                             $("input[name='code_start']").val(res.info.start_code);
                             $("input[name='code_end']").val(res.info.end_code);
                             $("input[name='unit']").val(res.info.price);
@@ -1069,6 +1112,33 @@
                                     $("input[name='fee_true']").val(sum.toFixed(2));
                                 }
                             });
+                        }
+
+                        if(res.data.otherfee_type_name == "水费" || res.data.otherfee_type_name == "电费"){
+                                $('.input-mouth').css('display','block');
+                                $('.show_detail').css('display','block');
+                                var id = res.rid;
+                                $('#show_detailed').attr('href',"{pigcms{:U('Property/show_detailed',array('id'=>'"+id+"'))}");
+                                if(res.start_time != null){
+                                    $("#time_from").val(res.start_time);
+                                    $("#time_to").val(res.end_time);
+                                }
+                                /*$("#sel option").each(function() {
+                                    if($(this).val()==res.start_time){
+                                        $(this).prop('selected',true);
+                                    }else{
+                                        $(this).prop('selected',false);
+                                    }
+                                });
+
+                                $("#sels option").each(function() {
+                                    if($(this).val()==res.end_time){
+                                        $(this).prop('selected',true);
+                                    }else{
+                                        $(this).prop('selected',false);
+                                    }
+                                });*/
+
                         }
                         if(res.data.type=='1'){
                             $('#fee_receive').html('应收<span class="required">*</span>');
@@ -1295,19 +1365,26 @@
         if(sessionStorage.getItem('room_house_type'))$('#room_house_type').val(sessionStorage.getItem('room_house_type'));
         if(sessionStorage.getItem('room_type'))$('#room_type').val(sessionStorage.getItem('room_type'));
 
-    </script>
-    <!--获取日期时间插件 -->
-    <script type="text/javascript">
-        $.datetimepicker.setLocale('ch');
-        $('#time_from').datetimepicker({
-            format: 'Y-m-d',
-            lang:"zh",
-            timepicker:false
+        //选择月份
+        $(".show_mouth").change(function(){
+            var v1 = $(".show_mouth1").val();
+            var v2 = $(".show_mouth2").val();
+            var room_name=$("input[name='room_name']").val();
+            var p1=$("#otherfee_type_id").children('option:selected').val();
+            $.ajax({
+                url:"{pigcms{:U('Property/ajax_mouth_get')}",
+                data:{'start_mouth':v1,'end_mouth':v2,'room_name':room_name,'otherfee_type_id':p1},
+                type: "POST",
+                dataType: 'json',
+                success:function(res){
+                    $("input[name='code_start']").val(res.info.start_code);
+                    $("input[name='code_end']").val(res.info.end_code);
+                    $("input[name='unit']").val(res.info.price);
+                    $("input[name='fee_receive']").val(res.info.fee_receive);
+                    $("input[name='fee_true']").val(res.info.fee_receive);
+                }
+            });
         });
-        $('#time_to').datetimepicker({
-            format: 'Y-m-d',
-            lang:"zh",
-            timepicker:false
-        });
     </script>
+
 </block>

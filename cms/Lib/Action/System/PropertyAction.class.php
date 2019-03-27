@@ -1065,7 +1065,7 @@ class PropertyAction extends BaseAction
      */
     public function ajax_otherfee_type(){
         $otherfee_type_id=$_POST['otherfee_type_id'];
-        //dump($otherfee_type_id);die;
+
         $room_name=$_POST['room_name'];
         $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
         $_SESSION['rid']=$room_info['id'];
@@ -1084,7 +1084,7 @@ class PropertyAction extends BaseAction
             $result = M('house_village_otherfee')->where($where)->order('creattime desc')->find();
             //计算剩余应交金额
             if($data['otherfee_type_name'] == "水费"){
-                $info = M('house_village_water')->where(array('rid'=>$room_info['id'],'type'=>"水费"))->field("sum(start_code) start_code,sum(end_code) end_code,price")->find();
+                $info = M('house_village_water')->where(array('rid'=>$room_info['id'],'type'=>"水费",'result'=>0))->field("sum(start_code) start_code,sum(end_code) end_code,price,rid")->find();
                 if($result){
                     $info['fee_receive'] = ($result['fee_receive']-$result['fee_true'])+($info['end_code'] - $info['start_code'])*$info['price'];
                     $info['fee_receive_code'] = $result['fee_receive']-$result['fee_true'];
@@ -1092,8 +1092,10 @@ class PropertyAction extends BaseAction
                     $info['fee_receive'] = ($info['end_code'] - $info['start_code'])*$info['price'];
                     $info['fee_receive_code'] = 0;
                 }
+                //取出月份
+                $res = $this->get_water_mouth($room_info['id'],"水费");
             }elseif($data['otherfee_type_name'] == "电费"){
-                $info = M('house_village_water')->where(array('rid'=>$room_info['id'],'type'=>"电费"))->field("sum(start_code) start_code,sum(end_code) end_code,price")->find();
+                $info = M('house_village_water')->where(array('rid'=>$room_info['id'],'type'=>"电费",'result'=>0))->field("sum(start_code) start_code,sum(end_code) end_code,price,rid")->find();
                 if($result){
                     $info['fee_receive'] = ($result['fee_receive']-$result['fee_true'])+($info['end_code'] - $info['start_code'])*$info['price'];
                     $info['fee_receive_code'] = $result['fee_receive']-$result['fee_true'];
@@ -1101,10 +1103,24 @@ class PropertyAction extends BaseAction
                     $info['fee_receive'] = ($info['end_code'] - $info['start_code'])*$info['price'];
                     $info['fee_receive_code'] = 0;
                 }
+                $res = $this->get_water_mouth($room_info['id'],"电费");
+            }
+            foreach($res as $v){
+                $arr[] = strtotime($v['start_time']);
+                $arr1[] = strtotime($v['end_time']);
+            }
+            if(!empty($arr) && !empty($arr1)){
+                $start_time = date("Y-m-d",min($arr));
+                $end_time = date("Y-m-d",max($arr1));
             }
         }
 
-        echo json_encode(array('type'=>$otherfee_type_id,'data'=>$data,'info'=>$info));
+        echo json_encode(array('type'=>$otherfee_type_id,'data'=>$data,'info'=>$info,'start_time'=>$start_time,'end_time'=>$end_time,'rid'=>$room_info['id']));
+    }
+
+    public function get_water_mouth($rid,$type)
+    {
+        return M('house_village_water')->where(array('rid'=>$rid,'type'=>$type,'result'=>0))->field('start_time,end_time')->select();
     }
     /**
      * @author zhukeqin
@@ -1138,6 +1154,10 @@ class PropertyAction extends BaseAction
         $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
         if(empty($room_info)){
             echo json_encode(array('err'=>1,'msg'=>'该房间不存在'));
+            die;
+        }
+        if(empty($_POST['start_mouth']) || empty($_POST['end_mouth'])){
+            echo json_encode(array('err'=>1,'msg'=>'请选择月份'));
             die;
         }
         $model=new RoomModel();
@@ -1175,8 +1195,30 @@ class PropertyAction extends BaseAction
                 'updatetime'=>time(),
                 'explain'=>$_POST['explain']
             );
-            //删除批量导入记录
-            $result = M('house_village_water')->where(array('rid'=>$room_info['id'],'type'=>$check['otherfee_type_name']))->delete();
+            //修改记录
+            $type_name = M('house_village_otherfee_type')->where(array('otherfee_type_id'=>$_POST['otherfee_type_id']))->find()['otherfee_type_name'];
+            $where = array(
+                'rid'       =>$room_info['id'],
+                'type'      =>$type_name,
+                'start_time'=>array('EGT',$_POST['start_mouth']),
+                'end_time'  =>array('ELT',$_POST['end_mouth']),
+            );
+            $re = M('house_village_water')->where($where)->find();
+            if($re){
+                M('house_village_water')->where($where)->setField('result',1);
+            }else{
+                $arr = array(
+                    'rid'           =>$room_info['id'],
+                    'start_code'    =>$_POST['code_start'],
+                    'end_code'      =>$_POST['code_end'],
+                    'price'         =>$_POST['unit'],
+                    'start_time'    =>$_POST['start_mouth'],
+                    'end_time'      =>$_POST['end_mouth'],
+                    'type'          =>$type_name,
+                    'result'        =>1
+                );
+                M('house_village_water')->add($arr);
+            }
             $result=M('house_village_otherfee')->data($data)->add();
             $property_model->other_update_cache($room_info['id'],$type);
         }
@@ -1267,4 +1309,92 @@ class PropertyAction extends BaseAction
         echo json_encode(array('sum_cash'=>$sum_cash,'sum_count'=>$sum_count));
     }
 
+    /**
+     *show_detailed
+     * 查看明细
+     */
+    public function show_detailed()
+    {
+        //echo 1;die;
+        $rid = I('get.id');
+        $info = M('house_village_water')->alias('a')
+            ->join('left join pigcms_house_village_room b on a.rid = b.id')
+            ->where(array('a.rid'=>$rid))
+            ->field('a.*,b.room_name')
+            ->select();
+        $data = M('house_village_water')->alias('a')
+            ->join('left join pigcms_house_village_room b on a.rid = b.id')
+            ->where(array('a.rid'=>$rid))
+            ->field('a.*,b.room_name')
+            ->find();
+        $this->assign('info',$info);
+        $this->assign('data',$data);
+        $this->display();
+    }
+
+    /**
+     * @author zhukeqin
+     * 根据月份获取应收和实收金额
+     */
+    public function ajax_mouth_get()
+    {
+        $data = $_POST;
+        if($data['start_mouth'] < 10){
+            $data['start_mouth'] = "0".$data['start_mouth'];
+        }
+        if($data['end_mouth'] < 10){
+            $data['end_mouth'] = "0".$data['end_mouth'];
+        }
+        $year = date("Y");
+        $start_mouth = $year."-".$data['start_mouth'];
+        $end_mouth = $year."-".$data['end_mouth'];
+        //判断是水费还是电费
+        $res=M('house_village_otherfee_type')->where(array('otherfee_type_id'=>$data['otherfee_type_id']))->find();
+        $room_info=M('house_village_room')->where(array('room_name'=>$data['room_name']))->find();
+        //取出区间内总起码止码和单价
+        $info = $this->get_info($room_info['id'],$start_mouth,$end_mouth,$res['otherfee_type_name']);
+        //dump($info);die;
+        $where = array(
+            'rid'              =>$room_info['id'],
+            'village_id'       =>$this->village_id,
+            'project_id'       =>$this->project_id
+        );
+        $result = M('house_village_otherfee')->where($where)->order('creattime desc')->find();
+        //计算剩余应交金额
+        if($result){
+            $info['fee_receive'] = ($result['fee_receive']-$result['fee_true'])+($info['end_code'] - $info['start_code'])*$info['price'];
+            $info['fee_receive_code'] = $result['fee_receive']-$result['fee_true'];
+        }else{
+            $info['fee_receive'] = ($info['end_code'] - $info['start_code'])*$info['price'];
+            $info['fee_receive_code'] = 0;
+        }
+        echo json_encode(array('info'=>$info));
+    }
+
+    public function get_info($rid,$start_mouth,$end_mouth,$type)
+    {
+        $where = array(
+            'rid' =>$rid,
+            'start_time'=>array('EGT',$start_mouth),
+            'end_time'  =>array('ELT',$end_mouth),
+            'type'      =>$type,
+            'result'    =>0
+        );
+        return M('house_village_water')->where($where)->field("sum(start_code) start_code,sum(end_code) end_code,price,rid")->find();
+    }
+
+    /**
+     * @author zhukeqin
+     * 删除缴费记录
+     */
+    public function delete_water()
+    {
+        $id = I('get.id');
+        $res = M('house_village_water')->where(array('id'=>$id))->delete();
+        if($res){
+            $this->success('删除成功');
+        }else{
+            $this->success('删除失败');
+        }
+    }
 }

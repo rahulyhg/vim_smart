@@ -3940,7 +3940,7 @@ class RoomAction extends BaseAction
         $start_time = I('post.start_time');
         $end_time = I('post.end_time');
         if(empty($start_time) || empty($end_time)){
-            $this->error('请选择月份');
+            $this->error('请选择日期');
         }
         $type = I('post.type');
         if(empty($type)){
@@ -3963,7 +3963,7 @@ class RoomAction extends BaseAction
             //导入数据
             $list = $model->water_excel_to_data($file);
             foreach($list['body'] as $k=>&$v){
-                if(!is_numeric($v['number'])){
+                if(!is_numeric($v['price'])){
                     unset($list['body'][$k]);
                 }
             }

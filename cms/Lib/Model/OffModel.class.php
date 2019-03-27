@@ -1169,9 +1169,7 @@ class OffModel extends Model
 //         dump($arr);die;
         $tmp = array();
         $title = array(
-            '序号',
             '房间号',
-            '业主姓名',
             '起码',
             '止码',
             '单价',
@@ -1181,12 +1179,10 @@ class OffModel extends Model
         //为查询是否为重复数据做准备
         foreach($arr as $key=> $row){
             $tmp[] = array(
-                'number'            => $row[0],
-                'room'              => $row[1],
-                'owner_name'        => $row[2],
-                'start_code'        => $row[3],
-                'end_code'          => $row[4],
-                'price'             => $row[5],
+                'room'              => $row[0],
+                'start_code'        => $row[1],
+                'end_code'          => $row[2],
+                'price'             => $row[3],
             );
         }
 
@@ -1229,20 +1225,18 @@ class OffModel extends Model
      */
     public function insert_to_water_base($info,$start_time,$end_time,$type){
         //查询是否存在该房间号
-        $data = M('house_village_room')->alias('a')
-            ->join('left join pigcms_house_village_user_bind b on a.oid = b.pigcms_id')
-            ->where(array('a.room_name'=>trim($info['room']),'b.name'=>trim($info['owner_name'])))
+        $data = M('house_village_room')
+            ->where(array('room_name'=>trim($info['room'])))
             ->find();
 //        dump($info);die;
         if(empty($data)){
-            $this->set_import_error(1,"没有房间号或业主信息",mysql_error());
+            $this->set_import_error(1,"没有".$info['room']."房间号",mysql_error());
             $oid = 0;
             return $oid;
         }
         //存入数据表
         $arr = array(
             'rid'           =>$data['id'],
-            'owner_name'    =>$info['owner_name'],
             'start_code'    =>$info['start_code'],
             'end_code'      =>$info['end_code'],
             'price'         =>$info['price'],
