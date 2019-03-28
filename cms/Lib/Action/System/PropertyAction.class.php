@@ -1156,10 +1156,6 @@ class PropertyAction extends BaseAction
             echo json_encode(array('err'=>1,'msg'=>'该房间不存在'));
             die;
         }
-        if(empty($_POST['start_mouth']) || empty($_POST['end_mouth'])){
-            echo json_encode(array('err'=>1,'msg'=>'请选择月份'));
-            die;
-        }
         $model=new RoomModel();
         $property_model=new PropertyModel();
         if($type=='property'){
@@ -1197,28 +1193,16 @@ class PropertyAction extends BaseAction
             );
             //修改记录
             $type_name = M('house_village_otherfee_type')->where(array('otherfee_type_id'=>$_POST['otherfee_type_id']))->find()['otherfee_type_name'];
-            $where = array(
-                'rid'       =>$room_info['id'],
-                'type'      =>$type_name,
-                'start_time'=>array('EGT',$_POST['start_mouth']),
-                'end_time'  =>array('ELT',$_POST['end_mouth']),
-            );
-            $re = M('house_village_water')->where($where)->find();
-            if($re){
-                M('house_village_water')->where($where)->setField('result',1);
-            }else{
-                $arr = array(
-                    'rid'           =>$room_info['id'],
-                    'start_code'    =>$_POST['code_start'],
-                    'end_code'      =>$_POST['code_end'],
-                    'price'         =>$_POST['unit'],
-                    'start_time'    =>$_POST['start_mouth'],
-                    'end_time'      =>$_POST['end_mouth'],
-                    'type'          =>$type_name,
-                    'result'        =>1
+            if(!empty($_POST['start_time']) || !empty($_POST['end_time'])){
+                $where = array(
+                    'rid'       =>$room_info['id'],
+                    'type'      =>$type_name,
+                    'start_time'=>array('EGT',$_POST['start_time']),
+                    'end_time'  =>array('ELT',$_POST['end_time']),
                 );
-                M('house_village_water')->add($arr);
+                M('house_village_water')->where($where)->setField('result',1);
             }
+
             $result=M('house_village_otherfee')->data($data)->add();
             $property_model->other_update_cache($room_info['id'],$type);
         }

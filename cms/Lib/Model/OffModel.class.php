@@ -1166,23 +1166,31 @@ class OffModel extends Model
     public function water_excel_to_data($file)
     {
         $arr = import_excel_sheet($file,'','','',1);
-//         dump($arr);die;
+        //dump($arr);die;
         $tmp = array();
         $title = array(
             '房间号',
             '起码',
             '止码',
             '单价',
+            '起始月份',
+            '结束月份'
             // '合作状态',
         );
         $room_pro_name_arr = [];//记录供应商名称
         //为查询是否为重复数据做准备
         foreach($arr as $key=> $row){
+            if(is_numeric($row[4]) || is_numeric($row[5])){
+                $row[4] = $this->exceltimtetophp($row[4]);
+                $row[5] = $this->exceltimtetophp($row[5]);
+            }
             $tmp[] = array(
                 'room'              => $row[0],
                 'start_code'        => $row[1],
                 'end_code'          => $row[2],
                 'price'             => $row[3],
+                'start_time'        =>$row[4],
+                'end_time'          =>$row[5]
             );
         }
 
@@ -1192,6 +1200,21 @@ class OffModel extends Model
         );
         // var_dump($data);exit();
         return $data;
+    }
+
+    public function exceltimtetophp($days,$time=false)
+    {
+        if(is_numeric($days))
+        {
+            $jd = GregorianToJD(1, 1, 1970);
+            $gregorian = JDToGregorian($jd+intval($days)-25569);
+            $gregorian = strtotime($gregorian);
+            $gregorian = date("Y-m-d",$gregorian);
+//  $myDate = explode('\\',$gregorian);
+//  $myDateStr = str_pad($myDate[2],4,'0', STR_PAD_LEFT)."-".str_pad($myDate[0],2,'0',STR_PAD_LEFT)."-".str_pad($myDate[1],2,'0', STR_PAD_LEFT).($time?"00:00:00":'\\');
+            return $gregorian;
+        }
+        return $time;
     }
 
     //导入数据库
@@ -1225,6 +1248,10 @@ class OffModel extends Model
      */
     public function insert_to_water_base($info,$start_time,$end_time,$type){
         //查询是否存在该房间号
+        if(empty($start_time) || empty($end_time)){
+            $start_time = $info['start_time'];
+            $end_time = $info['end_time'];
+        }
         $data = M('house_village_room')
             ->where(array('room_name'=>trim($info['room'])))
             ->find();

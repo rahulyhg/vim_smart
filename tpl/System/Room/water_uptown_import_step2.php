@@ -37,6 +37,13 @@
                 <td>{{item.start_code}}</td>
                 <td>{{item.end_code}}</td>
                 <td>{{item.price}}</td>
+                <if condition="empty($start_time) eq true">
+                    <td>{{item.start_time}}</td>
+                    <td>{{item.end_time}}</td>
+                    <else/>
+                    <td>{pigcms{$start_time}</td>
+                    <td>{pigcms{$end_time}</td>
+                </if>
                 <!-- <td>{{item.status}}</td> -->
                 <td @click="del(index)">
                     <button class="btn btn-danger btn-sm">删除</button>

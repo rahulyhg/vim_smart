@@ -359,6 +359,7 @@ class RoomAction extends BaseAction
             }
             //导入数据
             $list = $model->owner_uptown_excel_to_data($file,$village_id,$project_id);
+            dump($list);die;
             $this->assign_json('list',$list);
             $this->assign_json('selected_village_id',$village_id);
             $this->assign_json('selected_village_name',$village_name);
@@ -3937,10 +3938,13 @@ class RoomAction extends BaseAction
      */
     public function water_uptown_import_step2()
     {
-        $start_time = I('post.start_time');
-        $end_time = I('post.end_time');
-        if(empty($start_time) || empty($end_time)){
-            $this->error('请选择日期');
+        $status = I('post.status');
+        if($status != 1){
+            $start_time = I('post.start_time');
+            $end_time = I('post.end_time');
+            if(empty($start_time) || empty($end_time)){
+                $this->error('请选择日期');
+            }
         }
         $type = I('post.type');
         if(empty($type)){
@@ -3993,5 +3997,35 @@ class RoomAction extends BaseAction
             $error = $model->get_import_error();
             return $this->error($error['msg'],"",$error['data']);
         }
+    }
+
+    /**
+     * @author zhukeqin
+     *导出业主excel表格
+     */
+    public function ajax_village_excel_print()
+    {
+        $village_id =  filter_village(0,2);
+        $project_id=$_SESSION['project_id'];
+        $where=array('r1.status'=>array('eq',0),'r1.village_id'=>array('eq',$village_id),'r1.fid'=>array('neq','0'),'r1.project_id'=>$project_id);
+        $model = M('house_village_room');
+        $list = $model
+            ->alias('r1')
+            ->field(array(
+                'r1.*',
+                'up.*',
+                'ub.phone',
+                'ub.name',
+                'ub.id_card',
+                'tb.carspace_number',
+                'tb.car_number',
+            ))
+            ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_UPTOWN__ up ON up.rid=r1.id')
+            ->join('LEFT JOIN __HOUSE_VILLAGE_USER_BIND__ ub ON ub.pigcms_id=r1.owner_id')
+            ->join('LEFT JOIN __HOUSE_VILLAGE_USER_CAR__ tb ON tb.rid = r1.id')
+            ->where($where)
+            ->select();
+        //dump($list);die;
+        D('Budget_log')->excel_log_village($list);
     }
 }

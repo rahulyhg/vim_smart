@@ -766,6 +766,7 @@ class Budget_logModel extends Model{
         $company_id=$village_info['department_id'];
         //导出合计
         $data_sum=$this->get_excel_log_sum($village_id,$project_id,$company_id,$year);
+        //dump($data_sum);die;
         //set_time_limit(0);
         import('@.ORG.phpexcel.PHPExcel');
         $phpexcel = new PHPExcel();
@@ -858,7 +859,7 @@ class Budget_logModel extends Model{
             $phpexcel->getActiveSheet()->setCellValue('E'.$low,number_format($value['sum_sum'],2));
             $phpexcel->getActiveSheet()->setCellValue('F'.$low,number_format($value['difference'],2));
             $phpexcel->getActiveSheet()->setCellValue('G'.$low,$value['type_remark']);
-            $phpexcel->getActiveSheet()->getStyle('G'.$low)->getAlignment()->setWrapText(true);
+            $phpexcel->getActiveSheet()->getStyle('G'.$low)->getAlignment()->setWrapText(true);//??
             $i++;
             $low++;
         }
@@ -1038,6 +1039,88 @@ class Budget_logModel extends Model{
         }
         header('Content-Type: application/vnd.ms-excel');
         header("Content-Disposition: attachment;filename=".$year."年".$file_name."预算执行.xls");
+        header('Cache-Control: max-age=0');
+        header('Cache-Control: max-age=1');
+        header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+        header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+        header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+        header ('Pragma: public'); // HTTP/1.0
+        $objwriter = PHPExcel_IOFactory::createWriter($phpexcel, 'Excel5');
+        $objwriter->save('php://output');
+        exit;
+    }
+
+    public function excel_log_village($list)
+    {
+        import('@.ORG.phpexcel.PHPExcel');
+        $phpexcel = new PHPExcel();
+        //设置基本信息
+        $phpexcel->getProperties()->setCreator("admin")
+            ->setLastModifiedBy(session('system.account'))
+            ->setTitle("业主信息")
+            ->setSubject("业主信息")
+            ->setDescription("")
+            ->setKeywords("业主信息")
+            ->setCategory("");
+        $phpexcel->getDefaultStyle()->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $phpexcel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+        //执行主表页面
+        $phpexcel->setActiveSheetIndex(0);
+        //设置默认行高
+        $phpexcel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(40);
+        $phpexcel->getActiveSheet()->setTitle('执行主表');
+        $phpexcel->getActiveSheet()->setCellValue('A1', '门牌号');
+        $phpexcel->getActiveSheet()->setCellValue('B1', '面积');
+        $phpexcel->getActiveSheet()->setCellValue('C1', '业主姓名');
+        $phpexcel->getActiveSheet()->setCellValue('D1', '身份证号');
+        $phpexcel->getActiveSheet()->setCellValue('E1', '联系电话');
+        $phpexcel->getActiveSheet()->setCellValue('F1', '入伙日期');
+        $phpexcel->getActiveSheet()->setCellValue('G1', '房屋质量问题');
+        $phpexcel->getActiveSheet()->setCellValue('H1', '处理结果');
+        $phpexcel->getActiveSheet()->setCellValue('I1', '装修开始时间');
+        $phpexcel->getActiveSheet()->setCellValue('J1', '装修结束时间');
+        $phpexcel->getActiveSheet()->setCellValue('K1', '违规内容');
+        $phpexcel->getActiveSheet()->setCellValue('L1', '是否整改(0为否 1为是)');
+        $phpexcel->getActiveSheet()->setCellValue('M1', '第一次验收时间');
+        $phpexcel->getActiveSheet()->setCellValue('N1', '第二次验收时间');
+        $phpexcel->getActiveSheet()->setCellValue('O1', '押金情况(0为未退还 1为已退还)');
+        $phpexcel->getActiveSheet()->setCellValue('P1', '房屋状态(0为空置 1为出租 2为自住)');
+        $phpexcel->getActiveSheet()->setCellValue('Q1', '物业费到期时间');
+        $phpexcel->getActiveSheet()->setCellValue('R1', '车位号');
+        $phpexcel->getActiveSheet()->setCellValue('S1', '车牌号');
+        $phpexcel->getActiveSheet()->setCellValue('T1', '泊位费时间');
+        $phpexcel->getActiveSheet()->setCellValue('U1', '泊位费用');
+        //设置列宽
+        foreach(range('A','U') as $v){
+            $phpexcel->getActiveSheet()->getColumnDimension($v)->setWidth(28);
+        }
+        $low=2;//当前行数
+        foreach ($list as $value){
+            $phpexcel->getActiveSheet()->setCellValue('A'.$low,$value['room_name']);
+            $phpexcel->getActiveSheet()->setCellValue('B'.$low,$value['roomsize']);
+            $phpexcel->getActiveSheet()->setCellValue('C'.$low,$value['name']);
+            $phpexcel->getActiveSheet()->setCellValue('D'.$low,$value['id_card']);
+            $phpexcel->getActiveSheet()->setCellValue('E'.$low,$value['phone']);
+            $phpexcel->getActiveSheet()->setCellValue('F'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('G'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('H'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('I'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('J'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('K'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('L'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('M'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('N'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('O'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('P'.$low,'');
+            $phpexcel->getActiveSheet()->setCellValue('Q'.$low, $value['property_endtime']);
+            $phpexcel->getActiveSheet()->setCellValue('R'.$low, $value['carspace_number']);
+            $phpexcel->getActiveSheet()->setCellValue('S'.$low, $value['car_number']);
+            $phpexcel->getActiveSheet()->setCellValue('T'.$low, '');
+            $phpexcel->getActiveSheet()->setCellValue('U'.$low, '');
+            $low++;
+        }
+        header('Content-Type: application/vnd.ms-excel');
+        header("Content-Disposition: attachment;filename=".$list[0]['desc']."业主信息.xls");
         header('Cache-Control: max-age=0');
         header('Cache-Control: max-age=1');
         header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past

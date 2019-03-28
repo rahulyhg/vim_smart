@@ -3039,7 +3039,7 @@ sql;
                     $owner_id=$userinfoid['0'];
                 }
             }
-            //dump($room_uptown);
+            //dump($userinfoid);
             //逗号连接user_bind中的id
             $userinfoid=implode(',',$userinfoid);
             //检查楼层是否存在  不存在则创建
@@ -3070,9 +3070,11 @@ sql;
             }
             //添加或编辑房间信息
             $roominfo=M('house_village_room')->where(array('room_name'=>$room['room_name'],'project_id'=>$room['project_id'],'village_id'=>$room['village_id'],'fid'=>array('neq',0)))->find();
+            //
             $room['fid']=$fid;
             $room['oid']=$userinfoid;
             $room['owner_id']=$owner_id;
+
             if(empty($roominfo)){
                 $roomid=M('house_village_room')->data($room)->add();
                 /*dump($room);

@@ -523,13 +523,14 @@ class ReceiptAction extends BaseAction{
 
             $log['print_data']=implode(',',$log_data);
             $log['print_num']=$num+1;
-            $list_cache[$key]['num']=$this->village_info['logogram'].$date.sprintf('%06d',$log['print_num']);
+            $list_cache[$key]['num']=strtoupper($this->village_info['logogram']).$date.sprintf('%06d',$log['print_num']);
             $list_cache[$key]['sum_chinese'] = $this->cny($list_cache[$key]['sum']);//中文大写转换
+//            dump($list_cache);die;
             $log['village_id']=$this->village_id;
             $log['project_id']=$this->project_id;
             $log['admin_id']=$this->admin_id;
             if(!empty($_GET['print_id'])){
-                $list_cache[$key]['num']=$this->village_info['logogram'].$date.sprintf('%06d',$print_info['print_num']);
+                $list_cache[$key]['num']=strtoupper($this->village_info['logogram']).$date.sprintf('%06d',$print_info['print_num']);
                 $return_id=$_GET['print_id'];
             }else{
                 $return_id=M('house_village_receipt_print')->data($log)->add();
@@ -541,6 +542,7 @@ class ReceiptAction extends BaseAction{
 
         /*$lian=array('1'=>'一','2'=>'二','3'=>'三');
         $this->assign('lian',$lian);*/
+        //dump($list_cache);die;
         $this->assign('list_cache',$list_cache);
         $this->display();
     }

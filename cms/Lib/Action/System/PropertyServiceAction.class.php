@@ -5496,6 +5496,7 @@ class PropertyServiceAction extends BaseAction{
         //判断是否是小区，进行跳转 by zhukeqin
         $start=I('post.start');
         $length=I('post.length');
+        //dump($length);die;
         //datatable适配  -1则代表显示全部信息
         if($length==-1){
             unset($length);
@@ -5522,6 +5523,7 @@ class PropertyServiceAction extends BaseAction{
         if(I('get.room_type')=='other'){
             $where['r1.tung_unit']= array('exp',' is NULL');
         }
+        //dump($where);die;
         //主查询
         if(!empty($length)){
             $list = $model
@@ -5549,6 +5551,7 @@ class PropertyServiceAction extends BaseAction{
                 ->where($where)
                 ->select();
         }
+//        dump($list);die;
         $list_dimcount=$model
             ->alias('r1')
             ->field(array(
@@ -5570,6 +5573,7 @@ class PropertyServiceAction extends BaseAction{
             ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_UPTOWN__ up ON up.rid=r1.id')
             ->where($where_all)
             ->count();
+        //dump($list);die;
         //dump(M()->_sql());exit;
         foreach ($list as $value){
             $array=array(
@@ -5623,6 +5627,7 @@ class PropertyServiceAction extends BaseAction{
                 }
             }
             $carspace .='</a>';
+
             $array['carspace']=$carspace;
 
             if(!empty($value['oid'])){
@@ -5650,6 +5655,7 @@ class PropertyServiceAction extends BaseAction{
             $list_reload[]=$array;
 
         }
+//        dump($list_reload);die;
         if(empty($list_reload)){
             $list_reload=array();
         }
@@ -5659,7 +5665,7 @@ class PropertyServiceAction extends BaseAction{
             'recordsFiltered'=>$list_dimcount,
             'data'=>$list_reload
         );
-        //dump($result_array);die;
+//        dump($result_array);die;
         echo json_encode($result_array);
     }
     /**

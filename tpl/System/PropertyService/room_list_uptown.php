@@ -1,15 +1,6 @@
 <extend name="./tpl/System/Public_news/base.php" />
 <link href="/Car/Admin/Public/assets/global/plugins/plugins.min.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-    #asd{
-        /* font-size: 50px; */
-        width: 100px;
-        padding: 0px 110px;
-    }
-    div.xdsoft_datetimepicker {
-        z-index: 111000;
-    }
-</style>
+
 <block name="table-toolbar-left">
     <!--<div class="btn-group">
         <a href="{pigcms{:U('PropertyService/room_add_uptown')}">
@@ -94,6 +85,14 @@
             <button id="sample_editable_1_new" class="btn sbold green">
                 <i class="fa fa-th-list"></i>
                 收费类目管理
+            </button>
+        </a>
+    </div>
+
+    <div class="btn-group">
+        <a href="{pigcms{:U('Room/ajax_village_excel_print',array('year'=>$year))}">
+            <button id="sample_editable_1_new" class="btn sbold green">导出excel表格
+                <i class="fa fa-plus"></i>
             </button>
         </a>
     </div>
@@ -440,6 +439,8 @@
                                 });
                             </script>
                         </div>
+                        <input type="hidden" name="start_time">
+                        <input type="hidden" name="end_time">
                     </form>
 
                     <div class="form-group form-md-line-input show_detail" style="display: none; height:30px;">
@@ -987,6 +988,7 @@
                         $(".alert-success").slideDown();
                         $("#in_database tr:eq(1)").before(res.data);
                         if(res.msg){
+                            $("textarea[name='remark']").html("");
                             swal({
                                     title: "添加缴费成功，是否立即打印收据？",
                                     text: "确认后会前往打印收据页面",
@@ -1041,6 +1043,7 @@
             $("input[name='unit']").val('');
             $("input[name='fee_receive']").val('');
             $("input[name='fee_true']").val('');
+            $("textarea[name='remark']").html('');
             var p1=$(this).children('option:selected').val();
             var room_name=$("input[name='room_name']").val();
             $.ajax({
@@ -1115,13 +1118,18 @@
                         }
 
                         if(res.data.otherfee_type_name == "水费" || res.data.otherfee_type_name == "电费"){
-                                $('.input-mouth').css('display','block');
+//                                $('.input-mouth').css('display','block');
                                 $('.show_detail').css('display','block');
                                 var id = res.rid;
                                 $('#show_detailed').attr('href',"{pigcms{:U('Property/show_detailed',array('id'=>'"+id+"'))}");
+
                                 if(res.start_time != null){
-                                    $("#time_from").val(res.start_time);
-                                    $("#time_to").val(res.end_time);
+                                    $str = res.start_time+"至"+res.end_time;
+                                    $("textarea[name='remark']").html($str);
+                                    $("input[name='start_time']").val(res.start_time);
+                                    $("input[name='end_time']").val(res.end_time);
+                                    /*$("input[name='remark']").val(res.start_time);
+                                    $("#time_to").val(res.end_time);*/
                                 }
                                 /*$("#sel option").each(function() {
                                     if($(this).val()==res.start_time){
