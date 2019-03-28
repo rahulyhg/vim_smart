@@ -4,16 +4,6 @@
     <list default="true" id="afbcdb1a-3641-4aa8-86bf-75ca59626aa5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/phpexcel/phpexcel" afterPath="$PROJECT_DIR$/vendor/phpexcel/phpexcel" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/Lib/Action/System/PropertyAction.class.php" afterPath="$PROJECT_DIR$/cms/Lib/Action/System/PropertyAction.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/Lib/Action/System/PropertyServiceAction.class.php" afterPath="$PROJECT_DIR$/cms/Lib/Action/System/PropertyServiceAction.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/Lib/Action/System/ReceiptAction.class.php" afterPath="$PROJECT_DIR$/cms/Lib/Action/System/ReceiptAction.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/Lib/Action/System/RoomAction.class.php" afterPath="$PROJECT_DIR$/cms/Lib/Action/System/RoomAction.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/Lib/Model/Budget_logModel.class.php" afterPath="$PROJECT_DIR$/cms/Lib/Model/Budget_logModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/Lib/Model/OffModel.class.php" afterPath="$PROJECT_DIR$/cms/Lib/Model/OffModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cms/Lib/Model/RoomModel.class.php" afterPath="$PROJECT_DIR$/cms/Lib/Model/RoomModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/System/PropertyService/room_list_uptown.php" afterPath="$PROJECT_DIR$/tpl/System/PropertyService/room_list_uptown.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/System/Room/water_uptown_import_step1.php" afterPath="$PROJECT_DIR$/tpl/System/Room/water_uptown_import_step1.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/System/Room/water_uptown_import_step2.php" afterPath="$PROJECT_DIR$/tpl/System/Room/water_uptown_import_step2.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -174,8 +164,8 @@
       <file leaf-file-name="room_list_uptown.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tpl/System/PropertyService/room_list_uptown.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="1310" column="38" lean-forward="true" selection-start-line="1310" selection-start-column="38" selection-end-line="1310" selection-end-column="38" />
+            <state relative-caret-position="790">
+              <caret line="1326" column="18" lean-forward="true" selection-start-line="1326" selection-start-column="18" selection-end-line="1326" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -572,7 +562,7 @@
       <workItem from="1553646144116" duration="26990000" />
       <workItem from="1553676891807" duration="3503000" />
       <workItem from="1553732921473" duration="23176000" />
-      <workItem from="1553760360395" duration="6838000" />
+      <workItem from="1553760360395" duration="7162000" />
     </task>
     <task id="LOCAL-00001" summary="ss">
       <created>1553223461683</created>
@@ -623,15 +613,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553680621457</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="水电费导入123">
+      <created>1553767273121</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1553767273121</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="411898000" />
+    <option name="totallyTimeSpent" value="412222000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Key Promoter X" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Api Debugger" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -668,7 +664,8 @@
     <MESSAGE value="装逼1" />
     <MESSAGE value="装逼2" />
     <MESSAGE value="水电费导入" />
-    <option name="LAST_COMMIT_MESSAGE" value="水电费导入" />
+    <MESSAGE value="水电费导入123" />
+    <option name="LAST_COMMIT_MESSAGE" value="水电费导入123" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1099,6 +1096,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1157,6 +1155,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="19" column="18" lean-forward="true" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1356,8 +1355,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/System/PropertyService/room_list_uptown.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="1310" column="38" lean-forward="true" selection-start-line="1310" selection-start-column="38" selection-end-line="1310" selection-end-column="38" />
+        <state relative-caret-position="790">
+          <caret line="1326" column="18" lean-forward="true" selection-start-line="1326" selection-start-column="18" selection-end-line="1326" selection-end-column="18" />
           <folding />
         </state>
       </provider>
