@@ -58,4 +58,9 @@ class AdminModel extends Model{
         return array('err'=>0,'data'=>'上传成功！');
     }
 
+    public function get_admin($admin_id)
+    {
+        return $this->where(array('id'=>$admin_id))->find();
+    }
+
 }

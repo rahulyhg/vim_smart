@@ -865,9 +865,6 @@
     </table>
 </block>
 <block name="script">
-    <!--引入js-->
-    <include file="Public_news:script"/>
-    <!--引入js-->
 
     <!--自定义js代码区开始-->
     <script type="text/javascript" src="{pigcms{$static_public}js/artdialog/jquery.artDialog.js"></script>

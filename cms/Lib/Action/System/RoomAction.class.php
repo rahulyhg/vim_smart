@@ -359,7 +359,6 @@ class RoomAction extends BaseAction
             }
             //导入数据
             $list = $model->owner_uptown_excel_to_data($file,$village_id,$project_id);
-            dump($list);die;
             $this->assign_json('list',$list);
             $this->assign_json('selected_village_id',$village_id);
             $this->assign_json('selected_village_name',$village_name);
@@ -1633,7 +1632,7 @@ class RoomAction extends BaseAction
             $meter[$key]['cates']['cate_id'] = $cate_type[0]['id'];
             $configArr = M('house_village_meters_custom')->where(array('meter_hash'=>$val['meter_hash']))->select();
             // var_dump($configArr);
-            //剔除信息为空的数据          
+            //剔除信息为空的数据
             foreach ($configArr as $k => $v) {
                 if ($v['val'] == '') {
                     unset($configArr[$k]);
@@ -1665,7 +1664,7 @@ class RoomAction extends BaseAction
             }
             $meter[$key]['cates']['cateArray'] = $cateArray;
         }
-        // var_dump($meter);      
+        // var_dump($meter);
 
         $this->assign("meter",$meter);
         $this->display();
@@ -1830,7 +1829,7 @@ class RoomAction extends BaseAction
         $meter_cate = M('house_village_meter_cate')->where(array('id'=>$meter_info['cate_id']))->select();
         $meter_info['meter_cate'] = $meter_cate[0]['desc'];
         $configArr = M('house_village_meters_custom')->where(array('meter_hash'=>$meter_info['meter_hash']))->select();
-        //剔除信息为空的数据          
+        //剔除信息为空的数据
         foreach ($configArr as $k => $v) {
             if ($v['val'] == '') {
                 unset($configArr[$k]);
@@ -2061,7 +2060,7 @@ class RoomAction extends BaseAction
     public function get_meter_custom(){
         // var_dump($_POST);
         // var_dump($_GET);
-        //获取当前设备的基本配置  
+        //获取当前设备的基本配置
         $meter_hash = M('house_village_meters')->where(array('id'=>$_GET['meters_id']))->getField('meter_hash');
         $meter_config = M('house_village_meters_custom')->where(array('meter_hash'=>$meter_hash))->select();
         // var_dump($meter_config);
@@ -3288,7 +3287,7 @@ class RoomAction extends BaseAction
         }
         $search1=$model->meter_config_village_list(0,$config_id,0);
 
-        //判断，是否是专业设备 113        
+        //判断，是否是专业设备 113
         // $idArray = array('113');
         // $is_set = in_array($config_id, $idArray);
         // $this->assign('is_set',$is_set);
@@ -3964,12 +3963,16 @@ class RoomAction extends BaseAction
         $model = new OffModel();
         $file = $_FILES['test'];
         if($file){
+            dump($file);die;
             //导入数据
             $list = $model->water_excel_to_data($file);
+
             foreach($list['body'] as $k=>&$v){
                 if(!is_numeric($v['price'])){
                     unset($list['body'][$k]);
                 }
+                $v['start_time'] = str_replace('.','-',$v['start_time']);
+                $v['end_time'] = str_replace('.','-',$v['end_time']);
             }
             $this->assign_json('list',$list);
             $this->display();
@@ -4019,13 +4022,16 @@ class RoomAction extends BaseAction
                 'ub.id_card',
                 'tb.carspace_number',
                 'tb.car_number',
+                'tb.carspace_start',
+                'tb.carspace_end',
+                'tb.carspace_price',
             ))
             ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_UPTOWN__ up ON up.rid=r1.id')
             ->join('LEFT JOIN __HOUSE_VILLAGE_USER_BIND__ ub ON ub.pigcms_id=r1.owner_id')
             ->join('LEFT JOIN __HOUSE_VILLAGE_USER_CAR__ tb ON tb.rid = r1.id')
             ->where($where)
             ->select();
-        //dump($list);die;
-        D('Budget_log')->excel_log_village($list);
+//        dump($list);die;
+        D('Budget_log')->excel_log_village($list,$village_id);
     }
 }

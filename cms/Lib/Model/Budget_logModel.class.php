@@ -72,7 +72,7 @@ class Budget_logModel extends Model{
         $where = array(
             'type_id' => $type_id,
             'village_id' => $village_id,
-/*            'company_id' => $company_id,*/
+            /*            'company_id' => $company_id,*/
             'money_year'=>$year
         );
         if (empty($project_id)) {
@@ -124,29 +124,29 @@ class Budget_logModel extends Model{
         unset($where['record_time']);
         unset($where['record_status']);
         $where['log_time']=$year;
-            $cache = $this->get_log_one($where);
-            $add = array(
-                'type_id' => $type_id,
-                'village_id' => $village_id,
-                'company_id' => $company_id,
-                'log_time' => $year,
-                'log_update' => time(),
-                'log_data' => serialize($data),
-            );
-            if (empty($project_id)) {
+        $cache = $this->get_log_one($where);
+        $add = array(
+            'type_id' => $type_id,
+            'village_id' => $village_id,
+            'company_id' => $company_id,
+            'log_time' => $year,
+            'log_update' => time(),
+            'log_data' => serialize($data),
+        );
+        if (empty($project_id)) {
 
-            } else {
-                $add['project_id'] = $project_id;
-            }
-            if (empty($cache)) {
-
-                $re1 = $this->data($add)->add();
-            } else {
-
-                $re1 = $this->where($where)->data($add)->save();
-            }
-            return $re1;
+        } else {
+            $add['project_id'] = $project_id;
         }
+        if (empty($cache)) {
+
+            $re1 = $this->data($add)->add();
+        } else {
+
+            $re1 = $this->where($where)->data($add)->save();
+        }
+        return $re1;
+    }
 
     /**
      * @author zhukeqin
@@ -158,90 +158,90 @@ class Budget_logModel extends Model{
      * @return array
      * 根据第一类来选择输出表格
      */
-        public function get_excel_log_type($type_id,$village_id,$project_id,$company_id,$year){
-            if(empty($year)){
-                $year=date('Y');
-            }
-            $where=array(
-                'log_time'=>$year
-            );
-            if(!empty($village_id)){
-                $where['village_id']=$village_id;
-            }
+    public function get_excel_log_type($type_id,$village_id,$project_id,$company_id,$year){
+        if(empty($year)){
+            $year=date('Y');
+        }
+        $where=array(
+            'log_time'=>$year
+        );
+        if(!empty($village_id)){
+            $where['village_id']=$village_id;
+        }
 
-            if(empty($project_id)){
+        if(empty($project_id)){
 
+        }else{
+            $where['project_id']=$project_id;
+        }
+
+        if(!empty($company_id)){
+            $where['company_id']=$company_id;
+        }
+        $search=array('type_fid'=>$type_id);
+        if(!empty($where['company_id'])){
+            //计算分公司总和时遇到的问题进行处理
+            if($where['company_id']['0']=='IN'){
+                $search['company_id']=$company_id['1'];
             }else{
-                $where['project_id']=$project_id;
+                $search['company_id']=$company_id;
             }
-
-            if(!empty($company_id)){
-                    $where['company_id']=$company_id;
-            }
-            $search=array('type_fid'=>$type_id);
-            if(!empty($where['company_id'])){
-                //计算分公司总和时遇到的问题进行处理
-                if($where['company_id']['0']=='IN'){
-                    $search['company_id']=$company_id['1'];
-                }else{
-                    $search['company_id']=$company_id;
-                }
-            }elseif(!empty($village_id)){
-                $village_info=M('house_village')->where(array('village_id'=>$village_id))->find();
-                /*$where1=array('village_id'=>$village_id,'year'=>$year);
-                if(!empty($project_id)) $where1['project_id']=$project_id;
-                $search['company_id']=$where['company_id']=$this->get_log_one($where1)['company_id'];//获取当年的公司id
-                if(empty($search['company_id'])) $search['company_id']=$where['company_id']=$village_info['department_id'];*/
-                //$search['company_id']=$village_info['department_id'];
-                $search['company_id']=$where['company_id']=$this->get_company_id($village_id,$project_id,$year);
-            }
-            $type_second_list=D('Budget_type')->get_type_list($search);
-            $data=array();
-            $sum=array(
-                'sum_money'=>0,
-                'sum_sum'=>0
-            );
-            foreach ($type_second_list as $value){
-                unset($cache);
-                $cache['type_name']=$value['type_name'];
-                $cache['type_remark']=$value['type_remark'];
-                $search['type_fid']=$value['type_id'];
-                $type_third_list=D('Budget_type')->get_type_list($search);
-                foreach ($type_third_list as $value1){
-                    $where['type_id']=$value1['type_id'];
-                    $cache['children'][$value1['type_id']]['type_name']=$value1['type_name'];
-                    $cache['children'][$value1['type_id']]['type_remark']=$value1['type_remark'];
+        }elseif(!empty($village_id)){
+            $village_info=M('house_village')->where(array('village_id'=>$village_id))->find();
+            /*$where1=array('village_id'=>$village_id,'year'=>$year);
+            if(!empty($project_id)) $where1['project_id']=$project_id;
+            $search['company_id']=$where['company_id']=$this->get_log_one($where1)['company_id'];//获取当年的公司id
+            if(empty($search['company_id'])) $search['company_id']=$where['company_id']=$village_info['department_id'];*/
+            //$search['company_id']=$village_info['department_id'];
+            $search['company_id']=$where['company_id']=$this->get_company_id($village_id,$project_id,$year);
+        }
+        $type_second_list=D('Budget_type')->get_type_list($search);
+        $data=array();
+        $sum=array(
+            'sum_money'=>0,
+            'sum_sum'=>0
+        );
+        foreach ($type_second_list as $value){
+            unset($cache);
+            $cache['type_name']=$value['type_name'];
+            $cache['type_remark']=$value['type_remark'];
+            $search['type_fid']=$value['type_id'];
+            $type_third_list=D('Budget_type')->get_type_list($search);
+            foreach ($type_third_list as $value1){
+                $where['type_id']=$value1['type_id'];
+                $cache['children'][$value1['type_id']]['type_name']=$value1['type_name'];
+                $cache['children'][$value1['type_id']]['type_remark']=$value1['type_remark'];
+                $log_list=$this->get_log_list($where);
+                //如果log为空且为当个项目时，则刷新log
+                /*if(empty($log_list)&&!empty($where['village_id'])){
+                    $this->change_log_one($where['type_id'],$where['village_id'],$where['company_id'],$where['project_id'],$year);
                     $log_list=$this->get_log_list($where);
-                    //如果log为空且为当个项目时，则刷新log
-                    /*if(empty($log_list)&&!empty($where['village_id'])){
-                        $this->change_log_one($where['type_id'],$where['village_id'],$where['company_id'],$where['project_id'],$year);
-                        $log_list=$this->get_log_list($where);
-                    }*/
-                    foreach ($log_list as $value2){
-                        $log_data=unserialize($value2['log_data']);
-                        $cache['children'][$value1['type_id']]['type_data']=$log_data;
-                        foreach ($log_data as $key=>$value3){
-                            if($key=='money_sum'){
-                                $sum['sum_money'] +=$value3;
-                                $cache['sum']['sum_money'] +=$value3;
-                            }elseif($key=='sum'){
-                                $sum['sum_sum'] +=$value3;
-                                $cache['sum']['sum_sum'] +=$value3;
-                            }else{
-                                $sum[$key] +=$value3;
-                                $cache['sum'][$key] +=$value3;
-                            }
+                }*/
+                foreach ($log_list as $value2){
+                    $log_data=unserialize($value2['log_data']);
+                    $cache['children'][$value1['type_id']]['type_data']=$log_data;
+                    foreach ($log_data as $key=>$value3){
+                        if($key=='money_sum'){
+                            $sum['sum_money'] +=$value3;
+                            $cache['sum']['sum_money'] +=$value3;
+                        }elseif($key=='sum'){
+                            $sum['sum_sum'] +=$value3;
+                            $cache['sum']['sum_sum'] +=$value3;
+                        }else{
+                            $sum[$key] +=$value3;
+                            $cache['sum'][$key] +=$value3;
                         }
                     }
                 }
-                $data[$value['type_id']]=$cache;
             }
-            $data['sum']=$sum;
-            /*if(!empty($company_id)){
-                dump($data);
-            }*/
-            return $data;
+            $data[$value['type_id']]=$cache;
         }
+        $data['sum']=$sum;
+        /*if(!empty($company_id)){
+            dump($data);
+        }*/
+        return $data;
+    }
 
     /**
      * @author zhukeqin
@@ -252,215 +252,215 @@ class Budget_logModel extends Model{
      * @return array
      * 输出合计
      */
-        public function get_excel_log_sum($village_id,$project_id,$company_id,$year){
-            //设定搜索条件
-            if(empty($year)){
-                $year=date('Y');
-            }
-            $where=array('type_fid'=>0);
-            if(!empty($company_id)){
-                if($company_id['0']=='IN'){
-                    $where['company_id']=$company_id['1'];
-                }else{
-                    $where['company_id']=$company_id;
-                }
-            }elseif(!empty($village_id)){
-
-                $village_info=M('house_village')->where(array('village_id'=>$village_id))->find();
-
-                $where['company_id']=$village_info['department_id'];
-            }
-            $type_first_list=D('Budget_type')->get_type_list($where);
-            $data=array();
-            $sum=array(
-                'sum_money'=>0,
-                'sum_sum'=>0,
-                'difference'=>0,
-            );
-            foreach ($type_first_list as $value){
-                unset($cache);
-                $cache['type_name']=$value['type_name'];
-                $cache['type_remark']=$value['type_remark'];
-                $log=$this->get_excel_log_type($value['type_id'],$village_id,$project_id,$company_id,$year);
-                /*if($company_id&&$value['type_id']==4){
-                    dump($log);
-                }*/
-                $log_sum=$log['sum'];
-                unset($log['sum']);
-                foreach ($log as $value1){
-                    $cache['children'][$value1['type_name']]['type_name']=$value1['type_name'];
-                    $cache['children'][$value1['type_name']]['type_remark']=$value1['type_remark'];
-                    $cache_sum=0;
-                    $cache_money=0;
-                    /*foreach ($value1['children'] as $key2=>$value2){
-                            $cache_money +=$value2['type_data']['money_sum'];
-                            $cache_sum +=$value2['type_data']['sum'];
-                    }*/
-                    $cache_money=$value1['sum']['sum_money'];
-                    $cache_sum=$value1['sum']['sum_sum'];
-                    $cache['children'][$value1['type_name']]['sum_money']+=$cache_money;
-                    $cache['children'][$value1['type_name']]['difference']+=$cache_money-$cache_sum;
-                    $cache['children'][$value1['type_name']]['sum_sum']+=$cache_sum;
-                }
-                    $cache['sum_money']=$log_sum['sum_money'];
-                    $cache['difference']=$log_sum['sum_money']-$log_sum['sum_sum'];
-                $cache['sum_sum']=$log_sum['sum_sum'];
-                if($cache['type_name']=='收入明细'){
-                    $sum['sum_money'] +=$cache['sum_money'];
-                    $sum['sum_sum'] +=$cache['sum_sum'];
-                    $sum['difference'] +=$cache['difference'];
-                    /*dump($sum);*/
-                    //修改处
-                        $data['input']['sum_money']=$cache['sum_money'];
-                        $data['input']['difference']=$cache['difference'];
-                    $data['input']['1']=$cache;
-                    $data['input']['sum_sum']=$cache['sum_sum'];
-                    //计算增值税
-                    $data_cache['type_name']='增值税及附加';
-                    $data_cache['type_remark']='按收入6.3%测算';
-                    $data_cache['children']['增值税及附加']['type_name']='增值税及附加';
-                    if($village_id==54){
-                        //修改处
-
-                            $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+0.03)*0.03*(1+0.055);//增值税金额都由6.3%计算
-
-                        $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+0.03)*0.03*(1+0.055);
-                    }elseif($village_id==70){
-                        $cache_type=0.03;
-                        //修改处
-                            $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+$cache_type)*$cache_type*(1+0.115);//增值税金额都由6.3%计算
-
-                        $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+$cache_type)*$cache_type*(1+0.115);
-                    }else{
-                        $cache_type=0.06;
-                        //修改处
-                            $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+$cache_type)*$cache_type*(1+0.115);//增值税金额都由6.3%计算
-
-                        $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+$cache_type)*$cache_type*(1+0.115);
-                    }
-
-                    $data_cache['children']['增值税及附加']['difference']=$data_cache['children']['增值税及附加']['sum_money']-$data_cache['children']['增值税及附加']['sum_sum'];
-                    $data_cache['sum_money']=$data_cache['children']['增值税及附加']['sum_money'];
-                    $data_cache['sum_sum']=$data_cache['children']['增值税及附加']['sum_sum'];
-                    $data_cache['difference']=$data_cache['children']['增值税及附加']['difference'];
-                    $data['output']['4']=$data_cache;
-                    //修改处
-
-                        $data['output']['sum_money'] +=$data_cache['sum_money'];
-                        $data['output']['difference'] +=$data_cache['difference'];
-
-                    $data['output']['sum_sum'] +=$data_cache['sum_sum'];
-                    //修改处
-                        $sum['sum_money'] -=$data_cache['sum_money'];
-                        $sum['difference'] -=$data_cache['difference'];
-
-                    $sum['sum_sum'] -=$data_cache['sum_sum'];
-
-                    /*dump($sum);*/
-                }else{
-                    $sum['sum_money'] -=$cache['sum_money'];
-                    $sum['sum_sum'] -=$cache['sum_sum'];
-                    $sum['difference'] -=$cache['difference'];
-                    /*dump($sum);*/
-                    $data['output'][$value['type_id']]=$cache;
-                    //修改处
-                        $data['output']['sum_money'] +=$cache['sum_money'];
-                        $data['output']['difference'] +=$cache['difference'];
-
-                    $data['output']['sum_sum'] +=$cache['sum_sum'];
-                }
-            }
-            $data['sum']=$sum;
-            return $data;
+    public function get_excel_log_sum($village_id,$project_id,$company_id,$year){
+        //设定搜索条件
+        if(empty($year)){
+            $year=date('Y');
         }
-
-        public function get_tax_cache($village_id,$project_id,$year){
-            $village_list=array('54','70');
-            if(!in_array($village_id,$village_list)) return array('sum_money'=>0,'sum_sum'=>0,'difference'=>0);
-            if(!empty($village_id)){
-                $village_info=M('house_village')->where(array('village_id'=>$village_id))->find();
-                $where['company_id']=$village_info['department_id'];
+        $where=array('type_fid'=>0);
+        if(!empty($company_id)){
+            if($company_id['0']=='IN'){
+                $where['company_id']=$company_id['1'];
+            }else{
+                $where['company_id']=$company_id;
             }
-            $type_first_list=D('Budget_type')->get_type_list($where);
-            $data=array();
-            $sum=array(
-                'sum_money'=>0,
-                'sum_sum'=>0,
-                'difference'=>0,
-            );
-            foreach ($type_first_list as $value){
-                unset($cache);
-                $cache['type_name']=$value['type_name'];
-                $cache['type_remark']=$value['type_remark'];
-                $log=$this->get_excel_log_type($value['type_id'],$village_id,$project_id,'',$year);
-                /*if($company_id&&$value['type_id']==4){
-                    dump($log);
-                }*/
-                $log_sum=$log['sum'];
-                unset($log['sum']);
-                foreach ($log as $value1){
-                    $cache['children'][$value1['type_name']]['type_name']=$value1['type_name'];
-                    $cache['children'][$value1['type_name']]['type_remark']=$value1['type_remark'];
-                    $cache_sum=0;
-                    $cache_money=0;
-                    /*foreach ($value1['children'] as $key2=>$value2){
-                            $cache_money +=$value2['type_data']['money_sum'];
-                            $cache_sum +=$value2['type_data']['sum'];
-                    }*/
-                    $cache_money=$value1['sum']['sum_money'];
-                    $cache_sum=$value1['sum']['sum_sum'];
+        }elseif(!empty($village_id)){
 
-                    $cache['children'][$value1['type_name']]['sum_money']+=$cache_money;
-                    $cache['children'][$value1['type_name']]['sum_sum']+=$cache_sum;
-                    $cache['children'][$value1['type_name']]['difference']+=$cache_money-$cache_sum;
-                }
-                $cache['sum_money']=$log_sum['sum_money'];
-                $cache['sum_sum']=$log_sum['sum_sum'];
-                $cache['difference']=$log_sum['sum_money']-$log_sum['sum_sum'];
-                if($cache['type_name']=='收入明细'){
-                    $sum['sum_money'] +=$cache['sum_money'];
-                    $sum['sum_sum'] +=$cache['sum_sum'];
-                    $sum['difference'] +=$cache['difference'];
-                    /*dump($sum);*/
-                    $data['input']['1']=$cache;
-                    $data['input']['sum_money']=$cache['sum_money'];
-                    $data['input']['sum_sum']=$cache['sum_sum'];
-                    $data['input']['difference']=$cache['difference'];
-                    //计算增值税
-                    $data_cache['type_name']='增值税及附加';
-                    $data_cache['type_remark']='按收入6.3%测算';
-                    $data_cache['children']['增值税及附加']['type_name']='增值税及附加';
-                    if($village_id==54){
-                        $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+0.03)*0.03*(1+0.055);//增值税金额都由6.3%计算
-                        $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+0.03)*0.03*(1+0.055);
-                    }elseif($village_id==70){
-                        $cache_type=0.03;
-                        $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+$cache_type)*$cache_type*(1+0.115);//增值税金额都由6.3%计算
-                        $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+$cache_type)*$cache_type*(1+0.115);
-                    }
+            $village_info=M('house_village')->where(array('village_id'=>$village_id))->find();
+
+            $where['company_id']=$village_info['department_id'];
+        }
+        $type_first_list=D('Budget_type')->get_type_list($where);
+        $data=array();
+        $sum=array(
+            'sum_money'=>0,
+            'sum_sum'=>0,
+            'difference'=>0,
+        );
+        foreach ($type_first_list as $value){
+            unset($cache);
+            $cache['type_name']=$value['type_name'];
+            $cache['type_remark']=$value['type_remark'];
+            $log=$this->get_excel_log_type($value['type_id'],$village_id,$project_id,$company_id,$year);
+            /*if($company_id&&$value['type_id']==4){
+                dump($log);
+            }*/
+            $log_sum=$log['sum'];
+            unset($log['sum']);
+            foreach ($log as $value1){
+                $cache['children'][$value1['type_name']]['type_name']=$value1['type_name'];
+                $cache['children'][$value1['type_name']]['type_remark']=$value1['type_remark'];
+                $cache_sum=0;
+                $cache_money=0;
+                /*foreach ($value1['children'] as $key2=>$value2){
+                        $cache_money +=$value2['type_data']['money_sum'];
+                        $cache_sum +=$value2['type_data']['sum'];
+                }*/
+                $cache_money=$value1['sum']['sum_money'];
+                $cache_sum=$value1['sum']['sum_sum'];
+                $cache['children'][$value1['type_name']]['sum_money']+=$cache_money;
+                $cache['children'][$value1['type_name']]['difference']+=$cache_money-$cache_sum;
+                $cache['children'][$value1['type_name']]['sum_sum']+=$cache_sum;
+            }
+            $cache['sum_money']=$log_sum['sum_money'];
+            $cache['difference']=$log_sum['sum_money']-$log_sum['sum_sum'];
+            $cache['sum_sum']=$log_sum['sum_sum'];
+            if($cache['type_name']=='收入明细'){
+                $sum['sum_money'] +=$cache['sum_money'];
+                $sum['sum_sum'] +=$cache['sum_sum'];
+                $sum['difference'] +=$cache['difference'];
+                /*dump($sum);*/
+                //修改处
+                $data['input']['sum_money']=$cache['sum_money'];
+                $data['input']['difference']=$cache['difference'];
+                $data['input']['1']=$cache;
+                $data['input']['sum_sum']=$cache['sum_sum'];
+                //计算增值税
+                $data_cache['type_name']='增值税及附加';
+                $data_cache['type_remark']='按收入6.3%测算';
+                $data_cache['children']['增值税及附加']['type_name']='增值税及附加';
+                if($village_id==54){
+                    //修改处
+
+                    $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+0.03)*0.03*(1+0.055);//增值税金额都由6.3%计算
+
+                    $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+0.03)*0.03*(1+0.055);
+                }elseif($village_id==70){
+                    $cache_type=0.03;
+                    //修改处
+                    $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+$cache_type)*$cache_type*(1+0.115);//增值税金额都由6.3%计算
+
+                    $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+$cache_type)*$cache_type*(1+0.115);
+                }else{
                     $cache_type=0.06;
-                    $different['sum_money']=$cache['sum_money']/(1+$cache_type)*$cache_type*(1+0.115);//增值税金额都由6.3%计算
-                    $different['sum_sum']=$cache['sum_sum']/(1+$cache_type)*$cache_type*(1+0.115);
-                    $different['difference']=$different['sum_money']-$different['sum_sum'];
-                    $data_cache['children']['增值税及附加']['difference']=$data_cache['children']['增值税及附加']['sum_money']-$data_cache['children']['增值税及附加']['sum_sum'];
-                    $data_cache['sum_money']=$data_cache['children']['增值税及附加']['sum_money'];
-                    $data_cache['sum_sum']=$data_cache['children']['增值税及附加']['sum_sum'];
-                    $data_cache['difference']=$data_cache['children']['增值税及附加']['difference'];
-                    $data['output']['4']=$data_cache;
-                    $data['output']['sum_money'] +=$data_cache['sum_money'];
-                    $data['output']['sum_sum'] +=$data_cache['sum_sum'];
-                    $data['output']['difference'] +=$data_cache['difference'];
-                    $sum['sum_money'] -=$data_cache['sum_money'];
-                    $sum['sum_sum'] -=$data_cache['sum_sum'];
-                    $sum['difference'] -=$data_cache['difference'];
-                    /*dump($sum);*/
+                    //修改处
+                    $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+$cache_type)*$cache_type*(1+0.115);//增值税金额都由6.3%计算
+
+                    $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+$cache_type)*$cache_type*(1+0.115);
                 }
+
+                $data_cache['children']['增值税及附加']['difference']=$data_cache['children']['增值税及附加']['sum_money']-$data_cache['children']['增值税及附加']['sum_sum'];
+                $data_cache['sum_money']=$data_cache['children']['增值税及附加']['sum_money'];
+                $data_cache['sum_sum']=$data_cache['children']['增值税及附加']['sum_sum'];
+                $data_cache['difference']=$data_cache['children']['增值税及附加']['difference'];
+                $data['output']['4']=$data_cache;
+                //修改处
+
+                $data['output']['sum_money'] +=$data_cache['sum_money'];
+                $data['output']['difference'] +=$data_cache['difference'];
+
+                $data['output']['sum_sum'] +=$data_cache['sum_sum'];
+                //修改处
+                $sum['sum_money'] -=$data_cache['sum_money'];
+                $sum['difference'] -=$data_cache['difference'];
+
+                $sum['sum_sum'] -=$data_cache['sum_sum'];
+
+                /*dump($sum);*/
+            }else{
+                $sum['sum_money'] -=$cache['sum_money'];
+                $sum['sum_sum'] -=$cache['sum_sum'];
+                $sum['difference'] -=$cache['difference'];
+                /*dump($sum);*/
+                $data['output'][$value['type_id']]=$cache;
+                //修改处
+                $data['output']['sum_money'] +=$cache['sum_money'];
+                $data['output']['difference'] +=$cache['difference'];
+
+                $data['output']['sum_sum'] +=$cache['sum_sum'];
             }
-            $now['sum_money']=-$different['sum_money']+$data['output']['4']['sum_money'];
-            $now['sum_sum']=-$different['sum_sum']+$data['output']['4']['sum_sum'];
-            $now['difference']=-$different['difference']+$data['output']['4']['difference'];
-            return $now;
         }
+        $data['sum']=$sum;
+        return $data;
+    }
+
+    public function get_tax_cache($village_id,$project_id,$year){
+        $village_list=array('54','70');
+        if(!in_array($village_id,$village_list)) return array('sum_money'=>0,'sum_sum'=>0,'difference'=>0);
+        if(!empty($village_id)){
+            $village_info=M('house_village')->where(array('village_id'=>$village_id))->find();
+            $where['company_id']=$village_info['department_id'];
+        }
+        $type_first_list=D('Budget_type')->get_type_list($where);
+        $data=array();
+        $sum=array(
+            'sum_money'=>0,
+            'sum_sum'=>0,
+            'difference'=>0,
+        );
+        foreach ($type_first_list as $value){
+            unset($cache);
+            $cache['type_name']=$value['type_name'];
+            $cache['type_remark']=$value['type_remark'];
+            $log=$this->get_excel_log_type($value['type_id'],$village_id,$project_id,'',$year);
+            /*if($company_id&&$value['type_id']==4){
+                dump($log);
+            }*/
+            $log_sum=$log['sum'];
+            unset($log['sum']);
+            foreach ($log as $value1){
+                $cache['children'][$value1['type_name']]['type_name']=$value1['type_name'];
+                $cache['children'][$value1['type_name']]['type_remark']=$value1['type_remark'];
+                $cache_sum=0;
+                $cache_money=0;
+                /*foreach ($value1['children'] as $key2=>$value2){
+                        $cache_money +=$value2['type_data']['money_sum'];
+                        $cache_sum +=$value2['type_data']['sum'];
+                }*/
+                $cache_money=$value1['sum']['sum_money'];
+                $cache_sum=$value1['sum']['sum_sum'];
+
+                $cache['children'][$value1['type_name']]['sum_money']+=$cache_money;
+                $cache['children'][$value1['type_name']]['sum_sum']+=$cache_sum;
+                $cache['children'][$value1['type_name']]['difference']+=$cache_money-$cache_sum;
+            }
+            $cache['sum_money']=$log_sum['sum_money'];
+            $cache['sum_sum']=$log_sum['sum_sum'];
+            $cache['difference']=$log_sum['sum_money']-$log_sum['sum_sum'];
+            if($cache['type_name']=='收入明细'){
+                $sum['sum_money'] +=$cache['sum_money'];
+                $sum['sum_sum'] +=$cache['sum_sum'];
+                $sum['difference'] +=$cache['difference'];
+                /*dump($sum);*/
+                $data['input']['1']=$cache;
+                $data['input']['sum_money']=$cache['sum_money'];
+                $data['input']['sum_sum']=$cache['sum_sum'];
+                $data['input']['difference']=$cache['difference'];
+                //计算增值税
+                $data_cache['type_name']='增值税及附加';
+                $data_cache['type_remark']='按收入6.3%测算';
+                $data_cache['children']['增值税及附加']['type_name']='增值税及附加';
+                if($village_id==54){
+                    $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+0.03)*0.03*(1+0.055);//增值税金额都由6.3%计算
+                    $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+0.03)*0.03*(1+0.055);
+                }elseif($village_id==70){
+                    $cache_type=0.03;
+                    $data_cache['children']['增值税及附加']['sum_money']=$cache['sum_money']/(1+$cache_type)*$cache_type*(1+0.115);//增值税金额都由6.3%计算
+                    $data_cache['children']['增值税及附加']['sum_sum']=$cache['sum_sum']/(1+$cache_type)*$cache_type*(1+0.115);
+                }
+                $cache_type=0.06;
+                $different['sum_money']=$cache['sum_money']/(1+$cache_type)*$cache_type*(1+0.115);//增值税金额都由6.3%计算
+                $different['sum_sum']=$cache['sum_sum']/(1+$cache_type)*$cache_type*(1+0.115);
+                $different['difference']=$different['sum_money']-$different['sum_sum'];
+                $data_cache['children']['增值税及附加']['difference']=$data_cache['children']['增值税及附加']['sum_money']-$data_cache['children']['增值税及附加']['sum_sum'];
+                $data_cache['sum_money']=$data_cache['children']['增值税及附加']['sum_money'];
+                $data_cache['sum_sum']=$data_cache['children']['增值税及附加']['sum_sum'];
+                $data_cache['difference']=$data_cache['children']['增值税及附加']['difference'];
+                $data['output']['4']=$data_cache;
+                $data['output']['sum_money'] +=$data_cache['sum_money'];
+                $data['output']['sum_sum'] +=$data_cache['sum_sum'];
+                $data['output']['difference'] +=$data_cache['difference'];
+                $sum['sum_money'] -=$data_cache['sum_money'];
+                $sum['sum_sum'] -=$data_cache['sum_sum'];
+                $sum['difference'] -=$data_cache['difference'];
+                /*dump($sum);*/
+            }
+        }
+        $now['sum_money']=-$different['sum_money']+$data['output']['4']['sum_money'];
+        $now['sum_sum']=-$different['sum_sum']+$data['output']['4']['sum_sum'];
+        $now['difference']=-$different['difference']+$data['output']['4']['difference'];
+        return $now;
+    }
 
     /**
      * @author zhukeqin
@@ -600,11 +600,11 @@ class Budget_logModel extends Model{
         $sum_sum_add=0;//增值税单独处理
         $sum_money_add=0;
         foreach ($company_list as $value){
-                //$list=$this->get_excel_log_sum('','',$value['id'],$year);
-                $list=$this->get_excel_log_sum_company($value['id'],$year,'1')['sum'];
-                $list['village_name']=$value['deptname'];
-                $data['list'][]=$list;
-                $cache[]=$value['id'];
+            //$list=$this->get_excel_log_sum('','',$value['id'],$year);
+            $list=$this->get_excel_log_sum_company($value['id'],$year,'1')['sum'];
+            $list['village_name']=$value['deptname'];
+            $data['list'][]=$list;
+            $cache[]=$value['id'];
             foreach ($list['output'] as $key2=>$value2){
                 if($value2['type_name']=='增值税及附加'){
                     $sum_sum_add +=$value2['sum_sum'];
@@ -1050,8 +1050,16 @@ class Budget_logModel extends Model{
         exit;
     }
 
-    public function excel_log_village($list)
+    /**
+     * @author zhukeqin
+     * @param $list
+     * @param $village_id
+     * 导出业主excel表
+     */
+    public function excel_log_village($list,$village_id)
     {
+        //dump($list);die;
+        $name = M('house_village')->where(array('village_id'=>$village_id))->find()['village_name'];
         import('@.ORG.phpexcel.PHPExcel');
         $phpexcel = new PHPExcel();
         //设置基本信息
@@ -1101,26 +1109,26 @@ class Budget_logModel extends Model{
             $phpexcel->getActiveSheet()->setCellValue('C'.$low,$value['name']);
             $phpexcel->getActiveSheet()->setCellValue('D'.$low,$value['id_card']);
             $phpexcel->getActiveSheet()->setCellValue('E'.$low,$value['phone']);
-            $phpexcel->getActiveSheet()->setCellValue('F'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('G'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('H'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('I'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('J'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('K'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('L'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('M'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('N'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('O'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('P'.$low,'');
-            $phpexcel->getActiveSheet()->setCellValue('Q'.$low, $value['property_endtime']);
-            $phpexcel->getActiveSheet()->setCellValue('R'.$low, $value['carspace_number']);
-            $phpexcel->getActiveSheet()->setCellValue('S'.$low, $value['car_number']);
-            $phpexcel->getActiveSheet()->setCellValue('T'.$low, '');
-            $phpexcel->getActiveSheet()->setCellValue('U'.$low, '');
+            $phpexcel->getActiveSheet()->setCellValue('F'.$low,$value['addtime']);
+            $phpexcel->getActiveSheet()->setCellValue('G'.$low,$value['house_program']);
+            $phpexcel->getActiveSheet()->setCellValue('H'.$low,$value['house_return']);
+            $phpexcel->getActiveSheet()->setCellValue('I'.$low,$value['fixhouse_start']);
+            $phpexcel->getActiveSheet()->setCellValue('J'.$low,$value['fixhouse_end']);
+            $phpexcel->getActiveSheet()->setCellValue('K'.$low,$value['house_error']);
+            $phpexcel->getActiveSheet()->setCellValue('L'.$low,$value['house_abarbeitung']);
+            $phpexcel->getActiveSheet()->setCellValue('M'.$low,$value['checktime']);
+            $phpexcel->getActiveSheet()->setCellValue('N'.$low,$value['checktime_second']);
+            $phpexcel->getActiveSheet()->setCellValue('O'.$low,$value['cash_type']);
+            $phpexcel->getActiveSheet()->setCellValue('P'.$low,$value['house_type']);
+            $phpexcel->getActiveSheet()->setCellValue('Q'.$low,$value['property_endtime']);
+            $phpexcel->getActiveSheet()->setCellValue('R'.$low,$value['carspace_number']);
+            $phpexcel->getActiveSheet()->setCellValue('S'.$low,$value['car_number']);
+            $phpexcel->getActiveSheet()->setCellValue('T'.$low,$value['carspace_start']."-".$value['carspace_end']);
+            $phpexcel->getActiveSheet()->setCellValue('U'.$low,$value['carspace_price']);
             $low++;
         }
         header('Content-Type: application/vnd.ms-excel');
-        header("Content-Disposition: attachment;filename=".$list[0]['desc']."业主信息.xls");
+        header("Content-Disposition: attachment;filename=".$name.$list[0]['desc']."业主信息.xls");
         header('Cache-Control: max-age=0');
         header('Cache-Control: max-age=1');
         header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past

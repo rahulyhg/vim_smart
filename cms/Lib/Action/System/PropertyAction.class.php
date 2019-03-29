@@ -1106,9 +1106,10 @@ class PropertyAction extends BaseAction
                 $res = $this->get_water_mouth($room_info['id'],"电费");
             }
             foreach($res as $v){
-                $arr[] = strtotime($v['start_time']);
-                $arr1[] = strtotime($v['end_time']);
+                $arr[] = strtotime(str_replace('.','-',$v['start_time']));
+                $arr1[] = strtotime(str_replace('.','-',$v['end_time']));
             }
+
             if(!empty($arr) && !empty($arr1)){
                 $start_time = date("Y-m-d",min($arr));
                 $end_time = date("Y-m-d",max($arr1));
@@ -1193,6 +1194,7 @@ class PropertyAction extends BaseAction
             );
             //修改记录
             $type_name = M('house_village_otherfee_type')->where(array('otherfee_type_id'=>$_POST['otherfee_type_id']))->find()['otherfee_type_name'];
+
             if(!empty($_POST['start_time']) || !empty($_POST['end_time'])){
                 $where = array(
                     'rid'       =>$room_info['id'],

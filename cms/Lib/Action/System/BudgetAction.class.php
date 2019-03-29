@@ -218,6 +218,7 @@ class BudgetAction extends BaseAction
         $this->assign('table_sort',json_encode(array('3','desc')));
         //判断是否是modal层打开
         if(I('get.modal')==1){
+
             $this->display('check_record_list_modal');
         }else{
             $this->display('check_record_list');
@@ -375,13 +376,17 @@ class BudgetAction extends BaseAction
     }
     /**
      * @author zhukeqin
-     * 菜单需要
+     * 菜单需要 标记
      */
     public function village_record_list_news(){
         if($this->is_finance==1||$this->is_cashier==1){
             $this->check_record_list();
         }elseif(in_array(101,$this->role_id)){//刘总 专门配置
             redirect(U('Budget_predict/watch_company_one'));
+        }elseif(in_array(103,$this->role_id)){//是否为人事
+            $where=array('year',date('Y'));
+            $res = D('Budget_predict')->get_predict_list($where);
+            redirect(U('Budget_predict/watch_predict_one',array('role_id'=>103,'id'=>$res[0]['predict_id'])));
         }else{
             $this->village_record_list();
         }
@@ -749,6 +754,7 @@ class BudgetAction extends BaseAction
      **/
     public function check_excel_print(){
         $budget_logModel=new Budget_logModel();
+        $role_id = I('get.role_id');
         if(I('get.type')){
             $type=I('get.type');
         }else{
@@ -788,6 +794,7 @@ class BudgetAction extends BaseAction
         );
         $this->assign('breadcrumb_diy',$breadcrumb_diy);
         $this->assign('year',$year);
+        $this->assign('role_id',$role_id);
 
         //设置标题名称
         if(!empty($where['company_id'])){
@@ -812,7 +819,16 @@ class BudgetAction extends BaseAction
         }
         $this->assign('title1',$title);
         $type_first_list=D('Budget_type')->get_type_list(array('type_fid'=>0,'company_id'=>$company_id));
-        $this->assign('type_list',$type_first_list);
+        if($role_id == 103){
+            foreach($type_first_list as $k=>$s){
+                if($s['type_name'] == "人员支出" || $s['type_name'] == "运行费用"){
+                    $type_list[] = $s;
+                }
+            }
+            $this->assign('type_list',$type_list);
+        }else{
+            $this->assign('type_list',$type_first_list);
+        }
         $company_list=D('Department')->get_department_list(array('budget_type'=>1));
         array_unshift($company_list,array('id'=>'all','deptname'=>'集团预算执行汇总'),array('id'=>'all_company','deptname'=>'各分公司预算执行汇总'));
         /*$company_list['all_company']='各分公司预算执行汇总';
@@ -856,13 +872,27 @@ class BudgetAction extends BaseAction
                 $data=D('Budget_log')->get_excel_log_sum($where['village_id'],$where['project_id'],$where['company_id'],$year);
             }
             $this->assign('data',$data);
+
             $this->display('check_excel_print_sum');
         }else{
             $data=D('Budget_log')->get_excel_log_type($type,$where['village_id'],$where['project_id'],$where['company_id'],$year);
-            $this->assign('data',$data);
+            if($role_id == 103 && $type ==3){
+                foreach($data as $v){
+                    if($v['type_name'] == "派遣和劳务支出"){
+                        $arr[] = $v;
+                    }
+                }
+                $this->assign('data',$arr);
+            }else{
+                $this->assign('data',$data);
+            }
             $type_name=D('Budget_type')->get_type_one(array('type_id'=>$type))['type_name'];
             $this->assign('type_name',$type_name);
-            $this->display('check_excel_print_type');
+            if($role_id == 103){
+                $this->display('check_excel_print_sum_new');
+            }else{
+                $this->display('check_excel_print_type');
+            }
         }
 
     }

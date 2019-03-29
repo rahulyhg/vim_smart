@@ -1166,7 +1166,6 @@ class OffModel extends Model
     public function water_excel_to_data($file)
     {
         $arr = import_excel_sheet($file,'','','',1);
-        //dump($arr);die;
         $tmp = array();
         $title = array(
             '房间号',

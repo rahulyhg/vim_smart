@@ -103,7 +103,7 @@ class Budget_predictAction extends BaseAction{
 
     /**
      * @author zhukeqin
-     * 财务、总经理等管理
+     * 财务、总经理等管理 标记
      */
     public function check_predict_list(){
         $breadcrumb_diy = array(
@@ -145,6 +145,7 @@ class Budget_predictAction extends BaseAction{
         if($company_id!=1){
             $where['company_id']=$company_id;
         }
+
         $predict_list=$predictModel->get_predict_list($where);
         foreach ($predict_list as &$value){
             $value['village_name']=M('house_village')->where(array('village_id'=>$value['village_id']))->find()['village_name'];
@@ -386,13 +387,33 @@ class Budget_predictAction extends BaseAction{
         }
 
     }
-    //查看预算编制详情
+    //查看预算编制详情标记
     public function watch_predict_one(){
+        $role_id = I('request.role_id');
+
         $breadcrumb_diy = array(
             array('全部列表',U('predict_in')),
             array('查看条目详情','#')
         );
-
+        $predictModel=new Budget_predictModel();
+        $predict_list=$predictModel->get_predict_list(array('year',date("Y")));
+        foreach ($predict_list as &$value){
+            $value['village_name']=M('house_village')->where(array('village_id'=>$value['village_id']))->find()['village_name'];
+            if(!empty($value['project_id'])){
+                $project_list=M('house_village_project')->where(array('village_id'=>$value['village_id']))->select();
+                if(count($project_list)>1){
+                    $value['village_name'] .='-'.M('house_village_project')->where(array('pigcms_id'=>$value['project_id']))->find()['desc'];
+                }
+            }
+            $value['company_name']=M('department')->where(array('id'=>$value['company_id']))->find()['deptname'];
+            $value['status_name']=$this->status_list[$value['status']];
+            $admin_info=M('admin')->where(array('id'=>$value['admin_id']))->find();
+            $value['admin_name']=$admin_info['realname']?:$admin_info['account'];
+            $check_admin_info=M('admin')->where(array('id'=>$value['check_admin_id']))->find();
+            $value['check_admin_name']=$check_admin_info['realname']?:$check_admin_info['account'];
+        }
+        //dump($predict_list);die;
+        $this->assign('predict_list',$predict_list);
         //判断id为刘总时，隐藏导出按钮
         if($this->admin_id == '268') {
             $this->assign('isLiu',true);
@@ -401,10 +422,10 @@ class Budget_predictAction extends BaseAction{
         $budget_logModel=new Budget_logModel();
         $budget_predictModel=new Budget_predictModel();
         $budget_typeModel=new Budget_typeModel();
-        if(empty($_GET['id'])){
+        if(empty($_REQUEST['id'])){
             $this->error('参数错误,请重试',U('predict_in'),'1');
         }else{
-            $predict_id=$_GET['id'];
+            $predict_id=$_REQUEST['id'];
             $predict_info=$budget_predictModel->get_predict_one(array('predict_id'=>$predict_id));
             if(empty($predict_info)) $this->error('所选条目不存在,请重试',U('predict_in'),'1');
             $this->set_department_list($predict_info['village_id'],$predict_info['project_id']);//设置部门
@@ -429,7 +450,7 @@ class Budget_predictAction extends BaseAction{
             '2'=>array('last'=>'70','now'=>'90'),
         );
         $this->assign('proportion',$proportion);
-        if(IS_POST){
+        if(isset($_POST['type'])){
             $re=$budget_predictModel->change_predict_status($predict_id,$_POST['status'],$_POST['remark'],$this->is_finance);
             if($re['err']==0){
                 $this->success('审核成功！',U('predict_in'));
@@ -450,6 +471,14 @@ class Budget_predictAction extends BaseAction{
                 $data_type[$value['type_id']]['data']=$predict_info['data'][$value['type_id']];
                 $data_type[$value['type_id']]['last_data']=$budget_logModel->get_excel_log_type($value['type_id'],$this->village_id,$this->project_id,'',$last_year);
                 $data_type[$value['type_id']]['last_last_data']=$budget_logModel->get_excel_log_type($value['type_id'],$this->village_id,$this->project_id,'',$last_last_year);
+            }
+            //dump($data_type);die;
+            if($role_id == 103){
+                foreach($data_type as $k=>$s){
+                    if($s['info']['type_name'] == '公用经费'){
+                        unset($data_type[$k]);
+                    }
+                }
             }
             $this->assign('overtime',$predict_info['data']['overtime']);
             $this->assign('property',$predict_info['data']['property']);
@@ -507,8 +536,13 @@ class Budget_predictAction extends BaseAction{
                 $title1 .='-'.M('house_village_project')->where(array('pigcms_id'=>$predict_info['project_id']))->find()['desc'];
             }
             $this->assign('title1',$title1);
-            
-            $this->display();
+            $this->assign('role_id',$role_id);
+            $this->assign('predict_id',$predict_id);
+            if($role_id == 103){
+                $this->display('watch_predict_one_new');
+            }else{
+                $this->display();
+            }
         }
     }
 
