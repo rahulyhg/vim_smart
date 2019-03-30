@@ -36,7 +36,7 @@
                     <div class="btn-group">
                         <select name="id" id="record_status"  class="form-inline search" style="line-height:34px; height:34px; border:1px #CCCCCC solid; margin-right:7px; margin-top:-1px;"><!--onchange="change_url('record_status',this.options[this.options.selectedIndex].value)"-->
                             <foreach name="predict_list" item="vo" key="k">
-                            <option value="{pigcms{$vo.predict_id}" <if condition="$vo['predict_id'] eq $project_id">selected="selected"</if>>{pigcms{$vo.village_name}</option>
+                            <option value="{pigcms{$vo.predict_id}" <if condition="$vo['predict_id'] eq $predict_id">selected</if>>{pigcms{$vo.village_name}</option>
                             </foreach>
                         </select>
                     </div>
@@ -58,8 +58,8 @@
                                 <if condition="$k eq 4">
 
                                     <else/>
-                                    <li>
-                                        <a href="#tab_{pigcms{$k}" data-toggle="tab"> {pigcms{$vo['info']['type_name']}明细表</a>
+                                    <li <if condition="$k eq 1">class="active"</if>>
+                                        <a href="#tab_{pigcms{$k}" data-toggle="tab" class="active"> {pigcms{$vo['info']['type_name']}明细表</a>
                                     </li>
                                 </if>
                             </foreach>
@@ -77,7 +77,7 @@
 
                             <foreach name="data_type" item="vo" key="k">
                                 <if condition="$k eq 1">
-                                    <div class='tab-pane' id="tab_{pigcms{$k}">
+                                    <div class='tab-pane active tab-pane fad' id="tab_{pigcms{$k}">
 
                                         <div class="portlet-body form form-horizontal">
                                             <table class="table table-striped table-bordered table-hover table-checkable order-column" >

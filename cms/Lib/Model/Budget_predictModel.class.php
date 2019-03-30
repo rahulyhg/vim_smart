@@ -554,6 +554,7 @@ class Budget_predictModel extends Model{
             $where['company_id']=$village_info['department_id'];
         }
         $type_first_list=D('Budget_type')->get_type_list($where);
+        //dump($type_first_list);die;
         $data=array();
         $sum=array(
             'sum_money'=>0,
@@ -566,6 +567,7 @@ class Budget_predictModel extends Model{
             $cache['type_remark']=$value['type_remark'];
             $where['type_fid']=$value['type_id'];
             $type_second_list=D('Budget_type')->get_type_list($where);
+            //dump($type_second_list);die;
             if($value['type_id']==1){
                 foreach ($type_second_list as $key1=>$value1){
                     $cache['children'][$value1['type_name']]['type_name']=$value1['type_name'];
@@ -657,6 +659,7 @@ class Budget_predictModel extends Model{
                 $data['output']['difference'] +=$cache['difference'];
             }
         }
+//        dump($data);die;
         $data['sum']=$sum;
         return $data;
     }
@@ -1512,7 +1515,7 @@ class Budget_predictModel extends Model{
                 $Budget_logModel->where(array('log_id'=>$value['log_id']))->delete();
             }
         }
-
+//        dump($predict_info['data']);die;
         foreach ($predict_info['data'] as $key=>$value){
             if(is_numeric($key)&&$key!=1){//判断是否为数字且不为人员支出
                 foreach ($value as $key1=>$value1){
@@ -1524,12 +1527,13 @@ class Budget_predictModel extends Model{
         }
         //人员支出
         $personnel_output=$predict_info['data']['1'];
+        //dump($personnel_output);die;
         $sum=array();
         foreach ($personnel_output as $key=>$value){
             if(is_numeric($key)){//排除sum
                 foreach ($value as $key1=>$value1){
                     if(is_numeric($key1)){//排除sum
-                        $sum[8] +=$value1['month_0']*$value1['month']*$value1['num']+$value1['year_end'];//工资
+                        $sum[8] +=$value1['month_0']*$value1['month']*$value1['num']+$value1['year_end']*$value1['num'];//工资
                         //$sum[9]//绩效奖无
                         $sum[11] +=$value1['month_1']*$value1['month']*$value1['num'];//公司缴纳社保
                         $sum[12] +=$value1['month_8']*$value1['month']*$value1['num'];//社保补助
@@ -1545,7 +1549,7 @@ class Budget_predictModel extends Model{
         }
         $sum['10']=$predict_info['sum']['overtime']['sum']['sum'];//加班费
         $sum['175']=$predict_info['sum']['gongling']['sum']['sum'];//工龄
-        
+        //dump($sum);die;
         //应用刷新
         foreach ($sum as $key=>$value){
             $Budget_moneyModel->change_money_one($value,$key,$predict_info['village_id'],$predict_info['company_id'],$predict_info['year'],$predict_info['project_id']);

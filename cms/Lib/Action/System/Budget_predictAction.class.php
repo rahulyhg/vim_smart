@@ -480,6 +480,7 @@ class Budget_predictAction extends BaseAction{
                     }
                 }
             }
+            //dump($predict_info['sum']);die;
             $this->assign('overtime',$predict_info['data']['overtime']);
             $this->assign('property',$predict_info['data']['property']);
             $this->assign('dispatch',$predict_info['data']['dispatch']);
@@ -583,6 +584,7 @@ class Budget_predictAction extends BaseAction{
             $this->display();
         }
     }
+    //标记123
     public function apply_predict_one(){
         $predict_id=$_GET['id'];
         $budget_predictModel=new Budget_predictModel();
@@ -666,6 +668,7 @@ class Budget_predictAction extends BaseAction{
             $type_list=$this->get_all_type();
         }else{
             $project_list=$this->get_project_list($company_id);
+            //dump($predict_list);die;
             foreach ($project_list as $key=>$value){
                 $value_list=explode('-',$key);
                 $village_id=$value_list[0];

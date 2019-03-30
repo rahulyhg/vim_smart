@@ -196,6 +196,7 @@ class Budget_logModel extends Model{
             $search['company_id']=$where['company_id']=$this->get_company_id($village_id,$project_id,$year);
         }
         $type_second_list=D('Budget_type')->get_type_list($search);
+        //
         $data=array();
         $sum=array(
             'sum_money'=>0,
@@ -212,6 +213,7 @@ class Budget_logModel extends Model{
                 $cache['children'][$value1['type_id']]['type_name']=$value1['type_name'];
                 $cache['children'][$value1['type_id']]['type_remark']=$value1['type_remark'];
                 $log_list=$this->get_log_list($where);
+                //dump($log_list);die;
                 //如果log为空且为当个项目时，则刷新log
                 /*if(empty($log_list)&&!empty($where['village_id'])){
                     $this->change_log_one($where['type_id'],$where['village_id'],$where['company_id'],$where['project_id'],$year);
@@ -220,8 +222,10 @@ class Budget_logModel extends Model{
                 foreach ($log_list as $value2){
                     $log_data=unserialize($value2['log_data']);
                     $cache['children'][$value1['type_id']]['type_data']=$log_data;
+                    //dump($log_data);
                     foreach ($log_data as $key=>$value3){
                         if($key=='money_sum'){
+                            //echo 1;
                             $sum['sum_money'] +=$value3;
                             $cache['sum']['sum_money'] +=$value3;
                         }elseif($key=='sum'){
@@ -235,7 +239,7 @@ class Budget_logModel extends Model{
                 }
             }
             $data[$value['type_id']]=$cache;
-        }
+        }//die;
         $data['sum']=$sum;
         /*if(!empty($company_id)){
             dump($data);
@@ -282,11 +286,13 @@ class Budget_logModel extends Model{
             $cache['type_name']=$value['type_name'];
             $cache['type_remark']=$value['type_remark'];
             $log=$this->get_excel_log_type($value['type_id'],$village_id,$project_id,$company_id,$year);
+//            dump($log);die;
             /*if($company_id&&$value['type_id']==4){
                 dump($log);
             }*/
             $log_sum=$log['sum'];
             unset($log['sum']);
+            dump($log);
             foreach ($log as $value1){
                 $cache['children'][$value1['type_name']]['type_name']=$value1['type_name'];
                 $cache['children'][$value1['type_name']]['type_remark']=$value1['type_remark'];
@@ -305,6 +311,7 @@ class Budget_logModel extends Model{
             $cache['sum_money']=$log_sum['sum_money'];
             $cache['difference']=$log_sum['sum_money']-$log_sum['sum_sum'];
             $cache['sum_sum']=$log_sum['sum_sum'];
+//            dump($cache);
             if($cache['type_name']=='收入明细'){
                 $sum['sum_money'] +=$cache['sum_money'];
                 $sum['sum_sum'] +=$cache['sum_sum'];
@@ -369,7 +376,9 @@ class Budget_logModel extends Model{
 
                 $data['output']['sum_sum'] +=$cache['sum_sum'];
             }
-        }
+
+        }die;
+        //dump($data);die;
         $data['sum']=$sum;
         return $data;
     }
@@ -1098,16 +1107,17 @@ class Budget_logModel extends Model{
         $phpexcel->getActiveSheet()->setCellValue('S1', '车牌号');
         $phpexcel->getActiveSheet()->setCellValue('T1', '泊位费时间');
         $phpexcel->getActiveSheet()->setCellValue('U1', '泊位费用');
+        $phpexcel->getActiveSheet()->setCellValue('V1', '物业费单价(不填则按0处理)');
         //设置列宽
-        foreach(range('A','U') as $v){
+        foreach(range('A','V') as $v){
             $phpexcel->getActiveSheet()->getColumnDimension($v)->setWidth(28);
         }
         $low=2;//当前行数
         foreach ($list as $value){
             $phpexcel->getActiveSheet()->setCellValue('A'.$low,$value['room_name']);
             $phpexcel->getActiveSheet()->setCellValue('B'.$low,$value['roomsize']);
-            $phpexcel->getActiveSheet()->setCellValue('C'.$low,$value['name']);
-            $phpexcel->getActiveSheet()->setCellValue('D'.$low,$value['id_card']);
+            $phpexcel->getActiveSheet()->setCellValue('C'.$low ,$value['name']."\t");
+            $phpexcel->getActiveSheet()->setCellValue('D'.$low,$value['usernum']);
             $phpexcel->getActiveSheet()->setCellValue('E'.$low,$value['phone']);
             $phpexcel->getActiveSheet()->setCellValue('F'.$low,$value['addtime']);
             $phpexcel->getActiveSheet()->setCellValue('G'.$low,$value['house_program']);
@@ -1125,6 +1135,7 @@ class Budget_logModel extends Model{
             $phpexcel->getActiveSheet()->setCellValue('S'.$low,$value['car_number']);
             $phpexcel->getActiveSheet()->setCellValue('T'.$low,$value['carspace_start']."-".$value['carspace_end']);
             $phpexcel->getActiveSheet()->setCellValue('U'.$low,$value['carspace_price']);
+            $phpexcel->getActiveSheet()->setCellValue('V'.$low,$value['property_unit']);
             $low++;
         }
         header('Content-Type: application/vnd.ms-excel');

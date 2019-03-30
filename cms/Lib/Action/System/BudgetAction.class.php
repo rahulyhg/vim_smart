@@ -871,11 +871,13 @@ class BudgetAction extends BaseAction
             }else{
                 $data=D('Budget_log')->get_excel_log_sum($where['village_id'],$where['project_id'],$where['company_id'],$year);
             }
+//            dump($data);die;
             $this->assign('data',$data);
 
             $this->display('check_excel_print_sum');
         }else{
             $data=D('Budget_log')->get_excel_log_type($type,$where['village_id'],$where['project_id'],$where['company_id'],$year);
+            //dump($data);die;
             if($role_id == 103 && $type ==3){
                 foreach($data as $v){
                     if($v['type_name'] == "派遣和劳务支出"){
@@ -891,6 +893,7 @@ class BudgetAction extends BaseAction
             if($role_id == 103){
                 $this->display('check_excel_print_sum_new');
             }else{
+//                echo 1;die;
                 $this->display('check_excel_print_type');
             }
         }

@@ -2957,7 +2957,7 @@ sql;
         $arr = import_excel_sheet($file,'X');
         $tmp = array();
         unset($arr[0]);
-        //dump($arr);
+        //dump($arr);die;
         $project=M('house_village_project')->where('pigcms_id='.$project_id)->find();
         foreach($arr as $key=> $row){
             //归类表格数据

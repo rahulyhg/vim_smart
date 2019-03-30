@@ -4020,18 +4020,21 @@ class RoomAction extends BaseAction
                 'ub.phone',
                 'ub.name',
                 'ub.id_card',
+                'ub.usernum',
                 'tb.carspace_number',
                 'tb.car_number',
                 'tb.carspace_start',
                 'tb.carspace_end',
                 'tb.carspace_price',
+                'rb.property_unit'
             ))
             ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_UPTOWN__ up ON up.rid=r1.id')
             ->join('LEFT JOIN __HOUSE_VILLAGE_USER_BIND__ ub ON ub.pigcms_id=r1.owner_id')
             ->join('LEFT JOIN __HOUSE_VILLAGE_USER_CAR__ tb ON tb.rid = r1.id')
+            ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_TYPE__ rb ON rb.village_id = r1.village_id')
             ->where($where)
             ->select();
-//        dump($list);die;
+        dump($list);die;
         D('Budget_log')->excel_log_village($list,$village_id);
     }
 }
