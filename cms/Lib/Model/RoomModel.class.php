@@ -3061,7 +3061,7 @@ sql;
                 if(!empty($room['tung_unit'])) $fname .=$room['tung_unit'].'单元';
                 if(!empty($room['tung_floor'])) $fname .=$room['tung_floor'].'层';
             }
-            //dump(array('room_name'=>$fname,'project_id'=>$room['project_id'],'village_id'=>$room['village_id'],'fid'=>'0'));
+            //dump(array('room_name'=>$fname,'project_id'=>$room['project_id'],'village_id'=>$room['village_id'],'fid'=>'0'));die;
             $finfo=M('house_village_room')->where(array('room_name'=>$fname,'project_id'=>$room['project_id'],'village_id'=>$room['village_id'],'fid'=>'0'))->find();
             //dump($finfo);die;
             if(empty($finfo)){
@@ -3072,19 +3072,19 @@ sql;
                 $fid=$finfo['id'];
             }
             //添加或编辑房间信息
-            //dump(array('room_name'=>$room['room_name'],'project_id'=>$room['project_id'],'village_id'=>$room['village_id'],'fid'=>array('neq',0)));
             $roominfo=M('house_village_room')->where(array('room_name'=>$room['room_name'],'project_id'=>$room['project_id'],'village_id'=>$room['village_id'],'fid'=>array('neq',0)))->find();
+
             $room['fid']=$fid;
             $room['oid']=$userinfoid;
             $room['owner_id']=$owner_id;
-            //dump($room);die;
+            //dump($roominfo);die;
             if(empty($roominfo)){
                 $roomid=M('house_village_room')->data($room)->add();
                 /*dump($room);
                 dump(M()->_sql());
                 die;*/
             }else{
-                M('house_village_room')->where(array('room_name'=>$room['room_name'],'desc'=>$room['desc'],'village_id'=>$room['village_id']))->data($room)->save();
+                M('house_village_room')->where(array('id'=>$roominfo['id']))->data($room)->save();
                 $roomid=$roominfo['id'];
             }
             $room_uptowninfo=M('house_village_room_uptown')->where('rid='.$roomid)->find();

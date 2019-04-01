@@ -292,7 +292,6 @@ class Budget_logModel extends Model{
             }*/
             $log_sum=$log['sum'];
             unset($log['sum']);
-            dump($log);
             foreach ($log as $value1){
                 $cache['children'][$value1['type_name']]['type_name']=$value1['type_name'];
                 $cache['children'][$value1['type_name']]['type_remark']=$value1['type_remark'];
@@ -377,7 +376,7 @@ class Budget_logModel extends Model{
                 $data['output']['sum_sum'] +=$cache['sum_sum'];
             }
 
-        }die;
+        }
         //dump($data);die;
         $data['sum']=$sum;
         return $data;

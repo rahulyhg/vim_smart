@@ -1,4 +1,7 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?>
+
+    <!--头部文件-->
+    <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.7
 Version: 4.7.1
@@ -1893,275 +1896,188 @@ table tr:nth-last-of-type(2) .dropdown-menu {
       <script>console.log('I have left')</script>
     </div>
     <!-- END SIDEBAR -->
-   
-<!--引入日历插件样式 -->
+   {__CONTENT__}
+    
 
-<!-- BEGIN CONTENT -->
-<div class="page-content-wrapper">
 
-    <div class="page-content">
-        <!-- BEGIN PAGE HEAD-->
-        <div class="page-head">
-            <!-- BEGIN PAGE TITLE -->
-            <div class="page-title">
-                <h1>编辑房间
-                </h1>
+
+    <!--/头部文件-->
+
+
+
+
+<!--<div class="page-container">-->
+    <!-- BEGIN SIDEBAR -->
+
+    <!--主体-->
+    <div class="page-content-wrapper" id="main">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <!-- BEGIN PAGE HEAD-->
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="page-title">
+                    <h1><?php $breadcrumb = $breadcrumb_diy?:$breadcrumb; echo $breadcrumb[count($breadcrumb)-1][0]; ?>
+                    </h1>
+                </div>
             </div>
-        </div>
-        <!-- END PAGE HEAD-->
-        <!-- BEGIN PAGE BREADCRUMB -->
-        <ul class="page-breadcrumb breadcrumb">
-            <li>
-                <a href="<?php echo U('room_list_uptown');?>">物业服务</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <span class="active">添加房间</span>
-            </li>
-        </ul>
-        <!-- END PAGE BREADCRUMB -->
-        <!-- BEGIN PAGE BASE CONTENT -->
-        <div class="row">
-            <form action="__SELF__" method="post" class="form-horizontal" id="form_sample_1" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?php echo ($thisRoomArray["id"]); ?>"/>
-                <div class="col-md-12" style="float: left">
-                    <!-- BEGIN VALIDATION STATES-->
-                    <div class="portlet light portlet-fit portlet-form bordered">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class=" icon-layers font-green"></i>
-                                <span class="caption-subject font-green sbold uppercase">添加房间</span>
-                            </div>
-                            <div class="actions">
-                                <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                                    <i class="icon-cloud-upload"></i>
-                                </a>
-                                <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                                    <i class="icon-wrench"></i>
-                                </a>
-                                <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                                    <i class="icon-trash"></i>
-                                </a>
-                            </div>
-                        </div>
+            <ul class="page-breadcrumb breadcrumb">
+                <?php if(is_array($breadcrumb)): $k = 0; $__LIST__ = $breadcrumb;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($k % 2 );++$k; if($k==(count($breadcrumb))){ ?>
+                        <li>
+                            <span class="active"><?php echo ($row[0]); ?></span>
+                        </li>
+
+                    <?php  }else{ ?>
+
+                        <li>
+                            <a href="<?php echo ($row[1]); ?>"><?php echo ($row[0]); ?></a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+
+                    <?php  } endforeach; endif; else: echo "" ;endif; ?>
+            </ul>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                    <div class="portlet light bordered">
                         <div class="portlet-body">
-                            <!-- BEGIN FORM-->
+                            <div class="table-toolbar">
+                                <div class="row">
+                                    <div class="col-md-12" id="table-toolbar-left">
+                                        
+  <div class="btn-group">
+      <a href="<?php echo U('save_group_msg');?>">
+          <button id="sample_editable_1_new" class="btn sbold green">
+              添加消息
+              <i class="fa fa-plus"></i>
+          </button>
+      </a>
+  </div>
+  <div class="btn-group">
+    <a href="<?php echo U('House/wxmsg_log_list_news');?>">
+      <button id="sample_editable_1_new" class="btn sbold green">
+        消息记录
+      </button>
+    </a>
+  </div>
 
-                            <div class="form-body">
-                                <div class="alert alert-danger display-hide">
-                                    <button class="close" data-close="alert"></button> 您填写的信息可能存在问题，请再检查 </div>
-                                <div class="alert alert-success display-hide">
-                                    <button class="close" data-close="alert"></button> 添加成功，请查看记录列表 </div>
-                                <?php if($_SESSION['system']['account']== 'admin'): ?><div class="form-group form-md-line-input">
-                                        <label class="col-md-2 control-label" for="form_control_1">社区
-                                            <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-9">
-                                            <?php echo ($thisRoomInfo["village_name"]); ?>
-                                            <div class="form-control-focus"> </div>
-                                        </div>
-                                    </div>
-                                    <?php else: ?>
-                                    <input type="hidden" name="village_id" value="<?php echo ($_SESSION['system']['village_id']); ?>"/><?php endif; ?>
-                                <div class="form-group form-md-line-input">
-                                    <label class="col-md-2 control-label" for="form_control_1">楼层
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                        <span class="required"><?php echo ($thisRoomInfo["room_name"]); ?></span>
-                                        <div class="form-control-focus"> </div>
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">所属期数
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                    <input type="text" name="roominfo[desc]" value="<?php echo ($thisRoomArray['desc']); ?>"  class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">门牌号
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                    <input type="text" name="roominfo[room_name]" value="<?php echo ($thisRoomArray['room_name']); ?>" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">房间面积(平方米)
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                    <input type="text" name="roominfo[roomsize]" value="<?php echo ($thisRoomArray['roomsize']); ?>" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">入伙时间
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                    <input type="text" name="roominfo[uptown][addtime]"  id="addtime" value="<?php if($thisRoomArray['addtime']): echo (date("Y-m-d",$thisRoomArray['addtime'])); endif; ?>"  class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">装修起止
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                    <input type="text" name="roominfo[uptown][fixhouse_start]"  id="fixhouse_start" value="<?php if($thisRoomArray['fixhouse_start']): echo (date("Y-m-d",$thisRoomArray['fixhouse_start'])); endif; ?>" class="form-inline">
-                                    至
-                                    <input type="text" name="roominfo[uptown][fixhouse_end]"  id="fixhouse_end" value="<?php if($thisRoomArray['fixhouse_end']): echo (date("Y-m-d",$thisRoomArray['fixhouse_end'])); endif; ?>" class="form-inline">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">第一次验收时间
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="roominfo[uptown][checktime]"  id="checktime" value="<?php if($thisRoomArray['checktime']): echo (date("Y-m-d",$thisRoomArray['checktime'])); endif; ?>" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">第二次验收时间
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="roominfo[uptown][checktime_second]"  id="checktime_second" value="<?php if($thisRoomArray[checktime_second]): echo (date("Y-m-d",$thisRoomArray[checktime_second])); endif; ?>" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">房屋问题
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="roominfo[uptown][house_program]"  id="house_program" value="<?php echo ($thisRoomArray[house_program]); ?>" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">处理结果
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="roominfo[uptown][house_return]"  id="house_return" value="<?php echo ($thisRoomArray[house_return]); ?>" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">违规信息
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="roominfo[uptown][house_error]"  id="house_error" value="<?php echo ($thisRoomArray[house_error]); ?>" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">整改情况
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="roominfo[uptown][house_abarbeitung]"  id="house_abarbeitung" value="<?php echo ($thisRoomArray[house_abarbeitung]); ?>" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group form-md-line-input" id="room_number" >
-                                    <label class="col-md-2 control-label" for="form_control_1">房屋状态
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                        <div class="md-checkbox-list">
-                                            <div class="md-radio">
-                                                <input name="roominfo[uptown][house_type]" type="radio"  class="mt-radio" value="0" id="checkbox1_1"<?php if($thisRoomArray['house_type'] == 0): ?>checked="checked"<?php endif; ?>/>
-                                                <label for="checkbox1_1" class="text-danger property_emptytime">
-                                                    <span class="inc"></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span> 空置 </label>
+    <input type="checkbox" name="my-checkbox" checked >
+    <div class="alert alert-danger" style="display: inline;width: 80%">
+        微信群发控制开关，<strong>使用完成后请务必关闭！</strong>
+    </div>
 
-                                            </div>
-                                            <div class="md-radio" >
-                                                <input name="roominfo[uptown][house_type]" type="radio"  class="mt-radio" value="1" id="checkbox1_2"<?php if($thisRoomArray['house_type'] == 1): ?>checked="checked"<?php endif; ?>/>
-                                                <label for="checkbox1_2" class="text-primary property_emptytime">
-                                                    <span class="inc"></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span> 出租 </label>
-
-                                            </div>
-                                            <div class="md-radio" >
-                                                <input name="roominfo[uptown][house_type]" type="radio"  class="mt-radio" value="2" id="checkbox1_3"<?php if($thisRoomArray['house_type'] == 2): ?>checked="checked"<?php endif; ?>/>
-                                                <label for="checkbox1_3" class="text-success property_emptytime">
-                                                    <span class="inc"></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span> 自住 </label>
-
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group form-md-line-input" id="property_emptytime_fa"  <?php if($thisRoomArray['house_type'] == 0): ?>style="display:none;"<?php endif; ?>>
-                                    <label class="col-md-2 control-label" for="form_control_1">空置期结束时间（没有则不用填写）
-                                    </label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="roominfo[uptown][property_emptytime]"  id="property_emptytime" value="<?php if($thisRoomArray['property_emptytime'] > 1): echo (date("Y-m-d",$thisRoomArray['property_emptytime'])); endif; ?>" class="form-control">
-                                    </div>
-                                </div>
-                                    <div class="form-group form-md-line-input" id="room_number" >
-                                        <label class="col-md-2 control-label" for="form_control_1">押金情况
-                                            <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-9">
-                                            <div class="md-checkbox-list">
-                                                <div class="md-radio">
-                                                    <input name="roominfo[uptown][cash_type]" type="radio"  class="mt-radio" value="0" id="radio1_1"<?php if($thisRoomArray['cash_type']==0): ?>checked="checked"<?php endif; ?>/>
-                                                    <label for="radio1_1" class="text-danger">
-                                                        <span class="inc"></span>
-                                                        <span class="check"></span>
-                                                        <span class="box"></span> 已退还 </label>
+                                    <div class="col-md-12">
+                                        <div class="btn-group pull-right">
+                                            
 
-                                                </div>
-                                                <div class="md-radio" >
-                                                    <input name="roominfo[uptown][cash_type]" type="radio"  class="mt-radio" value="1" id="radio1_2"<?php if($thisRoomArray['cash_type']==1): ?>checked="checked"<?php endif; ?>/>
-                                                    <label for="radio1_2" class="text-primary">
-                                                        <span class="inc"></span>
-                                                        <span class="check"></span>
-                                                        <span class="box"></span> 未退还 </label>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <div class="form-group form-md-line-input"  >
-                                    <label class="col-md-2 control-label" for="form_control_1">押金金额
-                                        <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9">
-                                    <input type="text" name="roominfo[uptown][cash_price]" value="<?php echo ($thisRoomArray['cash_price']); ?>" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-actions">
-                                    <div class="row">
-                                        <div class="col-md-offset-2 col-md-9">
-                                            <button type="submit" class="btn green">确认提交</button>
-                                            <button type="reset" class="btn default" onclick="window.location.href='http://www.hdhsmart.com/admin.php?g=System&c=PropertyService&a=room_list_uptown'">返 回</button>
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- END FORM-->
+                            
+    <table class="table table-striped table-bordered table-hover" id="sample_1">
+        <thead>
+        <tr>
+            <th>
+                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                    <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                    <span></span>
+                </label>
+            </th>
+            <th> 编号 </th>
+            <th> 标题 </th>
+            <th> 通知类型</th>
+            <th> 计划通知时间</th>
+            <th> 所属社区</th>
+            <th> 通知公司</th>
+            <th> 状态</th>
+            <th> 操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><tr>
+                <td>
+                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                        <input type="checkbox" class="checkboxes" value="1" />
+                        <span></span>
+                    </label>
+                </td>
+                <td><?php echo ($v["id"]); ?> </td>
+                <td><?php echo ($v["title"]); ?></td>
+                <td><?php echo ($v["msg_type_name"]); ?>/<?php echo ($v["send_type_name"]); ?></td>
+                <td><?php echo ($v["send_date_str"]); ?> <?php echo ($v["status_name2"]); ?></td>
+                <td><?php echo ($v["village_name"]); ?></td>
+                <td><?php echo ($v["company_name"]); ?></td>
+                <td><?php echo ($v["status_name"]); ?></td>
+
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 操作
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-left" role="menu" style="position:relative; margin-left:-90px;">
+                            <li>
+                                <a href = "<?php echo U('modal_msg_info',array('msg_id'=>$v['id']));?>"
+                                   data-toggle="modal" data-target="#common_modal"
+                                ><i class="icon-docs"></i> 详情 </a>
+                            </li>
+                            <li>
+                                <a href = "<?php echo U('save_group_msg',array('msg_id'=>$v['id']));?>"><i class="icon-docs"></i> 编辑 </a>
+                            </li>
+                            <li>
+                                <a class="del" href = "<?php echo U('del_group_msg',array('msg_id'=>$v['id']));?>"><i class="icon-docs"></i> 删除 </a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+
+            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+        </tbody>
+    </table>
+
+                            
+                                <!--        弹出层容器-->
+                                <div class="modal fade" tabindex="-1" role="dialog" id="common_modal">
+                                    <div class="modal-dialog modal-lg" role="document" style="width:1200px">
+                                        <div class="modal-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" tabindex="-1" role="dialog" id="sub_modal">
+                                    <div class="modal-dialog modal-lg" role="document" style="width:1000px">
+                                        <div class="modal-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" tabindex="-1" role="dialog" id="third_modal">
+                                    <div class="modal-dialog modal-lg" role="document" style="width:1000px">
+                                        <div class="modal-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--        弹出层容器-->
+                            
                         </div>
                     </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
                 </div>
+            </div>
 
-            </form>
         </div>
-
     </div>
+    <!--主体-->
 </div>
-<!-- END QUICK SIDEBAR -->
-</div>
-<!-- END CONTAINER -->
-<!-- BEGIN FOOTER -->
-<div class="page-footer" style="text-align: center">
-    <div class="page-footer-inner" style="width: 100%"> 2017 &copy; 汇得行智慧助手系统
-        <a target="_blank" href="http://www.vhi99.com">微嗨科技</a> &nbsp;|&nbsp;
-        <a href="http://www.metronic.com" target="_blank">Metronic</a>
+<!--底部文件-->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2017 &copy; 智慧助手系统
+        <a target="_blank" href="http://www.vhi99.com">邻钱科技</a>
+        <!--      &nbsp;|&nbsp;   <a href="http://www.metronic.com" target="_blank">Metronic</a>-->
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
@@ -2174,139 +2090,203 @@ table tr:nth-last-of-type(2) .dropdown-menu {
 <script src="/Car/Admin/Public/assets/global/plugins/excanvas.min.js"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/ie8.fix.min.js"></script>
 <![endif]-->
-<!-- BEGIN CORE PLUGINS -->
-<link rel="stylesheet" href="http://www.hdhsmart.com/Car/Admin/Public/css/jquery.datetimepicker.css">
-<script src="/Car/Admin/Public/js/jquery.js" type="text/javascript"></script>
-<script src="/Car/Admin/Public/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 
 <script src="/Car/Admin/Public/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
-<!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="/Car/Admin/Public/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-<script src="/Car/Admin/Public/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS -->
-<!-- BEGIN THEME GLOBAL SCRIPTS -->
+
+<script src="/Car/Admin/Public/assets/global/scripts/datatable.js" type="text/javascript"></script>
+<script src="/Car/Admin/Public/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+<script src="/Car/Admin/Public/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+
 <script src="/Car/Admin/Public/assets/global/scripts/app.min.js" type="text/javascript"></script>
-<!-- END THEME GLOBAL SCRIPTS -->
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<!--表单提交检查js-->
-<!--<script src="{$Think.config.ADMIN_ASSETS_URL}pages/scripts/form-validation-md.min.js" type="text/javascript"></script>-->
-<!-- END PAGE LEVEL SCRIPTS -->
-<!-- BEGIN THEME LAYOUT SCRIPTS -->
+
 <script src="/Car/Admin/Public/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 
-<!--引入百度文件上传JS开始-->
-<script src="/Car/Admin/Public/js/baiduwebuploader/webuploader.js" type="text/javascript"></script>
-<!--引入百度文件上传JS结束-->
+<!--插入layer弹层js开始-->
+<script src="/Car/Admin/Public/js/layer.js" type="text/javascript"></script>
+<script src="/Car/Admin/Public/js/sweetalert.min.js" type="text/javascript"></script>
+<script src="/Car/Admin/Public/js/ui-sweetalert.min.js" type="text/javascript"></script>
 
-<!--引入日历jquery插件开始-->
-<!--
-<script src="{$Think.config.ADMIN_JS_URL}jquery.datetimepicker.js" type="text/javascript"></script>
-<script src="{$Think.config.ADMIN_JS_URL}jquery.datetimepicker.min.js" type="text/javascript"></script>-->
-
+<script src="http://www.bootcss.com/p/underscore/underscore-min.js"></script>
+<script src="<?php echo ($static_public); ?>kindeditor/kindeditor.js"></script>
 <script src="/Car/Admin/Public/js/jquery.datetimepicker.full.js" type="text/javascript"></script>
-<!--引入日历jquery插件结束-->
+<script src="./static/js/vue.min.js"></script>
+<script src="./static/js/vue-route.js"></script>
+<script src="./static/js/vue-resource.min.js"></script>
+<script src="./static/js/vuex.js"></script>
+<script src="./static/js/ui-buttons.js"></script>
 
-<script type='text/javascript'>
-    //开启日历插件
-    $.datetimepicker.setLocale('ch');
-    $('#addtime').datetimepicker({
-        lang:"zh",           //语言选择中文
-        format:"Y-m-d",      //格式化日期
-        timepicker:false,    //关闭时间选项
-        startDate:'<?php echo (date("Y-m-d",$thisRoomArray['addtime'])); ?>',//设置开始时间
-        yearStart:2000,     //设置最小年份
-        yearEnd:2050,        //设置最大年份
-        todayButton:false,    //关闭选择今天按钮
-        scrollMonth: false    //设置关闭滚轮
-    });
-    $('#checktime').datetimepicker({
-        lang:"zh",           //语言选择中文
-        format:"Y-m-d",      //格式化日期
-        timepicker:false,    //关闭时间选项
-        startDate:'<?php echo (date("Y-m-d",$thisRoomArray['checktime'])); ?>',//设置开始时间
-        yearStart:2000,     //设置最小年份
-        yearEnd:2050,        //设置最大年份
-        scrollMonth: false,  //设置关闭滚轮
-        todayButton:false    //关闭选择今天按钮
-    });
-    $('#checktime_second').datetimepicker({
-        lang:"zh",           //语言选择中文
-        format:"Y-m-d",      //格式化日期
-        timepicker:false,    //关闭时间选项
-        startDate:'<?php echo (date("Y-m-d",$thisRoomArray['checktime'])); ?>',//设置开始时间
-        yearStart:2000,     //设置最小年份
-        yearEnd:2050,        //设置最大年份
-        scrollMonth: false,  //设置关闭滚轮
-        todayButton:false    //关闭选择今天按钮
-    });
-    $('#fixhouse_start').datetimepicker({
-        lang:"zh",           //语言选择中文
-        format:"Y-m-d",      //格式化日期
-        timepicker:false,    //关闭时间选项
-        startDate:'<?php echo (date("Y-m-d",$thisRoomArray['fixhouse_start'])); ?>',//设置开始时间
-        yearStart:2000,     //设置最小年份
-        yearEnd:2050,        //设置最大年份
-        scrollMonth: false,  //设置关闭滚轮
-        todayButton:false    //关闭选择今天按钮
-    });
-    $('#fixhouse_end').datetimepicker({
-        lang:"zh",           //语言选择中文
-        format:"Y-m-d",      //格式化日期
-        timepicker:false,    //关闭时间选项
-        startDate:'<?php echo (date("Y-m-d",$thisRoomArray['fixhouse_end'])); ?>',//设置开始时间
-        yearStart:2000,     //设置最小年份
-        yearEnd:2050,        //设置最大年份
-        scrollMonth: false,  //设置关闭滚轮
-        todayButton:false    //关闭选择今天按钮
-    });
-    $('#property_emptytime').datetimepicker({
-        lang:"zh",           //语言选择中文
-        format:"Y-m-d",      //格式化日期
-        timepicker:false,    //关闭时间选项
-        startDate:'<?php echo (date("Y-m-d",$thisRoomArray['property_emptytime'])); ?>',//设置开始时间
-        yearStart:2000,     //设置最小年份
-        yearEnd:2050,        //设置最大年份
-        scrollMonth: false,  //设置关闭滚轮
-        todayButton:false    //关闭选择今天按钮
-    });
-    $(function () {
-        $(".property_emptytime").bind("click",function(){
+<script type="text/javascript">
+    //表格显示控制js代码区
+    var table = $('#sample_1');
 
-            var selectedvalue = $(this).attr('for');
-            selectedvalue=$('#'+selectedvalue).val();
-            console.log(selectedvalue);
-            if (selectedvalue == 0) {
-                $('#property_emptytime_fa').hide();
-            }else{
-                $('#property_emptytime_fa').show();
+    // begin first table
+    var jstr = '<?php echo ($table_sort); ?>';
+    var table_sort;
+    if(jstr){
+        table_sort = JSON.parse(jstr);
+    }else{
+        table_sort = [1, "desc"];
+    }
+    table.dataTable({
+
+        // Internationalisation. For more info refer to http://datatables.net/manual/i18n
+        "language": {
+            "aria": {
+                "sortAscending": ": activate to sort column ascending",
+                "sortDescending": ": activate to sort column descending"
+            },
+            "emptyTable": "No data available in table",
+            "info": "当前显示 _START_ 到 _END_ ​条记录 共 _TOTAL_ ​条记录",
+            "infoEmpty": "No records found",
+            "infoFiltered": "(filtered1 from _MAX_ total records)",
+            "lengthMenu": "每页显示条数 _MENU_",
+            "search": "搜索:",
+            "zeroRecords": "No matching records found",
+            "paginate": {
+                "previous":"Prev",
+                "next": "Next",
+                "last": "Last",
+                "first": "First"
+            }
+        },
+        "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+
+        "lengthMenu": [
+            [5, 15, 20, -1],
+            [5, 15, 20, "全部"] // change per page values here
+        ],
+        // set the initial value
+        "pageLength": parseInt("<?php echo ($table_init_length); ?>")||15,
+        "pagingType": "bootstrap_full_number",
+        "columnDefs": [
+            {  // set default column settings
+                'orderable': false,
+                'targets': [0]
+            },
+            {
+                "className": "dt-right",
+                //"targets": [2]
+            }
+        ],
+        "order": [
+            table_sort
+        ] // set first column as a default sort by asc
+    });
+
+    var tableWrapper = jQuery('#sample_1_wrapper');
+
+    table.find('.group-checkable').change(function () {
+        var set = jQuery(this).attr("data-set");
+        var checked = jQuery(this).is(":checked");
+        jQuery(set).each(function () {
+            if (checked) {
+                $(this).prop("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).prop("checked", false);
+                $(this).parents('tr').removeClass("active");
             }
         });
     });
 
-    /*页面自定义js代码*/
-    /*$("[name='room_state']").change(function() {
-        var choose_str = $("[name='room_state']").find("option:selected").text()
-        if(choose_str == '单间'){
-            $("#room_number").show();
-        }else{
-            $("#room_number").hide();
-        }
-    });*/
-
-
-
+    table.on('change', 'tbody tr .checkboxes', function () {
+        $(this).parents('tr').toggleClass("active");
+    });
 
 </script>
+<script>
+    /**
+     * vue全局注册函数
+     */
+    //get
+    Vue.prototype._get =  function(url,params,callback){
+        var opt = {
+            'params':params
+        }
+        this.$http.get(url,opt).then(function(response){
+            // 响应成功回调
+            if(response.body.err==0){
+                callback(response.body);
+            }else{
+                console.log(response.body);
+                alert("发生错误");
+            }
+        }, function(response){
+            alert(response.status+" 发生错误");
+        });
 
+    };
+    //post
+    Vue.prototype._post = function(url,params,callback){
+            this.$http.post(url,params).then(function(response){
+                // 响应成功回调
+                if(response.body.err==0){
+                    callback(response.body);
+                }else{
+                    alert("发生错误:"+response.body.msg);
+                }
+            }, function(response){
+                alert(response.status+" 发生错误");
+            });
+
+        };
+    //判断是否是数组
+    function isArray(o){
+        return Object.prototype.toString.call(o)=='[object Array]';
+    }
+    //补0函数
+    function padNumber(num, fill) {
+        //改自：http://blog.csdn.net/aimingoo/article/details/4492592
+        var len = ('' + num).length;
+        return (Array(
+            fill > len ? fill - len + 1 || 0 : 0
+        ).join(0) + num);
+    }
+    //改变群发控制状态
+    function change_wxmsg(village_id){
+        $.ajax({
+            url:"<?php echo U('ajax_change_wxmsg');?>",
+            type:'post',
+            data:{'village_id':village_id},
+            dataType:'json',
+            async:false,
+            success:function(res){
+
+            }
+        });
+    }
+        $("[name='my-checkbox']").bootstrapSwitch({
+            onText:"已启动",
+            offText:"已关闭",
+            onColor:"success",
+            offColor:"danger",
+            size:"normal",
+            handleWidth:'100px',
+            labelWidth:'55px',
+            state:Boolean(<?php echo ($is_wxmsg); ?>),
+            onSwitchChange:function(event,state){
+                change_wxmsg('<?php echo ($village_id); ?>');
+            }
+        });
+</script>
+<!--自定义js代码区开始-->
+
+<!--/底部文件-->
+
+
+
+
+
+
+<!--自定义js代码区结束-->
 </body>
 
 </html>

@@ -918,7 +918,6 @@
         }
 
         function openPostWindow(url,idStr,rid,project_id){
-
             var tempForm = document.createElement("form");
             tempForm.id = "tempForm1";
             tempForm.method = "post";
@@ -936,9 +935,14 @@
             hideInput2.type = "hidden";
             hideInput2.name="project_id";
             hideInput2.value = project_id;
+            var hideInput4 = document.createElement("input");
+            hideInput4.type = "hidden";
+            hideInput4.name="rid";
+            hideInput4.value = rid;
             tempForm.appendChild(hideInput1);
             tempForm.appendChild(hideInput2);
             tempForm.appendChild(hideInput3);
+            tempForm.appendChild(hideInput4);
             if(document.all){
                 tempForm.attachEvent("onsubmit",function(){});        //IE
             }else{
@@ -1028,7 +1032,7 @@
             if (rid.length == 0) {
                 alert('请选择要添加的选项');
             } else {
-                var url = "{pigcms{:U('Receipt/print_receipt')}";
+                var url = '{pigcms{:U("Receipt/print_receipt")}';
                 //用post方式传递
                 var project_id='';
                 openPostWindow(url,ids,rid,project_id);
@@ -1236,7 +1240,11 @@
             });
         })
 
+        var table = $('#example').DataTable( {
+            searchDelay: 350
+        } );
         var table = $('#sample_2');
+
         table.dataTable({
             "language": {
                 "aria": {
@@ -1258,6 +1266,9 @@
                     "first": "First"
                 }
             },
+            //bFilter : false,
+            //"searching": true
+            //searchDelay: 350,
             serverSide: true,
             'processing':true,// 加载
             ajax: {
@@ -1272,7 +1283,7 @@
                 [5, 15, 20, "​全部"] // change per page values here
             ],
             // set the initial value
-            "pageLength": 10,
+            "pageLength": 1,
             "pagingType": "bootstrap_full_number",
             "columnDefs": [
                 {  // set default column settings
@@ -1357,6 +1368,11 @@
 
                  },*/
             ]
+        });
+        $("input[type='search']").bind('keyup', function(e) {
+            if(e.keyCode == 13) {
+                oTable.fnFilter(this.value);
+            }
         });
         $("#sample_1_filter input[type=search]").removeClass("input-small");
         $("#sample_1_filter input[type=search]").css({ width: '400px' });

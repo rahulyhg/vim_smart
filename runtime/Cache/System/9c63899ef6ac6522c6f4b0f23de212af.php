@@ -390,7 +390,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                             </li>
                             <li class="divider"> </li>
                             <li>
-                                <a href="http://www.hdhsmart.com/admin.php?g=System&c=Login&a=logout_new">
+                                <a href="http://www.pignewpay.com/admin.php?g=System&c=Login&a=logout_new">
                                     <i class="icon-key"></i> 退出 </a>
                             </li>
                         </ul>

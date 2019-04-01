@@ -27,7 +27,7 @@
                         <td width="208" height="40" align="center" style="border:1px #000000 solid; border-left:none;">收款金额</td>
                         <td height="40" align="center" style="border:1px #000000 solid; border-left:none;">备注</td>
                     </tr>
-                    <?php $__FOR_START_9147__=0;$__FOR_END_9147__=5;for($i=$__FOR_START_9147__;$i < $__FOR_END_9147__;$i+=1){ ?><tr>
+                    <?php $__FOR_START_21113__=0;$__FOR_END_21113__=5;for($i=$__FOR_START_21113__;$i < $__FOR_END_21113__;$i+=1){ ?><tr>
                                 <td height="30" align="center" style="border:1px #000000 solid; border-top:none;"><?php echo ($v[$i]['type']); ?></td>
                                 <td height="30" align="center" style="border:1px #000000 solid; border-top:none; border-left:none;"><?php echo ($v[$i]['fee_type']); ?></td>
                                 <td height="30" align="center" style="border:1px #000000 solid; border-top:none; border-left:none;"><?php if($v[$i]['money']): ?><span style="padding-left:15px;">￥</span> <?php echo number_format($v[$i]['money'],2); endif; ?></td>

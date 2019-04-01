@@ -329,6 +329,7 @@ class ReceiptAction extends BaseAction{
     }
     //打印缴费单
     public function print_receipt(){
+        $rid = $_REQUEST['rid'];
         $list=array();
         //$_POST['ids']=array('387-carspace','1133-15');
         //检查是否是重复打印
@@ -382,10 +383,14 @@ class ReceiptAction extends BaseAction{
             }else{
                 $print_status=$_SESSION['print_status']=1;
             }
+            //dump($print_status);die;
             $where=array();
             $create_time=array('between',strtotime(date("Y-m-01", strtotime($month))).','.strtotime(date('Y-m-t', strtotime($month))));
             if($print_status!=3){
                 $where['print_status']=$print_status;
+            }
+            if(!empty($rid)){
+                $where['rid'] = $rid;
             }
             $property_type=array('property','carspace','other');
             foreach ($property_type as $value){
@@ -505,7 +510,7 @@ class ReceiptAction extends BaseAction{
             }
             //dump($list_cache[$room_info['id']]['village_name']);
         }
-
+        //dump($list_cache);die;
         foreach ($list_cache as $key=>$value){
             $date=date('Ymd',strtotime($value['creattime']));
             $date_log=date('Y-m-d',strtotime($value['creattime']));
@@ -542,7 +547,7 @@ class ReceiptAction extends BaseAction{
 
         /*$lian=array('1'=>'一','2'=>'二','3'=>'三');
         $this->assign('lian',$lian);*/
-        //dump($list_cache);die;
+//
         $this->assign('list_cache',$list_cache);
         $this->display();
     }

@@ -2120,7 +2120,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                                             <div class="col-md-7">
                                                 <select name="property_mouth" class="form-control" id="property_mouth">
                                                     <option value="0" selected="selected">请选择</option>
-                                                    <?php $__FOR_START_11257__=1;$__FOR_END_11257__=24;for($i=$__FOR_START_11257__;$i < $__FOR_END_11257__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
+                                                    <?php $__FOR_START_28946__=1;$__FOR_END_28946__=24;for($i=$__FOR_START_28946__;$i < $__FOR_END_28946__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
                                                 </select>
                                                 <span class="required">如果没有设置过物业费到期时间，请先调整到期时间</span>
                                             </div>
@@ -2163,7 +2163,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                                             <div class="col-md-7">
                                                 <select name="carspace_mouth" class="form-control" id="carspace_mouth">
                                                     <option value="0" selected="selected">请选择</option>
-                                                    <?php $__FOR_START_13038__=1;$__FOR_END_13038__=24;for($i=$__FOR_START_13038__;$i < $__FOR_END_13038__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
+                                                    <?php $__FOR_START_4940__=1;$__FOR_END_4940__=24;for($i=$__FOR_START_4940__;$i < $__FOR_END_4940__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -2532,7 +2532,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                         <div class="col-md-4">
                             <select name="property_mouth" class="form-control" id="property_mouth">
                                 <option value="0" selected="selected">请选择</option>
-                                <?php $__FOR_START_24769__=1;$__FOR_END_24769__=24;for($i=$__FOR_START_24769__;$i < $__FOR_END_24769__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
+                                <?php $__FOR_START_32059__=1;$__FOR_END_32059__=24;for($i=$__FOR_START_32059__;$i < $__FOR_END_32059__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
                             </select>
                             <span class="required">如果没有设置过物业费到期时间，请先调整到期时间</span>
                         </div>
@@ -2580,7 +2580,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                         <div class="col-md-4">
                             <select name="carspace_mouth" class="form-control" id="carspace_mouth">
                                 <option value="0" selected="selected">请选择</option>
-                                <?php $__FOR_START_15648__=1;$__FOR_END_15648__=24;for($i=$__FOR_START_15648__;$i < $__FOR_END_15648__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
+                                <?php $__FOR_START_2379__=1;$__FOR_END_2379__=24;for($i=$__FOR_START_2379__;$i < $__FOR_END_2379__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
                             </select>
                         </div>
                     </div>
@@ -3066,7 +3066,6 @@ table tr:nth-last-of-type(2) .dropdown-menu {
         }
 
         function openPostWindow(url,idStr,rid,project_id){
-
             var tempForm = document.createElement("form");
             tempForm.id = "tempForm1";
             tempForm.method = "post";
@@ -3084,9 +3083,14 @@ table tr:nth-last-of-type(2) .dropdown-menu {
             hideInput2.type = "hidden";
             hideInput2.name="project_id";
             hideInput2.value = project_id;
+            var hideInput4 = document.createElement("input");
+            hideInput4.type = "hidden";
+            hideInput4.name="rid";
+            hideInput4.value = rid;
             tempForm.appendChild(hideInput1);
             tempForm.appendChild(hideInput2);
             tempForm.appendChild(hideInput3);
+            tempForm.appendChild(hideInput4);
             if(document.all){
                 tempForm.attachEvent("onsubmit",function(){});        //IE
             }else{
@@ -3176,7 +3180,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
             if (rid.length == 0) {
                 alert('请选择要添加的选项');
             } else {
-                var url = "<?php echo U('Receipt/print_receipt');?>";
+                var url = '<?php echo U("Receipt/print_receipt");?>';
                 //用post方式传递
                 var project_id='';
                 openPostWindow(url,ids,rid,project_id);
@@ -3327,7 +3331,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
         });
         $("#room_name").keyup(function(){
             $.ajax({
-                url:"<?php echo U('Property/ajax_room_list');?>",
+                url:"<?php echo U('Property/ajax_room_list1');?>",
                 data:{'keyword':$(this).val(),'type':1},
                 type: "POST",
                 dataType: 'json',
@@ -3384,7 +3388,11 @@ table tr:nth-last-of-type(2) .dropdown-menu {
             });
         })
 
+        var table = $('#example').DataTable( {
+            searchDelay: 350
+        } );
         var table = $('#sample_2');
+
         table.dataTable({
             "language": {
                 "aria": {
@@ -3406,6 +3414,9 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                     "first": "First"
                 }
             },
+            //bFilter : false,
+            //"searching": true
+            //searchDelay: 350,
             serverSide: true,
             'processing':true,// 加载
             ajax: {
@@ -3420,7 +3431,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                 [5, 15, 20, "​全部"] // change per page values here
             ],
             // set the initial value
-            "pageLength": 10,
+            "pageLength": 1,
             "pagingType": "bootstrap_full_number",
             "columnDefs": [
                 {  // set default column settings
@@ -3505,6 +3516,11 @@ table tr:nth-last-of-type(2) .dropdown-menu {
 
                  },*/
             ]
+        });
+        $("input[type='search']").bind('keyup', function(e) {
+            if(e.keyCode == 13) {
+                oTable.fnFilter(this.value);
+            }
         });
         $("#sample_1_filter input[type=search]").removeClass("input-small");
         $("#sample_1_filter input[type=search]").css({ width: '400px' });

@@ -5496,7 +5496,8 @@ class PropertyServiceAction extends BaseAction{
         //判断是否是小区，进行跳转 by zhukeqin
         $start=I('post.start');
         $length=I('post.length');
-        //dump($length);die;
+
+       // dump($length);die;
         //datatable适配  -1则代表显示全部信息
         if($length==-1){
             unset($length);
@@ -5529,8 +5530,20 @@ class PropertyServiceAction extends BaseAction{
             $list = $model
                 ->alias('r1')
                 ->field(array(
-                    'r1.*',
-                    'up.*',
+                    'r1.id',
+                    'r1.desc',
+                    'r1.tung_build',
+                    'r1.tung_unit',
+                    'r1.tung_floor',
+                    'r1.room_name',
+                    'r1.roomsize',
+                    'r1.room_name',
+                    'r1.roomsize',
+                    'r1.oid',
+                    'up.house_type',
+                    'up.rid',
+                    'up.property_endtime',
+                    'up.property_emptytime',
                     'ub.phone',
                     'ub.name'
                 ))
@@ -5543,33 +5556,37 @@ class PropertyServiceAction extends BaseAction{
             $list = $model
                 ->alias('r1')
                 ->field(array(
-                    'r1.*',
-                    'up.*'
+                    'r1.id',
+                    'r1.desc',
+                    'r1.tung_build',
+                    'r1.tung_unit',
+                    'r1.tung_floor',
+                    'r1.room_name',
+                    'r1.roomsize',
+                    'r1.room_name',
+                    'r1.roomsize',
+                    'r1.oid',
+                    'up.house_type',
+                    'up.rid',
+                    'up.property_endtime',
+                    'up.property_emptytime',
+                    'ub.phone',
+                    'ub.name'
                 ))
                 ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_UPTOWN__ up ON up.rid=r1.id')
                 ->join('LEFT JOIN __HOUSE_VILLAGE_USER_BIND__ ub ON ub.pigcms_id=r1.owner_id')
                 ->where($where)
                 ->select();
         }
-//        dump($list);die;
+        //dump($list);die;
         $list_dimcount=$model
             ->alias('r1')
-            ->field(array(
-                'r1.*',
-                'up.*',
-                'ub.phone',
-                'ub.name'
-            ))
             ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_UPTOWN__ up ON up.rid=r1.id')
             ->join('LEFT JOIN __HOUSE_VILLAGE_USER_BIND__ ub ON ub.pigcms_id=r1.owner_id')
             ->where($where)
             ->count();
         $list_count= $model
             ->alias('r1')
-            ->field(array(
-                'r1.*',
-                'up.*'
-            ))
             ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_UPTOWN__ up ON up.rid=r1.id')
             ->where($where_all)
             ->count();

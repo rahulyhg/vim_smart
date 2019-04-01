@@ -393,7 +393,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                             </li>
                             <li class="divider"> </li>
                             <li>
-                                <a href="http://www.hdhsmart.com/admin.php?g=System&c=Login&a=logout_new">
+                                <a href="http://www.pignewpay.com/admin.php?g=System&c=Login&a=logout_new">
                                     <i class="icon-key"></i> 退出 </a>
                             </li>
                         </ul>
@@ -1984,7 +1984,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                 <span>
                     <div class="btn-group">
                         <select id="datetimepicker"  class="form-control" placeholder="" name="startDate" onchange="change_url('year',this.options[this.options.selectedIndex].value)">
-                            <?php $__FOR_START_25369__=2017;$__FOR_END_25369__=date('Y')+2;for($i=$__FOR_START_25369__;$i < $__FOR_END_25369__;$i+=1){ ?><option value="<?php echo ($i); ?>"><?php echo ($i); ?></option><?php } ?>
+                            <?php $__FOR_START_8538__=2017;$__FOR_END_8538__=date('Y')+2;for($i=$__FOR_START_8538__;$i < $__FOR_END_8538__;$i+=1){ ?><option value="<?php echo ($i); ?>"><?php echo ($i); ?></option><?php } ?>
                         </select>
                     </div>
                     <div class="btn-group">
@@ -2044,7 +2044,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
             </tr>
             <tr>
                 <th>合计</th>
-                <?php $__FOR_START_10846__=1;$__FOR_END_10846__=13;for($i=$__FOR_START_10846__;$i < $__FOR_END_10846__;$i+=1){ ?><td width="5%"><?php echo ($i); ?>月</td><?php } ?>
+                <?php $__FOR_START_2789__=1;$__FOR_END_2789__=13;for($i=$__FOR_START_2789__;$i < $__FOR_END_2789__;$i+=1){ ?><td width="5%"><?php echo ($i); ?>月</td><?php } ?>
             </tr>
             </thead>
             <tbody>
@@ -2053,7 +2053,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                         <td><?php echo ($vo1['type_name']); ?></td>
                         <td><?php echo number_format($vo1['type_data']['money_sum_no'],2);?></td>
                         <td><?php echo number_format($vo1['type_data']['sum'],2);?></td>
-                        <?php $__FOR_START_32479__=1;$__FOR_END_32479__=13;for($i=$__FOR_START_32479__;$i < $__FOR_END_32479__;$i+=1){ if($vo1['type_data'][$i]): ?><td title="双击点击查看明细"  ondblclick="open_url(<?php echo ($key); ?>,<?php echo sprintf('%02d',$i);?>)"><?php echo number_format($vo1['type_data'][$i],2);?></td>
+                        <?php $__FOR_START_29623__=1;$__FOR_END_29623__=13;for($i=$__FOR_START_29623__;$i < $__FOR_END_29623__;$i+=1){ if($vo1['type_data'][$i]): ?><td title="双击点击查看明细"  ondblclick="open_url(<?php echo ($key); ?>,<?php echo sprintf('%02d',$i);?>)"><?php echo number_format($vo1['type_data'][$i],2);?></td>
                                 <?php else: ?>
                                 <td>0.00</td><?php endif; } ?>
                         <td><?php echo ($vo1['type_remark']); ?></td>
@@ -2063,7 +2063,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                         <td colspan="2" style="text-align:center;vertical-align:middle;">合计</td>
                         <td><?php echo number_format($vo['sum_money'],2);?></td>
                         <td><?php echo number_format($vo['sum_sum'],2);?></td>
-                        <?php $__FOR_START_30630__=1;$__FOR_END_30630__=13;for($i=$__FOR_START_30630__;$i < $__FOR_END_30630__;$i+=1){ ?><td><?php echo number_format($vo[$i],2);?></td><?php } ?>
+                        <?php $__FOR_START_4200__=1;$__FOR_END_4200__=13;for($i=$__FOR_START_4200__;$i < $__FOR_END_4200__;$i+=1){ ?><td><?php echo number_format($vo[$i],2);?></td><?php } ?>
                         <td></td>
                     </tr><?php endif; endforeach; endif; ?>
             </tbody>
