@@ -1068,6 +1068,9 @@ class PropertyAction extends BaseAction
 
         $room_name=$_POST['room_name'];
         $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
+        if(empty($room_info)){
+            $room_info=M('house_village_room')->where(array('room_name'=>$room_name))->find();
+        }
         $_SESSION['rid']=$room_info['id'];
         if($otherfee_type_id=='property'){
             $data=M('house_village_room_uptown')->where(array('rid'=>$room_info['id']))->find();
@@ -1079,32 +1082,16 @@ class PropertyAction extends BaseAction
                 'otherfee_type_id'=>$otherfee_type_id,
                 'rid'              =>$room_info['id'],
                 'village_id'       =>$this->village_id,
-                'project_id'       =>$this->project_id
             );
-            $result = M('house_village_otherfee')->where($where)->order('creattime desc')->find();
+
             //计算剩余应交金额
-            if($data['otherfee_type_name'] == "水费"){
-                $info = M('house_village_water')->where(array('rid'=>$room_info['id'],'type'=>"水费",'result'=>0))->field("sum(start_code) start_code,sum(end_code) end_code,price,rid")->find();
-                if($result){
-                    $info['fee_receive'] = ($result['fee_receive']-$result['fee_true'])+($info['end_code'] - $info['start_code'])*$info['price'];
-                    $info['fee_receive_code'] = $result['fee_receive']-$result['fee_true'];
-                }else{
-                    $info['fee_receive'] = ($info['end_code'] - $info['start_code'])*$info['price'];
-                    $info['fee_receive_code'] = 0;
-                }
-                //取出月份
-                $res = $this->get_water_mouth($room_info['id'],"水费");
-            }elseif($data['otherfee_type_name'] == "电费"){
-                $info = M('house_village_water')->where(array('rid'=>$room_info['id'],'type'=>"电费",'result'=>0))->field("sum(start_code) start_code,sum(end_code) end_code,price,rid")->find();
-                if($result){
-                    $info['fee_receive'] = ($result['fee_receive']-$result['fee_true'])+($info['end_code'] - $info['start_code'])*$info['price'];
-                    $info['fee_receive_code'] = $result['fee_receive']-$result['fee_true'];
-                }else{
-                    $info['fee_receive'] = ($info['end_code'] - $info['start_code'])*$info['price'];
-                    $info['fee_receive_code'] = 0;
-                }
-                $res = $this->get_water_mouth($room_info['id'],"电费");
-            }
+            $info = $this->get_house_village_water($room_info['id'],$data['otherfee_type_name']);
+            $info['balance'] = M('house_village_otherfee')->where($where)->order('creattime desc')->find()['balance'];
+            //dump($info);die;
+            $info['fee_receive'] = ($info['end_code'] - $info['start_code'])*$info['price'] - $info['balance'];//应收
+            $info['fee_true'] = ($info['end_code'] - $info['start_code'])*$info['price'];//实收
+            //取出月份
+            $res = $this->get_water_mouth($room_info['id'],$data['otherfee_type_name']);
             foreach($res as $v){
                 $arr[] = strtotime(str_replace('.','-',$v['start_time']));
                 $arr1[] = strtotime(str_replace('.','-',$v['end_time']));
@@ -1122,6 +1109,11 @@ class PropertyAction extends BaseAction
     public function get_water_mouth($rid,$type)
     {
         return M('house_village_water')->where(array('rid'=>$rid,'type'=>$type,'result'=>0))->field('start_time,end_time')->select();
+    }
+
+    public function get_house_village_water($rid,$type)
+    {
+        return M('house_village_water')->where(array('rid'=>$rid,'type'=>$type,'result'=>0))->field("sum(start_code) start_code,sum(end_code) end_code,price,rid")->find();
     }
     /**
      * @author zhukeqin
@@ -1154,6 +1146,9 @@ class PropertyAction extends BaseAction
         $type=$_POST['otherfee_type_id'];
         $room_info=M('house_village_room')->where(array('room_name'=>$room_name,'project_id'=>$this->project_id))->find();
         if(empty($room_info)){
+            $room_info = M('house_village_room')->where(array('room_name'=>$room_name))->find();
+        }
+        if(empty($room_info)){
             echo json_encode(array('err'=>1,'msg'=>'该房间不存在'));
             die;
         }
@@ -1182,6 +1177,7 @@ class PropertyAction extends BaseAction
                 'project_id'=>$this->project_id,
                 'fee_receive'=>$_POST['fee_receive'],
                 'fee_true'=>$_POST['fee_true'],
+                'balance'=>$_POST['fee_true'] - $_POST['fee_receive'] - $_POST['balance'],
                 'fee_mouth'=>date('Y-n'),
                 'fee_time'=>date('Y-n-j'),
                 'creattime'=>time(),

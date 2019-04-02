@@ -1,4 +1,7 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?>
+
+    <!--头部文件-->
+    <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.7
 Version: 4.7.1
@@ -1893,252 +1896,297 @@ table tr:nth-last-of-type(2) .dropdown-menu {
       <script>console.log('I have left')</script>
     </div>
     <!-- END SIDEBAR -->
-   
-<link href="/Car/Admin/Public/assets/global/plugins/plugins.min.css" rel="stylesheet" type="text/css" />
-<link href="/Car/Admin/Public/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-<link href="/Car/Admin/Public/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="/Car/Admin/Public/assets/global/plugins/datatables/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
-<link href="/Car/Admin/Public/assets/global/plugins/datatables/sweetalert/font-awesome.min.css" rel="stylesheet" type="text/css" />
+   {__CONTENT__}
+    
 
-<style type="text/css">
-    <!--
 
-    .fe:link{color:#666666; text-decoration:none;}
-    .fe:visited{color:#666666; text-decoration:none;}
-    .fe:active{color:#666666; text-decoration:none;}
-    .fe:hover{color:#FFFFFF; text-decoration:none;}
-    -->
-    .label-kid {
-        background-color: #f36a5a;
-    }
-    .btn-group>.dropdown-menu, .dropdown-toggle>.dropdown-menu, .dropdown>.dropdown-menu {
-        margin-top: 10px;
-    }
-    .dropdown-menu {
-        margin: 0 0 0 -90px;
-        position: absolute;
-    }
-    .table td{
-        text-align: center;
-    }
-	.table-scrollable .dataTable td>.btn-group, .table-scrollable .dataTable th>.btn-group {
-    position: relative;
-    margin-top: -2px;
-}
-</style>
-<!-- BEGIN CONTENT -->
-<div class="page-content-wrapper">
-    <!-- BEGIN CONTENT BODY -->
-    <div class="page-content">
-        <!-- BEGIN PAGE HEAD-->
-        <div class="page-head">
-            <!-- BEGIN PAGE TITLE -->
-            <div class="page-title">
-                <h1>物品管理
-                    <!--<small>用户的任何消费都会被记录在此 </small>-->
-                </h1>
-            </div>
-        </div>
-        <ul class="page-breadcrumb breadcrumb">
-            <li>
-                <span class="active">物品管理</span>
-                <i class="fa fa-circle"></i>
-            </li>
-        </ul>
-        <div class="row">
-            <div class="col-md-12">
-                <!-- BEGIN EXAMPLE TABLE PORTLET-->
-                <div class="portlet light bordered">
-                    <div class="portlet-title">
-                        <div class="caption font-dark">
-                            <i class="icon-settings font-dark"></i>
-                            <span class="caption-subject bold uppercase"> 列表记录</span>
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <div class="table-toolbar">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="btn-group">
-                                        <a href="<?php echo U('Off/products_add');?>">
-                                            <button id="sample_editable_1_new" class="btn sbold green">新建物品
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </a>
-                                    </div>
-                                    <div class="btn-group">
-                                        <a href="<?php echo U('Off/products_custom_list');?>">
-                                            <button id="sample_editable_1_new" class="btn sbold green">二维码管理
-<!--                                                <i class="fa fa-plus"></i>-->
-                                            </button>
-                                        </a>
-                                    </div>
-                                    <div class="btn-group">
-                                        <a href="<?php echo U('goods_import_step');?>">
-                                            <button id="sample_editable_1_new" class="btn sbold green">批量导入物品
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </a>
-                                    </div>
-                                    <div class="btn-group">
-                                        <a href="#form_modal" data-toggle="modal">
-                                            <button id="sample_editable_1_new" class="btn sbold green">各项目数据统计简表
-                                                <!-- <i class="fa fa-plus"></i> -->
-                                            </button>
-                                        </a>
-                                    </div>
-                                    
-                                    <div class="btn-group" style=" float: right;">
-                                        <form action="<?php echo U('Off/products_operate');?>" method="post" class="form-horizontal" enctype="multipart/form-data">
-                                            <input type="search_borrower" class="form-control input-sm input-small input-inline" placeholder="" aria-controls="sample_1" name="search_borrower">
-                                            <button id="sample_editable_1_new" class="btn sbold green" type="submit">筛选责任人</button>
-                                        </form>                                       
-                                    </div>
 
-                                    <div style="float: right; width:200px; margin-right: 15px;">
-                                        <span style="float: left; margin-top: 6px;">筛选：</span>
-                                        <select style="width:150px; height:34px; float: right; padding:6px 12px; background-color:#FFFFFF; border: 1px solid #c2cad8;" id="select_village_id">
-                                            <option value=" ">全部显示</option>
-                                            <?php if(is_array($villageArray)): foreach($villageArray as $key=>$vo): ?><option value="<?php echo ($vo["village_id"]); ?>" <?php if($villageId == $vo['village_id']): ?>selected="selected"<?php endif; ?> ><?php echo ($vo["village_name"]); ?></option><?php endforeach; endif; ?>
-                                        </select>
-                                    </div>                                    
-                                             
-                                </div>
-                            </div>
-                        </div>
+    <!--/头部文件-->
 
-                        <!-- 模态框开始 -->
-                        <div id="form_modal" class="modal fade" role="dialog" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                        <h4 class="modal-title">各项目数据统计简表</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="company_list_count" style="margin-top:25px;">
-                                            <tr>
-                                                <td align="center">项目名称</td>
-                                                <td align="center">物品总数量</td>
-                                                <td align="center">占比率</td>
-                                                <!-- <td align="center">合计</td> -->
-                                            </tr>                                            
-                                            <?php if(is_array($villageArray)): foreach($villageArray as $key=>$vo): ?><tr>
-                                                    <td align="center"><?php echo ($vo["village_name"]); ?></td>
-                                                    <?php if($vo["count"] != ''): ?><td align="center"><?php echo ($vo["count"]); ?>/<?php echo ($Count); ?></td>
-                                                    <?php else: ?>
-                                                        <td align="center">0/<?php echo ($Count); ?></td><?php endif; ?>                                                   
-                                                    <td align="center"><?php echo ($vo["rate"]); ?>%</td>
-                                                </tr><?php endforeach; endif; ?>                                            
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">关闭</button>
-                                        <!--<button class="btn green"  onclick="updateTime()">更新</button>-->
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- 模态框结束     -->
 
-                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
-                            <thead>
-                            <tr>
-                                <th>
-                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                        <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-                                        <span></span>
-                                    </label>
-                                </th>
-                                <!-- <th  style="width: 150px; text-align: center;">物品编号</th> -->
-                                <th style="width: 350px; text-align: center;">物品名称</th>
-                                <th style="text-align: center;">物品类别</th>
-                                <th style="text-align: center;">品牌</th>
-                                <?php if($villageId != ''): ?><th style="text-align: center;">物品区域</th><?php endif; ?>
-                                <th style="text-align: center;">单价</th>
-                                <th style="text-align: center;">数量</th>
-                                <?php if($villageId != ''): ?><th style="text-align: center;">占比率</th><?php endif; ?>                                
-                                <th style="text-align: center;">创建人</th>
-                                <th style="text-align: center;">创建时间</th>
-                                <th style="text-align: center;">物品分发</th>
-                                <th style="width: 150px; text-align: center;">操作</th>
-                            </tr>
-                            </thead>
-                            <?php if(is_array($offArr)): foreach($offArr as $key=>$vo): ?><tr>
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <!-- <td><?php echo ($vo["pro_code"]); ?></td> -->
-                                    <td>
-<!--                                        <a data-toggle="modal" data-target="#common_modal"  href="<?php echo U('Off/products_qr_code',array('pro_id'=>$vo['pro_id']));?>">-->
-<!--                                             <?php echo ($vo["pro_name"]); ?>-->
-<!--                                        </a>-->
-                                        <?php echo ($vo["pro_name"]); ?>
-                                    </td>
-                                    <td><?php echo ($vo["type_name"]); ?></td>
-                                    <td><?php echo ($vo["band"]); ?></td>
-                                    <?php if($villageId != ''): ?><td><?php echo ($vo["zone_name"]); ?></td>
-                                        <td><?php echo ($vo["pro_price"]); ?></td>
-                                        <td><?php echo ($vo["r_num_v"]); ?>/<?php echo ($vo["r_num"]); ?></td>
-                                        <td><?php echo ($vo["rate"]); ?>%</td>
-                                    <?php else: ?>
-                                        <td><?php echo ($vo["pro_price"]); ?></td>
-                                        <td><?php echo ($vo["r_num"]); ?></td><?php endif; ?>
-                                    <!-- <td><?php echo ($vo["r_num"]); ?></td> -->
-                                    <!-- <td><?php echo ($vo["r_num"]); ?>/<?php echo ($vo["pro_stock"]); ?></td> -->
-                                    <td><?php echo ($vo["pro_creator"]); ?></td>
-                                    <td><?php echo (date("Y-m-d H:i:s",$vo["create_time"])); ?></td>
-                                    <td>
-                                        <?php if($villageId != ''): ?><a href="<?php echo U('Off/products_operate',array('pro_id'=>$vo['pro_id'],'villageId'=>$villageId));?>">物品管理</a>
-                                        <?php else: ?>
-                                            <a href="<?php echo U('Off/products_operate',array('pro_id'=>$vo['pro_id']));?>">物品管理</a><?php endif; ?>                                   
-                                    </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 操作
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu pull-left" role="menu" style="position:relative;">
-                                                <li>
-                                                    <a href="<?php echo U('Off/products_edit',array('pro_id'=>$vo['pro_id']));?>">
-                                                        <i class="icon-docs"></i> 更新 </a>
-                                                </li>
-                                                <li onclick="delete_pr_info(this)" id="<?php echo ($vo["pro_id"]); ?>">
-                                                    <a href="javascript:;">
-                                                        <i class="icon-tag"></i> 删除 </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr><?php endforeach; endif; ?>
-                        </table>
-                    </div>
-                </div>
-                <!-- END EXAMPLE TABLE PORTLET-->
-                <div class="modal fade" tabindex="-1" role="dialog" id="common_modal">
-                    <div class="modal-dialog modal-lg" role="document" >
-                        <div class="modal-content">
 
-                        </div>
-                    </div>
+<!--<div class="page-container">-->
+    <!-- BEGIN SIDEBAR -->
+
+    <!--主体-->
+    <div class="page-content-wrapper" id="main">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <!-- BEGIN PAGE HEAD-->
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="page-title">
+                    <h1><?php $breadcrumb = $breadcrumb_diy?:$breadcrumb; echo $breadcrumb[count($breadcrumb)-1][0]; ?>
+                    </h1>
                 </div>
             </div>
-        </div>
+            <ul class="page-breadcrumb breadcrumb">
+                <?php if(is_array($breadcrumb)): $k = 0; $__LIST__ = $breadcrumb;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($k % 2 );++$k; if($k==(count($breadcrumb))){ ?>
+                        <li>
+                            <span class="active"><?php echo ($row[0]); ?></span>
+                        </li>
 
+                    <?php  }else{ ?>
+
+                        <li>
+                            <a href="<?php echo ($row[1]); ?>"><?php echo ($row[0]); ?></a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+
+                    <?php  } endforeach; endif; else: echo "" ;endif; ?>
+            </ul>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                    <div class="portlet light bordered">
+                        <div class="portlet-body">
+                            <div class="table-toolbar">
+                                <div class="row">
+                                    <div class="col-md-12" id="table-toolbar-left">
+                                        
+    <div class="btn-group">
+        <?php if(!$isLeader): ?><a href="<?php echo U('Budget/check_money_list_change');?>">
+                <button  class="btn sbold green" >预算金额更改
+                </button>
+            </a>
+            <?php else: ?>
+            <a href="<?php echo U('Budget/check_record_list');?>">
+                <button  class="btn sbold green" >返回
+                </button>
+            </a><?php endif; ?>
     </div>
+    <!--<div class="btn-group">
+        <a href="<?php echo U('Budget/add_type');?>">
+            <button id="sample_editable_1_new" class="btn sbold green">添加新的预算类别
+                <i class="fa fa-plus"></i>
+            </button>
+        </a>
+    </div>-->
+
+    <!--<div class="btn-group">
+        <a href="javascript:">
+            <button  class="btn sbold green" onclick="sub()">批量打印选中缴费
+            </button>
+        </a>
+    </div>
+    <div class="btn-group" style="margin-left: 10px">
+        <a href="javascript:">
+            <button  class="btn sbold green" onclick="sub_project()">打印当前全部缴费单(筛选后的)
+            </button>
+        </a>
+    </div>-->
+    <!--    筛选-->
+    <div class="btn-group">
+        <a href="#form_modal2" data-toggle="modal">
+            <button  class="btn sbold green" >筛选输出条件
+            </button>
+        </a>
+    </div>
+    <div class="btn-group">
+            <button  class="btn sbold red" id="download">下载当前表格
+            </button>
+    </div>
+    <div id="form_modal2" class="modal fade" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="width: 60%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">筛选</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="__SELF__" method="post" class="form-horizontal" id="form_sample_1" enctype="multipart/form-data">
+                        <div class="portlet-body">
+                            <!-- BEGIN FORM-->
+
+                            <div class="form-body">
+                                    <div class="form-group form-md-line-input">
+                                        <label class="col-md-2 control-label" for="form_control_1">预算类型
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-7">
+                                            <div class="form-group">
+                                                <div class="col-sm-12" >
+                                                    <div class="col-sm-4" >
+                                                        <select class="form-control" name="type_id_first" v-model="type_first">
+                                                            <option v-for="(item,index) in list" v-bind:value="item.type_id" >{{item['type_name']}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-4" >
+                                                        <select class="form-control" name="type_id_second" v-model="type_second">
+                                                            <option value=""></option>
+                                                            <option v-for="(item1,index1) in list_second" v-bind:value="item1.type_id" >{{item1['type_name']}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-4" >
+                                                        <select class="form-control" name="type_id_third" v-model="type_third">
+                                                            <option value=""></option>
+                                                            <option v-for="(item2,index2) in list_third" v-bind:value="item2.type_id" >{{item2['type_name']}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="form-group form-md-line-input" >
+                                    <label class="col-md-2 control-label" for="form_control_1">年份
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <select id="datetimepicker"  class="form-control"  name="year" v-model="year">
+                                            <?php $__FOR_START_14024__=2017;$__FOR_END_14024__=date('Y')+2;for($i=$__FOR_START_14024__;$i < $__FOR_END_14024__;$i+=1){ ?><option value="<?php echo ($i); ?>"><?php echo ($i); ?></option><?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                    <div class="form-group form-md-line-input" >
+                                        <label class="col-md-2 control-label" for="form_control_1">筛选输出方式
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-7">
+                                            <select name="type" class="form-control" onchange="change_select(this)">
+                                                <option value="1">全部公司</option>
+                                                <option value="2">一个公司下的全部项目</option>
+                                                <option value="3">全部项目</option>
+                                                <option value="4">按总公司筛选</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                <div class="form-group form-md-line-input" id="company_list" style="display: none">
+                                    <label class="col-md-2 control-label" for="form_control_1">选择公司
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <select name="company_id" class="form-control">
+                                            <?php if(is_array($company_list)): foreach($company_list as $key=>$value): ?><option value="<?php echo ($value['id']); ?>"><?php echo ($value['deptname']); ?></option><?php endforeach; endif; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group form-md-line-input" id="group_list" style="display: none">
+                                    <label class="col-md-2 control-label" for="form_control_1">选择总公司
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <select name="group_id" class="form-control">
+                                                <option value="1">汇得行</option>
+                                                <option value="2">靓江物业</option>
+                                                <option value="5">汇得行汉桥</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                    <div style="clear:both"></div>
+                                </div>
+                                <div style="clear:both"></div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn green"  id="handInput" type="submit">确认提交</button>
+                            <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">关闭</button>
+                            <!--<button class="btn green"  onclick="updateTime()">更新</button>-->
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="btn-group pull-right">
+                                            
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+    <style>
+        .center:{
+            text-align:center;
+            vertical-align:middle;
+        }
+    </style>
+    <div class="tabbable-custom nav-justified" style="width:100%;overflow-x: scroll;">
+        <table class="table table-striped table-bordered table-hover" id="table_1" >
+            <thead>
+            <tr>
+                <td colspan="17" align="center" style="font-size: 25px" class="center"><?php echo ($year); ?>年<?php echo ($title1); echo ($type_name); ?>明细表</td>
+            </tr>
+            <tr>
+                <th    rowspan="2" class="center">项目/公司名称</th>
+                <th   rowspan="2" class="center">预算金额</th>
+                <th  colspan="13" style="text-align:center;vertical-align:middle;"><?php echo ($year); ?>年执行情况</th>
+            </tr>
+            <tr>
+                <th>合计</th>
+                <?php $__FOR_START_6665__=1;$__FOR_END_6665__=13;for($i=$__FOR_START_6665__;$i < $__FOR_END_6665__;$i+=1){ ?><td width="5%"><?php echo ($i); ?>月</td><?php } ?>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if(is_array($data)): foreach($data as $key=>$vo): ?><tr>
+                    <td   class="center"><?php echo ($vo['name']); ?></td>
+                    <th><?php echo number_format($vo['list']['money_sum_no'],2);?></th>
+                    <th><?php echo number_format($vo['list']['sum'],2);?></th>
+                    <?php $__FOR_START_9027__=1;$__FOR_END_9027__=13;for($i=$__FOR_START_9027__;$i < $__FOR_END_9027__;$i+=1){ if($vo['list'][$i]): ?><th title="双击查看明细" ondblclick="open_url('<?php echo ($vo['company_id']); ?>','<?php echo ($vo['village_id']); ?>','<?php echo ($vo['village_id']); ?>','<?php echo sprintf('%02d',$i);?>')"><?php echo number_format($vo['list'][$i],2);?></th>
+                            <?php else: ?>
+                            <th >0.00</th><?php endif; } ?>
+                </tr><?php endforeach; endif; ?>
+            <tr>
+                <td    class="center">总合计</td>
+                <th><?php echo number_format($sum['money_sum_no'],2);?></th>
+                <th><?php echo number_format($sum['sum'],2);?></th>
+                <?php $__FOR_START_15557__=1;$__FOR_END_15557__=13;for($i=$__FOR_START_15557__;$i < $__FOR_END_15557__;$i+=1){ ?><th><?php echo number_format($sum[$i],2);?></th><?php } ?>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+                            
+                                <!--        弹出层容器-->
+                                <div class="modal fade" tabindex="-1" role="dialog" id="common_modal">
+                                    <div class="modal-dialog modal-lg" role="document" style="width:1200px">
+                                        <div class="modal-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" tabindex="-1" role="dialog" id="sub_modal">
+                                    <div class="modal-dialog modal-lg" role="document" style="width:1000px">
+                                        <div class="modal-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" tabindex="-1" role="dialog" id="third_modal">
+                                    <div class="modal-dialog modal-lg" role="document" style="width:1000px">
+                                        <div class="modal-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--        弹出层容器-->
+                            
+                        </div>
+                    </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--主体-->
 </div>
-<!-- END QUICK SIDEBAR -->
-</div>
-<!-- END CONTAIER -->
-<!-- BEGIN FOOTER -->
+<!--底部文件-->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2017 &copy; 汇得行智慧助手系统
-        <a target="_blank" href="http://www.vhi99.com">邻钱科技</a> &nbsp;|&nbsp;
-        <a href="http://www.metronic.com" target="_blank">Metronic</a>
+    <div class="page-footer-inner"> 2017 &copy; 智慧助手系统
+        <a target="_blank" href="http://www.vhi99.com">邻钱科技</a>
+        <!--      &nbsp;|&nbsp;   <a href="http://www.metronic.com" target="_blank">Metronic</a>-->
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
@@ -2151,26 +2199,19 @@ table tr:nth-last-of-type(2) .dropdown-menu {
 <script src="/Car/Admin/Public/assets/global/plugins/excanvas.min.js"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/ie8.fix.min.js"></script>
 <![endif]-->
-<!-- BEGIN CORE PLUGINS -->
-<script src="/Car/Admin/Public/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+
 <script src="/Car/Admin/Public/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
-<!-- BEGIN PAGE LEVEL PLUGINS -->
+
 <script src="/Car/Admin/Public/assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS -->
-<!-- BEGIN THEME GLOBAL SCRIPTS -->
+
 <script src="/Car/Admin/Public/assets/global/scripts/app.min.js" type="text/javascript"></script>
-<!-- END THEME GLOBAL SCRIPTS -->
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<!--<script src="/Car/Admin/Public/assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>-->
-<!-- END PAGE LEVEL SCRIPTS -->
-<!-- BEGIN THEME LAYOUT SCRIPTS -->
+
 <script src="/Car/Admin/Public/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
@@ -2181,53 +2222,28 @@ table tr:nth-last-of-type(2) .dropdown-menu {
 <script src="/Car/Admin/Public/js/layer.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/js/sweetalert.min.js" type="text/javascript"></script>
 <script src="/Car/Admin/Public/js/ui-sweetalert.min.js" type="text/javascript"></script>
-<link rel="stylesheet" href="<?php echo ($static_public); ?>js/artdialog/skins/mydialog.css?4.1.7">
-<script src="<?php echo ($static_public); ?>js/artdialog/jquery.artDialog.js"></script>
-<script type="text/javascript" src="./tpl/System/Static/js/index1.js"></script>
-<script>
-    (function(E,C,D,A){var B,$,_,J="@ARTDIALOG.DATA",K="@ARTDIALOG.OPEN",H="@ARTDIALOG.OPENER",I=C.name=C.name||"@ARTDIALOG.WINNAME"+(new Date).getTime(),F=C.VBArray&&!C.XMLHttpRequest;E(function(){!C.jQuery&&document.compatMode==="BackCompat"&&alert("artDialog Error: document.compatMode === \"BackCompat\"")});var G=D.top=function(){var _=C,$=function(A){try{var _=C[A].document;_.getElementsByTagName}catch($){return!1}return C[A].artDialog&&_.getElementsByTagName("frameset").length===0};return $("top")?_=C.top:$("parent")&&(_=C.parent),_}();D.parent=G,B=G.artDialog,_=function(){return B.defaults.zIndex},D.data=function(B,A){var $=D.top,_=$[J]||{};$[J]=_;if(A)_[B]=A;else return _[B];return _},D.removeData=function(_){var $=D.top[J];$&&$[_]&&delete $[_]},D.through=$=function(){var $=B.apply(this,arguments);return G!==C&&(D.list[$.config.id]=$),$},G!==C&&E(C).bind("unload",function(){var A=D.list,_;for(var $ in A)A[$]&&(_=A[$].config,_&&(_.duration=0),A[$].close(),delete A[$])}),D.open=function(B,P,O){P=P||{};var N,L,M,X,W,V,U,T,S,R=D.top,Q="position:absolute;left:-9999em;top:-9999em;border:none 0;background:transparent",a="width:100%;height:100%;border:none 0";if(O===!1){var Z=(new Date).getTime(),Y=B.replace(/([?&])_=[^&]*/,"$1_="+Z);B=Y+(Y===B?(/\?/.test(B)?"&":"?")+"_="+Z:"")}var G=function(){var B,C,_=L.content.find(".aui_loading"),A=N.config;M.addClass("aui_state_full"),_&&_.hide();try{T=W.contentWindow,U=E(T.document),S=T.document.body}catch($){W.style.cssText=a,A.follow?N.follow(A.follow):N.position(A.left,A.top),P.init&&P.init.call(N,T,R),P.init=null;return}B=A.width==="auto"?U.width()+(F?0:parseInt(E(S).css("marginLeft"))):A.width,C=A.height==="auto"?U.height():A.height,setTimeout(function(){W.style.cssText=a},0),N.size(B,C),A.follow?N.follow(A.follow):N.position(A.left,A.top),P.init&&P.init.call(N,T,R),P.init=null},I={zIndex:_(),init:function(){N=this,L=N.DOM,X=L.main,M=L.content,W=N.iframe=R.document.createElement("iframe"),W.src=B,W.name="Open"+N.config.id,W.style.cssText=Q,W.setAttribute("frameborder",0,0),W.setAttribute("allowTransparency",!0),V=E(W),N.content().appendChild(W),T=W.contentWindow;try{T.name=W.name,D.data(W.name+K,N),D.data(W.name+H,C)}catch($){}V.bind("load",G)},close:function(){V.css("display","none").unbind("load",G);if(P.close&&P.close.call(this,W.contentWindow,R)===!1)return!1;M.removeClass("aui_state_full"),V[0].src="about:blank",V.remove();try{D.removeData(W.name+K),D.removeData(W.name+H)}catch($){}}};typeof P.ok=="function"&&(I.ok=function(){return P.ok.call(N,W.contentWindow,R)}),typeof P.cancel=="function"&&(I.cancel=function(){return P.cancel.call(N,W.contentWindow,R)}),delete P.content;for(var J in P)I[J]===A&&(I[J]=P[J]);return $(I)},D.open.api=D.data(I+K),D.opener=D.data(I+H)||C,D.open.origin=D.opener,D.close=function(){var $=D.data(I+K);return $&&$.close(),!1},G!=C&&E(document).bind("mousedown",function(){var $=D.open.api;$&&$.focus(!0)}),D.load=function(C,D,B){B=B||!1;var G=D||{},H={zIndex:_(),init:function(A){var _=this,$=_.config;E.ajax({url:C,success:function($){_.content($),G.init&&G.init.call(_,A)},cache:B})}};delete D.content;for(var F in G)H[F]===A&&(H[F]=G[F]);return $(H)},D.alert=function(A){return $({id:"Alert",zIndex:_(),icon:"warning",fixed:!0,lock:!0,content:A,ok:!0})},D.confirm=function(C,A,B){return $({id:"Confirm",zIndex:_(),icon:"question",fixed:!0,lock:!0,opacity:0.1,content:C,ok:function($){return A.call(this,$)},cancel:function($){return B&&B.call(this,$)}})},D.prompt=function(D,B,C){C=C||"";var A;return $({id:"Prompt",zIndex:_(),icon:"question",fixed:!0,lock:!0,opacity:0.1,content:["<div style=\"margin-bottom:5px;font-size:12px\">",D,"</div>","<div>","<input value=\"",C,"\" style=\"width:18em;padding:6px 4px\" />","</div>"].join(""),init:function(){A=this.DOM.content.find("input")[0],A.select(),A.focus()},ok:function($){return B&&B.call(this,A.value,$)},cancel:!0})},D.tips=function(B,A){return $({id:"Tips",zIndex:_(),title:!1,cancel:!1,fixed:!0,lock:!1}).content("<div style=\"padding: 0 1em;\">"+B+"</div>").time(A||1.5)},E(function(){var A=D.dragEvent;if(!A)return;var B=E(C),$=E(document),_=F?"absolute":"fixed",H=A.prototype,I=document.createElement("div"),G=I.style;G.cssText="display:none;position:"+_+";left:0;top:0;width:100%;height:100%;"+"cursor:move;filter:alpha(opacity=0);opacity:0;background:#FFF",document.body.appendChild(I),H._start=H.start,H._end=H.end,H.start=function(){var E=D.focus.DOM,C=E.main[0],A=E.content[0].getElementsByTagName("iframe")[0];H._start.apply(this,arguments),G.display="block",G.zIndex=D.defaults.zIndex+3,_==="absolute"&&(G.width=B.width()+"px",G.height=B.height()+"px",G.left=$.scrollLeft()+"px",G.top=$.scrollTop()+"px"),A&&C.offsetWidth*C.offsetHeight>307200&&(C.style.visibility="hidden")},H.end=function(){var $=D.focus;H._end.apply(this,arguments),G.display="none",$&&($.DOM.main[0].style.visibility="visible")}})})(window.jQuery||window.art,this,this.artDialog)
-</script>
-<script src="./tpl/System/Static/js/common.js"></script>
-<!--自定义js代码区开始-->
+
+<script src="http://www.bootcss.com/p/underscore/underscore-min.js"></script>
+<script src="<?php echo ($static_public); ?>kindeditor/kindeditor.js"></script>
+<script src="/Car/Admin/Public/js/jquery.datetimepicker.full.js" type="text/javascript"></script>
+<script src="./static/js/vue.min.js"></script>
+<script src="./static/js/vue-route.js"></script>
+<script src="./static/js/vue-resource.min.js"></script>
+<script src="./static/js/vuex.js"></script>
+<script src="./static/js/ui-buttons.js"></script>
+
 <script type="text/javascript">
-    //获取将要删除的记录对应的id
-
-    function delete_pr_info(obj) {
-        layer.msg('你确定要删除么？本操作不可恢复！', {
-            time: 0 //不自动关闭
-            ,btn: ['确定', '取消']
-            ,yes: function(index){
-                layer.close(index);
-                var pro_id=$(obj).attr('id');
-                //通过ajax异步删除
-                $.ajax({
-                    url:"<?php echo U('Off/products_delete');?>",
-                    data:{'pro_id':pro_id},
-                    type:'post',
-                    success:function(delmsg){
-                        if(delmsg==='1'){
-                            //逻辑删除成功！
-                            layer.msg('删除成功！', {icon: 6});
-                            //同时刷新页面
-                            $(obj).parent().parent().parent().parent().remove();
-                        }else{
-                            //逻辑删除失败！
-                            layer.msg('删除失败！', {icon: 5});
-                        }
-                    },
-                    error:function (res) {
-                        lay.msg(res);
-                    }
-
-                });
-            }
-        });
-    }
-
     //表格显示控制js代码区
     var table = $('#sample_1');
 
     // begin first table
+    var jstr = '<?php echo ($table_sort); ?>';
+    var table_sort;
+    if(jstr){
+        table_sort = JSON.parse(jstr);
+    }else{
+        table_sort = [1, "desc"];
+    }
     table.dataTable({
 
         // Internationalisation. For more info refer to http://datatables.net/manual/i18n
@@ -2250,17 +2266,6 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                 "first": "First"
             }
         },
-
-        // Or you can use remote translation file
-        //"language": {
-        //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
-        //},
-
-        // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
-        // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js).
-        // So when dropdowns used the scrollable div should be removed.
-        //"dom": "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
-
         "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
 
         "lengthMenu": [
@@ -2268,7 +2273,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
             [5, 15, 20, "全部"] // change per page values here
         ],
         // set the initial value
-        "pageLength": 100,
+        "pageLength": parseInt("<?php echo ($table_init_length); ?>")||15,
         "pagingType": "bootstrap_full_number",
         "columnDefs": [
             {  // set default column settings
@@ -2276,16 +2281,12 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                 'targets': [0]
             },
             {
-                "searchable": false,
-                "targets": [0]
-            },
-            {
                 "className": "dt-right",
                 //"targets": [2]
             }
         ],
         "order": [
-            [1, "desc"]
+            table_sort
         ] // set first column as a default sort by asc
     });
 
@@ -2309,40 +2310,168 @@ table tr:nth-last-of-type(2) .dropdown-menu {
         $(this).parents('tr').toggleClass("active");
     });
 
-
-
 </script>
-
 <script>
-    // function func(){  
-    //    //获取被选中的option标签  
-    //    var village_id = $('#select_village_id option:selected').val();
-    //    // console.log(village_id);
-    //    $.ajax({
-    //         url:"<?php echo U('Off/off_list_news');?>",
-    //         data:{'village_id':village_id},
-    //         dataType:'json',
-    //         type:'post',
-    //         success:function(offArr){
-    //             console.log(offArr);
-    //         }
-    //     });
-    // }
-
-
-    $("select#select_village_id").change(function(){
-        var u = $(this).val();
-        var str = window.location.href;
-        var length = str.substr(str.lastIndexOf('villageId=')-1,).length; //获取url中&villageId=u的长度
-        var url = '';
-        if(str.indexOf("villageId")>0){
-            url = str.substring(0,str.length-length);            
-        }else{
-            url = str;
+    /**
+     * vue全局注册函数
+     */
+    //get
+    Vue.prototype._get =  function(url,params,callback){
+        var opt = {
+            'params':params
         }
-        location.href=url+'&villageId='+u;
-    });
+        this.$http.get(url,opt).then(function(response){
+            // 响应成功回调
+            if(response.body.err==0){
+                callback(response.body);
+            }else{
+                console.log(response.body);
+                alert("发生错误");
+            }
+        }, function(response){
+            alert(response.status+" 发生错误");
+        });
+
+    };
+    //post
+    Vue.prototype._post = function(url,params,callback){
+            this.$http.post(url,params).then(function(response){
+                // 响应成功回调
+                if(response.body.err==0){
+                    callback(response.body);
+                }else{
+                    alert("发生错误:"+response.body.msg);
+                }
+            }, function(response){
+                alert(response.status+" 发生错误");
+            });
+
+        };
+    //判断是否是数组
+    function isArray(o){
+        return Object.prototype.toString.call(o)=='[object Array]';
+    }
+    //补0函数
+    function padNumber(num, fill) {
+        //改自：http://blog.csdn.net/aimingoo/article/details/4492592
+        var len = ('' + num).length;
+        return (Array(
+            fill > len ? fill - len + 1 || 0 : 0
+        ).join(0) + num);
+    }
+    //改变群发控制状态
+    function change_wxmsg(village_id){
+        $.ajax({
+            url:"<?php echo U('ajax_change_wxmsg');?>",
+            type:'post',
+            data:{'village_id':village_id},
+            dataType:'json',
+            async:false,
+            success:function(res){
+
+            }
+        });
+    }
+        $("[name='my-checkbox']").bootstrapSwitch({
+            onText:"已启动",
+            offText:"已关闭",
+            onColor:"success",
+            offColor:"danger",
+            size:"normal",
+            handleWidth:'100px',
+            labelWidth:'55px',
+            state:Boolean(<?php echo ($is_wxmsg); ?>),
+            onSwitchChange:function(event,state){
+                change_wxmsg('<?php echo ($village_id); ?>');
+            }
+        });
 </script>
+<!--自定义js代码区开始-->
+
+<!--/底部文件-->
+
+
+
+
+
+    <script src="./static/js/jquery-table2excel.min.js"></script>
+    <script>
+
+        $('#company_id').val('<?php echo ($company_id); ?>');
+        $('#project_id').val('<?php echo ($project_id_change); ?>');
+        $('#datetimepicker').val('<?php echo ($year); ?>');
+        new Vue({
+            el:"#form_modal2",
+            data:{
+                list:<?php echo ($type_list); ?>,
+                    type_first:1,
+                    type_second:5,
+                    type_third:8,
+                    year:<?php echo ($year); ?>
+
+                            },
+                            computed: {
+                                list_second: function () {
+                                    /*var list_second = {};*/
+                                    var list = this.list[this.type_first]['children'];
+                                    /*console.log(this.list_third);*/
+                                    return list;
+                                },
+                                list_third:function(){
+                                    var cache=this.list[this.type_first]['children'];
+                                    var arr = []
+                                    for (var i in cache) {
+                                        arr[i]=cache[i]; //属性
+                                    }
+                                    if(arr[this.type_second]){
+                                        var list1=this.list[this.type_first]['children'][this.type_second]['children'];
+                                    }else{
+                                        var list1='';
+                                    }
+                                    return list1;
+                                }
+                            },
+                            methods: {
+
+                            }
+
+                        });
+        function change_select(el) {
+            var type=$(el).val();
+            console.log($(el).val());
+            console.log(el);
+            if(type==2){
+               $('#company_list').show();
+               $('#group_list').hide();
+            }else if(type==4){
+                $('#group_list').show();
+                $('#company_list').hide();
+            }else{
+                $('#company_list').hide();
+                $('#group_list').hide();
+            }
+        }
+        function open_url(company_id,village_id,project_id,month) {
+            var url='<?php echo U('Budget/check_record_list',array('type_id'=>$type_id,'record_status'=>2));?>';
+            if(company_id) url +='&company_id='+company_id;
+            if(village_id) url +='&village_id='+village_id;
+            if(project_id) url +='&project_id='+project_id;
+            if(month) url +='&month=<?php echo ($year); ?>-'+month;
+            window.open(url);
+        }
+        $("#download").click(function () {
+            $("#table_1").table2excel({
+                exclude  : ".noExl", //过滤位置的 css 类名
+                filename : "预算分类导出表.xls", //文件名称
+                name: "Excel Document Name.xls",
+                exclude_img: true,
+                exclude_links: true,
+                exclude_inputs: true
+
+            });
+        });
+    </script>
+
 
 <!--自定义js代码区结束-->
 </body>

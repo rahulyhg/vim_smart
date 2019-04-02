@@ -2120,7 +2120,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                                             <div class="col-md-7">
                                                 <select name="property_mouth" class="form-control" id="property_mouth">
                                                     <option value="0" selected="selected">请选择</option>
-                                                    <?php $__FOR_START_28946__=1;$__FOR_END_28946__=24;for($i=$__FOR_START_28946__;$i < $__FOR_END_28946__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
+                                                    <?php $__FOR_START_31798__=1;$__FOR_END_31798__=24;for($i=$__FOR_START_31798__;$i < $__FOR_END_31798__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
                                                 </select>
                                                 <span class="required">如果没有设置过物业费到期时间，请先调整到期时间</span>
                                             </div>
@@ -2163,7 +2163,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                                             <div class="col-md-7">
                                                 <select name="carspace_mouth" class="form-control" id="carspace_mouth">
                                                     <option value="0" selected="selected">请选择</option>
-                                                    <?php $__FOR_START_4940__=1;$__FOR_END_4940__=24;for($i=$__FOR_START_4940__;$i < $__FOR_END_4940__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
+                                                    <?php $__FOR_START_6240__=1;$__FOR_END_6240__=24;for($i=$__FOR_START_6240__;$i < $__FOR_END_6240__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -2219,8 +2219,18 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                                                     </div>
                                                 </div>
                                             </div><?php endif; ?>
-                                        <div class="form-group form-md-line-input"  style="width:50%; float:left;">
-                                            <label class="col-md-5 control-label" for="form_control_1" id="fee_receive">应收
+                                        <div class="form-group form-md-line-input"  style="width:30%; float:left;">
+                                            <label class="col-md-5 control-label" for="form_control_1" id="balance">余额
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <div class="md-checkbox-list">
+                                                    <input type="text" name="balance" value=""  class="form-control control" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-md-line-input"  style="width:30%; float:left;">
+                                            <label class="col-md-5 control-label" for="form_control_1" id="fee_receive">应收123
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-7">
@@ -2230,7 +2240,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                                             </div>
                                         </div>
 
-                                        <div class="form-group form-md-line-input"  style="width:50%; float:left;" id="fee_true_div">
+                                        <div class="form-group form-md-line-input"  style="width:30%; float:left;" id="fee_true_div">
                                             <label class="col-md-5 control-label" for="form_control_1" id="fee_true">实收
                                                 <span class="required">*</span>
                                             </label>
@@ -2532,7 +2542,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                         <div class="col-md-4">
                             <select name="property_mouth" class="form-control" id="property_mouth">
                                 <option value="0" selected="selected">请选择</option>
-                                <?php $__FOR_START_32059__=1;$__FOR_END_32059__=24;for($i=$__FOR_START_32059__;$i < $__FOR_END_32059__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
+                                <?php $__FOR_START_12623__=1;$__FOR_END_12623__=24;for($i=$__FOR_START_12623__;$i < $__FOR_END_12623__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
                             </select>
                             <span class="required">如果没有设置过物业费到期时间，请先调整到期时间</span>
                         </div>
@@ -2580,7 +2590,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                         <div class="col-md-4">
                             <select name="carspace_mouth" class="form-control" id="carspace_mouth">
                                 <option value="0" selected="selected">请选择</option>
-                                <?php $__FOR_START_2379__=1;$__FOR_END_2379__=24;for($i=$__FOR_START_2379__;$i < $__FOR_END_2379__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
+                                <?php $__FOR_START_16044__=1;$__FOR_END_16044__=24;for($i=$__FOR_START_16044__;$i < $__FOR_END_16044__;$i+=1){ ?><option value="<?php echo ($i); ?>" ><?php echo ($i); ?>个月</option><?php } ?>
                             </select>
                         </div>
                     </div>
@@ -2676,7 +2686,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
 
 
 
-    <table class="table table-striped table-bordered table-hover" id="sample_2" >
+    <table class="table table-striped table-bordered table-hover" id="sample_3">
         <thead>
         <tr>
             <th width="2%">
@@ -2685,51 +2695,65 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                     <span></span>
                 </label>
             </th>
-            <th width="2%">所属期数</th>
-            <th width="5%">栋数</th>
-            <th width="5%">单元</th>
-            <th width="5%">楼层</th>
-            <th width="10%">门牌号</th>
-            <th width="10%">房屋面积</th>
+            <th width="2%">房间号</th>
+            <th width="5%">业主姓名</th>
+            <th width="5%">联系电话</th>
+            <th width="5%">房屋面积</th>
             <th width="10%">物业费到期时间</th>
+            <th width="10%">房屋状态(空置结束时间)</th>
             <th width="10%">车位详情</th>
+            <th width="10%">操作</th>
             <!--<th width="15%">业主详情</th>
             <th width="10%">房屋状态(空置结束时间)</th>
             <th class="button-column" width="15%">操作</th>-->
         </tr>
         </thead>
         <tbody>
-        <?php if(is_array($roomsArray)): $i = 0; $__LIST__ = $roomsArray;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><td>
+        <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><td>
                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                     <input type="checkbox" class="checkboxes" value="<?php echo ($vo["id"]); ?>" />
                     <span></span>
                 </label>
             </td>
-            <td><div class="shopNameDiv"><?php echo ($vo["desc"]); ?></div></td>
-            <td><div class="tagDiv"><?php echo ($vo["tung_build"]); ?>栋</div></td>
-            <td><div class="tagDiv"><?php echo ($vo["tung_unit"]); ?>单元</div></td>
-            <td><div class="tagDiv"><?php echo ($vo["tung_floor"]); ?>层</div></td>
-            <td><div class="tagDiv"><?php echo ($vo["room_name"]); ?></div></td>
+            <td><div class="shopNameDiv"><?php echo ($vo["room_name"]); ?></div></td>
+            <td><div class="tagDiv"><?php echo ($vo["owner_name"]); ?></div></td>
+            <td><div class="tagDiv"><?php echo ($vo["owner_phone"]); ?></div></td>
             <td><div class="tagDiv"><?php echo ($vo["roomsize"]); ?></div></td>
             <td>
-                <a href="<?php echo U('room_property_uptown',array('id'=>$vo['id']));?>" target="_blank">
-                    <div class="tagDiv">
-                        <?php if($vo['property_endtime'] and strtotime($vo['property_endtime']) >= time()): echo ($vo["property_endtime"]); ?>
-                            <?php elseif($vo['property_endtime'] and strtotime($vo['property_endtime']) < time()): ?>
-                            <span class="text-danger"><?php echo ($vo["property_endtime"]); ?>&nbsp;&nbsp;(已欠费)</span><?php endif; ?>
-                        <?php if($vo["property_endtime"] == ''): ?><span class="text-danger">尚未设置初始时间</span><?php endif; ?>
-                    </div>
-                </a>
+                <div class="tagDiv">
+                    <a href="<?php echo U('PropertyService/room_property_uptown',array('id'=>$vo['id']));?>" target="_blank"><?php echo ($vo["property"]); ?></a>
+                </div>
             </td>
             <td>
-                <a href="<?php echo U('room_carspace_uptown',array('id'=>$vo['id']));?>" target="_blank">
-                    <div class="tagDiv">
-                        <?php if($vo["carspace_number"] != ''): echo ($vo["carspace_number"]); ?><br>
-                            <?php echo ($vo["uc"]["carspace_endtime"]); endif; ?>
-                        <?php if($vo["carspace_number"] == ''): ?><span class="text-danger">尚未绑定车位</span><?php endif; ?>
-                    </div>
-                </a>
+                <div class="tagDiv"><?php echo ($vo["house_type"]); ?></div>
             </td>
+            <td>
+                <div class="tagDiv">
+                    <a href="<?php echo U('PropertyService/room_carspace_uptown',array('id'=>$vo['id']));?>" target="_blank"><?php echo ($vo["carspace"]); ?></a>
+                </div>
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 操作
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-left" role="menu" style="position:relative;">
+                        <li>
+                            <a href="<?php echo U('PropertyService/room_update_uptown',array('id'=>$vo['id']));?>">
+                                <i class="icon-docs"></i> 编辑 </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo U('Otherfee/add_otherfee',array('rid'=>$vo['id']));?>">
+                                <i class="icon-docs"></i> 添加新的缴费 </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo U('Otherfee/otherfee_list',array('rid'=>$vo['id']));?>">
+                                <i class="icon-docs"></i> 查看全部缴费 </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+
             <!--<td><div class="tagDiv">
                     <?php if($vo['oid_info']['0'] != ''): if(is_array($vo['oid_info'])): $i = 0; $__LIST__ = $vo['oid_info'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$oid_info): $mod = ($i % 2 );++$i; echo ($oid_info["name"]); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo ($oid_info["phone"]); ?><br><?php endforeach; endif; else: echo "" ;endif; endif; ?>
                     <?php if($vo['oid_info']['0'] == ''): ?><span class="text-danger">尚未绑定业主</span><?php endif; ?>
@@ -3192,6 +3216,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
             $("input[name='unit']").val('');
             $("input[name='fee_receive']").val('');
             $("input[name='fee_true']").val('');
+            $("input[name='balance']").val('');
             $("textarea[name='remark']").html('');
             var p1=$(this).children('option:selected').val();
             var room_name=$("input[name='room_name']").val();
@@ -3227,29 +3252,33 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                             $("input[name='code_end']").val(res.info.end_code);
                             $("input[name='unit']").val(res.info.price);
                             $("input[name='fee_receive']").val(res.info.fee_receive);
-                            $("input[name='fee_true']").val(res.info.fee_receive);
+                            $("input[name='fee_true']").val(res.info.fee_true);
+                            $("input[name='balance']").val(res.info.balance);
                             $(".control").focus(function(){
                                 var code_start=$("input[name='code_start']").val();
                                 var code_end=$("input[name='code_end']").val();
                                 var unit=$("input[name='unit']").val();
                                 if(code_start&&code_end&&unit){
-                                    var sum=(code_end-code_start)*unit + res.info.fee_receive_code;
+                                    var sum=(code_end-code_start)*unit - res.info.balance;
+                                    var sums=(code_end-code_start)*unit;
                                     $("input[name='fee_receive']").val(sum.toFixed(2));
-                                    $("input[name='fee_true']").val(sum.toFixed(2));
+                                    $("input[name='fee_true']").val(sums.toFixed(2));
                                 }
                             });
                         }else if(res.info.fee_receive != 0 && res.info.start_code == null){
-                            $("input[name='fee_receive']").val(res.info.fee_receive);
-                            $("input[name='fee_true']").val(res.info.fee_receive);
+
+                            $("input[name='fee_true']").val(res.info.true);
+                            $("input[name='balance']").val(res.info.balance);
                             /*自动计算*/
                             $(".control").focus(function(){
                                 var code_start=$("input[name='code_start']").val();
                                 var code_end=$("input[name='code_end']").val();
                                 var unit=$("input[name='unit']").val();
                                 if(code_start&&code_end&&unit){
-                                    var sum=(code_end-code_start)*unit + res.info.fee_receive_code;
+                                    var sum=(code_end-code_start)*unit - res.info.balance;
+                                    var sums=(code_end-code_start)*unit;
                                     $("input[name='fee_receive']").val(sum.toFixed(2));
-                                    $("input[name='fee_true']").val(sum.toFixed(2));
+                                    $("input[name='fee_true']").val(sums.toFixed(2));
                                 }
                             });
                         }else{
@@ -3268,33 +3297,33 @@ table tr:nth-last-of-type(2) .dropdown-menu {
 
                         if(res.data.otherfee_type_name == "水费" || res.data.otherfee_type_name == "电费"){
 //                                $('.input-mouth').css('display','block');
-                                $('.show_detail').css('display','block');
-                                var id = res.rid;
-                                $('#show_detailed').attr('href',"<?php echo U('Property/show_detailed',array('id'=>'"+id+"'));?>");
+                            $('.show_detail').css('display','block');
+                            var id = res.rid;
+                            $('#show_detailed').attr('href',"<?php echo U('Property/show_detailed',array('id'=>'"+id+"'));?>");
 
-                                if(res.start_time != null){
-                                    $str = res.start_time+"至"+res.end_time;
-                                    $("textarea[name='remark']").html($str);
-                                    $("input[name='start_time']").val(res.start_time);
-                                    $("input[name='end_time']").val(res.end_time);
-                                    /*$("input[name='remark']").val(res.start_time);
-                                    $("#time_to").val(res.end_time);*/
-                                }
-                                /*$("#sel option").each(function() {
-                                    if($(this).val()==res.start_time){
-                                        $(this).prop('selected',true);
-                                    }else{
-                                        $(this).prop('selected',false);
-                                    }
-                                });
+                            if(res.start_time != null){
+                                $str = res.start_time+"至"+res.end_time;
+                                $("textarea[name='remark']").html($str);
+                                $("input[name='start_time']").val(res.start_time);
+                                $("input[name='end_time']").val(res.end_time);
+                                /*$("input[name='remark']").val(res.start_time);
+                                 $("#time_to").val(res.end_time);*/
+                            }
+                            /*$("#sel option").each(function() {
+                             if($(this).val()==res.start_time){
+                             $(this).prop('selected',true);
+                             }else{
+                             $(this).prop('selected',false);
+                             }
+                             });
 
-                                $("#sels option").each(function() {
-                                    if($(this).val()==res.end_time){
-                                        $(this).prop('selected',true);
-                                    }else{
-                                        $(this).prop('selected',false);
-                                    }
-                                });*/
+                             $("#sels option").each(function() {
+                             if($(this).val()==res.end_time){
+                             $(this).prop('selected',true);
+                             }else{
+                             $(this).prop('selected',false);
+                             }
+                             });*/
 
                         }
                         if(res.data.type=='1'){
@@ -3331,7 +3360,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
         });
         $("#room_name").keyup(function(){
             $.ajax({
-                url:"<?php echo U('Property/ajax_room_list1');?>",
+                url:"<?php echo U('Property/ajax_room_list');?>",
                 data:{'keyword':$(this).val(),'type':1},
                 type: "POST",
                 dataType: 'json',
@@ -3386,27 +3415,24 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                     $('#carspace_true').val(res.pay_true);
                 }
             });
-        })
+        });
 
-        var table = $('#example').DataTable( {
-            searchDelay: 350
-        } );
-        var table = $('#sample_2');
-
+        var table = $('#sample_3');
         table.dataTable({
+
+            // Internationalisation. For more info refer to http://datatables.net/manual/i18n
             "language": {
                 "aria": {
                     "sortAscending": ": activate to sort column ascending",
                     "sortDescending": ": activate to sort column descending"
                 },
-                'processing':'正在努力处理中',
-                "emptyTable": "暂时没有数据",
+                "emptyTable": "No data available in table",
                 "info": "当前显示 _START_ 到 _END_ ​条记录 共 _TOTAL_ ​条记录",
                 "infoEmpty": "No records found",
                 "infoFiltered": "(filtered1 from _MAX_ total records)",
-                "lengthMenu": "​每页显示条数 _MENU_",
+                "lengthMenu": "每页显示条数 _MENU_",
                 "search": "搜索:",
-                "zeroRecords": "抱歉，没有查找到指定结果",
+                "zeroRecords": "No matching records found",
                 "paginate": {
                     "previous":"Prev",
                     "next": "Next",
@@ -3414,16 +3440,18 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                     "first": "First"
                 }
             },
-            //bFilter : false,
-            //"searching": true
-            //searchDelay: 350,
-            serverSide: true,
-            'processing':true,// 加载
-            ajax: {
-                url: '<?php echo U("ajax_room_list_uptown");?>&room_over_endtime='+sessionStorage.getItem('room_over_endtime')+'&room_house_type='+sessionStorage.getItem('room_house_type')+'&room_type='+sessionStorage.getItem('room_type'),
-                type: 'POST'
-            },
-            ordering:  false,
+
+            // Or you can use remote translation file
+            //"language": {
+            //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
+            //},
+
+            // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
+            // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js).
+            // So when dropdowns used the scrollable div should be removed.
+            //"dom": "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
+
+
             "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
 
             "lengthMenu": [
@@ -3431,7 +3459,7 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                 [5, 15, 20, "​全部"] // change per page values here
             ],
             // set the initial value
-            "pageLength": 1,
+            "pageLength": 10,
             "pagingType": "bootstrap_full_number",
             "columnDefs": [
                 {  // set default column settings
@@ -3439,10 +3467,10 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                     'targets': [0]
                 },
                 //去除限制第一列查询
-                /*{
+                {
                  "searchable": false,
                  "targets": [0]
-                 },*/
+                 },
                 {
                     "className": "dt-right",
                     //"targets": [2]
@@ -3515,13 +3543,12 @@ table tr:nth-last-of-type(2) .dropdown-menu {
                  }
 
                  },*/
-            ]
+            ],
+            "order": [
+                [1, "desc"]
+            ] // set first column as a default sort by asc
         });
-        $("input[type='search']").bind('keyup', function(e) {
-            if(e.keyCode == 13) {
-                oTable.fnFilter(this.value);
-            }
-        });
+
         $("#sample_1_filter input[type=search]").removeClass("input-small");
         $("#sample_1_filter input[type=search]").css({ width: '400px' });
         $("#sample_1_filter input[type=search]").attr("placeholder","请输入房间号、业主姓名、手机查询");

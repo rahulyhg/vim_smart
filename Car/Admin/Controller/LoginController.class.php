@@ -56,6 +56,7 @@ class LoginController extends Controller
                 $this->error('请输入账号和密码后再登录',U('admlogin'),1);
             }
 
+
             //对密码进行md5处理
             $userpassword= md5($userpassword);
 

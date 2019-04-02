@@ -5354,36 +5354,93 @@ class PropertyServiceAction extends BaseAction{
         if(M('house_village')->where('village_id='.$village_id)->find()['village_type']!=1){
             header('Location:'.U('room_list'));
         }
-        /*$project_list=M('house_village_project')->where('village_id='.$village_id)->select();
-        foreach ($project_list as $key=>$value){
-            $sum['list'][$value['pigcms_id']]['desc']=$value['desc'];
-            $sum['list'][$value['pigcms_id']]['sum']=0;
-            $sum['list'][$value['pigcms_id']]['over']=0;
-            $sum['list'][$value['pigcms_id']]['now']=0;
-            $sum['list'][$value['pigcms_id']]['empty']=0;
-        }
-        $sum['sum']=$sum['over']=$sum['now']=$sum['empty']=0;*/
+        $village_id =  filter_village(0,2);
+        $project_id=$_SESSION['project_id'];
+        //判断是否是小区，进行跳转 by zhukeqin
+        /*$user_list=D('house_village_user_bind')->get_user_bind_search($search_value,$search_value,'',session('system.village_id'));*/
         $model = M('house_village_room');
-        $where=array('r1.status'=>array('eq',0),'r1.village_id'=>array('eq',session('system.village_id')),'r1.fid'=>array('neq','0'));//,'r1.roomsize'=>array('neq',0)
-        //主查询
-        if(!empty($_SESSION['project_id'])){
-            $where['r1.project_id']=$_SESSION['project_id'];
+        $now=time();
+        $where_all=$where=array('r1.status'=>array('eq',0),'r1.village_id'=>array('eq',$village_id),'r1.fid'=>array('neq','0'),'r1.project_id'=>$project_id);
+        if(!empty($_POST['search']['value'])){
+            switch ($_POST['search']['value']){
+                case '已欠费':$where['_string']=' unix_timestamp(up.property_endtime)< '.$now;break;
+                case '空置中':$where['up.house_type']=0;break;
+                default:$search_value='%'.$_POST['search']['value'].'%';
+                    $where['r1.room_name|ub.phone|ub.name']=array('like',$search_value);break;
+            }
         }
-        /*$newArray = $model
+        if(I('get.room_over_endtime')==1&&I('get.room_over_endtime')!='null')
+            $where['_string']=' unix_timestamp(up.property_endtime)< '.$now;//是否物业费过期
+        if(I('get.room_house_type')!=4&&!is_null(I('get.room_house_type'))&&strlen(I('get.room_house_type'))&&I('get.room_house_type')!='null')
+            $where['up.house_type']=I('get.room_house_type');//房屋状态
+        if(I('get.room_type')&&I('get.room_type')!='null'&&I('get.room_type')!='other')
+            $where['r1.room_type']=I('get.room_type');//房屋类型
+        //其它业主信息
+        if(I('get.room_type')=='other'){
+            $where['r1.tung_unit']= array('exp',' is NULL');
+        }
+
+        $list = $model
             ->alias('r1')
             ->field(array(
-                'r1.*',
-                'up.*',
-                'uc.carspace_number',
-                'uc.carspace_defaulttime',
-                'uc.carspace_endtime'
+                'r1.id',
+                'r1.desc',
+                'r1.tung_build',
+                'r1.tung_unit',
+                'r1.tung_floor',
+                'r1.room_name',
+                'r1.roomsize',
+                'r1.room_name',
+                'r1.roomsize',
+                'r1.oid',
+                'up.house_type',
+                'up.rid',
+                'up.property_endtime',
+                'up.property_emptytime',
+                'ub.phone',
+                'ub.name'
             ))
             ->join('LEFT JOIN __HOUSE_VILLAGE_ROOM_UPTOWN__ up ON up.rid=r1.id')
-            ->join('LEFT JOIN __HOUSE_VILLAGE_USER_CAR__ uc ON uc.rid=r1.id')
+            ->join('LEFT JOIN __HOUSE_VILLAGE_USER_BIND__ ub ON ub.pigcms_id=r1.owner_id')
             ->where($where)
-            ->select();*/
-        //dump(M()->_sql());exit;
+            ->order('id desc')
+            ->select();
+        //dump($list);die;
 
+        foreach($list as &$value){
+            if(!empty($value['property_endtime']) && strtotime($value['property_endtime'])>time()){
+                $value['property'] =$value['property_endtime'];
+            }elseif(!empty($value['property_endtime'])){
+                $value['property'] ='<span class="text-danger">'.$value['property_endtime'].'&nbsp;&nbsp;(已欠费)</span>';
+            }
+            if(empty($value['property_endtime'])){
+                $value['property'] .=' <span class="text-danger">尚未设置初始时间</span>';
+            }
+            $carspace_list=M('house_village_user_car')->where(array('rid'=>$value['id'],'status'=>1))->select();
+            if(empty($carspace_list)){
+                $value['carspace'] ='<span class="text-danger">尚未绑定车位</span>';
+            }else{
+                foreach ($carspace_list as $key1=>$value1){
+                    $value['carspace'] =$value1['carspace_number'];
+                }
+            }
+            if(!empty($value['oid'])){
+                $owner_list=M('house_village_user_bind')->where(array('pigcms_id'=>array('IN',explode(',',$value['oid']))))->select();
+                foreach ($owner_list as $key1=>$value1){
+                    $value['owner_name'] =$value1['name'];
+                    $value['owner_phone'] =$value1['phone'];
+                }
+            }else{
+                $value['owner_name']='尚未绑定业主';
+                $value['owner_phone']='尚未绑定业主';
+            }
+            switch ($value['house_type']){
+                case 0:$value['house_type']='<span class="text-danger">空置</span>';break;
+                case 1:$value['house_type']='<span class="text-primary">出租</span>';break;
+                case 2:$value['house_type']='<span class="text-success">自住</span>';break;
+            }
+            if($value['house_type'] != '空置' && $value['property_emptytime']&& $value['property_emptytime']!=1) $value['house_type'] .=date('Y-m-d',$value['property_emptytime']);
+        }
         if(empty($this->project_id)){
             $this->project_id=$_SESSION['project_id'];
         }else{
@@ -5408,7 +5465,7 @@ class PropertyServiceAction extends BaseAction{
         $this->assign('fee_type_list',$fee_type_list);
         $this->assign('type_list',$type_list_all);
         /*$this->assign('project_list',$project_list);*/
-        $this->assign('roomsArray',$newArray);
+        $this->assign('list',$list);
         $this->assign('sum',$sum);
         $this->assign('project_info',$project_info);
         $this->assign('is_code',$is_code);
@@ -5497,7 +5554,7 @@ class PropertyServiceAction extends BaseAction{
         $start=I('post.start');
         $length=I('post.length');
 
-       // dump($length);die;
+        // dump($length);die;
         //datatable适配  -1则代表显示全部信息
         if($length==-1){
             unset($length);
@@ -5682,7 +5739,7 @@ class PropertyServiceAction extends BaseAction{
             'recordsFiltered'=>$list_dimcount,
             'data'=>$list_reload
         );
-//        dump($result_array);die;
+        //dump($result_array);die;
         echo json_encode($result_array);
     }
     /**

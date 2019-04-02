@@ -2,10 +2,10 @@
 return array(
 	//'配置项'=>'配置值'
     'DB_TYPE'               =>  'mysql',     // 数据库类型
-    'DB_HOST'               =>  'rds66568gp739413snzpo.mysql.rds.aliyuncs.com', // 服务器地址
+    'DB_HOST'               =>  '127.0.0.1', // 服务器地址
     'DB_NAME'               =>  'vhi_smart',          // 数据库名
-    'DB_USER'               =>  'vhi_smart',      // 用户名
-    'DB_PWD'                =>  'Vhi_smart123',          // 密码
+    'DB_USER'               =>  'root',      // 用户名
+    'DB_PWD'                =>  'root',          // 密码
     'DB_PORT'               =>  '3306',        // 端口
     'DB_PREFIX'             =>  'smart_',    // 数据库表前缀
     //'DB_CHARSET'            =>  'utf8mb4',   //数据库编码
@@ -18,7 +18,7 @@ return array(
     //'SHOW_PAGE_TRACE' => true,
     
     //网站根域名111
-    'WEB_DOMAIN' => 'http://www.hdhsmart.com/Car',
+    'WEB_DOMAIN' => 'http://www.pignewpay.com/Car',
 
 
      'LOAD_EXT_FILE'=>'define',//Common下自动加载文件名,'function'文件名为默认自动加载不要写入

@@ -44,6 +44,7 @@ class CarController extends RbacController {
             'c.add_time',
             'c.car_role',
             'c.end_time', //结束时间戳
+            'c.number',
             'if( c.end_time,floor( (c.end_time-'.time().')/3600/24 ) , 0)'=>'days_remaining'//剩余天数
         );
 
@@ -111,6 +112,9 @@ class CarController extends RbacController {
         $car=new \Admin\Model\CarModel();
         if(IS_POST){
             //数据收集
+            if($_POST['car_role'] == 2){
+                $_POST['number'] = 30;
+            }
             $data=$car->create();
             
             //将数据插入到数据库

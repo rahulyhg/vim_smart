@@ -3963,7 +3963,6 @@ class RoomAction extends BaseAction
         $model = new OffModel();
         $file = $_FILES['test'];
         if($file){
-            dump($file);die;
             //导入数据
             $list = $model->water_excel_to_data($file);
 

@@ -703,6 +703,7 @@ class Budget_logModel extends Model{
      */
     public function get_excel_type_one($type_id,$village_id,$project_id,$company_id,$year){
         $type_info=D('Budget_type')->get_type_one(array('type_id'=>$type_id));
+        //dump($type_info);
         /*if($type_info['type_rank']!=3){
             return "当前类目不允许导出";
         }*/
@@ -728,8 +729,9 @@ class Budget_logModel extends Model{
         if(empty($year)){
             $year=date('Y');
         }
-        $where['year']=$year;
+        $where['log_time']=$year;
         $where['type_id']=$type_id;
+
         if($company_id){
             $where['company_id']=$company_id;
         }elseif($village_id){
@@ -738,7 +740,9 @@ class Budget_logModel extends Model{
                 $where['project_id']=$project_id;
             }
         }
+        //dump($where);
         $log_list=$this->get_log_list($where);
+
         $return=array();
         foreach ($log_list as $value){
             $cache=unserialize($value['log_data']);
@@ -746,6 +750,7 @@ class Budget_logModel extends Model{
                 $return[$key1] +=$value1;
             }
         }
+        //dump($return);
         return $return;
     }
 

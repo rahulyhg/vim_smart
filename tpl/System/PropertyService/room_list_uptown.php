@@ -289,8 +289,18 @@
 
 
                                         </if>
-                                        <div class="form-group form-md-line-input"  style="width:50%; float:left;">
-                                            <label class="col-md-5 control-label" for="form_control_1" id="fee_receive">应收
+                                        <div class="form-group form-md-line-input"  style="width:30%; float:left;">
+                                            <label class="col-md-5 control-label" for="form_control_1" id="balance">余额
+                                                <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-7">
+                                                <div class="md-checkbox-list">
+                                                    <input type="text" name="balance" value=""  class="form-control control" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-md-line-input"  style="width:30%; float:left;">
+                                            <label class="col-md-5 control-label" for="form_control_1" id="fee_receive">应收123
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-7">
@@ -300,7 +310,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group form-md-line-input"  style="width:50%; float:left;" id="fee_true_div">
+                                        <div class="form-group form-md-line-input"  style="width:30%; float:left;" id="fee_true_div">
                                             <label class="col-md-5 control-label" for="form_control_1" id="fee_true">实收
                                                 <span class="required">*</span>
                                             </label>
@@ -756,7 +766,7 @@
 
 
 
-    <table class="table table-striped table-bordered table-hover" id="sample_2" >
+    <table class="table table-striped table-bordered table-hover" id="sample_3">
         <thead>
         <tr>
             <th width="2%">
@@ -765,60 +775,66 @@
                     <span></span>
                 </label>
             </th>
-            <th width="2%">所属期数</th>
-            <th width="5%">栋数</th>
-            <th width="5%">单元</th>
-            <th width="5%">楼层</th>
-            <th width="10%">门牌号</th>
-            <th width="10%">房屋面积</th>
+            <th width="2%">房间号</th>
+            <th width="5%">业主姓名</th>
+            <th width="5%">联系电话</th>
+            <th width="5%">房屋面积</th>
             <th width="10%">物业费到期时间</th>
+            <th width="10%">房屋状态(空置结束时间)</th>
             <th width="10%">车位详情</th>
+            <th width="10%">操作</th>
             <!--<th width="15%">业主详情</th>
             <th width="10%">房屋状态(空置结束时间)</th>
             <th class="button-column" width="15%">操作</th>-->
         </tr>
         </thead>
         <tbody>
-        <volist name="roomsArray" id="vo">
+        <volist name="list" id="vo">
             <td>
                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                     <input type="checkbox" class="checkboxes" value="{pigcms{$vo.id}" />
                     <span></span>
                 </label>
             </td>
-            <td><div class="shopNameDiv">{pigcms{$vo.desc}</div></td>
-            <td><div class="tagDiv">{pigcms{$vo.tung_build}栋</div></td>
-            <td><div class="tagDiv">{pigcms{$vo.tung_unit}单元</div></td>
-            <td><div class="tagDiv">{pigcms{$vo.tung_floor}层</div></td>
-            <td><div class="tagDiv">{pigcms{$vo.room_name}</div></td>
+            <td><div class="shopNameDiv">{pigcms{$vo.room_name}</div></td>
+            <td><div class="tagDiv">{pigcms{$vo.owner_name}</div></td>
+            <td><div class="tagDiv">{pigcms{$vo.owner_phone}</div></td>
             <td><div class="tagDiv">{pigcms{$vo.roomsize}</div></td>
             <td>
-                <a href="{pigcms{:U('room_property_uptown',array('id'=>$vo['id']))}" target="_blank">
-                    <div class="tagDiv">
-                        <if condition="$vo['property_endtime'] and strtotime($vo['property_endtime']) egt time()">
-                            {pigcms{$vo.property_endtime}
-                            <elseif condition="$vo['property_endtime'] and strtotime($vo['property_endtime']) lt time()"/>
-                            <span class="text-danger">{pigcms{$vo.property_endtime}&nbsp;&nbsp;(已欠费)</span>
-                        </if>
-                        <if condition="$vo.property_endtime eq ''">
-                            <span class="text-danger">尚未设置初始时间</span>
-                        </if>
-                    </div>
-                </a>
+                <div class="tagDiv">
+                    <a href="{pigcms{:U('PropertyService/room_property_uptown',array('id'=>$vo['id']))}" target="_blank">{pigcms{$vo.property}</a>
+                </div>
             </td>
             <td>
-                <a href="{pigcms{:U('room_carspace_uptown',array('id'=>$vo['id']))}" target="_blank">
-                    <div class="tagDiv">
-                        <if condition="$vo.carspace_number neq ''">
-                            {pigcms{$vo.carspace_number}<br>
-                            {pigcms{$vo.uc.carspace_endtime}
-                        </if>
-                        <if condition="$vo.carspace_number eq ''">
-                            <span class="text-danger">尚未绑定车位</span>
-                        </if>
-                    </div>
-                </a>
+                <div class="tagDiv">{pigcms{$vo.house_type}</div>
             </td>
+            <td>
+                <div class="tagDiv">
+                    <a href="{pigcms{:U('PropertyService/room_carspace_uptown',array('id'=>$vo['id']))}" target="_blank">{pigcms{$vo.carspace}</a>
+                </div>
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 操作
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-left" role="menu" style="position:relative;">
+                        <li>
+                            <a href="{pigcms{:U('PropertyService/room_update_uptown',array('id'=>$vo['id']))}">
+                                <i class="icon-docs"></i> 编辑 </a>
+                        </li>
+                        <li>
+                            <a href="{pigcms{:U('Otherfee/add_otherfee',array('rid'=>$vo['id']))}">
+                                <i class="icon-docs"></i> 添加新的缴费 </a>
+                        </li>
+                        <li>
+                            <a href="{pigcms{:U('Otherfee/otherfee_list',array('rid'=>$vo['id']))}">
+                                <i class="icon-docs"></i> 查看全部缴费 </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+
             <!--<td><div class="tagDiv">
                     <if condition="$vo['oid_info']['0'] neq ''">
                         <volist name="vo['oid_info']" id="oid_info">
@@ -1044,6 +1060,7 @@
             $("input[name='unit']").val('');
             $("input[name='fee_receive']").val('');
             $("input[name='fee_true']").val('');
+            $("input[name='balance']").val('');
             $("textarea[name='remark']").html('');
             var p1=$(this).children('option:selected').val();
             var room_name=$("input[name='room_name']").val();
@@ -1079,29 +1096,33 @@
                             $("input[name='code_end']").val(res.info.end_code);
                             $("input[name='unit']").val(res.info.price);
                             $("input[name='fee_receive']").val(res.info.fee_receive);
-                            $("input[name='fee_true']").val(res.info.fee_receive);
+                            $("input[name='fee_true']").val(res.info.fee_true);
+                            $("input[name='balance']").val(res.info.balance);
                             $(".control").focus(function(){
                                 var code_start=$("input[name='code_start']").val();
                                 var code_end=$("input[name='code_end']").val();
                                 var unit=$("input[name='unit']").val();
                                 if(code_start&&code_end&&unit){
-                                    var sum=(code_end-code_start)*unit + res.info.fee_receive_code;
+                                    var sum=(code_end-code_start)*unit - res.info.balance;
+                                    var sums=(code_end-code_start)*unit;
                                     $("input[name='fee_receive']").val(sum.toFixed(2));
-                                    $("input[name='fee_true']").val(sum.toFixed(2));
+                                    $("input[name='fee_true']").val(sums.toFixed(2));
                                 }
                             });
                         }else if(res.info.fee_receive != 0 && res.info.start_code == null){
-                            $("input[name='fee_receive']").val(res.info.fee_receive);
-                            $("input[name='fee_true']").val(res.info.fee_receive);
+
+                            $("input[name='fee_true']").val(res.info.true);
+                            $("input[name='balance']").val(res.info.balance);
                             /*自动计算*/
                             $(".control").focus(function(){
                                 var code_start=$("input[name='code_start']").val();
                                 var code_end=$("input[name='code_end']").val();
                                 var unit=$("input[name='unit']").val();
                                 if(code_start&&code_end&&unit){
-                                    var sum=(code_end-code_start)*unit + res.info.fee_receive_code;
+                                    var sum=(code_end-code_start)*unit - res.info.balance;
+                                    var sums=(code_end-code_start)*unit;
                                     $("input[name='fee_receive']").val(sum.toFixed(2));
-                                    $("input[name='fee_true']").val(sum.toFixed(2));
+                                    $("input[name='fee_true']").val(sums.toFixed(2));
                                 }
                             });
                         }else{
@@ -1120,33 +1141,33 @@
 
                         if(res.data.otherfee_type_name == "水费" || res.data.otherfee_type_name == "电费"){
 //                                $('.input-mouth').css('display','block');
-                                $('.show_detail').css('display','block');
-                                var id = res.rid;
-                                $('#show_detailed').attr('href',"{pigcms{:U('Property/show_detailed',array('id'=>'"+id+"'))}");
+                            $('.show_detail').css('display','block');
+                            var id = res.rid;
+                            $('#show_detailed').attr('href',"{pigcms{:U('Property/show_detailed',array('id'=>'"+id+"'))}");
 
-                                if(res.start_time != null){
-                                    $str = res.start_time+"至"+res.end_time;
-                                    $("textarea[name='remark']").html($str);
-                                    $("input[name='start_time']").val(res.start_time);
-                                    $("input[name='end_time']").val(res.end_time);
-                                    /*$("input[name='remark']").val(res.start_time);
-                                    $("#time_to").val(res.end_time);*/
-                                }
-                                /*$("#sel option").each(function() {
-                                    if($(this).val()==res.start_time){
-                                        $(this).prop('selected',true);
-                                    }else{
-                                        $(this).prop('selected',false);
-                                    }
-                                });
+                            if(res.start_time != null){
+                                $str = res.start_time+"至"+res.end_time;
+                                $("textarea[name='remark']").html($str);
+                                $("input[name='start_time']").val(res.start_time);
+                                $("input[name='end_time']").val(res.end_time);
+                                /*$("input[name='remark']").val(res.start_time);
+                                 $("#time_to").val(res.end_time);*/
+                            }
+                            /*$("#sel option").each(function() {
+                             if($(this).val()==res.start_time){
+                             $(this).prop('selected',true);
+                             }else{
+                             $(this).prop('selected',false);
+                             }
+                             });
 
-                                $("#sels option").each(function() {
-                                    if($(this).val()==res.end_time){
-                                        $(this).prop('selected',true);
-                                    }else{
-                                        $(this).prop('selected',false);
-                                    }
-                                });*/
+                             $("#sels option").each(function() {
+                             if($(this).val()==res.end_time){
+                             $(this).prop('selected',true);
+                             }else{
+                             $(this).prop('selected',false);
+                             }
+                             });*/
 
                         }
                         if(res.data.type=='1'){
@@ -1238,27 +1259,24 @@
                     $('#carspace_true').val(res.pay_true);
                 }
             });
-        })
+        });
 
-        var table = $('#example').DataTable( {
-            searchDelay: 350
-        } );
-        var table = $('#sample_2');
-
+        var table = $('#sample_3');
         table.dataTable({
+
+            // Internationalisation. For more info refer to http://datatables.net/manual/i18n
             "language": {
                 "aria": {
                     "sortAscending": ": activate to sort column ascending",
                     "sortDescending": ": activate to sort column descending"
                 },
-                'processing':'正在努力处理中',
-                "emptyTable": "暂时没有数据",
+                "emptyTable": "No data available in table",
                 "info": "当前显示 _START_ 到 _END_ ​条记录 共 _TOTAL_ ​条记录",
                 "infoEmpty": "No records found",
                 "infoFiltered": "(filtered1 from _MAX_ total records)",
-                "lengthMenu": "​每页显示条数 _MENU_",
+                "lengthMenu": "每页显示条数 _MENU_",
                 "search": "搜索:",
-                "zeroRecords": "抱歉，没有查找到指定结果",
+                "zeroRecords": "No matching records found",
                 "paginate": {
                     "previous":"Prev",
                     "next": "Next",
@@ -1266,16 +1284,18 @@
                     "first": "First"
                 }
             },
-            //bFilter : false,
-            //"searching": true
-            //searchDelay: 350,
-            serverSide: true,
-            'processing':true,// 加载
-            ajax: {
-                url: '{pigcms{:U("ajax_room_list_uptown")}&room_over_endtime='+sessionStorage.getItem('room_over_endtime')+'&room_house_type='+sessionStorage.getItem('room_house_type')+'&room_type='+sessionStorage.getItem('room_type'),
-                type: 'POST'
-            },
-            ordering:  false,
+
+            // Or you can use remote translation file
+            //"language": {
+            //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
+            //},
+
+            // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
+            // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js).
+            // So when dropdowns used the scrollable div should be removed.
+            //"dom": "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
+
+
             "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
 
             "lengthMenu": [
@@ -1283,7 +1303,7 @@
                 [5, 15, 20, "​全部"] // change per page values here
             ],
             // set the initial value
-            "pageLength": 1,
+            "pageLength": 10,
             "pagingType": "bootstrap_full_number",
             "columnDefs": [
                 {  // set default column settings
@@ -1291,10 +1311,10 @@
                     'targets': [0]
                 },
                 //去除限制第一列查询
-                /*{
+                {
                  "searchable": false,
                  "targets": [0]
-                 },*/
+                 },
                 {
                     "className": "dt-right",
                     //"targets": [2]
@@ -1367,13 +1387,12 @@
                  }
 
                  },*/
-            ]
+            ],
+            "order": [
+                [1, "desc"]
+            ] // set first column as a default sort by asc
         });
-        $("input[type='search']").bind('keyup', function(e) {
-            if(e.keyCode == 13) {
-                oTable.fnFilter(this.value);
-            }
-        });
+
         $("#sample_1_filter input[type=search]").removeClass("input-small");
         $("#sample_1_filter input[type=search]").css({ width: '400px' });
         $("#sample_1_filter input[type=search]").attr("placeholder","请输入房间号、业主姓名、手机查询");

@@ -1,0 +1,20 @@
+[ 2019-04-02T11:32:46+08:00 ] 127.0.0.1 /Car/index.php/favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `pigcms_tempmsg` [ RunTime:0.0110s ]
+SQL: SELECT `tempid` FROM `pigcms_tempmsg` WHERE ( id=20 ) LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0100s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0010s ]
+ERR: 无法加载模块:Favicon
+
+[ 2019-04-02T13:55:42+08:00 ] 127.0.0.1 /Car/index.php/favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `pigcms_tempmsg` [ RunTime:0.0460s ]
+SQL: SELECT `tempid` FROM `pigcms_tempmsg` WHERE ( id=20 ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `smart_config` [ RunTime:0.0110s ]
+SQL: SELECT `name`,`value` FROM `smart_config`  [ RunTime:0.0010s ]
+ERR: 无法加载模块:Favicon
+

@@ -1307,7 +1307,10 @@ class BudgetAction extends BaseAction
                 $cache=$budget_log->get_excel_type_one($type_id,'','',$value['id'],$year);
                 $data[]=array('name'=>$value['deptname'],'list'=>$cache,'company_id'=>$value['id']);
             }
+
             $sum=$budget_log->get_excel_type_one($type_id,'','','',$year);
+//            dump($data);
+//            dump($sum);die;
         }elseif($type==2||$type==4){
             if($type==4){
                 //某总公司下所有项目统计
